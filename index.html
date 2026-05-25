@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人網站</title>
+    
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 設定客製化的 Tailwind 主要顏色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            green: '#10b981', // 螢光綠
+                            gray: '#0f172a'   // 深灰背景
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!-- 設定背景顏色(bg-cyber-gray)、文字顏色(text-slate-300) 與 等寬字體(font-mono) -->
+<body class="bg-cyber-gray text-slate-300 font-mono min-h-screen p-6 md:p-12 flex flex-col items-center">
+
     <!-- 之後所有的網站內容都會放在這個容器中 -->
     <main class="w-full max-w-3xl pt-8 md:pt-16">
         
@@ -50,3 +79,6 @@
         </section>
 
     </main>
+
+</body>
+</html>
