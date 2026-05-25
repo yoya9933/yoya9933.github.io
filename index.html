@@ -1,1 +1,44 @@
-<h1>Hello World! 這是我的網站</h1>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人網站</title>
+    
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 設定客製化的 Tailwind 主要顏色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            green: '#10b981', // 螢光綠
+                            gray: '#0f172a'   // 深灰背景
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!-- 設定背景顏色(bg-cyber-gray)、文字顏色(text-slate-300) 與 等寬字體(font-mono) -->
+<body class="bg-cyber-gray text-slate-300 font-mono min-h-screen p-6 md:p-12 flex flex-col items-center">
+
+    <!-- 之後所有的網站內容都會放在這個容器中 -->
+    <main class="w-full max-w-3xl">
+        
+        <!-- 第一步測試文字 -->
+        <h1 class="text-3xl md:text-5xl font-bold text-cyber-green mb-4">
+            > Hello, World._
+        </h1>
+        <p class="text-lg opacity-80">
+            系統初始化成功... 準備載入個人資料。
+        </p>
+
+    </main>
+
+</body>
+</html>
