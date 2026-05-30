@@ -27,58 +27,5 @@
 <!-- 設定背景顏色(bg-cyber-gray)、文字顏色(text-slate-300) 與 等寬字體(font-mono) -->
 <body class="bg-cyber-gray text-slate-300 font-mono min-h-screen p-6 md:p-12 flex flex-col items-center">
 
-    <!-- 之後所有的網站內容都會放在這個容器中 -->
-    <main class="w-full max-w-3xl pt-8 md:pt-16">
-        
-        <!-- Hero 區塊 (手機版垂直排列並置中，電腦版水平排列靠左) -->
-        <header class="flex flex-col md:flex-row items-center gap-6 mb-12">
-            <!-- 大頭貼佔位圖 (有微微的綠色發光特效) -->
-            <img src="https://via.placeholder.com/150/111/10b981?text=Me" alt="Avatar" 
-                 class="w-32 h-32 md:w-36 md:h-36 rounded-full border-2 border-cyber-green shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-            
-            <div class="text-center md:text-left">
-                <h1 class="text-3xl md:text-5xl font-bold text-cyber-green mb-2">
-                    > Hello, World._
-                </h1>
-                <h2 class="text-xl md:text-2xl text-slate-400">
-                    I'm a Developer | Tech Enthusiast
-                </h2>
-            </div>
-        </header>
-
-        <!-- 終端機風格關於我 (具備圓角邊框與手機版友善的內距) -->
-        <section class="bg-[#1e293b] rounded-lg border border-slate-700 overflow-hidden shadow-xl mb-12">
-            <!-- 終端機頂部按鈕 (Mac 風格紅黃綠) -->
-            <div class="bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-slate-700">
-                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                <span class="ml-2 text-xs text-slate-400 font-sans">user@website: ~</span>
-            </div>
-            
-            <!-- 終端機內容區 -->
-            <div class="p-4 md:p-6 text-sm md:text-base leading-relaxed text-slate-300">
-                <p class="mb-2"><span class="text-cyber-green">user@website:~$</span> cat about.txt</p>
-                <p class="mb-6 text-slate-100 pl-4 border-l-2 border-slate-600">
-                    你好！我是 yoya。我對寫程式與解決問題充滿熱情。<br>
-                    喜歡...看起來很酷炫的東西，像是這個網站。
-                </p>
-                
-                <p class="mb-2"><span class="text-cyber-green">user@website:~$</span> ls -l skills/</p>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-slate-400 pl-4">
-                    <span>- HTML / CSS</span>
-                    <span>- Tailwind CSS</span>
-                    <span>- JavaScript</span>
-                    <span>- Git & GitHub</span>
-                    <span>- Responsive Design</span>
-                </div>
-                
-                <!-- 閃爍游標效果 -->
-                <p class="mt-6"><span class="text-cyber-green">user@website:~$</span> <span class="animate-pulse bg-slate-400 w-2 h-4 inline-block align-middle"></span></p>
-            </div>
-        </section>
-
-    </main>
-
 </body>
 </html>
