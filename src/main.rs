@@ -39,7 +39,7 @@ fn app() -> Html {
 
                     <p class="mb-2"><span class="text-cyber-green">{ "user@website:~$ " }</span>{ "cat achievements.txt" }</p>
                     <div class="mb-6 text-slate-100 pl-4 border-l-2 border-slate-600 text-sm max-h-64 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent">
-                        <div class="mb-2 text-cyber-green font-semibold">{ "競賽佳績" }</div>
+                        <div class="mb-2 text-cyber-green font-semibold">{ " 競賽佳績" }</div>
                         <ul class="list-disc list-inside mb-4 space-y-1 text-slate-300">
                             <li>{ "2025諾大師海洋大數據競賽 優選（冠軍）" }</li>
                             <li>{ "2025高通台灣AI黑客松競賽 季軍" }</li>
@@ -52,7 +52,7 @@ fn app() -> Html {
                             <li>{ "2013卓越杯數學競賽 優選" }</li>
                         </ul>
 
-                        <div class="mb-2 text-cyber-green font-semibold">{ "專業證照" }</div>
+                        <div class="mb-2 text-cyber-green font-semibold">{ " 專業證照" }</div>
                         <ul class="list-disc list-inside mb-4 space-y-1 text-slate-300">
                             <li>{ "ModelScope Agent Engineer 證照" }</li>
                             <li>{ "iFLY TEK Fine-tuning Engineer 證照" }</li>
@@ -62,7 +62,7 @@ fn app() -> Html {
                             <li>{ "浪潮信息 大模型開發工程師 證照" }</li>
                         </ul>
 
-                        <div class="mb-2 text-cyber-green font-semibold">{ "榮譽獎項" }</div>
+                        <div class="mb-2 text-cyber-green font-semibold">{ " 榮譽獎項" }</div>
                         <ul class="list-disc list-inside mb-2 space-y-1 text-slate-300">
                             <li>{ "107, 108, 109, 110年度 高雄數位學園競賽活動表現優異" }</li>
                             <li>{ "107, 113學年度 成績優良獎" }</li>
