@@ -6,7 +6,7 @@ fn app() -> Html {
         <main class="w-full max-w-3xl pt-8 md:pt-16">
             
             <header class="flex flex-col md:flex-row items-center gap-6 mb-12">
-                <img src="https://via.placeholder.com/150/111/10b981?text=Me" alt="Avatar" 
+                <img src="https://github.com/yoya9933.png" alt="Avatar" 
                      class="w-32 h-32 md:w-36 md:h-36 rounded-full border-2 border-cyber-green shadow-[0_0_15px_rgba(16,185,129,0.3)]" />
                 
                 <div class="text-center md:text-left">
