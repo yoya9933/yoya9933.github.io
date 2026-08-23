@@ -8,10 +8,9 @@
   <meta name="author" content="Yoya">
   <meta name="theme-color" content="#07111f">
   <meta name="robots" content="index,follow">
-
   <link rel="canonical" href="https://yoya9933.page/">
   <link rel="stylesheet" href="assets/styles.css">
-
+  <link rel="stylesheet" href="assets/p1.css">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
   <meta property="og:title" content="Yoya｜Engineering × Data × AI Portfolio">
@@ -19,29 +18,15 @@
   <meta property="og:url" content="https://yoya9933.page/">
   <meta property="og:image" content="https://github.com/yoya9933.png">
   <meta name="twitter:card" content="summary">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Yoya",
-    "url": "https://yoya9933.page/",
-    "sameAs": ["https://github.com/yoya9933"],
-    "knowsAbout": ["engineering data", "AI applications", "data analysis", "web development", "decision support"]
-  }
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
-
   <header class="site-header">
     <div class="shell nav-wrap">
       <a class="brand" href="#top" aria-label="回到首頁">yoya9933<span>.page</span></a>
-      <nav class="nav" aria-label="主要導覽">
-        <a href="#projects">作品</a>
-        <a href="#about">方向</a>
-        <a href="#skills">技能</a>
-        <a href="#highlights">亮點</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="開啟導覽">☰</button>
+      <nav class="nav" id="site-nav" aria-label="主要導覽">
+        <a href="#projects">作品</a><a href="#about">方向</a><a href="#skills">技能</a><a href="#highlights">亮點</a>
         <a class="nav-cta" href="https://github.com/yoya9933" target="_blank" rel="noreferrer">GitHub ↗</a>
       </nav>
     </div>
@@ -52,170 +37,59 @@
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Engineering × Data × AI</p>
         <h1>把工程與資料問題，<br><span>做成真正能使用的工具。</span></h1>
-        <p class="hero-lead">
-          我把工程背景、資料分析與 AI 應用接成完整產品流程：從真實資料整理、模型與規則，到 Web 介面、API、資料庫與可驗證成果。
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#projects">查看代表作品</a>
-          <a class="button secondary" href="https://github.com/yoya9933" target="_blank" rel="noreferrer">查看 GitHub</a>
-        </div>
-        <ul class="quick-facts" aria-label="能力摘要">
-          <li><strong>Engineering Data</strong><span>真實資料與工程判讀</span></li>
-          <li><strong>AI Applications</strong><span>模型、驗證與流程整合</span></li>
-          <li><strong>Web Products</strong><span>前端、API、資料庫與部署</span></li>
-        </ul>
+        <p class="hero-lead">我把工程背景、資料分析與 AI 應用接成完整產品流程：從真實資料整理、模型與規則，到 Web 介面、API、資料庫與可驗證成果。</p>
+        <div class="hero-actions"><a class="button primary" href="#projects">查看代表作品</a><a class="button secondary" href="https://github.com/yoya9933" target="_blank" rel="noreferrer">查看 GitHub</a></div>
       </div>
-
       <aside class="profile-card" aria-label="個人摘要">
-        <div class="avatar-ring">
-          <img src="https://github.com/yoya9933.png" alt="Yoya 的 GitHub 頭像" width="156" height="156" decoding="async" fetchpriority="high">
-        </div>
-        <div class="profile-copy">
-          <p class="profile-kicker">POSITIONING</p>
-          <h2>Engineering × Data × AI</h2>
-          <p>把複雜問題拆成資料、邏輯、介面與可驗證功能，優先做出能用、能維護、能迭代的版本。</p>
-        </div>
+        <div class="avatar-ring"><img src="https://github.com/yoya9933.png" alt="Yoya 的 GitHub 頭像" width="156" height="156" decoding="async" fetchpriority="high"></div>
+        <div class="profile-copy"><p class="profile-kicker">POSITIONING</p><h2>Engineering × Data × AI</h2><p>把複雜問題拆成資料、邏輯、介面與可驗證功能，優先做出能用、能維護、能迭代的版本。</p></div>
         <div class="terminal-line" aria-hidden="true"><span>$</span> build → test → improve<span class="cursor">_</span></div>
       </aside>
     </section>
 
     <section class="section shell" id="projects">
-      <div class="section-heading">
-        <p class="section-index">01 / SELECTED WORK</p>
-        <div>
-          <h2>先看作品，再看技能。</h2>
-          <p>三個代表專案分別證明我能處理工程資料與 AI、完整 Web 產品，以及個人決策工具。</p>
-        </div>
-      </div>
-
+      <div class="section-heading"><p class="section-index">01 / SELECTED WORK</p><div><h2>先看作品，再看技能。</h2><p>三個代表專案分別對應工程資料與 AI、完整 Web 產品，以及個人決策工具。</p></div></div>
       <div class="projects-grid">
         <article class="project-card featured">
-          <div class="project-topline">
-            <span class="project-number">01</span>
-            <span class="project-badge">FEATURED</span>
+          <div class="project-media project-media-placeholder" role="img" aria-label="浮標資料分析平台介面預覽">
+            <span>STREAMLIT PRODUCT</span><strong>🌊 浮標資料分析平台</strong><small>Data QA · LSTM · Validation · Risk Assessment</small>
           </div>
+          <div class="project-topline"><span class="project-number">01</span><span class="project-badge">FEATURED</span></div>
           <h3>浮標資料分析與航道風險評估平台</h3>
-          <p>把海洋浮標觀測資料接成可操作的分析流程：資料品質檢查、缺值與時間尺度處理、LSTM 時間序列預測、訓練／驗證評估、模型快取與風險門檻判讀。</p>
-          <ul class="tags" aria-label="使用技術">
-            <li>Python</li><li>Streamlit</li><li>LSTM</li><li>Pandas</li><li>Data QA</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/yoya9933/Buoy-data-analysis-V2" target="_blank" rel="noreferrer">Repository ↗</a>
-          </div>
+          <p>把海洋浮標觀測資料接成可操作分析流程：資料品質檢查、LSTM 預測、模型驗證、快取與風險門檻判讀。</p>
+          <ul class="tags" aria-label="使用技術"><li>Python</li><li>Streamlit</li><li>LSTM</li><li>Pandas</li><li>Data QA</li></ul>
+          <div class="project-links"><a class="project-primary" href="projects/buoy/">看專案</a><a href="https://github.com/yoya9933/Buoy-data-analysis-V2" target="_blank" rel="noreferrer">GitHub ↗</a></div>
         </article>
 
         <article class="project-card">
+          <div class="project-media"><img src="https://raw.githubusercontent.com/yoya9933/chess-online/main/public/og.png" alt="楚河棋局實際產品畫面" loading="lazy" decoding="async"></div>
           <div class="project-topline"><span class="project-number">02</span></div>
           <h3>楚河棋局｜線上中國象棋</h3>
-          <p>免註冊、可用房間代碼跨裝置對弈，支援標準象棋、揭棋、單機 AI、悔棋、棋譜回放、沙盤推演與自訂棋局，並以 API、資料庫與 revision 控制同步房間狀態。</p>
-          <ul class="tags" aria-label="使用技術">
-            <li>JavaScript</li><li>Next.js</li><li>Neon Postgres</li><li>API</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://chuhe-xiangqi-online.bowersbayley13783.chatgpt.site" target="_blank" rel="noreferrer">Live Demo ↗</a>
-            <a href="https://github.com/yoya9933/chess-online" target="_blank" rel="noreferrer">Repository ↗</a>
-          </div>
+          <p>免註冊、跨裝置房間對弈，支援標準象棋、揭棋、AI、悔棋、棋譜與自訂棋局，並以 API、資料庫與 revision 同步狀態。</p>
+          <ul class="tags" aria-label="使用技術"><li>JavaScript</li><li>Next.js</li><li>Neon Postgres</li><li>API</li></ul>
+          <div class="project-links"><a class="project-primary" href="projects/chess/">看專案</a><a href="https://chuhe-xiangqi-online.bowersbayley13783.chatgpt.site" target="_blank" rel="noreferrer">Live Demo ↗</a><a href="https://github.com/yoya9933/chess-online" target="_blank" rel="noreferrer">GitHub ↗</a></div>
         </article>
 
         <article class="project-card">
+          <div class="project-media"><img src="https://image.thum.io/get/width/1200/https://raw.githack.com/yoya9933/ncku-credit-map_202606210334_XY/main/index.html" alt="NCKU Return OS 實際介面截圖" loading="lazy" decoding="async"></div>
           <div class="project-topline"><span class="project-number">03</span></div>
           <h3>NCKU Return OS｜學分地圖</h3>
-          <p>把畢業學分、必修缺口、先修限制、GPA 風險、候選課程與衝堂矩陣整理成可追蹤的決策工具，支援 LocalStorage、JSON／CSV 匯出與規則測試。</p>
-          <ul class="tags" aria-label="使用技術">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>LocalStorage</li><li>Tests</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/yoya9933/ncku-credit-map_202606210334_XY" target="_blank" rel="noreferrer">Repository ↗</a>
-          </div>
+          <p>把畢業學分、必修缺口、先修限制、GPA 風險、候選課程與衝堂矩陣整理成可追蹤決策工具。</p>
+          <ul class="tags" aria-label="使用技術"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>LocalStorage</li><li>Tests</li></ul>
+          <div class="project-links"><a class="project-primary" href="projects/ncku-return-os/">看專案</a><a href="https://raw.githack.com/yoya9933/ncku-credit-map_202606210334_XY/main/index.html" target="_blank" rel="noreferrer">Live Demo ↗</a><a href="https://github.com/yoya9933/ncku-credit-map_202606210334_XY" target="_blank" rel="noreferrer">GitHub ↗</a></div>
         </article>
       </div>
     </section>
 
-    <section class="section shell" id="about">
-      <div class="section-heading">
-        <p class="section-index">02 / WHAT I BUILD</p>
-        <div>
-          <h2>重點不是 Demo，而是把流程接起來。</h2>
-          <p>目前作品集中在三個交集：工程資料、AI／自動化，以及可以讓人直接操作的 Web 介面。</p>
-        </div>
-      </div>
+    <section class="section shell" id="about"><div class="section-heading"><p class="section-index">02 / WHAT I BUILD</p><div><h2>重點不是 Demo，而是把流程接起來。</h2><p>目前作品集中在工程資料、AI／自動化，以及可以讓人直接操作的 Web 介面。</p></div></div><div class="focus-grid"><article class="focus-card"><span>01</span><h3>Engineering Data</h3><p>處理缺值、異常、時間尺度與風險門檻，把分析結果轉成可判讀資訊。</p></article><article class="focus-card"><span>02</span><h3>AI Applications</h3><p>把模型接進完整流程，包含驗證、快取、結果解讀與使用介面。</p></article><article class="focus-card"><span>03</span><h3>Web Products</h3><p>從互動前端、API 到資料庫與部署，優先完成能實際使用且能維護的版本。</p></article></div></section>
 
-      <div class="focus-grid">
-        <article class="focus-card">
-          <span>01</span>
-          <h3>Engineering Data</h3>
-          <p>處理真實資料的缺值、異常、時間尺度與風險門檻，把分析結果轉成可判讀資訊。</p>
-        </article>
-        <article class="focus-card">
-          <span>02</span>
-          <h3>AI Applications</h3>
-          <p>把模型接進完整流程，而不是只停在訓練；包含參數、驗證、快取、結果解讀與使用介面。</p>
-        </article>
-        <article class="focus-card">
-          <span>03</span>
-          <h3>Web Products</h3>
-          <p>從互動前端、API 到資料庫與部署，優先完成能實際使用、之後也能維護的版本。</p>
-        </article>
-      </div>
-    </section>
+    <section class="section shell" id="skills"><div class="section-heading"><p class="section-index">03 / SKILLS</p><div><h2>實際用在專案裡的技能</h2><p>按解決問題的用途整理，而不是堆成工具名詞牆。</p></div></div><div class="skill-groups"><article><h3>Data & AI</h3><p>Python · Pandas · LSTM／時間序列 · 模型驗證 · 資料品質檢查 · 視覺化</p></article><article><h3>Web</h3><p>HTML · CSS · JavaScript · Next.js · Streamlit · Responsive UI · REST API</p></article><article><h3>Backend & Tooling</h3><p>Neon Postgres · Git／GitHub · GitHub Pages · LocalStorage · Node.js · 測試與部署流程</p></article></div></section>
 
-    <section class="section shell" id="skills">
-      <div class="section-heading">
-        <p class="section-index">03 / SKILLS</p>
-        <div>
-          <h2>實際用在專案裡的技能</h2>
-          <p>技能按照解決問題的用途整理，而不是堆成工具名詞牆。</p>
-        </div>
-      </div>
+    <section class="section shell" id="highlights"><div class="section-heading"><p class="section-index">04 / HIGHLIGHTS</p><div><h2>精選成果</h2><p>只保留能快速建立可信度的項目。</p></div></div><div class="timeline"><div class="timeline-item"><time>2025</time><div><strong>海洋大數據競賽</strong><span>優選</span></div></div><div class="timeline-item"><time>2025</time><div><strong>高通台灣 AI 黑客松競賽</strong><span>季軍</span></div></div><div class="timeline-item"><time>2025</time><div><strong>台灣海洋國際青年論壇</strong><span>領航之星獎</span></div></div></div></section>
 
-      <div class="skill-groups">
-        <article>
-          <h3>Data & AI</h3>
-          <p>Python · Pandas · LSTM／時間序列 · 模型驗證 · 資料品質檢查 · 視覺化</p>
-        </article>
-        <article>
-          <h3>Web</h3>
-          <p>HTML · CSS · JavaScript · Next.js · Streamlit · Responsive UI · REST API</p>
-        </article>
-        <article>
-          <h3>Backend & Tooling</h3>
-          <p>Neon Postgres · Git／GitHub · GitHub Pages · LocalStorage · Node.js · 測試與部署流程</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section shell" id="highlights">
-      <div class="section-heading">
-        <p class="section-index">04 / HIGHLIGHTS</p>
-        <div>
-          <h2>精選成果</h2>
-          <p>只保留能快速建立可信度的項目，其餘細節留給履歷與專案頁。</p>
-        </div>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item"><time>2025</time><div><strong>海洋大數據競賽</strong><span>優選</span></div></div>
-        <div class="timeline-item"><time>2025</time><div><strong>高通台灣 AI 黑客松競賽</strong><span>季軍</span></div></div>
-        <div class="timeline-item"><time>2025</time><div><strong>台灣海洋國際青年論壇</strong><span>領航之星獎</span></div></div>
-        <div class="timeline-item"><time>2023</time><div><strong>全國象棋團體錦標賽</strong><span>冠軍</span></div></div>
-      </div>
-    </section>
-
-    <section class="contact shell" aria-labelledby="contact-title">
-      <div>
-        <p class="section-index">05 / CONTACT</p>
-        <h2 id="contact-title">想看完整成果？從 GitHub 開始。</h2>
-        <p>首頁不再放未設定的 Email 或 LinkedIn；目前只保留可驗證、可直接開啟的 GitHub 入口。</p>
-      </div>
-      <a class="button primary" href="https://github.com/yoya9933" target="_blank" rel="noreferrer">github.com/yoya9933 ↗</a>
-    </section>
+    <section class="contact shell" aria-labelledby="contact-title"><div><p class="section-index">05 / CONTACT</p><h2 id="contact-title">想看完整成果？從 GitHub 開始。</h2><p>作品頁提供完整案例脈絡；程式碼與開發紀錄則可以直接在 GitHub 查看。</p></div><a class="button primary" href="https://github.com/yoya9933" target="_blank" rel="noreferrer">GitHub ↗</a></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-inner">
-      <span>© 2026 Yoya</span>
-      <span>Engineering × Data × AI · yoya9933.page</span>
-    </div>
-  </footer>
+  <footer class="site-footer"><div class="shell footer-inner"><span>© 2026 Yoya</span><span>Engineering × Data × AI · yoya9933.page</span></div></footer>
+  <script src="assets/main.js" defer></script>
 </body>
 </html>
