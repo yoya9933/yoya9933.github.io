@@ -11,7 +11,7 @@ mkdir -p _site/assets/projects
 # directories never enter the Pages artifact.
 cp index.html 404.html CNAME robots.txt sitemap.xml site.webmanifest _site/
 cp -R en projects contact _site/
-cp assets/styles.css assets/p1.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
+cp assets/styles.css assets/p1.css assets/redesign.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
 
 # Deterministic local image pipeline: every published input is tracked in this repo.
 rsvg-convert -w 1200 -h 630 assets/og-image.svg -o _site/assets/og-image.png
@@ -20,14 +20,13 @@ rsvg-convert -w 192 -h 192 assets/favicon.svg -o _site/assets/icon-192.png
 rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 
 # Project cards use frozen real product captures rather than illustrated placeholders.
-# The snapshots were captured once from immutable project revisions and are now local.
 for project in buoy chess ncku-return-os; do
   test -s "assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
 done
 
 # Keep published labels aligned with deterministic preview assets, then apply
-# centralized SEO, accessibility, locale and runtime enhancements.
+# centralized SEO, accessibility, locale and dark-only runtime enhancements.
 python3 scripts/normalize_publish_copy.py
 python3 scripts/enhance_site.py
 python3 scripts/fix_locale_links.py
@@ -43,7 +42,6 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
   -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages=true -dCompressFonts=true \
   -sOutputFile=_site/assets/Yoya_CV.pdf /tmp/Yoya_CV.pdf
 
-# Guard against accidental publication of source-only or stale artifacts.
 test ! -e _site/dist
 test ! -e _site/assets/Yoya_CV_source.html
 python3 scripts/check_p2.py
