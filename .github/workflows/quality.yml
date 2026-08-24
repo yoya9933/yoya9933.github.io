@@ -19,7 +19,8 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq librsvg2-bin webp weasyprint ghostscript fonts-noto-cjk
+          sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode
+          google-chrome --version
 
       - name: Build allowlisted site
         run: bash scripts/build_site.sh
