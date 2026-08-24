@@ -13,15 +13,17 @@ cp index.html 404.html CNAME robots.txt sitemap.xml site.webmanifest _site/
 cp -R en projects contact _site/
 cp assets/styles.css assets/p1.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
 
-# Deterministic local image pipeline: every input is tracked in this repo.
+# Deterministic local image pipeline: every published input is tracked in this repo.
 rsvg-convert -w 1200 -h 630 assets/og-image.svg -o _site/assets/og-image.png
 rsvg-convert -w 180 -h 180 assets/favicon.svg -o _site/assets/apple-touch-icon.png
 rsvg-convert -w 192 -h 192 assets/favicon.svg -o _site/assets/icon-192.png
 rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 
+# Project cards use frozen real product captures rather than illustrated placeholders.
+# The snapshots were captured once from immutable project revisions and are now local.
 for project in buoy chess ncku-return-os; do
-  rsvg-convert -w 1200 -h 720 "assets/projects/${project}-source.svg" -o "_site/assets/projects/${project}.png"
-  cwebp -quiet -q 82 "_site/assets/projects/${project}.png" -o "_site/assets/projects/${project}.webp"
+  test -s "assets/projects/snapshots/${project}.webp"
+  cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
 done
 
 # Keep published labels aligned with deterministic preview assets, then apply
