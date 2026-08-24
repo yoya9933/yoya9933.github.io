@@ -8,8 +8,7 @@ SITE = ROOT / "_site"
 
 
 def ensure_runtime(text: str) -> str:
-    # Portfolio is intentionally dark-only. Remove legacy theme toggles/bootstrap
-    # and force the published document into the single visual system.
+    # Portfolio remains intentionally dark-only, while preserving the previous UI layout.
     text = re.sub(r'<script\s+data-theme-bootstrap>.*?</script>', '', text, flags=re.I | re.S)
     text = re.sub(r'<button\b[^>]*data-theme-toggle[^>]*>.*?</button>', '', text, flags=re.I | re.S)
     text = re.sub(r'<html([^>]*)\sdata-theme="[^"]*"([^>]*)>', r'<html\1 data-theme="dark"\2>', text, count=1, flags=re.I)
@@ -17,21 +16,9 @@ def ensure_runtime(text: str) -> str:
         text = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="dark">', text, count=1, flags=re.I)
 
     if 'name="theme-color"' in text:
-        text = re.sub(r'<meta\s+name="theme-color"\s+content="[^"]*"[^>]*>', '<meta name="theme-color" content="#050b12">', text, count=1, flags=re.I)
+        text = re.sub(r'<meta\s+name="theme-color"\s+content="[^"]*"[^>]*>', '<meta name="theme-color" content="#07111f">', text, count=1, flags=re.I)
     else:
-        text = text.replace('</head>', '<meta name="theme-color" content="#050b12"></head>', 1)
-
-    # Load the final editorial design layer on every page, including cases/contact/404.
-    if 'redesign.css' not in text:
-        depth = 0
-        match = re.search(r'<link[^>]+href="([^"]*assets/styles\.css)"', text, re.I)
-        if match:
-            href = match.group(1)
-            prefix = href[: href.rfind('assets/styles.css')]
-            redesign = prefix + 'assets/redesign.css'
-        else:
-            redesign = '/assets/redesign.css'
-        text = text.replace('</head>', f'<link rel="stylesheet" href="{redesign}"></head>', 1)
+        text = text.replace('</head>', '<meta name="theme-color" content="#07111f"></head>', 1)
 
     def menu_repl(match: re.Match[str]) -> str:
         tag = match.group(0)
@@ -58,7 +45,7 @@ def ensure_runtime(text: str) -> str:
 def main() -> None:
     for path in sorted(SITE.rglob('*.html')):
         path.write_text(ensure_runtime(path.read_text(encoding='utf-8')), encoding='utf-8')
-    print('Applied dark-only runtime, editorial CSS and avatar fallback')
+    print('Applied dark-only runtime and avatar fallback')
 
 
 if __name__ == '__main__':
