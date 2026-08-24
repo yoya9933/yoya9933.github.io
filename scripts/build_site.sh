@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 rm -rf _site
-mkdir -p _site/assets/projects
+mkdir -p _site/assets/projects/snapshots
 
 # Publish only explicit site inputs. Source files, repo metadata and stale build
 # directories never enter the Pages artifact.
@@ -19,9 +19,11 @@ rsvg-convert -w 180 -h 180 assets/favicon.svg -o _site/assets/apple-touch-icon.p
 rsvg-convert -w 192 -h 192 assets/favicon.svg -o _site/assets/icon-192.png
 rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 
-# Keep the stronger real product captures, frozen in this repo.
+# Publish frozen real product captures under a cache-busting path. Keep the old
+# filenames as compatibility aliases for case-study pages and older links.
 for project in buoy chess ncku-return-os; do
   test -s "assets/projects/snapshots/${project}.webp"
+  cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
 done
 

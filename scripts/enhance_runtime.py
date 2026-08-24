@@ -37,6 +37,15 @@ def ensure_runtime(text: str) -> str:
         flags=re.I,
     )
 
+    # Project cards use a new public URL so stale Pages/browser caches cannot keep
+    # serving the previous preview images after the tracked snapshots change.
+    text = re.sub(
+        r'(?P<prefix>(?:\.\./)*)assets/projects/(?P<name>buoy|chess|ncku-return-os)\.webp',
+        r'\g<prefix>assets/projects/snapshots/\g<name>.webp',
+        text,
+        flags=re.I,
+    )
+
     if '<title>404' in text and 'assets/main.js' not in text:
         text = text.replace('</body>', '<script src="/assets/main.js" defer></script></body>', 1)
     return text
@@ -45,7 +54,7 @@ def ensure_runtime(text: str) -> str:
 def main() -> None:
     for path in sorted(SITE.rglob('*.html')):
         path.write_text(ensure_runtime(path.read_text(encoding='utf-8')), encoding='utf-8')
-    print('Applied dark-only runtime and avatar fallback')
+    print('Applied dark-only runtime, cache-busted project screenshots and avatar fallback')
 
 
 if __name__ == '__main__':
