@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Yoya — Engineering × Data × AI</title>
+  <desc id="desc">Yoya portfolio social sharing image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06101d"/>
+      <stop offset="1" stop-color="#0b1d31"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="1" cy="0" r="1">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity=".48"/>
+      <stop offset=".62" stop-color="#2dd4bf" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#9fb0c7" stroke-opacity=".07"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <circle cx="1080" cy="45" r="190" fill="#2dd4bf" opacity=".08"/>
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <text x="72" y="104" fill="#5eead4" font-size="24" font-weight="800" letter-spacing="4">YOYA</text>
+    <text x="72" y="204" fill="#eff6ff" font-size="70" font-weight="900" letter-spacing="-3">Engineering × Data × AI</text>
+    <text x="72" y="274" fill="#7dd3fc" font-size="36" font-weight="800">Practical tools from real-world problems.</text>
+    <text x="72" y="332" fill="#b9c8db" font-size="25">Data products · AI applications · Web tools</text>
+    <g font-size="20" font-weight="700">
+      <rect x="72" y="402" width="228" height="54" rx="17" fill="#0f2036" stroke="#24455d"/>
+      <text x="93" y="436" fill="#d4f2ff">Buoy Risk Platform</text>
+      <rect x="318" y="402" width="206" height="54" rx="17" fill="#0f2036" stroke="#24455d"/>
+      <text x="339" y="436" fill="#d4f2ff">Online Xiangqi</text>
+      <rect x="542" y="402" width="222" height="54" rx="17" fill="#0f2036" stroke="#24455d"/>
+      <text x="563" y="436" fill="#d4f2ff">NCKU Return OS</text>
+    </g>
+    <text x="72" y="560" fill="#5eead4" font-size="24" font-weight="800">yoya9933.page</text>
+  </g>
+</svg>
