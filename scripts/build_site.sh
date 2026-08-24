@@ -25,10 +25,11 @@ for project in buoy chess ncku-return-os; do
 done
 
 # Keep published labels aligned with deterministic preview assets, then apply
-# centralized SEO, accessibility, link-safety, locale and runtime enhancements.
+# centralized SEO, accessibility, locale and runtime enhancements.
 python3 scripts/normalize_publish_copy.py
 python3 scripts/enhance_site.py
 python3 scripts/fix_locale_links.py
+python3 scripts/enhance_runtime.py
 
 # CV has one source of truth: tracked HTML -> generated PDF artifact.
 qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
