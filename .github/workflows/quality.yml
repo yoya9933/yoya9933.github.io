@@ -31,5 +31,7 @@ jobs:
       - name: Validate HTML
         run: find _site -name '*.html' -print0 | xargs -0 npx --yes html-validate@8
 
-      - name: Run Lighthouse CI
-        run: npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
+      - name: Run Lighthouse CI on indexable pages
+        run: |
+          rm _site/404.html
+          npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
