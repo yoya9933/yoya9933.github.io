@@ -40,7 +40,7 @@ def ensure_runtime(text: str) -> str:
     # Keep the GitHub avatar, but guarantee a local fallback if the remote image is unavailable.
     text = re.sub(
         r'<img\s+src="https://github\.com/yoya9933\.png"([^>]*)>',
-        r'<img src="https://github.com/yoya9933.png"\1 data-avatar-fallback data-avatar-fallback-src="/assets/avatar-fallback.svg" referrerpolicy="no-referrer">',
+        r'<img src="https://github.com/yoya9933.png"\1 data-avatar-fallback="/assets/avatar-fallback.svg" referrerpolicy="no-referrer">',
         text,
         flags=re.I,
     )
