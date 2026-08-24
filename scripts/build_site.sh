@@ -24,8 +24,10 @@ for project in buoy chess ncku-return-os; do
   cwebp -quiet -q 82 "_site/assets/projects/${project}.png" -o "_site/assets/projects/${project}.webp"
 done
 
-# Keep published labels aligned with deterministic preview assets.
+# Keep published labels aligned with deterministic preview assets, then apply
+# centralized SEO, accessibility, link-safety and image-dimension enhancements.
 python3 scripts/normalize_publish_copy.py
+python3 scripts/enhance_site.py
 
 # CV has one source of truth: tracked HTML -> generated PDF artifact.
 # Generate a valid QR at build time and use Chromium's print engine so CSS Grid,
