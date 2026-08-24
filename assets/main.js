@@ -1,32 +1,8 @@
 (() => {
   const root = document.documentElement;
+  root.dataset.theme = 'dark';
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const themeColors = { dark: '#07111f', light: '#f5f8fc' };
-
-  const setTheme = (theme, persist = false) => {
-    root.dataset.theme = theme;
-    if (themeMeta) themeMeta.setAttribute('content', themeColors[theme] || themeColors.dark);
-    if (persist) localStorage.setItem('portfolioTheme', theme);
-  };
-
-  const savedTheme = localStorage.getItem('portfolioTheme');
-  const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  setTheme(root.dataset.theme || savedTheme || (systemLight ? 'light' : 'dark'));
-
-  const themeButtons = document.querySelectorAll('[data-theme-toggle]');
-  const updateThemeButtons = () => {
-    const light = root.dataset.theme === 'light';
-    themeButtons.forEach((button) => {
-      button.textContent = light ? 'Dark' : 'Light';
-      button.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
-      button.setAttribute('aria-pressed', String(light));
-    });
-  };
-  updateThemeButtons();
-  themeButtons.forEach((button) => button.addEventListener('click', () => {
-    setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
-    updateThemeButtons();
-  }));
+  if (themeMeta) themeMeta.setAttribute('content', '#050b12');
 
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#site-nav');
@@ -62,11 +38,11 @@
   });
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealTargets = document.querySelectorAll('.section-heading, .project-card, .focus-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture');
+  const revealTargets = document.querySelectorAll('.section-heading, .project-card, .focus-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture, .v4-reveal');
   if (!reduceMotion && 'IntersectionObserver' in window && revealTargets.length) {
     document.body.classList.add('reveal-ready');
     revealTargets.forEach((element, index) => {
-      element.classList.add('reveal');
+      element.classList.add('reveal', 'v4-reveal');
       element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 55}ms`);
     });
     const observer = new IntersectionObserver((entries) => {
