@@ -6,13 +6,11 @@ on:
       - main
       - master
 
-# 設定 GitHub Actions 需要的權限，允許它幫我們上傳網站
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 確保不會同時有多個部署在跑
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -26,6 +24,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Build raster social and app icons
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin
+          rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png
+          rsvg-convert -w 180 -h 180 assets/favicon.svg -o assets/apple-touch-icon.png
+          rsvg-convert -w 192 -h 192 assets/favicon.svg -o assets/icon-192.png
+          rsvg-convert -w 512 -h 512 assets/favicon.svg -o assets/icon-512.png
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
