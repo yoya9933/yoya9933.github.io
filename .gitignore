@@ -1,2 +1,4 @@
 /target
 dist/
+_site/
+lhci_reports/

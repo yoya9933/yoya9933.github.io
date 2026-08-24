@@ -25,35 +25,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build social, app, project and CV assets
+      - name: Install deterministic build dependencies
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq librsvg2-bin webp weasyprint ghostscript
-          mkdir -p assets/projects
+          sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode
+          google-chrome --version
 
-          rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png
-          rsvg-convert -w 180 -h 180 assets/favicon.svg -o assets/apple-touch-icon.png
-          rsvg-convert -w 192 -h 192 assets/favicon.svg -o assets/icon-192.png
-          rsvg-convert -w 512 -h 512 assets/favicon.svg -o assets/icon-512.png
+      - name: Build allowlisted site
+        run: bash scripts/build_site.sh
 
-          curl -fsSL --retry 3 'https://raw.githubusercontent.com/yoya9933/Buoy-data-analysis-V2/main/docs/portfolio/buoy-runtime.png' -o assets/projects/buoy.png
-          curl -fsSL --retry 3 'https://raw.githubusercontent.com/yoya9933/chess-online/main/public/og.png' -o assets/projects/chess.png
-          curl -fsSL --retry 3 -A 'Mozilla/5.0' 'https://image.thum.io/get/width/1200/https://raw.githack.com/yoya9933/ncku-credit-map_202606210334_XY/main/index.html' -o assets/projects/ncku-return-os.png
-
-          cwebp -quiet -q 82 assets/projects/buoy.png -o assets/projects/buoy.webp
-          cwebp -quiet -q 82 assets/projects/chess.png -o assets/projects/chess.webp
-          cwebp -quiet -q 82 assets/projects/ncku-return-os.png -o assets/projects/ncku-return-os.webp
-
-          weasyprint assets/Yoya_CV_source.html /tmp/Yoya_CV.pdf
-          gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages=true -dCompressFonts=true -sOutputFile=assets/Yoya_CV.pdf /tmp/Yoya_CV.pdf
+      - name: Verify deployment artifact
+        run: python3 scripts/check_site.py
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
