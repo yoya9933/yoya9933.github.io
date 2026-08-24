@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wang Xiangyu - Engineering × Data × AI CV</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background:#dfe7ef; }
+body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#122033; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { position:relative; width:210mm; height:297mm; background:#fff; overflow:hidden; page-break-after:always; }
+.page:last-child { page-break-after:auto; }
+.rail { position:absolute; left:0; top:0; bottom:0; width:64mm; background:linear-gradient(180deg,#07111f 0%,#0b1d31 100%); color:#e8f2fb; padding:12mm 9mm 9mm; display:flex; flex-direction:column; gap:5.6mm; }
+.brand { border-bottom:1px solid rgba(255,255,255,.16); padding-bottom:5mm; }
+.name { margin:0; font-size:26pt; line-height:1; font-weight:800; letter-spacing:-.7px; color:#fff; }
+.alias { margin-top:2.5mm; color:#7dd3fc; font-size:9pt; font-weight:700; letter-spacing:.6px; text-transform:uppercase; }
+.role { margin-top:4mm; font-size:10.5pt; font-weight:600; line-height:1.5; color:#c9d7e6; }
+.rail-title { margin:0 0 3mm; font-size:7.5pt; letter-spacing:1.2px; text-transform:uppercase; color:#5eead4; font-weight:800; }
+.contact { display:grid; grid-template-columns:1fr 20mm; gap:4mm; align-items:start; }
+.contact-lines { font-size:8.2pt; line-height:1.7; color:#d7e2ec; word-break:break-all; }
+.contact-lines a { color:#fff; text-decoration:none; }
+.qr { width:20mm; height:20mm; border-radius:2mm; padding:1.2mm; background:#fff; }
+.stack { display:flex; flex-wrap:wrap; gap:1.8mm; }
+.pill { display:inline-block; padding:1.4mm 2mm; border:1px solid rgba(125,211,252,.24); border-radius:99px; font-size:6.8pt; line-height:1; color:#dff5ff; background:rgba(125,211,252,.06); }
+.rail-list { display:flex; flex-direction:column; gap:3mm; }
+.rail-item { border-left:2px solid #2dd4bf; padding-left:3mm; }
+.rail-item strong { display:block; font-size:8pt; color:#fff; line-height:1.35; }
+.rail-item span { display:block; margin-top:.8mm; font-size:7.2pt; color:#aebfd0; line-height:1.45; }
+.rail-bottom { margin-top:1mm; font-size:6.6pt; line-height:1.55; color:#9fb0c7; }
+.main { position:absolute; left:64mm; top:0; width:146mm; height:297mm; padding:13mm 12mm 10mm 11mm; overflow:hidden; }
+.kicker { color:#0f8c82; font-size:7.2pt; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; margin-bottom:2mm; }
+.summary { font-size:9.2pt; line-height:1.65; color:#334155; margin:0 0 5mm; }
+.metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:2.4mm; margin:0 0 6mm; }
+.metric { border:1px solid #dbe5ee; border-radius:3mm; padding:3mm; background:#f8fbfd; min-height:18mm; }
+.metric b { display:block; font-size:14pt; color:#07111f; line-height:1; }
+.metric span { display:block; margin-top:1.7mm; font-size:6.8pt; color:#64748b; line-height:1.35; font-weight:600; }
+.section { margin-top:5mm; }
+.section-head { display:flex; align-items:center; gap:3mm; margin-bottom:3.2mm; }
+.section-head h2 { margin:0; font-size:9pt; letter-spacing:.9px; text-transform:uppercase; color:#07111f; font-weight:900; white-space:nowrap; }
+.section-head .line { height:1px; flex:1; background:linear-gradient(90deg,#2dd4bf,#cbd5e1); }
+.edu { display:grid; grid-template-columns:1fr auto; gap:5mm; align-items:start; }
+.edu strong { font-size:10.5pt; color:#0f172a; }
+.edu p { margin:1mm 0 0; font-size:8pt; color:#64748b; line-height:1.45; }
+.edu .loc { text-align:right; font-size:7.5pt; color:#64748b; line-height:1.45; }
+.project { border:1px solid #e2e8f0; border-radius:3.2mm; padding:3.5mm 4mm; margin-bottom:2.8mm; background:#fff; box-shadow:0 .6mm 1.8mm rgba(15,23,42,.035); }
+.project-top { display:flex; align-items:flex-start; justify-content:space-between; gap:3mm; }
+.project h3 { margin:0; font-size:9.5pt; line-height:1.35; color:#0f172a; }
+.badge { flex:none; font-size:6.3pt; color:#0f766e; background:#e8fffb; border:1px solid #b9f3e9; border-radius:99px; padding:1mm 1.8mm; font-weight:800; }
+.project ul { margin:2mm 0 2mm 4mm; padding:0; }
+.project li { margin:.8mm 0; font-size:7.6pt; line-height:1.42; color:#475569; }
+.tech { display:flex; flex-wrap:wrap; gap:1.5mm; }
+.tech span { font-size:6.4pt; padding:.9mm 1.6mm; border-radius:99px; background:#f1f5f9; color:#475569; font-weight:700; }
+.proof { margin-top:3.5mm; padding:3mm 3.5mm; border-radius:3mm; background:#07111f; color:#eaf5ff; display:flex; align-items:center; justify-content:space-between; gap:5mm; }
+.proof strong { font-size:8pt; color:#5eead4; }
+.proof span { font-size:7pt; line-height:1.45; color:#c9d7e6; }
+.proof a { color:#fff; text-decoration:none; font-weight:700; }
+.small-note { font-size:6.5pt; color:#94a3b8; line-height:1.45; margin-top:2.5mm; }
+.zh .name { font-size:24pt; }
+.zh .role { font-size:10pt; }
+.zh .summary { font-size:8.9pt; line-height:1.7; }
+.zh .project li { font-size:7.4pt; line-height:1.48; }
+.zh .project h3 { font-size:9.3pt; }
+.en .rail-item strong { font-size:7.2pt; }
+.en .rail-item span { font-size:6.7pt; }
+.zh .rail-item strong { font-size:7.8pt; }
+.zh .rail-item span { font-size:7pt; }
+</style>
+</head>
+<body>
+<section class="page en">
+  <aside class="rail">
+    <div class="brand">
+      <h1 class="name">Wang Xiangyu</h1>
+      <div class="alias">Yoya</div>
+      <div class="role">Engineering × Data × AI<br>Practical tools from real problems.</div>
+    </div>
+    <div>
+      <div class="rail-title">Contact</div>
+      <div class="contact">
+        <div class="contact-lines">
+          <a href="https://yoya9933.page/">yoya9933.page</a><br>
+          <a href="https://github.com/yoya9933">github.com/yoya9933</a><br>
+          Tainan, Taiwan
+        </div>
+        <img class="qr" alt="Portfolio QR code" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKIAAACiCAIAAABNkIFMAAADNElEQVR4nO3dzU0sMRAAYUBcCIAEyD8mEiAAjssFcaBBajXdtoeq7/jE/rwtWWqNPJ772+12p//uYfcX0ApmRjAzgpkRzIzwGP/p6fll/ff48v72+u1fat+n9j7xVTWn/YauZgQzI5gZwcwIZkb4YdKOuubPqGv6XTlF1+z9DV3NCGZGMDOCmRHMjJCatKOu68xzn9X1Pnsn5Kj2fVzNCGZGMDOCmRHMjFCctFfqmnVr+0ni3+y9Nl7jakYwM4KZEcyMYGaEC0za0cq9Ipn5/PzZ29WMYGYEMyOYGcHMCMVJe+VsmZlsr3h1euWnu5oRzIxgZgQzI5gZITVp7z1JY6W5aXzvb+hqRjAzgpkRzIxgZoR7znnaXdfGz98rErmaEcyMYGYEMyOYGSF1nvbcXuXaZNs1M9c+q6b2i3W1cDUjmBnBzAhmRjAzQnH3yNxkO/fpe/eW117V9Tu7mhHMjGBmBDMjmBnhh0m760kxmXeeu6Ydrbwjsus37Jq9Xc0IZkYwM4KZEcyMUNw9snK3xtyV3qjrWnRUm+ozr8r8jasZwcwIZkYwM4KZEVJ3RHbtFu6ah087Y7DrVTXu09YnMyOYGcHMCGZGSO3Trl1ZXTmj7j0re+Vp3u7T1q/MjGBmBDMjmBkhtXukZm6/d+azVp6gkvk+GV271iNXM4KZEcyMYGYEMyO0nac9t1d57lSTzGetPB0l6pr8Xc0IZkYwM4KZEcyMULym3XWPZG2yrd1HmXmfjNr/K2Nun4yrGcHMCGZGMDOCmREu8IzIrpl5bm/GyuvntfdxNSOYGcHMCGZGMDPC4D7tmpV3MnZdP4/23qEZuZoRzIxgZgQzI5gZoe3skZq568xzT2nM2DtXR65mBDMjmBnBzAhmRkhN2tHe+/uirjsZ5/5mL1czgpkRzIxgZgQzIxQn7dPMnc43d1pg1wzvHZH6ZGYEMyOYGcHMCBeYtOdO3rvi021qT6t3NSOYGcHMCGZGMDNCcdI+7b7F2qtOex5l7Q7NDFczgpkRzIxgZgQzI6Qm7b37kOfumpxz2pPoXc0IZkYwM4KZEcyMcIHztPV3rmYEMyOYGcHMCGZG+ACO3XLmbD3WVQAAAABJRU5ErkJggg==">
+      </div>
+    </div>
+    <div>
+      <div class="rail-title">Core stack</div>
+      <div class="stack">
+        <span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">LSTM</span>
+        <span class="pill">JavaScript</span><span class="pill">Next.js</span><span class="pill">Streamlit</span>
+        <span class="pill">REST API</span><span class="pill">Neon Postgres</span><span class="pill">Git / CI</span>
+      </div>
+    </div>
+    <div>
+      <div class="rail-title">Verified highlights</div>
+      <div class="rail-list">
+        <div class="rail-item"><strong>NODASS Ocean Big Data</strong><span>2025 · Great Prize</span></div>
+        <div class="rail-item"><strong>Qualcomm TW AI Hackathon</strong><span>2025 · 3rd Place</span></div>
+        <div class="rail-item"><strong>Taiwan Ocean Youth Forum</strong><span>2025 · Leadership Star</span></div>
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="kicker">Profile</div>
+    <p class="summary">Engineering student building practical data, AI, and web tools. I turn messy real-world problems into inspectable workflows that connect data quality, modeling, validation, business rules, interfaces, APIs, databases, and deployment.</p>
+    <div class="metrics">
+      <div class="metric"><b>3</b><span>selected end-to-end projects</span></div>
+      <div class="metric"><b>3</b><span>publicly verifiable 2025 awards</span></div>
+      <div class="metric"><b>Data → UI</b><span>product-minded engineering workflow</span></div>
+    </div>
+    <section class="section">
+      <div class="section-head"><h2>Education</h2><div class="line"></div></div>
+      <div class="edu">
+        <div><strong>National Cheng Kung University (NCKU)</strong><p>B.S. student · Department of Hydraulic and Ocean Engineering</p></div>
+        <div class="loc">Tainan, Taiwan</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-head"><h2>Selected Projects</h2><div class="line"></div></div>
+      <article class="project">
+        <div class="project-top"><h3>Buoy Data Analysis & Navigation Risk Platform</h3><span class="badge">DATA + AI</span></div>
+        <ul>
+          <li>Built a Streamlit workflow spanning data QA, LSTM forecasting, train/validation evaluation, model caching, and threshold-based risk interpretation.</li>
+          <li>Supports 5 aggregation scales, 4 missing-data strategies, and 4 export formats for reproducible analysis outputs.</li>
+        </ul>
+        <div class="tech"><span>Python</span><span>Streamlit</span><span>Pandas</span><span>LSTM</span><span>Plotly</span></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><h3>Chuhe Xiangqi · Online Chinese Chess</h3><span class="badge">WEB PRODUCT</span></div>
+        <ul>
+          <li>Built a no-signup browser product with 6-digit rooms, standard chess / Jieqi modes, AI, undo, replay, sandbox and custom setup.</li>
+          <li>Implemented revision-based polling and persistent room state with Neon Postgres or Cloudflare D1 backends.</li>
+        </ul>
+        <div class="tech"><span>JavaScript</span><span>Next.js</span><span>REST API</span><span>Neon Postgres</span></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><h3>NCKU Return OS · Credit & Course Decision Tool</h3><span class="badge">DECISION TOOL</span></div>
+        <ul>
+          <li>Built an offline-first 135-credit decision tool for graduation gaps, prerequisites, timetable conflicts, risk / necessity scores, and A/B/C course plans.</li>
+          <li>Uses LocalStorage for persistence with JSON backup and CSV export for portable planning.</li>
+        </ul>
+        <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>LocalStorage</span></div>
+      </article>
+    </section>
+    <div class="proof"><div><strong>Proof over claims</strong><br><span>Live demos, code, screenshots, architecture and award evidence are collected on the portfolio.</span></div><a href="https://yoya9933.page/">yoya9933.page ↗</a></div>
+    <div class="small-note">Bilingual CV · English page 1 / Traditional Chinese page 2</div>
+  </main>
+</section>
+<section class="page zh">
+  <aside class="rail">
+    <div class="brand">
+      <h1 class="name">王祥宇</h1>
+      <div class="alias">YOYA</div>
+      <div class="role">工程 × 資料 × AI<br>把真實問題做成能用的工具。</div>
+    </div>
+    <div>
+      <div class="rail-title">聯絡入口</div>
+      <div class="contact">
+        <div class="contact-lines">
+          <a href="https://yoya9933.page/">yoya9933.page</a><br>
+          <a href="https://github.com/yoya9933">github.com/yoya9933</a><br>
+          台灣 · 台南
+        </div>
+        <img class="qr" alt="作品集 QR Code" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKIAAACiCAIAAABNkIFMAAADNElEQVR4nO3dzU0sMRAAYUBcCIAEyD8mEiAAjssFcaBBajXdtoeq7/jE/rwtWWqNPJ772+12p//uYfcX0ApmRjAzgpkRzIzwGP/p6fll/ff48v72+u1fat+n9j7xVTWn/YauZgQzI5gZwcwIZkb4YdKOuubPqGv6XTlF1+z9DV3NCGZGMDOCmRHMjJCatKOu68xzn9X1Pnsn5Kj2fVzNCGZGMDOCmRHMjFCctFfqmnVr+0ni3+y9Nl7jakYwM4KZEcyMYGaEC0za0cq9Ipn5/PzZ29WMYGYEMyOYGcHMCMVJe+VsmZlsr3h1euWnu5oRzIxgZgQzI5gZITVp7z1JY6W5aXzvb+hqRjAzgpkRzIxgZoR7znnaXdfGz98rErmaEcyMYGYEMyOYGSF1nvbcXuXaZNs1M9c+q6b2i3W1cDUjmBnBzAhmRjAzQnH3yNxkO/fpe/eW117V9Tu7mhHMjGBmBDMjmBnhh0m760kxmXeeu6Ydrbwjsus37Jq9Xc0IZkYwM4KZEcyMUNw9snK3xtyV3qjrWnRUm+ozr8r8jasZwcwIZkYwM4KZEVJ3RHbtFu6ah087Y7DrVTXu09YnMyOYGcHMCGZGSO3Trl1ZXTmj7j0reVp3u7T1q/MjGBmBDMjmBkhtXukZm6/d+azVp6gkvk+GV271iNXM4KZEcyMYGYEMyO0nac9t1d57lSTzGetPB0l6pr8Xc0IZkYwM4KZEcyMULym3XWPZG2yrd1HmXmfjNr/K2Nun4yrGcHMCGZGMDOCmREu8IzIrpl5bm/GyuvntfdxNSOYGcHMCGZGMDPC4D7tmpV3MnZdP4/23qEZuZoRzIxgZgQzI5gZoe3skZq568xzT2nM2DtXR65mBDMjmBnBzAhmRkhN2tHe+/uirjsZ5/5mL1czgpkRzIxgZgQzIxQn7dPMnc43d1pg1wzvHZH6ZGYEMyOYGcHMCBeYtOdO3rvi021qT6t3NSOYGcHMCGZGMDNCcdI+7b7F2qtOex5l7Q7NDFczgpkRzIxgZgQzI6Qm7b37kOfumpxz2pPoXc0IZkYwM4KZEcyMcIHztPV3rmYEMyOYGcHMCGZG+ACO3XLmbD3WVQAAAABJRU5ErkJggg==">
+      </div>
+    </div>
+    <div>
+      <div class="rail-title">核心技能</div>
+      <div class="stack">
+        <span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">LSTM</span>
+        <span class="pill">JavaScript</span><span class="pill">Next.js</span><span class="pill">Streamlit</span>
+        <span class="pill">REST API</span><span class="pill">Neon Postgres</span><span class="pill">Git / CI</span>
+      </div>
+    </div>
+    <div>
+      <div class="rail-title">成果亮點</div>
+      <div class="rail-list">
+        <div class="rail-item"><strong>2025 NODASS 海洋大數據競賽</strong><span>特優</span></div>
+        <div class="rail-item"><strong>2025 高通台灣 AI 黑客松</strong><span>季軍</span></div>
+        <div class="rail-item"><strong>2025 台灣海洋國際青年論壇</strong><span>領航之星獎</span></div>
+      </div>
+    </div>
+    <div class="rail-bottom">作品集與程式碼皆使用公開連結；履歷不放未公開的私人 Email。</div>
+  </aside>
+  <main class="main">
+    <div class="kicker">個人摘要</div>
+    <p class="summary">以工程背景結合資料分析、AI 應用與 Web 產品開發，將真實資料與複雜規則整理成能操作、能驗證、能迭代的工具。重點不只在模型，而是把資料品質、驗證、規則、介面、API、資料庫與部署接成完整流程。</p>
+    <div class="metrics">
+      <div class="metric"><b>3</b><span>個端到端代表專案</span></div>
+      <div class="metric"><b>3</b><span>項 2025 公開可驗證成果</span></div>
+      <div class="metric"><b>Data → UI</b><span>從資料到產品的完整思維</span></div>
+    </div>
+    <section class="section">
+      <div class="section-head"><h2>學歷</h2><div class="line"></div></div>
+      <div class="edu">
+        <div><strong>國立成功大學</strong><p>水利及海洋工程學系 · 學士班</p></div>
+        <div class="loc">台灣 · 台南</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-head"><h2>代表作品</h2><div class="line"></div></div>
+      <article class="project">
+        <div class="project-top"><h3>浮標資料分析與航道風險評估平台</h3><span class="badge">DATA + AI</span></div>
+        <ul>
+          <li>以 Streamlit 串接資料品質檢查、LSTM 預測、訓練 / 驗證評估、模型快取與風險門檻判讀。</li>
+          <li>支援 5 種時間尺度、4 種缺值處理策略，以及 CSV / HTML / TXT / ZIP 共 4 種輸出。</li>
+        </ul>
+        <div class="tech"><span>Python</span><span>Streamlit</span><span>Pandas</span><span>LSTM</span><span>Plotly</span></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><h3>楚河棋局 · 線上中國象棋</h3><span class="badge">WEB PRODUCT</span></div>
+        <ul>
+          <li>完成免註冊 6 碼房間、標準象棋 / 揭棋、AI、悔棋、棋譜回放、沙盤與自訂棋局。</li>
+          <li>以 polling + revision 控制跨裝置同步，房間狀態可使用 Neon Postgres 或 Cloudflare D1 持久化。</li>
+        </ul>
+        <div class="tech"><span>JavaScript</span><span>Next.js</span><span>REST API</span><span>Neon Postgres</span></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><h3>NCKU Return OS · 學分與修課決策工具</h3><span class="badge">DECISION TOOL</span></div>
+        <ul>
+          <li>把 135 學分畢業規則、先修、衝堂、必要性 / 風險分數與 A/B/C 三種修課方案整合成離線決策工具。</li>
+          <li>使用 LocalStorage 保存狀態，並支援 JSON 備份與 CSV 匯出，方便持續更新。</li>
+        </ul>
+        <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>LocalStorage</span></div>
+      </article>
+    </section>
+    <div class="proof"><div><strong>用證據取代口號</strong><br><span>作品集集中 Live Demo、程式碼、實際截圖、架構與獎項證據。</span></div><a href="https://yoya9933.page/">yoya9933.page ↗</a></div>
+    <div class="small-note">中英雙語履歷 · 第 1 頁英文 / 第 2 頁繁體中文</div>
+  </main>
+</section>
+</body>
+</html>
