@@ -1,0 +1,51 @@
+name: Refresh NCKU portfolio preview
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/refresh-ncku-preview.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
+          google-chrome --version
+
+      - name: Capture current NCKU Credit Map
+        run: |
+          set -euo pipefail
+          mkdir -p assets/projects/snapshots
+          google-chrome --headless=new --no-sandbox --disable-gpu \
+            --hide-scrollbars --run-all-compositor-stages-before-draw \
+            --window-size=1440,810 --virtual-time-budget=10000 \
+            --screenshot=/tmp/ncku-return-os.png \
+            'https://raw.githack.com/yoya9933/ncku-credit-map_202606210334_XY/d96b37fa8449d6ef40907685fe2d0c536d5aa1f6/index.html#main-content'
+          cwebp -quiet -q 88 /tmp/ncku-return-os.png -o assets/projects/snapshots/ncku-return-os.webp
+          file assets/projects/snapshots/ncku-return-os.webp
+
+      - name: Commit refreshed preview
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/projects/snapshots/ncku-return-os.webp
+          if git diff --cached --quiet; then
+            echo 'No preview change.'
+            exit 0
+          fi
+          git commit -m 'assets: refresh NCKU Return OS preview'
+          git push origin HEAD:main
