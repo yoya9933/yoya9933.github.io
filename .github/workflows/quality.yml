@@ -1,0 +1,34 @@
+name: Site Quality
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin webp weasyprint ghostscript fonts-noto-cjk
+
+      - name: Build allowlisted site
+        run: bash scripts/build_site.sh
+
+      - name: Check internal links and stale content
+        run: python3 scripts/check_site.py
+
+      - name: Validate HTML
+        run: find _site -name '*.html' -print0 | xargs -0 npx --yes html-validate@8
+
+      - name: Run Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
