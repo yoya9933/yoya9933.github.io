@@ -25,10 +25,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build social, app and project images
+      - name: Build social, app, project and CV assets
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq librsvg2-bin webp
+          sudo apt-get install -y -qq librsvg2-bin webp weasyprint ghostscript
           mkdir -p assets/projects
 
           rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png
@@ -43,6 +43,9 @@ jobs:
           cwebp -quiet -q 82 assets/projects/buoy.png -o assets/projects/buoy.webp
           cwebp -quiet -q 82 assets/projects/chess.png -o assets/projects/chess.webp
           cwebp -quiet -q 82 assets/projects/ncku-return-os.png -o assets/projects/ncku-return-os.webp
+
+          weasyprint assets/Yoya_CV_source.html /tmp/Yoya_CV.pdf
+          gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages=true -dCompressFonts=true -sOutputFile=assets/Yoya_CV.pdf /tmp/Yoya_CV.pdf
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
