@@ -25,7 +25,13 @@ for project in buoy chess ncku-return-os; do
 done
 
 # CV has one source of truth: tracked HTML -> generated PDF artifact.
-weasyprint assets/Yoya_CV_source.html /tmp/Yoya_CV.pdf
+# Generate a valid QR at build time and use Chromium's print engine so CSS Grid,
+# flexbox and print colors match modern browser rendering.
+qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
+python3 scripts/prepare_cv_html.py
+google-chrome --headless=new --no-sandbox --disable-gpu \
+  --print-to-pdf=/tmp/Yoya_CV.pdf --no-pdf-header-footer \
+  file:///tmp/Yoya_CV_print.html >/dev/null 2>&1
 gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
   -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages=true -dCompressFonts=true \
   -sOutputFile=_site/assets/Yoya_CV.pdf /tmp/Yoya_CV.pdf
