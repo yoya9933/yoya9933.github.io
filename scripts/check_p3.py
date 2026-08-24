@@ -12,6 +12,10 @@ def main() -> int:
     required_files = [
         SITE / "assets/avatar-fallback.svg",
         SITE / "assets/main.js",
+        SITE / "assets/redesign.css",
+        SITE / "assets/projects/buoy.webp",
+        SITE / "assets/projects/chess.webp",
+        SITE / "assets/projects/ncku-return-os.webp",
     ]
     for path in required_files:
         if not path.exists():
@@ -21,30 +25,41 @@ def main() -> int:
     for path in html_files:
         text = path.read_text(encoding="utf-8")
         rel = path.relative_to(SITE)
-        if "data-theme-bootstrap" not in text:
-            errors.append(f"missing early theme bootstrap: {rel}")
-        if 'name="theme-color"' not in text:
-            errors.append(f"missing theme-color meta: {rel}")
+        if 'data-theme="dark"' not in text:
+            errors.append(f"published page is not fixed to dark theme: {rel}")
+        if 'name="theme-color"' not in text or '#050b12' not in text:
+            errors.append(f"missing dark theme-color meta: {rel}")
+        if 'redesign.css' not in text:
+            errors.append(f"missing redesign stylesheet: {rel}")
+        if 'data-theme-toggle' in text:
+            errors.append(f"legacy light-theme toggle leaked into published page: {rel}")
+        if 'data-theme-bootstrap' in text:
+            errors.append(f"legacy theme bootstrap leaked into published page: {rel}")
         if "menu-toggle" in text and "aria-label=" not in text:
             errors.append(f"menu toggle lacks initial accessible label: {rel}")
-        if "data-theme-toggle" in text and "aria-pressed=" not in text:
-            errors.append(f"theme toggle lacks initial pressed state: {rel}")
 
     home = (SITE / "index.html").read_text(encoding="utf-8")
+    en_home = (SITE / "en/index.html").read_text(encoding="utf-8")
+    for rel, text in (("index.html", home), ("en/index.html", en_home)):
+        for token in ("hero-v4", "work-featured", "work-secondary", "capability-layout", "highlights-layout", "contact-v4"):
+            if token not in text:
+                errors.append(f"homepage redesign block {token!r} missing from {rel}")
     if 'data-avatar-fallback="/assets/avatar-fallback.svg"' not in home:
         errors.append("home profile avatar lacks local fallback wiring")
 
     js = (SITE / "assets/main.js").read_text(encoding="utf-8") if (SITE / "assets/main.js").exists() else ""
-    for token in ("themeMeta", "aria-pressed", "data-avatar-fallback"):
+    if "portfolioTheme" in js or "prefers-color-scheme: light" in js or "data-theme-toggle" in js:
+        errors.append("runtime still contains legacy light-theme behavior")
+    for token in ("data-avatar-fallback", "menu-toggle", "v4-reveal"):
         if token not in js:
-            errors.append(f"runtime missing P3 behavior token: {token}")
+            errors.append(f"runtime missing redesigned behavior token: {token}")
 
     if errors:
         print("P3 checks failed:")
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"P3 checks passed for {len(html_files)} HTML files")
+    print(f"P3 dark redesign checks passed for {len(html_files)} HTML files")
     return 0
 
 
