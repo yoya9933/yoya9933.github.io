@@ -1,9 +1,17 @@
 (() => {
   const root = document.documentElement;
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const themeColors = { dark: '#07111f', light: '#f5f8fc' };
+
+  const setTheme = (theme, persist = false) => {
+    root.dataset.theme = theme;
+    if (themeMeta) themeMeta.setAttribute('content', themeColors[theme] || themeColors.dark);
+    if (persist) localStorage.setItem('portfolioTheme', theme);
+  };
+
   const savedTheme = localStorage.getItem('portfolioTheme');
   const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  const initialTheme = savedTheme || (systemLight ? 'light' : 'dark');
-  root.dataset.theme = initialTheme;
+  setTheme(root.dataset.theme || savedTheme || (systemLight ? 'light' : 'dark'));
 
   const themeButtons = document.querySelectorAll('[data-theme-toggle]');
   const updateThemeButtons = () => {
@@ -11,12 +19,12 @@
     themeButtons.forEach((button) => {
       button.textContent = light ? 'Dark' : 'Light';
       button.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+      button.setAttribute('aria-pressed', String(light));
     });
   };
   updateThemeButtons();
   themeButtons.forEach((button) => button.addEventListener('click', () => {
-    root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('portfolioTheme', root.dataset.theme);
+    setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
     updateThemeButtons();
   }));
 
@@ -25,16 +33,17 @@
   if (toggle && nav) {
     const closeMenu = () => {
       toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', document.documentElement.lang.startsWith('en') ? 'Open navigation' : '開啟導覽');
+      toggle.setAttribute('aria-label', root.lang.startsWith('en') ? 'Open navigation' : '開啟導覽');
       toggle.textContent = '☰';
       nav.classList.remove('is-open');
     };
+    closeMenu();
     toggle.addEventListener('click', () => {
       const open = toggle.getAttribute('aria-expanded') === 'true';
       if (open) closeMenu();
       else {
         toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('aria-label', document.documentElement.lang.startsWith('en') ? 'Close navigation' : '關閉導覽');
+        toggle.setAttribute('aria-label', root.lang.startsWith('en') ? 'Close navigation' : '關閉導覽');
         toggle.textContent = '×';
         nav.classList.add('is-open');
       }
@@ -43,6 +52,14 @@
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
     window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
   }
+
+  document.querySelectorAll('img[data-avatar-fallback]').forEach((img) => {
+    img.addEventListener('error', () => {
+      if (img.dataset.fallbackApplied === 'true') return;
+      img.dataset.fallbackApplied = 'true';
+      img.src = img.dataset.avatarFallback || '/assets/avatar-fallback.svg';
+    }, { once: true });
+  });
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.section-heading, .project-card, .focus-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture');
