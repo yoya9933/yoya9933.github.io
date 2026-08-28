@@ -22,6 +22,9 @@ jobs:
           sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode
           google-chrome --version
 
+      - name: Validate VERSION and CHANGELOG release metadata
+        run: python3 scripts/release_notes.py > /tmp/release-notes.md
+
       - name: Build allowlisted site
         run: bash scripts/build_site.sh
 
