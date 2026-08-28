@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install build dependencies
         run: |
@@ -39,3 +39,12 @@ jobs:
           rm _site/404.html
           rm -rf _site/demos
           npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-reports
+          path: lhci_reports
+          if-no-files-found: ignore
+          retention-days: 7
