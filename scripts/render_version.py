@@ -15,6 +15,10 @@ VERSION_FILE = ROOT / "VERSION"
 REPOSITORY = "https://github.com/yoya9933/yoya9933.github.io"
 SITE_URL = "https://yoya9933.page"
 BUILD_TIMEZONE = ZoneInfo("Asia/Taipei")
+ASSET_REF_RE = re.compile(
+    r'(?P<prefix>\b(?:href|src)=")(?P<url>[^"?#]+\.(?:css|js))(?P<query>\?[^"#]*)?(?P<fragment>#[^"]*)?(?P<suffix>")',
+    re.I,
+)
 
 
 def read_version() -> str:
@@ -56,6 +60,17 @@ def ensure_version_meta(text: str, version: str) -> str:
     return text.replace("</head>", tag + "</head>", 1)
 
 
+def version_asset_refs(text: str, version: str) -> str:
+    def replace(match: re.Match[str]) -> str:
+        url = match.group("url")
+        if url.startswith(("http://", "https://", "//", "data:")):
+            return match.group(0)
+        fragment = match.group("fragment") or ""
+        return f'{match.group("prefix")}{url}?v={escape(version, quote=True)}{fragment}{match.group("suffix")}'
+
+    return ASSET_REF_RE.sub(replace, text)
+
+
 def footer_version(version: str, commit: str) -> str:
     changelog_url = "/changelog/"
     if commit == "local":
@@ -90,6 +105,7 @@ def main() -> None:
     for path in sorted(SITE.rglob("*.html")):
         text = path.read_text(encoding="utf-8")
         text = ensure_version_meta(text, version)
+        text = version_asset_refs(text, version)
         if path.relative_to(SITE).as_posix() in {"index.html", "en/index.html"}:
             text = inject_footer(text, version, commit)
         path.write_text(text, encoding="utf-8")
