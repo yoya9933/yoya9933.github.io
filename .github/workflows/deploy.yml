@@ -27,7 +27,7 @@ jobs:
       - name: Validate VERSION and CHANGELOG
         run: python3 scripts/release_notes.py > release-notes.md
 
-      - name: Create version tag and GitHub Release when needed
+      - name: Enforce immutable version and create GitHub Release
         if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -35,13 +35,28 @@ jobs:
           set -euo pipefail
           version="$(tr -d '[:space:]' < VERSION)"
           tag="v${version}"
+          git fetch --force --tags origin
+
+          tag_commit=""
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            tag_commit="$(git rev-list -n 1 "$tag")"
+            if [ "$tag_commit" != "$GITHUB_SHA" ]; then
+              echo "ERROR: $tag is already locked to $tag_commit, but this deployment is $GITHUB_SHA." >&2
+              echo "Bump VERSION and add a matching CHANGELOG.md release before deploying new code." >&2
+              exit 1
+            fi
+          fi
 
           if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "$tag already has a GitHub Release; continuing to deployment."
+            if [ -z "$tag_commit" ]; then
+              echo "ERROR: GitHub Release $tag exists but its Git tag was not found." >&2
+              exit 1
+            fi
+            echo "$tag already exists at this exact commit; release identity is unchanged."
             exit 0
           fi
 
-          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+          if [ -n "$tag_commit" ]; then
             gh release create "$tag" \
               --repo "$GITHUB_REPOSITORY" \
               --title "Yoya Portfolio $tag" \
@@ -76,7 +91,10 @@ jobs:
         run: bash scripts/build_site.sh
 
       - name: Verify deployment artifact
-        run: python3 scripts/check_site.py
+        run: |
+          python3 scripts/check_site.py
+          python3 scripts/check_build_manifest.py
+          python3 scripts/check_observability.py
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v6
@@ -89,3 +107,12 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      - name: Verify production release identity
+        env:
+          EXPECTED_COMMIT: ${{ github.sha }}
+          SMOKE_ATTEMPTS: "12"
+          SMOKE_DELAY_SECONDS: "5"
+        run: |
+          export EXPECTED_VERSION="$(tr -d '[:space:]' < VERSION)"
+          python3 scripts/verify_production.py
