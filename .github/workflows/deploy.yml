@@ -1,4 +1,4 @@
-name: Deploy Static Webpage to GitHub Pages
+name: Release and Deploy Portfolio
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - master
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -16,7 +16,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate VERSION and CHANGELOG
+        run: python3 scripts/release_notes.py > release-notes.md
+
+      - name: Create version tag and GitHub Release when needed
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          version="$(tr -d '[:space:]' < VERSION)"
+          tag="v${version}"
+
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "$tag already has a GitHub Release; continuing to deployment."
+            exit 0
+          fi
+
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+            gh release create "$tag" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Yoya Portfolio $tag" \
+              --notes-file release-notes.md \
+              --latest
+          else
+            gh release create "$tag" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$GITHUB_SHA" \
+              --title "Yoya Portfolio $tag" \
+              --notes-file release-notes.md \
+              --latest
+          fi
+
   deploy:
+    needs: release
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
