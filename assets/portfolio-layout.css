@@ -1,0 +1,115 @@
+/* Stable portfolio layout rules. This file replaces the former one-off CTA/header fix patches. */
+.project-links {
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 8px;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  line-height: 1.2;
+}
+
+.project-links a:not(.project-primary) {
+  padding: 8px 0;
+}
+
+.nav-wrap {
+  flex-wrap: nowrap;
+}
+
+.brand {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.nav {
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.nav > a,
+.toolbar a {
+  white-space: nowrap;
+}
+
+.toolbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.toolbar a,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 1080px) {
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 20px;
+    right: 20px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(6, 16, 29, .98);
+    box-shadow: var(--shadow);
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav > a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 10px 13px;
+  }
+
+  .nav .nav-cta {
+    margin-left: 0;
+  }
+
+  .toolbar {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .toolbar a,
+  .theme-toggle {
+    width: 100%;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .project-links {
+    column-gap: 12px;
+  }
+
+  .project-links a {
+    min-height: 40px;
+  }
+}
