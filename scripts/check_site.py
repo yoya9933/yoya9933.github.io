@@ -14,19 +14,35 @@ FORBIDDEN = (
     "{{__TRUNK_ADDRESS__}}",
     "{{__TRUNK_WS_BASE__}}",
     "優選（冠軍）",
+    "attendee-tokens.json",
+    "attendees.generated.ts",
+    "臺灣綜合大學系統",
 )
 
 REQUIRED = (
     "index.html",
     "en/index.html",
     "contact/index.html",
+    "en/contact/index.html",
     "projects/buoy/index.html",
     "projects/chess/index.html",
-    "projects/ncku-return-os/index.html",
+    "projects/event-checkin/index.html",
+    "projects/ai-media-pipeline/index.html",
+    "en/projects/buoy/index.html",
+    "en/projects/chess/index.html",
+    "en/projects/event-checkin/index.html",
+    "en/projects/ai-media-pipeline/index.html",
+    "demos/event-checkin/index.html",
+    "demos/event-checkin/event-demo.css",
+    "demos/event-checkin/event-demo.js",
     "assets/Yoya_CV.pdf",
+    "assets/portfolio-extra.css",
     "assets/projects/buoy.webp",
     "assets/projects/chess.webp",
-    "assets/projects/ncku-return-os.webp",
+    "assets/projects/event-checkin.webp",
+    "assets/projects/ai-media-pipeline.webp",
+    "assets/projects/event-checkin.png",
+    "assets/projects/ai-media-pipeline.png",
 )
 
 class RefParser(HTMLParser):
@@ -70,6 +86,9 @@ def main() -> int:
         if not (SITE / rel).exists():
             errors.append(f"missing required output: {rel}")
 
+    for retired in (SITE / "projects/ncku-return-os", SITE / "en/projects/ncku-return-os"):
+        if retired.exists():
+            errors.append(f"retired credit-map page leaked into deployment: {retired.relative_to(SITE)}")
     if (SITE / "dist").exists():
         errors.append("stale dist directory leaked into deployment artifact")
     if (SITE / "assets/Yoya_CV_source.html").exists():
@@ -80,13 +99,18 @@ def main() -> int:
         text = html.read_text(encoding="utf-8")
         for token in FORBIDDEN:
             if token in text:
-                errors.append(f"forbidden stale token {token!r} found in {html.relative_to(SITE)}")
+                errors.append(f"forbidden token {token!r} found in {html.relative_to(SITE)}")
         parser = RefParser()
         parser.feed(text)
         for _, ref in parser.refs:
             target = resolve_local(html, ref)
             if target is not None and not target.exists():
                 errors.append(f"broken local reference in {html.relative_to(SITE)}: {ref}")
+
+    demo = (SITE / "demos/event-checkin/index.html").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/index.html").exists() else ""
+    demo_js = (SITE / "demos/event-checkin/event-demo.js").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/event-demo.js").exists() else ""
+    if "SYNTHETIC DATA ONLY" not in demo or "SYNTHETIC_DATA_ONLY" not in demo_js:
+        errors.append("event demo lacks explicit synthetic-data safeguards")
 
     if errors:
         print("Site checks failed:")
