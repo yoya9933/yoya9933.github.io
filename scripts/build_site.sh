@@ -84,6 +84,9 @@ python3 scripts/enhance_site.py
 python3 scripts/fix_locale_links.py
 python3 scripts/enhance_runtime.py
 
+# CHANGELOG.md is the source for the public version history page.
+python3 scripts/render_changelog.py
+
 # VERSION is the single source of truth for human-readable and machine-readable site version data.
 python3 scripts/render_version.py
 
