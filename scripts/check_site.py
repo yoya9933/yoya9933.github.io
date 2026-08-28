@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 import json
 import os
 import re
@@ -94,6 +94,13 @@ def expected_environment() -> str:
     return "local"
 
 
+def is_local_static_asset(value: str) -> bool:
+    parsed = urlparse(value)
+    if parsed.scheme or value.startswith("//"):
+        return False
+    return parsed.path.lower().endswith((".css", ".js"))
+
+
 def main() -> int:
     errors: list[str] = []
     if not SITE.exists():
@@ -155,6 +162,13 @@ def main() -> int:
         parser = RefParser()
         parser.feed(text)
         for _, ref in parser.refs:
+            if is_local_static_asset(ref):
+                versions = parse_qs(urlparse(ref).query).get("v", [])
+                if versions != [VERSION]:
+                    errors.append(
+                        f"local CSS/JS reference is not cache-busted with v={VERSION} "
+                        f"in {html.relative_to(SITE)}: {ref}"
+                    )
             target = resolve_local(html, ref)
             if target is not None and not target.exists():
                 errors.append(f"broken local reference in {html.relative_to(SITE)}: {ref}")
