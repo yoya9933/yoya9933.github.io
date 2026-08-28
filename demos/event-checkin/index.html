@@ -23,8 +23,8 @@
     </div>
   </section>
 
-  <section class="shell" style="padding-top:18px">
-    <div class="stats" aria-label="即時營運統計">
+  <section class="shell demo-dashboard">
+    <div class="stats" role="region" aria-label="即時營運統計">
       <article class="stat"><span>總人數</span><strong id="totalStat">0</strong></article>
       <article class="stat ok"><span>已報到</span><strong id="checkedStat">0</strong><small id="rateText"></small></article>
       <article class="stat blue"><span>已入席</span><strong id="seatedStat">0</strong></article>
@@ -34,13 +34,13 @@
     <section class="panel">
       <div class="panel-head"><div><h2>唯讀營運後台</h2><p>支援姓名／ID／機構搜尋，以及機構、報到、入席狀態篩選。</p></div><div class="toolbar"><span class="timestamp" id="updatedAt"></span><button class="btn secondary" id="resetButton" type="button">重置 Demo</button></div></div>
       <div class="filters">
-        <input id="search" placeholder="搜尋姓名、ID、機構、系所或座位" aria-label="搜尋虛構名單">
+        <input id="search" type="search" placeholder="搜尋姓名、ID、機構、系所或座位" aria-label="搜尋虛構名單">
         <select id="orgFilter" aria-label="機構篩選"></select>
         <select id="statusFilter" aria-label="報到狀態篩選"><option value="all">全部報到狀態</option><option value="checked">已報到</option><option value="waiting">未報到</option></select>
         <select id="seatFilter" aria-label="入席狀態篩選"><option value="all">全部入席狀態</option><option value="seated">已入席</option><option value="not-seated">未入席</option></select>
       </div>
       <div class="panel-head"><span id="resultCount" class="timestamp"></span></div>
-      <div class="table-wrap"><table><thead><tr><th>參與者</th><th>機構</th><th>單位</th><th>座位</th><th>來源</th><th>報到</th><th>入席</th><th>時間</th></tr></thead><tbody id="attendeeBody"></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th scope="col">參與者</th><th scope="col">機構</th><th scope="col">單位</th><th scope="col">座位</th><th scope="col">來源</th><th scope="col">報到</th><th scope="col">入席</th><th scope="col">時間</th></tr></thead><tbody id="attendeeBody"></tbody></table></div>
     </section>
 
     <section class="privacy" aria-label="公開展示安全設計">
