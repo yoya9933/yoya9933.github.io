@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from datetime import datetime
 from html import escape
 from pathlib import Path
+from zoneinfo import ZoneInfo
 import json
 import os
 import re
@@ -12,6 +14,7 @@ SITE = ROOT / "_site"
 VERSION_FILE = ROOT / "VERSION"
 REPOSITORY = "https://github.com/yoya9933/yoya9933.github.io"
 SITE_URL = "https://yoya9933.page"
+BUILD_TIMEZONE = ZoneInfo("Asia/Taipei")
 
 
 def read_version() -> str:
@@ -32,6 +35,17 @@ def read_commit() -> str:
     except (OSError, subprocess.CalledProcessError):
         return "local"
     return candidate if re.fullmatch(r"[0-9a-f]{40}", candidate) else "local"
+
+
+def build_environment() -> str:
+    explicit = os.environ.get("PORTFOLIO_ENVIRONMENT", "").strip()
+    if explicit:
+        return explicit
+    if os.environ.get("GITHUB_REF") == "refs/heads/main":
+        return "production"
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        return "ci"
+    return "local"
 
 
 def ensure_version_meta(text: str, version: str) -> str:
@@ -70,6 +84,8 @@ def inject_footer(text: str, version: str, commit: str) -> str:
 def main() -> None:
     version = read_version()
     commit = read_commit()
+    build_time = datetime.now(BUILD_TIMEZONE).isoformat(timespec="seconds")
+    environment = build_environment()
 
     for path in sorted(SITE.rglob("*.html")):
         text = path.read_text(encoding="utf-8")
@@ -81,6 +97,8 @@ def main() -> None:
     payload = {
         "version": version,
         "commit": commit,
+        "build_time": build_time,
+        "environment": environment,
         "repository": REPOSITORY,
         "changelog": f"{SITE_URL}/changelog/",
         "source_changelog": f"{REPOSITORY}/blob/main/CHANGELOG.md",
@@ -90,7 +108,10 @@ def main() -> None:
     (SITE / "version.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"Rendered website version v{version} ({commit[:7] if commit != 'local' else 'local'})")
+    print(
+        f"Rendered website version v{version} ({commit[:7] if commit != 'local' else 'local'}) "
+        f"for {environment} at {build_time}"
+    )
 
 
 if __name__ == "__main__":
