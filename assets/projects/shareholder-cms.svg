@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Shareholder Gift Service and CMS architecture preview</title>
+<desc id="desc">Abstract architecture diagram showing a public service website connected to an admin CMS and Supabase backend.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0b2633"/><stop offset="1" stop-color="#091527"/></linearGradient>
+  <linearGradient id="card" x1="0" x2="1"><stop stop-color="#112f3d"/><stop offset="1" stop-color="#102238"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-opacity=".28"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="1340" cy="130" r="260" fill="#2dd4bf" opacity=".08"/>
+<circle cx="240" cy="760" r="250" fill="#7dd3fc" opacity=".05"/>
+<text x="110" y="125" fill="#5eead4" font-family="monospace" font-size="27" font-weight="700" letter-spacing="4">BUSINESS SERVICE · FULL-STACK CMS</text>
+<text x="110" y="198" fill="#eff6ff" font-family="Arial,sans-serif" font-size="54" font-weight="800">Shareholder Gift Service</text>
+<text x="110" y="258" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="28">Public site → Admin CMS → Auth / Database / Storage</text>
+<g filter="url(#shadow)">
+  <rect x="110" y="350" width="390" height="330" rx="28" fill="url(#card)" stroke="#7dd3fc" stroke-opacity=".3"/>
+  <rect x="605" y="350" width="390" height="330" rx="28" fill="url(#card)" stroke="#5eead4" stroke-opacity=".38"/>
+  <rect x="1100" y="350" width="390" height="330" rx="28" fill="url(#card)" stroke="#7dd3fc" stroke-opacity=".3"/>
+</g>
+<text x="150" y="415" fill="#7dd3fc" font-family="monospace" font-size="22" font-weight="700">PUBLIC WEBSITE</text>
+<text x="150" y="474" fill="#eff6ff" font-family="Arial,sans-serif" font-size="35" font-weight="700">Services & Products</text>
+<text x="150" y="530" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Responsive pages</text>
+<text x="150" y="570" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Announcements</text>
+<text x="150" y="610" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Contact / inquiry flow</text>
+<text x="645" y="415" fill="#5eead4" font-family="monospace" font-size="22" font-weight="700">ADMIN CMS</text>
+<text x="645" y="474" fill="#eff6ff" font-family="Arial,sans-serif" font-size="35" font-weight="700">Content Operations</text>
+<text x="645" y="530" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Product CRUD</text>
+<text x="645" y="570" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Announcement CRUD</text>
+<text x="645" y="610" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Image upload</text>
+<text x="1140" y="415" fill="#7dd3fc" font-family="monospace" font-size="22" font-weight="700">SUPABASE</text>
+<text x="1140" y="474" fill="#eff6ff" font-family="Arial,sans-serif" font-size="35" font-weight="700">Cloud Backend</text>
+<text x="1140" y="530" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Email authentication</text>
+<text x="1140" y="570" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">PostgreSQL + RLS</text>
+<text x="1140" y="610" fill="#9fb0c7" font-family="Arial,sans-serif" font-size="23">Object storage</text>
+<path d="M510 515H585" stroke="#5eead4" stroke-width="5" stroke-linecap="round"/><path d="m570 500 20 15-20 15" fill="none" stroke="#5eead4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1005 515H1080" stroke="#5eead4" stroke-width="5" stroke-linecap="round"/><path d="m1065 500 20 15-20 15" fill="none" stroke="#5eead4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="110" y="790" fill="#c5eafe" font-family="monospace" font-size="22">Vue 3 · TypeScript · Supabase · PostgreSQL · Storage · SEO</text>
+</svg>
