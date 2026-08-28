@@ -11,9 +11,11 @@ def main() -> int:
     required_files = [
         SITE / "assets/avatar-fallback.svg",
         SITE / "assets/main.js",
+        SITE / "assets/portfolio-extra.css",
         SITE / "assets/projects/buoy.webp",
         SITE / "assets/projects/chess.webp",
-        SITE / "assets/projects/ncku-return-os.webp",
+        SITE / "assets/projects/event-checkin.webp",
+        SITE / "assets/projects/ai-media-pipeline.webp",
     ]
     for path in required_files:
         if not path.exists():
@@ -37,14 +39,20 @@ def main() -> int:
     home = (SITE / "index.html").read_text(encoding="utf-8")
     en_home = (SITE / "en/index.html").read_text(encoding="utf-8")
     for rel, text in (("index.html", home), ("en/index.html", en_home)):
-        for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact"):
+        for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact", "secondary-project"):
             if token not in text:
-                errors.append(f"previous-layout block {token!r} missing from {rel}")
-        for token in ("hero-v4", "work-featured", "capability-layout", "contact-v4"):
-            if token in text:
-                errors.append(f"redesign-only block {token!r} leaked into {rel}")
+                errors.append(f"portfolio block {token!r} missing from {rel}")
+        if "ncku-return-os" in text or "Credit Map" in text or "學分地圖" in text:
+            errors.append(f"retired credit-map content remains in {rel}")
+        for token in ("event-checkin", "ai-media-pipeline"):
+            if token not in text:
+                errors.append(f"new project {token!r} missing from {rel}")
     if 'data-avatar-fallback="/assets/avatar-fallback.svg"' not in home:
         errors.append("home profile avatar lacks local fallback wiring")
+
+    demo = (SITE / "demos/event-checkin/index.html").read_text(encoding="utf-8")
+    if "noindex,nofollow" not in demo or "SYNTHETIC DATA ONLY" not in demo:
+        errors.append("event demo privacy labels are missing")
 
     js = (SITE / "assets/main.js").read_text(encoding="utf-8") if (SITE / "assets/main.js").exists() else ""
     if "portfolioTheme" in js or "prefers-color-scheme: light" in js or "data-theme-toggle" in js:
@@ -58,7 +66,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"P3 dark previous-layout checks passed for {len(html_files)} HTML files")
+    print(f"P3 dark portfolio checks passed for {len(html_files)} HTML files")
     return 0
 
 
