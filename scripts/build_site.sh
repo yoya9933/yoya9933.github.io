@@ -76,6 +76,7 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
 # exists. No site files may be mutated after this point.
 python3 scripts/build_manifest.py
 python3 scripts/check_build_manifest.py
+python3 scripts/check_observability.py
 
 test ! -e _site/dist
 test ! -e _site/assets/Yoya_CV_source.html
