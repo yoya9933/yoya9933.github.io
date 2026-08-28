@@ -42,9 +42,10 @@ rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 # data/projects.json owns each project's public media build plan.
 python3 scripts/build_project_media.py
 
-# The project manifest drives complete homepage sections, case-study actions,
-# optional case visuals, JSON-LD and sitemap.
+# The project manifest drives homepage sections, project links/visuals, structured data
+# and standardized evidence-based Case Study framing.
 python3 scripts/render_projects.py
+python3 scripts/render_case_studies.py
 
 # Generic site hardening stays separate from project data.
 python3 scripts/enhance_site.py
