@@ -2,6 +2,10 @@ from pathlib import Path
 
 SITE = Path(__file__).resolve().parents[1] / "_site"
 
+CHESS_REPO = "https://github.com/yoya9933/chess-online"
+CHESS_DEMO_OLD = "https://chuhe-xiangqi-online.bowersbayley13783.chatgpt.site"
+CHESS_DEMO = "https://chuhe-xiangqi-online.sean8411.workers.dev"
+
 REPLACEMENTS = {
     "浮標資料分析平台實際執行畫面": "浮標資料分析平台功能預覽",
     "楚河棋局實際產品畫面": "楚河棋局產品預覽",
@@ -20,5 +24,16 @@ for html in SITE.rglob("*.html"):
     updated = text
     for old, new in REPLACEMENTS.items():
         updated = updated.replace(old, new)
+
+    # Keep every published chess link on the canonical repository and production demo.
+    updated = updated.replace(CHESS_DEMO_OLD, CHESS_DEMO)
+
+    # The selected-project card should expose both the live product and source code.
+    if html in {SITE / "index.html", SITE / "en/index.html"}:
+        live_link = f'<a href="{CHESS_DEMO}" target="_blank">Live Demo ↗</a>'
+        repo_link = f'<a href="{CHESS_REPO}" target="_blank">GitHub ↗</a>'
+        if live_link in updated and repo_link not in updated.split(live_link, 1)[1].split("</article>", 1)[0]:
+            updated = updated.replace(live_link, live_link + repo_link, 1)
+
     if updated != text:
         html.write_text(updated, encoding="utf-8")
