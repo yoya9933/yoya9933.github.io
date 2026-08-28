@@ -29,6 +29,7 @@ REQUIRED = [
     "en/index.html",
     "contact/index.html",
     "en/contact/index.html",
+    "changelog/index.html",
     "version.json",
     "demos/event-checkin/index.html",
     "demos/event-checkin/event-demo.css",
@@ -105,6 +106,8 @@ def main() -> int:
             commit = published_version.get("commit", "")
             if commit != "local" and not re.fullmatch(r"[0-9a-f]{40}", commit):
                 errors.append("version.json commit is neither a full Git SHA nor 'local'")
+            if published_version.get("changelog") != "https://yoya9933.page/changelog/":
+                errors.append("version.json changelog does not point to the public changelog page")
 
     for retired in (SITE / "projects/ncku-return-os", SITE / "en/projects/ncku-return-os"):
         if retired.exists():
@@ -130,6 +133,14 @@ def main() -> int:
             if target is not None and not target.exists():
                 errors.append(f"broken local reference in {html.relative_to(SITE)}: {ref}")
 
+    changelog_path = SITE / "changelog/index.html"
+    if changelog_path.exists():
+        changelog = changelog_path.read_text(encoding="utf-8")
+        if f">v{VERSION}</h2>" not in changelog:
+            errors.append("public changelog does not contain the current VERSION")
+        if f"/releases/tag/v{VERSION}" not in changelog:
+            errors.append("public changelog does not link the current GitHub Release")
+
     selected = sorted((p for p in PROJECTS if p.get("section") == "selected"), key=lambda p: p["order"])
     for rel, locale in (("index.html", "zh"), ("en/index.html", "en")):
         home_path = SITE / rel
@@ -138,6 +149,8 @@ def main() -> int:
         home = home_path.read_text(encoding="utf-8")
         if 'class="site-version"' not in home or f">v{VERSION}</a>" not in home:
             errors.append(f"visible website version missing from footer in {rel}")
+        if 'href="/changelog/"' not in home:
+            errors.append(f"footer version does not link to /changelog/ in {rel}")
         for project in selected:
             if f'data-project="{project["slug"]}"' not in home:
                 errors.append(f"manifest-selected project {project['slug']} missing from {rel}")
