@@ -47,7 +47,7 @@ def parse_releases() -> list[dict[str, object]]:
     return releases
 
 
-def render_release(release: dict[str, object]) -> str:
+def render_release(release: dict[str, object], previous_version: str | None) -> str:
     version = str(release["version"])
     date = str(release["date"])
     paragraphs = "".join(f"<p>{inline(str(text))}</p>" for text in release["paragraphs"])
@@ -55,24 +55,41 @@ def render_release(release: dict[str, object]) -> str:
     bullet_html = ""
     if items:
         bullet_html = "<ul>" + "".join(f"<li>{inline(str(item))}</li>" for item in items) + "</ul>"
+
     release_url = f"{REPOSITORY}/releases/tag/v{version}"
+    action_links = [
+        f'<a href="{release_url}" target="_blank" rel="noopener noreferrer">GitHub Release ↗</a>'
+    ]
+    if previous_version:
+        compare_url = f"{REPOSITORY}/compare/v{previous_version}...v{version}"
+        action_links.append(
+            f'<a href="{compare_url}" target="_blank" rel="noopener noreferrer">'
+            f'Compare v{escape(previous_version)} → v{escape(version)} ↗</a>'
+        )
+    actions = '<p class="changelog-actions">' + '<span aria-hidden="true"> · </span>'.join(action_links) + "</p>"
+
     return (
         '<article class="case-card changelog-release">'
         f'<div class="changelog-release-head"><div><p class="eyebrow">RELEASE</p><h2>v{escape(version)}</h2></div>'
         f'<time datetime="{escape(date)}">{escape(date)}</time></div>'
-        f"{paragraphs}{bullet_html}"
-        f'<p><a href="{release_url}" target="_blank" rel="noopener noreferrer">GitHub Release ↗</a></p>'
+        f"{paragraphs}{bullet_html}{actions}"
         "</article>"
     )
 
 
 def main() -> None:
     releases = parse_releases()
-    cards = "".join(render_release(release) for release in releases)
+    cards = "".join(
+        render_release(
+            release,
+            str(releases[index + 1]["version"]) if index + 1 < len(releases) else None,
+        )
+        for index, release in enumerate(releases)
+    )
     target = SITE / "changelog" / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
 
-    html = f'''<!DOCTYPE html><html lang="zh-Hant-TW" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07111f"><title>更新紀錄｜Yoya Portfolio</title><meta name="description" content="Yoya Portfolio 的正式網站版本、更新內容與 GitHub Release 紀錄。"><link rel="canonical" href="https://yoya9933.page/changelog/"><link rel="icon" href="../assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="更新紀錄｜Yoya Portfolio"><meta property="og:description" content="網站版本、更新內容與 GitHub Release 紀錄。"><meta property="og:image" content="https://yoya9933.page/assets/og-image.png"><link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="../assets/p1.css"><link rel="stylesheet" href="../assets/portfolio-extra.css"></head><body class="case-page"><nav class="case-nav shell"><a href="../">← 回首頁</a><span class="toolbar"><a href="{REPOSITORY}/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Changelog ↗</a></span></nav><header class="case-hero shell"><p class="eyebrow">CHANGELOG</p><h1>網站更新紀錄。</h1><p>每個正式版本都由 <code>VERSION</code>、<code>CHANGELOG.md</code>、Git tag 與 GitHub Release 對應，方便確認目前網站功能與版本來源。</p></header><main class="case-content shell"><section class="case-section"><div class="case-grid">{cards}</div></section></main><script src="../assets/main.js" defer></script></body></html>'''
+    html = f'''<!DOCTYPE html><html lang="zh-Hant-TW" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07111f"><title>更新紀錄｜Yoya Portfolio</title><meta name="description" content="Yoya Portfolio 的正式網站版本、更新內容與 GitHub Release 紀錄。"><link rel="canonical" href="https://yoya9933.page/changelog/"><link rel="icon" href="../assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="更新紀錄｜Yoya Portfolio"><meta property="og:description" content="網站版本、更新內容與 GitHub Release 紀錄。"><meta property="og:image" content="https://yoya9933.page/assets/og-image.png"><link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="../assets/p1.css"><link rel="stylesheet" href="../assets/portfolio-extra.css"></head><body class="case-page"><nav class="case-nav shell"><a href="../">← 回首頁</a><span class="toolbar"><a href="{REPOSITORY}/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Changelog ↗</a></span></nav><header class="case-hero shell"><p class="eyebrow">CHANGELOG</p><h1>網站更新紀錄。</h1><p>每個正式版本都由 <code>VERSION</code>、<code>CHANGELOG.md</code>、Git tag 與 GitHub Release 對應；相鄰版本可直接查看 GitHub Compare。</p></header><main class="case-content shell"><section class="case-section"><div class="case-grid">{cards}</div></section></main><script src="../assets/main.js" defer></script></body></html>'''
     target.write_text(html, encoding="utf-8")
     print(f"Rendered {len(releases)} changelog release(s)")
 
