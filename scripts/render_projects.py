@@ -211,9 +211,10 @@ def render_case_actions(data: dict) -> None:
 
             if project["slug"] == "shareholder-cms":
                 text = text.replace('https://yoya9933.page/assets/projects/shareholder-cms.svg', 'https://yoya9933.page/assets/projects/shareholder-cms.png')
-                text = text.replace('../../assets/projects/shareholder-cms.svg', '../../assets/projects/shareholder-cms.webp')
+                text = re.sub(r'(?P<prefix>(?:\.\./)+)assets/projects/shareholder-cms\.svg', r'\g<prefix>assets/projects/shareholder-cms.webp', text)
                 if locale == "en":
                     text = text.replace('Shareholder Gift Service and CMS architecture preview', 'Shareholder Gift Service public website screenshot')
+                    text = text.replace('Shareholder Gift Service and CMS architecture diagram', 'Shareholder Gift Service public website screenshot')
                     caption = 'The deployment captures the public homepage when reachable; a deterministic architecture visual is used only as a fallback. No authenticated admin page is captured.'
                 else:
                     text = text.replace('股東紀念品服務與 CMS 平台架構示意', '股東紀念品服務公開網站首頁截圖')
