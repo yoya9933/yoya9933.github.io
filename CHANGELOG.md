@@ -2,6 +2,17 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.2.0 — 2026-08-29
+
+Portfolio Architecture 2.0：把作品的公開資料、首頁 section、Case visual 與 media build plan 收斂到同一份 manifest。
+
+- `data/projects.json` 新增中英文首頁標題、Additional System 文案與各專案 media build plan。
+- `render_projects.py` 改為整段產生 Selected Work / Additional System，不再依賴舊文案逐字 replace 或卡片 closing marker。
+- 專案 Card、Case Study actions、首頁 JSON-LD、sitemap 與可選 Case visual 都由同一份 project manifest 產生。
+- 新增 `build_project_media.py`，統一處理 tracked snapshots、本機 synthetic demo capture 與 SVG architecture render；新增專案不再需要把 media 流程硬編碼進 shell script。
+- Shareholder CMS 的 Case visual/caption 移入 manifest，不再在 renderer 裡用專案 slug 特判。
+- 將 `project-cta-fix.css` 與 `header-nav-fix.css` 收斂為正式 `portfolio-layout.css` module，移除一次性 patch 檔案。
+
 ## v1.1.1 — 2026-08-29
 
 Stability Patch：降低部署與品質檢查的偶發失敗，並移除外部網站對 production build 的依賴。
@@ -9,7 +20,7 @@ Stability Patch：降低部署與品質檢查的偶發失敗，並移除外部�
 - GitHub Actions 升級到目前支援 Node 24 的主要版本，移除既有 Node 20 deprecation 技術債。
 - Lighthouse 改為每頁執行 3 次並使用 median 判定，降低單次量測波動造成的 false negative。
 - Site Quality 無論成功或失敗都保留 Lighthouse report artifact 7 天，方便診斷。
-- 股東紀念品 CMS 的 production build 改用 repository 內已審核的 frozen snapshot，不再於每次部署即時存取 `sharegift.tw`。
+- 股東紀念品 CMS 的 production build 改用 repository 內已審核、可重現的架構 visual，不再於每次部署即時存取 `sharegift.tw`。
 - 保留既有版本、SEO、隱私與 deployment artifact 驗證。
 
 ## v1.1.0 — 2026-08-29
