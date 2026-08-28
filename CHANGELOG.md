@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.3.0 — 2026-08-29
+
+Case Study 2.0：把作品頁從功能清單提升成可快速判讀的工程案例，同時保留可驗證證據與已知限制。
+
+- 每篇中英文 Case Study 新增 Role / Scope / Status / Stack / Year，讓閱讀者快速理解實際工作範圍。
+- 新增 Problem / Decision / Evidence / Next 標準化工程脈絡區，說明問題、技術判斷、可核對證據與下一步。
+- Case Study framing 全部由 `data/projects.json` 驅動，中英文共用同一份專案事實來源。
+- EventOps 明確保留公開 Demo 只有虛構資料的隱私邊界；AI Media Pipeline 明確標示 quality threshold 尚未被主流程強制為 publish blocker。
+- 新增 `check_case_studies.py` build gate，避免後續更新遺漏標準欄位或把未完成能力寫成既有功能。
+
 ## v1.2.0 — 2026-08-29
 
 Portfolio Architecture 2.0：把作品的公開資料、首頁 section、Case visual 與 media build plan 收斂到同一份 manifest。
