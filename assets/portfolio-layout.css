@@ -1,4 +1,9 @@
-/* Stable portfolio layout rules. This file replaces the former one-off CTA/header fix patches. */
+/* Stable portfolio layout, accessibility and interaction rules. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .project-links {
   align-items: center;
   column-gap: 16px;
@@ -86,6 +91,21 @@
 
 .case-framing .case-card {
   line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (max-width: 1080px) {
