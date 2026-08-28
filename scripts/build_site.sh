@@ -28,10 +28,7 @@ for project in "${PROJECT_SLUGS[@]}"; do
 done
 
 cp -R demos/event-checkin _site/demos/
-cp assets/styles.css assets/p1.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
-cat assets/project-cta-fix.css >> _site/assets/p1.css
-cat assets/header-nav-fix.css >> _site/assets/p1.css
-cp assets/projects/shareholder-cms.svg _site/assets/projects/shareholder-cms.svg
+cp assets/styles.css assets/p1.css assets/portfolio-extra.css assets/portfolio-layout.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
 
 # Social and app icons.
 rsvg-convert -w 1200 -h 630 assets/og-image.svg -o _site/assets/og-image.png
@@ -39,35 +36,11 @@ rsvg-convert -w 180 -h 180 assets/favicon.svg -o _site/assets/apple-touch-icon.p
 rsvg-convert -w 192 -h 192 assets/favicon.svg -o _site/assets/icon-192.png
 rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 
-# Frozen captures for public projects already privacy-reviewed and tracked in this repo.
-for project in buoy chess; do
-  test -s "assets/projects/snapshots/${project}.webp"
-  cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/snapshots/${project}.webp"
-  cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
-  dwebp "assets/projects/snapshots/${project}.webp" -o "_site/assets/projects/${project}.png" >/dev/null
-done
+# data/projects.json owns each project's public media build plan.
+python3 scripts/build_project_media.py
 
-# Capture the privacy-safe interactive EventOps demo with synthetic data only.
-google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
-  --run-all-compositor-stages-before-draw --virtual-time-budget=3500 \
-  --window-size=1440,810 --screenshot=/tmp/event-checkin.png \
-  "file://${ROOT}/_site/demos/event-checkin/index.html" >/dev/null 2>&1
-cwebp -quiet -q 84 /tmp/event-checkin.png -o _site/assets/projects/snapshots/event-checkin.webp
-cp _site/assets/projects/snapshots/event-checkin.webp _site/assets/projects/event-checkin.webp
-cp /tmp/event-checkin.png _site/assets/projects/event-checkin.png
-
-# Deterministic architecture visual for the shareholder CMS. The production build
-# never needs to access the live business site or an authenticated admin area.
-rsvg-convert -w 1440 -h 810 assets/projects/shareholder-cms.svg -o _site/assets/projects/shareholder-cms.png
-cwebp -quiet -q 86 _site/assets/projects/shareholder-cms.png -o _site/assets/projects/snapshots/shareholder-cms.webp
-cp _site/assets/projects/snapshots/shareholder-cms.webp _site/assets/projects/shareholder-cms.webp
-
-# Deterministic architecture visual for the AI media operations case study.
-rsvg-convert -w 1200 -h 675 assets/projects/ai-media-pipeline.svg -o _site/assets/projects/ai-media-pipeline.png
-cwebp -quiet -q 86 _site/assets/projects/ai-media-pipeline.png -o _site/assets/projects/snapshots/ai-media-pipeline.webp
-cp _site/assets/projects/snapshots/ai-media-pipeline.webp _site/assets/projects/ai-media-pipeline.webp
-
-# One project manifest now drives homepage cards, case-study actions, JSON-LD and sitemap.
+# The project manifest drives complete homepage sections, case-study actions,
+# optional case visuals, JSON-LD and sitemap.
 python3 scripts/render_projects.py
 
 # Generic site hardening stays separate from project data.
