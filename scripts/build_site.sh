@@ -30,7 +30,7 @@ done
 cp -R demos/event-checkin _site/demos/
 cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
 # p1.css is the deployed component bundle; the second source module contains stable
-# portfolio-specific layout rules instead of one-off fix files.
+# portfolio-specific layout/accessibility rules.
 cat assets/p1.css assets/portfolio-layout.css > _site/assets/p1.css
 
 # Social and app icons.
@@ -58,6 +58,9 @@ python3 scripts/render_changelog.py
 
 # VERSION is the single source of truth for human-readable and machine-readable site version data.
 python3 scripts/render_version.py
+
+# Enforce intrinsic image sizing, local hero assets and accessibility interaction rules.
+python3 scripts/check_performance.py
 
 # CV has one source of truth: tracked HTML -> generated PDF artifact.
 qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
