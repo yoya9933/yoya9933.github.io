@@ -2,7 +2,7 @@
 
 個人作品集網站，正式網址為 `https://yoya9933.page/`。網站採純靜態 HTML / CSS / JavaScript，並以 GitHub Actions 建立經過 allowlist 的 `_site` 部署產物。
 
-**Current website version: `v1.0.0`**
+**Current website version:** [`VERSION`](./VERSION)
 
 - 版本單一來源：[`VERSION`](./VERSION)
 - 版本紀錄：[`CHANGELOG.md`](./CHANGELOG.md)
