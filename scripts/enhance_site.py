@@ -11,10 +11,12 @@ SITE = ROOT / "_site"
 PROJECT_TITLES = {
     "projects/buoy/index.html": "浮標資料分析與航道風險評估平台",
     "projects/chess/index.html": "楚河棋局｜線上中國象棋",
-    "projects/ncku-return-os/index.html": "NCKU Return OS｜學分地圖",
+    "projects/event-checkin/index.html": "活動報到與現場營運系統",
+    "projects/ai-media-pipeline/index.html": "Reliable AI Media Automation Pipeline",
     "en/projects/buoy/index.html": "Buoy Analytics & Navigation Risk Platform",
     "en/projects/chess/index.html": "Chuhe Xiangqi | Online Chinese Chess",
-    "en/projects/ncku-return-os/index.html": "NCKU Return OS | Credit Map",
+    "en/projects/event-checkin/index.html": "Event Check-in & Operations System",
+    "en/projects/ai-media-pipeline/index.html": "Reliable AI Media Automation Pipeline",
 }
 
 
@@ -106,21 +108,8 @@ def project_schema(rel: str, text: str, url: str) -> str | None:
     data = {
         "@context": "https://schema.org",
         "@graph": [
-            {
-                "@type": "CreativeWork",
-                "name": PROJECT_TITLES[rel],
-                "url": url,
-                "description": description(text),
-                "inLanguage": lang,
-                "author": {"@type": "Person", "name": "Yoya", "url": "https://yoya9933.page/"},
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": "Portfolio", "item": home},
-                    {"@type": "ListItem", "position": 2, "name": PROJECT_TITLES[rel], "item": url},
-                ],
-            },
+            {"@type": "CreativeWork", "name": PROJECT_TITLES[rel], "url": url, "description": description(text), "inLanguage": lang, "author": {"@type": "Person", "name": "Yoya", "url": "https://yoya9933.page/"}},
+            {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Portfolio", "item": home}, {"@type": "ListItem", "position": 2, "name": PROJECT_TITLES[rel], "item": url}]},
         ],
     }
     return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + '</script>'
@@ -132,6 +121,11 @@ def process(path: Path) -> None:
     if rel == "404.html":
         path.write_text(ensure_accessibility(harden_blank_links(text)), encoding="utf-8")
         return
+
+    if rel == "index.html" and "portfolio-extra.css" not in text:
+        text = add_before_head_end(text, '<link rel="stylesheet" href="assets/portfolio-extra.css">')
+    elif rel == "en/index.html" and "portfolio-extra.css" not in text:
+        text = add_before_head_end(text, '<link rel="stylesheet" href="../assets/portfolio-extra.css">')
 
     url = canonical(text)
     if url:
