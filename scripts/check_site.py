@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 import json
+import os
 import re
 import sys
 
@@ -81,6 +83,17 @@ def resolve_local(source: Path, value: str) -> Path | None:
     return candidate.resolve()
 
 
+def expected_environment() -> str:
+    explicit = os.environ.get("PORTFOLIO_ENVIRONMENT", "").strip()
+    if explicit:
+        return explicit
+    if os.environ.get("GITHUB_REF") == "refs/heads/main":
+        return "production"
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        return "ci"
+    return "local"
+
+
 def main() -> int:
     errors: list[str] = []
     if not SITE.exists():
@@ -106,6 +119,19 @@ def main() -> int:
             commit = published_version.get("commit", "")
             if commit != "local" and not re.fullmatch(r"[0-9a-f]{40}", commit):
                 errors.append("version.json commit is neither a full Git SHA nor 'local'")
+            build_time = published_version.get("build_time", "")
+            try:
+                parsed_build_time = datetime.fromisoformat(build_time)
+            except (TypeError, ValueError):
+                errors.append("version.json build_time is not valid ISO 8601")
+            else:
+                if parsed_build_time.tzinfo is None:
+                    errors.append("version.json build_time is missing timezone information")
+            if published_version.get("environment") != expected_environment():
+                errors.append(
+                    f"version.json environment is {published_version.get('environment')!r}; "
+                    f"expected {expected_environment()!r}"
+                )
             if published_version.get("changelog") != "https://yoya9933.page/changelog/":
                 errors.append("version.json changelog does not point to the public changelog page")
 
