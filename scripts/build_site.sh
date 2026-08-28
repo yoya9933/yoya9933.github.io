@@ -12,12 +12,13 @@ cp index.html 404.html CNAME robots.txt sitemap.xml site.webmanifest _site/
 cp -R contact _site/
 cp en/index.html _site/en/
 cp -R en/contact _site/en/
-for project in buoy chess event-checkin ai-media-pipeline; do
+for project in buoy chess event-checkin shareholder-cms ai-media-pipeline; do
   cp -R "projects/$project" "_site/projects/$project"
   cp -R "en/projects/$project" "_site/en/projects/$project"
 done
 cp -R demos/event-checkin _site/demos/
 cp assets/styles.css assets/p1.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
+cp assets/projects/shareholder-cms.svg _site/assets/projects/shareholder-cms.svg
 
 # Social and app icons.
 rsvg-convert -w 1200 -h 630 assets/og-image.svg -o _site/assets/og-image.png
@@ -31,7 +32,7 @@ for project in buoy chess; do
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
   dwebp "assets/projects/snapshots/${project}.webp" -o "_site/assets/projects/${project}.png" >/dev/null
- done
+done
 
 # Capture the privacy-safe interactive EventOps demo with synthetic data only.
 google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
@@ -46,6 +47,24 @@ cp /tmp/event-checkin.png _site/assets/projects/event-checkin.png
 rsvg-convert -w 1200 -h 675 assets/projects/ai-media-pipeline.svg -o _site/assets/projects/ai-media-pipeline.png
 cwebp -quiet -q 86 _site/assets/projects/ai-media-pipeline.png -o _site/assets/projects/snapshots/ai-media-pipeline.webp
 cp _site/assets/projects/snapshots/ai-media-pipeline.webp _site/assets/projects/ai-media-pipeline.webp
+
+# Capture the real public Shareholder Gift site. Never capture the authenticated admin area.
+# Keep a deterministic architecture fallback so an external-site outage cannot break portfolio deployment.
+rm -f /tmp/shareholder-cms.png
+if timeout 35s google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+  --run-all-compositor-stages-before-draw --virtual-time-budget=6000 \
+  --window-size=1440,900 --screenshot=/tmp/shareholder-cms.png \
+  "https://sharegift.tw/" >/dev/null 2>&1 && test -s /tmp/shareholder-cms.png; then
+  cp /tmp/shareholder-cms.png _site/assets/projects/shareholder-cms.png
+else
+  echo "sharegift.tw capture unavailable; using portfolio architecture fallback" >&2
+  rsvg-convert -w 1440 -h 810 assets/projects/shareholder-cms.svg -o _site/assets/projects/shareholder-cms.png
+fi
+cwebp -quiet -q 84 _site/assets/projects/shareholder-cms.png -o _site/assets/projects/snapshots/shareholder-cms.webp
+cp _site/assets/projects/snapshots/shareholder-cms.webp _site/assets/projects/shareholder-cms.webp
+
+# Make the fourth selected project part of the generated HTML itself, not a JS-only insertion.
+python3 scripts/publish_shareholder_project.py
 
 # Preserve the established layout while hardening metadata, links and runtime behavior.
 python3 scripts/normalize_publish_copy.py

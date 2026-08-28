@@ -15,6 +15,8 @@ def main() -> int:
         SITE / "assets/projects/buoy.webp",
         SITE / "assets/projects/chess.webp",
         SITE / "assets/projects/event-checkin.webp",
+        SITE / "assets/projects/shareholder-cms.webp",
+        SITE / "assets/projects/shareholder-cms.png",
         SITE / "assets/projects/ai-media-pipeline.webp",
     ]
     for path in required_files:
@@ -44,9 +46,11 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if "ncku-return-os" in text or "Credit Map" in text or "學分地圖" in text:
             errors.append(f"retired credit-map content remains in {rel}")
-        for token in ("event-checkin", "ai-media-pipeline"):
+        for token in ("event-checkin", "shareholder-cms", "ai-media-pipeline"):
             if token not in text:
-                errors.append(f"new project {token!r} missing from {rel}")
+                errors.append(f"project {token!r} missing from {rel}")
+        if 'data-project="shareholder-cms"' not in text:
+            errors.append(f"shareholder CMS must be present in static HTML: {rel}")
     if 'data-avatar-fallback="/assets/avatar-fallback.svg"' not in home:
         errors.append("home profile avatar lacks local fallback wiring")
 

@@ -27,10 +27,12 @@ REQUIRED = (
     "projects/buoy/index.html",
     "projects/chess/index.html",
     "projects/event-checkin/index.html",
+    "projects/shareholder-cms/index.html",
     "projects/ai-media-pipeline/index.html",
     "en/projects/buoy/index.html",
     "en/projects/chess/index.html",
     "en/projects/event-checkin/index.html",
+    "en/projects/shareholder-cms/index.html",
     "en/projects/ai-media-pipeline/index.html",
     "demos/event-checkin/index.html",
     "demos/event-checkin/event-demo.css",
@@ -40,10 +42,14 @@ REQUIRED = (
     "assets/projects/buoy.webp",
     "assets/projects/chess.webp",
     "assets/projects/event-checkin.webp",
+    "assets/projects/shareholder-cms.webp",
+    "assets/projects/shareholder-cms.png",
+    "assets/projects/shareholder-cms.svg",
     "assets/projects/ai-media-pipeline.webp",
     "assets/projects/event-checkin.png",
     "assets/projects/ai-media-pipeline.png",
 )
+
 
 class RefParser(HTMLParser):
     def __init__(self) -> None:
@@ -107,6 +113,27 @@ def main() -> int:
             if target is not None and not target.exists():
                 errors.append(f"broken local reference in {html.relative_to(SITE)}: {ref}")
 
+    for rel in ("index.html", "en/index.html"):
+        home_path = SITE / rel
+        if not home_path.exists():
+            continue
+        home = home_path.read_text(encoding="utf-8")
+        if 'data-project="shareholder-cms"' not in home:
+            errors.append(f"shareholder CMS is not statically present in {rel}")
+        if "shareholder-cms.webp" not in home:
+            errors.append(f"shareholder CMS screenshot is not wired into {rel}")
+        if "projects/shareholder-cms/" not in home:
+            errors.append(f"shareholder CMS case-study link missing from {rel}")
+
+    for rel in ("projects/shareholder-cms/index.html", "en/projects/shareholder-cms/index.html"):
+        case_path = SITE / rel
+        if case_path.exists():
+            case = case_path.read_text(encoding="utf-8")
+            if "shareholder-cms.webp" not in case or "shareholder-cms.png" not in case:
+                errors.append(f"shareholder CMS case study lacks screenshot/OG assets: {rel}")
+            if "https://sharegift.tw/" not in case:
+                errors.append(f"shareholder CMS live-site link missing from {rel}")
+
     demo = (SITE / "demos/event-checkin/index.html").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/index.html").exists() else ""
     demo_js = (SITE / "demos/event-checkin/event-demo.js").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/event-demo.js").exists() else ""
     if "SYNTHETIC DATA ONLY" not in demo or "SYNTHETIC_DATA_ONLY" not in demo_js:
@@ -120,6 +147,7 @@ def main() -> int:
 
     print(f"Site checks passed for {len(html_files)} HTML files")
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
