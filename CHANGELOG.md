@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.4.0 — 2026-08-29
+
+Performance & Quality：把圖片尺寸、第三方依賴、鍵盤操作與 Lighthouse 品質門檻納入可驗證的 build invariants。
+
+- 專案圖片在 build 時從實際 PNG 產物取得 intrinsic width / height，避免以固定 1200×720 猜測尺寸造成 layout shift。
+- Hero avatar 改為本地 `Yoya` 品牌 SVG，不再在頁面載入 GitHub avatar，減少第三方 waterfall 與隱私依賴。
+- 新增全站 `:focus-visible` 鍵盤 focus 樣式與 `prefers-reduced-motion` 降低動態效果規則。
+- 新增 `check_performance.py`，驗證專案圖片尺寸、async decoding、本地 avatar 與 accessibility CSS 不會在後續 build 遺失。
+- Lighthouse 仍採 3 次 median，但門檻提升為 Performance ≥ 75、Accessibility ≥ 95、Best Practices ≥ 90、SEO ≥ 95。
+
 ## v1.3.0 — 2026-08-29
 
 Case Study 2.0：把作品頁從功能清單提升成可快速判讀的工程案例，同時保留可驗證證據與已知限制。

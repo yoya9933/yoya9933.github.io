@@ -2,7 +2,7 @@
   const root = document.documentElement;
   root.dataset.theme = 'dark';
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  if (themeMeta) themeMeta.setAttribute('content', '#050b12');
+  if (themeMeta) themeMeta.setAttribute('content', '#07111f');
 
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#site-nav');
@@ -28,14 +28,6 @@
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
     window.addEventListener('resize', () => { if (window.innerWidth > 1080) closeMenu(); });
   }
-
-  document.querySelectorAll('img[data-avatar-fallback]').forEach((img) => {
-    img.addEventListener('error', () => {
-      if (img.dataset.fallbackApplied === 'true') return;
-      img.dataset.fallbackApplied = 'true';
-      img.src = img.dataset.avatarFallback || '/assets/avatar-fallback.svg';
-    }, { once: true });
-  });
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.section-heading, .project-card, .focus-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture, .v4-reveal');

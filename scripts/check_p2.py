@@ -34,7 +34,7 @@ for rel in required:
         if 'noopener' not in tag or 'noreferrer' not in tag:
             errors.append(f"{rel}: unsafe target=_blank link")
     for tag in re.findall(r'<img\b[^>]+assets/projects/[^>]+>', text, re.I):
-        if 'width="1200"' not in tag or 'height="720"' not in tag:
+        if not re.search(r'\bwidth="\d+"', tag, re.I) or not re.search(r'\bheight="\d+"', tag, re.I):
             errors.append(f"{rel}: project image missing intrinsic dimensions")
 
 project_pages = [

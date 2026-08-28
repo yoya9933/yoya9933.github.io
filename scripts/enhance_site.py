@@ -4,6 +4,7 @@ from html import escape
 from pathlib import Path
 import json
 import re
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
@@ -13,6 +14,29 @@ PROJECT_BY_REL: dict[str, tuple[dict, str]] = {}
 for project in PROJECT_DATA["projects"]:
     PROJECT_BY_REL[f"projects/{project['slug']}/index.html"] = (project, "zh")
     PROJECT_BY_REL[f"en/projects/{project['slug']}/index.html"] = (project, "en")
+
+
+def png_dimensions(path: Path) -> tuple[int, int] | None:
+    try:
+        header = path.read_bytes()[:24]
+    except OSError:
+        return None
+    if len(header) < 24 or header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
+        return None
+    width, height = struct.unpack(">II", header[16:24])
+    return (width, height) if width > 0 and height > 0 else None
+
+
+def project_dimensions() -> dict[str, tuple[int, int]]:
+    result: dict[str, tuple[int, int]] = {}
+    for project in PROJECT_DATA["projects"]:
+        dimensions = png_dimensions(SITE / "assets" / "projects" / f"{project['slug']}.png")
+        if dimensions:
+            result[project["slug"]] = dimensions
+    return result
+
+
+PROJECT_DIMENSIONS = project_dimensions()
 
 
 def attr(text: str, name: str) -> str | None:
@@ -85,10 +109,17 @@ def ensure_accessibility(text: str) -> str:
 def ensure_image_dimensions(text: str) -> str:
     def repl(match: re.Match[str]) -> str:
         tag = match.group(0)
-        if 'width=' not in tag:
-            tag = tag[:-1] + ' width="1200">'
-        if 'height=' not in tag:
-            tag = tag[:-1] + ' height="720">'
+        src_match = re.search(r'src="[^"]*assets/projects/(?:snapshots/)?([^/".]+)\.(?:webp|png|svg)"', tag, re.I)
+        slug = src_match.group(1) if src_match else ""
+        width, height = PROJECT_DIMENSIONS.get(slug, (1200, 720))
+        if re.search(r'\swidth="[^"]*"', tag, re.I):
+            tag = re.sub(r'\swidth="[^"]*"', f' width="{width}"', tag, count=1, flags=re.I)
+        else:
+            tag = tag[:-1] + f' width="{width}">'
+        if re.search(r'\sheight="[^"]*"', tag, re.I):
+            tag = re.sub(r'\sheight="[^"]*"', f' height="{height}"', tag, count=1, flags=re.I)
+        else:
+            tag = tag[:-1] + f' height="{height}">'
         if 'decoding=' not in tag:
             tag = tag[:-1] + ' decoding="async">'
         return tag
@@ -171,7 +202,10 @@ def process(path: Path) -> None:
 def main() -> None:
     for html in sorted(SITE.rglob("*.html")):
         process(html)
-    print(f"Enhanced published SEO using {len(PROJECT_BY_REL) // 2} project records")
+    print(
+        f"Enhanced published SEO and intrinsic media dimensions for "
+        f"{len(PROJECT_BY_REL) // 2} project records"
+    )
 
 
 if __name__ == "__main__":
