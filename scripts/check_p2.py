@@ -53,12 +53,13 @@ for url in (
     "https://yoya9933.page/en/projects/event-checkin/",
     "https://yoya9933.page/projects/ai-media-pipeline/",
     "https://yoya9933.page/en/projects/ai-media-pipeline/",
-    "https://yoya9933.page/demos/event-checkin/",
 ):
     if url not in sitemap:
         errors.append(f"sitemap missing {url}")
 if "ncku-return-os" in sitemap:
     errors.append("sitemap still contains retired credit-map project")
+if "demos/event-checkin" in sitemap:
+    errors.append("noindex event demo should not be listed in sitemap")
 
 if errors:
     print("P2 checks failed:")
