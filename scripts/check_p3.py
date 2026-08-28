@@ -60,9 +60,10 @@ def main() -> int:
                 errors.append(f"additional project {project['slug']!r} missing from {rel}")
         if DATA["selected_heading"][locale] not in text:
             errors.append(f"manifest-selected heading copy missing from {rel}")
-
-    if 'data-avatar-fallback="/assets/avatar-fallback.svg"' not in home:
-        errors.append("home profile avatar lacks local fallback wiring")
+        if 'src="/assets/avatar-fallback.svg"' not in text:
+            errors.append(f"local profile avatar missing from {rel}")
+        if "https://github.com/yoya9933.png" in text:
+            errors.append(f"third-party profile avatar leaked into {rel}")
 
     # Every case-study CTA must be rendered from the manifest.
     for project in PROJECTS:
@@ -85,9 +86,10 @@ def main() -> int:
         errors.append("runtime still contains legacy light-theme behavior")
     if "projectsGrid" in js or "shareholder-cms" in js:
         errors.append("runtime project injection fallback still exists")
-    for token in ("data-avatar-fallback", "menu-toggle"):
-        if token not in js:
-            errors.append(f"runtime missing behavior token: {token}")
+    if "data-avatar-fallback" in js:
+        errors.append("obsolete avatar fallback runtime still exists")
+    if "menu-toggle" not in js:
+        errors.append("runtime missing menu-toggle behavior")
 
     sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
     for project in PROJECTS:
