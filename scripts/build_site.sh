@@ -46,6 +46,7 @@ python3 scripts/build_project_media.py
 # and standardized evidence-based Case Study framing.
 python3 scripts/render_projects.py
 python3 scripts/render_case_studies.py
+python3 scripts/check_case_studies.py
 
 # Generic site hardening stays separate from project data.
 python3 scripts/enhance_site.py
