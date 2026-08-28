@@ -39,8 +39,9 @@ rsvg-convert -w 180 -h 180 assets/favicon.svg -o _site/assets/apple-touch-icon.p
 rsvg-convert -w 192 -h 192 assets/favicon.svg -o _site/assets/icon-192.png
 rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 
-# Frozen captures for public projects already reviewed and tracked in this repo.
-for project in buoy chess; do
+# Frozen captures for public projects already privacy-reviewed and tracked in this repo.
+# Production builds never depend on an external website being reachable.
+for project in buoy chess shareholder-cms; do
   test -s "assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
@@ -60,21 +61,6 @@ cp /tmp/event-checkin.png _site/assets/projects/event-checkin.png
 rsvg-convert -w 1200 -h 675 assets/projects/ai-media-pipeline.svg -o _site/assets/projects/ai-media-pipeline.png
 cwebp -quiet -q 86 _site/assets/projects/ai-media-pipeline.png -o _site/assets/projects/snapshots/ai-media-pipeline.webp
 cp _site/assets/projects/snapshots/ai-media-pipeline.webp _site/assets/projects/ai-media-pipeline.webp
-
-# Capture the real public Shareholder Gift site. Never capture the authenticated admin area.
-# Keep a deterministic architecture fallback so an external-site outage cannot break portfolio deployment.
-rm -f /tmp/shareholder-cms.png
-if timeout 35s google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
-  --run-all-compositor-stages-before-draw --virtual-time-budget=6000 \
-  --window-size=1440,900 --screenshot=/tmp/shareholder-cms.png \
-  "https://sharegift.tw/" >/dev/null 2>&1 && test -s /tmp/shareholder-cms.png; then
-  cp /tmp/shareholder-cms.png _site/assets/projects/shareholder-cms.png
-else
-  echo "sharegift.tw capture unavailable; using portfolio architecture fallback" >&2
-  rsvg-convert -w 1440 -h 810 assets/projects/shareholder-cms.svg -o _site/assets/projects/shareholder-cms.png
-fi
-cwebp -quiet -q 84 _site/assets/projects/shareholder-cms.png -o _site/assets/projects/snapshots/shareholder-cms.webp
-cp _site/assets/projects/snapshots/shareholder-cms.webp _site/assets/projects/shareholder-cms.webp
 
 # One project manifest now drives homepage cards, case-study actions, JSON-LD and sitemap.
 python3 scripts/render_projects.py
