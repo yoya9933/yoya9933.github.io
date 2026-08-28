@@ -4,12 +4,14 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 import json
+import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
 DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECTS = DATA["projects"]
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 
 FORBIDDEN = (
     "your.name@example.com",
@@ -27,6 +29,7 @@ REQUIRED = [
     "en/index.html",
     "contact/index.html",
     "en/contact/index.html",
+    "version.json",
     "demos/event-checkin/index.html",
     "demos/event-checkin/event-demo.css",
     "demos/event-checkin/event-demo.js",
@@ -83,9 +86,25 @@ def main() -> int:
         print("_site does not exist; run scripts/build_site.sh first", file=sys.stderr)
         return 2
 
+    if not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", VERSION):
+        errors.append(f"VERSION is not valid SemVer: {VERSION!r}")
+
     for rel in REQUIRED:
         if not (SITE / rel).exists():
             errors.append(f"missing required output: {rel}")
+
+    version_path = SITE / "version.json"
+    if version_path.exists():
+        try:
+            published_version = json.loads(version_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            errors.append(f"version.json is invalid JSON: {exc}")
+        else:
+            if published_version.get("version") != VERSION:
+                errors.append("version.json does not match VERSION")
+            commit = published_version.get("commit", "")
+            if commit != "local" and not re.fullmatch(r"[0-9a-f]{40}", commit):
+                errors.append("version.json commit is neither a full Git SHA nor 'local'")
 
     for retired in (SITE / "projects/ncku-return-os", SITE / "en/projects/ncku-return-os"):
         if retired.exists():
@@ -96,11 +115,14 @@ def main() -> int:
         errors.append("CV source HTML leaked into deployment artifact")
 
     html_files = sorted(SITE.rglob("*.html"))
+    version_meta = f'name="application-version" content="{VERSION}"'
     for html in html_files:
         text = html.read_text(encoding="utf-8")
         for token in FORBIDDEN:
             if token in text:
                 errors.append(f"forbidden token {token!r} found in {html.relative_to(SITE)}")
+        if version_meta not in text:
+            errors.append(f"website version metadata missing from {html.relative_to(SITE)}")
         parser = RefParser()
         parser.feed(text)
         for _, ref in parser.refs:
@@ -114,6 +136,8 @@ def main() -> int:
         if not home_path.exists():
             continue
         home = home_path.read_text(encoding="utf-8")
+        if 'class="site-version"' not in home or f">v{VERSION}</a>" not in home:
+            errors.append(f"visible website version missing from footer in {rel}")
         for project in selected:
             if f'data-project="{project["slug"]}"' not in home:
                 errors.append(f"manifest-selected project {project['slug']} missing from {rel}")
@@ -151,7 +175,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Site checks passed for {len(PROJECTS)} manifest projects and {len(html_files)} HTML files")
+    print(f"Site checks passed for v{VERSION}, {len(PROJECTS)} manifest projects and {len(html_files)} HTML files")
     return 0
 
 
