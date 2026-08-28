@@ -23,6 +23,10 @@ def load_data() -> dict:
     if orders != list(range(1, len(selected) + 1)):
         raise RuntimeError(f"selected project order must be contiguous from 1; got {orders}")
 
+    for key in ("selected_title", "selected_heading", "additional_title", "additional_heading"):
+        if not all(data.get(key, {}).get(locale) for locale in ("zh", "en")):
+            raise RuntimeError(f"missing bilingual homepage copy: {key}")
+
     for project in projects:
         for locale in ("zh", "en"):
             case_url = project["case"][locale]
@@ -47,16 +51,15 @@ def render_links(project: dict, locale: str, *, on_case_page: bool = False) -> s
     links: list[str] = []
     if not on_case_page:
         case_label = "看 Case Study" if locale == "zh" else "Case Study"
-        case_href = project["case"][locale]
-        links.append(f'<a class="project-primary" href="{escape(case_href, quote=True)}">{case_label}</a>')
+        links.append(
+            f'<a class="project-primary" href="{escape(project["case"][locale], quote=True)}">{case_label}</a>'
+        )
 
-    live = project.get("live")
-    repo = project.get("repo")
     external_specs: list[tuple[str, str]] = []
-    if live:
-        external_specs.append((live, project.get("live_label", {}).get(locale, "Live Demo ↗")))
-    if repo:
-        external_specs.append((repo, "GitHub ↗"))
+    if project.get("live"):
+        external_specs.append((project["live"], project.get("live_label", {}).get(locale, "Live Demo ↗")))
+    if project.get("repo"):
+        external_specs.append((project["repo"], "GitHub ↗"))
 
     for index, (url, label) in enumerate(external_specs):
         cls = ""
@@ -77,25 +80,25 @@ def render_selected_card(project: dict, locale: str) -> str:
     return (
         f'<article class="{classes}" data-project="{escape(project["slug"], quote=True)}">'
         f'<div class="project-media"><img src="{prefix}assets/projects/{escape(project["image"], quote=True)}" '
-        f'alt="{escape(project["image_alt"][locale], quote=True)}" loading="lazy"></div>'
+        f'alt="{escape(project["image_alt"][locale], quote=True)}" loading="lazy" decoding="async"></div>'
         f'<div class="project-topline"><span class="project-number">{project["order"]:02d}</span>{badge_html}</div>'
         f'<h3>{escape(project["title"][locale])}</h3>'
         f'<p>{escape(project["card_description"][locale])}</p>'
         f'<ul class="tags">{tags}</ul>'
         f'<div class="project-links">{render_links(project, locale)}</div>'
-        f'</article>'
+        "</article>"
     )
 
 
-def render_additional(project: dict, locale: str) -> str:
+def render_additional_card(project: dict, locale: str) -> str:
     prefix = "../" if locale == "en" else ""
     tags = "".join(f"<li>{escape(tag)}</li>" for tag in project["tags"][locale])
     note = project.get("note", {}).get(locale)
     note_html = f'<p class="case-meta-note">{escape(note)}</p>' if note else ""
     return (
-        '<article class="secondary-project" data-project="' + escape(project["slug"], quote=True) + '">'
+        f'<article class="secondary-project" data-project="{escape(project["slug"], quote=True)}">'
         f'<div class="secondary-project-media"><img src="{prefix}assets/projects/{escape(project["image"], quote=True)}" '
-        f'alt="{escape(project["image_alt"][locale], quote=True)}" loading="lazy"></div>'
+        f'alt="{escape(project["image_alt"][locale], quote=True)}" loading="lazy" decoding="async"></div>'
         '<div class="secondary-project-copy">'
         f'<p class="eyebrow">{escape(project.get("eyebrow", ""))}</p>'
         f'<h3>{escape(project["title"][locale])}</h3>'
@@ -106,95 +109,140 @@ def render_additional(project: dict, locale: str) -> str:
     )
 
 
-def replace_project_grid(text: str, cards: str) -> str:
-    start = text.find('<div class="projects-grid')
-    if start < 0:
-        raise RuntimeError("projects-grid not found")
-    open_end = text.find('>', start)
-    additional = text.find('<section class="section shell" id="additional-work">', open_end)
-    if additional < 0:
-        raise RuntimeError("additional-work section not found")
-    close = text.rfind('</div></section>', open_end, additional)
-    if close < 0:
-        raise RuntimeError("project grid closing marker not found")
-    return text[:start] + f'<div class="projects-grid has-four-selected">{cards}</div>' + text[close + len('</div>'):]
-
-
-def replace_additional_card(text: str, article: str) -> str:
-    pattern = r'<article class="secondary-project"[^>]*>.*?</article>'
-    if not re.search(pattern, text, flags=re.S):
-        raise RuntimeError("secondary-project article not found")
-    return re.sub(pattern, article, text, count=1, flags=re.S)
-
-
-def replace_heading_copy(text: str, locale: str, heading: str) -> str:
-    candidates = (
-        "三個代表專案對應工程資料與 AI、多人 Web 產品，以及真實活動現場的全端營運流程。",
-        "四個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運，以及可持續維護的商業 CMS。",
-        "Three projects across engineering data and AI, a multiplayer web product, and a field-ready full-stack operations workflow.",
-        "Four selected projects spanning engineering data and AI, multiplayer web, field operations, and a maintainable business CMS.",
+def render_selected_section(data: dict, locale: str, selected: list[dict]) -> str:
+    cards = "".join(render_selected_card(project, locale) for project in selected)
+    return (
+        '<section class="section shell" id="projects">'
+        '<div class="section-heading"><p class="section-index">01 / SELECTED WORK</p><div>'
+        f'<h2>{escape(data["selected_title"][locale])}</h2>'
+        f'<p>{escape(data["selected_heading"][locale])}</p>'
+        '</div></div>'
+        f'<div class="projects-grid has-four-selected">{cards}</div>'
+        '</section>'
     )
-    for candidate in candidates:
-        text = text.replace(candidate, heading)
-    return text
+
+
+def render_additional_section(data: dict, locale: str, project: dict) -> str:
+    return (
+        '<section class="section shell" id="additional-work">'
+        '<div class="section-heading"><p class="section-index">02 / ADDITIONAL SYSTEM</p><div>'
+        f'<h2>{escape(data["additional_title"][locale])}</h2>'
+        f'<p>{escape(data["additional_heading"][locale])}</p>'
+        '</div></div>'
+        f'{render_additional_card(project, locale)}'
+        '</section>'
+    )
+
+
+def replace_section(text: str, section_id: str, rendered: str) -> str:
+    pattern = rf'<section\s+class="section shell"\s+id="{re.escape(section_id)}">.*?</section>'
+    if not re.search(pattern, text, flags=re.S):
+        raise RuntimeError(f"homepage section not found: {section_id}")
+    return re.sub(pattern, rendered, text, count=1, flags=re.S)
 
 
 def home_schema(data: dict, locale: str, selected: list[dict]) -> str:
     site_url = data["site_url"].rstrip("/")
     home = site_url + ("/en/" if locale == "en" else "/")
     language = "en" if locale == "en" else "zh-Hant-TW"
-    person = {
-        "@type": "Person",
-        "@id": site_url + "/#person",
-        "name": "Yoya",
-        "url": site_url + "/",
-        "sameAs": ["https://github.com/yoya9933"],
-        "knowsAbout": ["Engineering Data", "Data Analysis", "Artificial Intelligence", "Full-stack Web Development", "Operations Automation"],
-    }
-    website = {
-        "@type": "WebSite",
-        "@id": home + "#website",
-        "url": home,
-        "name": "Yoya | Engineering × Data × AI Portfolio" if locale == "en" else "Yoya｜Engineering × Data × AI Portfolio",
-        "inLanguage": language,
-        "author": {"@id": site_url + "/#person"},
-    }
-    item_list = {
-        "@type": "ItemList",
-        "name": "Selected Projects",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": project["order"],
-                "url": absolute_case(site_url, project, locale),
-                "name": project["title"][locale],
-            }
-            for project in selected
-        ],
-    }
-    return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": [person, website, item_list]}, ensure_ascii=False, separators=(",", ":")) + '</script>'
+    graph = [
+        {
+            "@type": "Person",
+            "@id": site_url + "/#person",
+            "name": "Yoya",
+            "url": site_url + "/",
+            "sameAs": ["https://github.com/yoya9933"],
+            "knowsAbout": [
+                "Engineering Data",
+                "Data Analysis",
+                "Artificial Intelligence",
+                "Full-stack Web Development",
+                "Operations Automation",
+            ],
+        },
+        {
+            "@type": "WebSite",
+            "@id": home + "#website",
+            "url": home,
+            "name": "Yoya | Engineering × Data × AI Portfolio" if locale == "en" else "Yoya｜Engineering × Data × AI Portfolio",
+            "inLanguage": language,
+            "author": {"@id": site_url + "/#person"},
+        },
+        {
+            "@type": "ItemList",
+            "name": "Selected Projects",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": project["order"],
+                    "url": absolute_case(site_url, project, locale),
+                    "name": project["title"][locale],
+                }
+                for project in selected
+            ],
+        },
+    ]
+    return '<script type="application/ld+json">' + json.dumps(
+        {"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")
+    ) + '</script>'
 
 
 def replace_home_schema(text: str, schema: str) -> str:
     pattern = r'<script type="application/ld\+json">.*?</script>'
     if re.search(pattern, text, flags=re.S):
         return re.sub(pattern, schema, text, count=1, flags=re.S)
-    return text.replace('</head>', schema + '</head>', 1)
+    return text.replace("</head>", schema + "</head>", 1)
 
 
 def render_home(path: Path, data: dict, locale: str) -> None:
     selected = sorted((p for p in data["projects"] if p.get("section") == "selected"), key=lambda p: p["order"])
     additional = sorted((p for p in data["projects"] if p.get("section") == "additional"), key=lambda p: p["order"])
     if len(additional) != 1:
-        raise RuntimeError("the current homepage expects exactly one additional project")
+        raise RuntimeError("homepage expects exactly one additional project")
 
     text = path.read_text(encoding="utf-8")
-    cards = "".join(render_selected_card(project, locale) for project in selected)
-    text = replace_project_grid(text, cards)
-    text = replace_additional_card(text, render_additional(additional[0], locale))
-    text = replace_heading_copy(text, locale, data["selected_heading"][locale])
+    text = replace_section(text, "projects", render_selected_section(data, locale, selected))
+    text = replace_section(text, "additional-work", render_additional_section(data, locale, additional[0]))
     text = replace_home_schema(text, home_schema(data, locale, selected))
     path.write_text(text, encoding="utf-8")
+
+
+def update_case_visual(text: str, project: dict, locale: str, site_url: str) -> str:
+    visual = project.get("case_visual")
+    if not visual:
+        return text
+
+    og_asset = visual.get("og_asset")
+    if og_asset:
+        og_url = f'{site_url.rstrip("/")}/assets/projects/{og_asset}'
+        text = re.sub(
+            r'(<meta\s+property="og:image"\s+content=")[^"]*(")',
+            lambda match: match.group(1) + escape(og_url, quote=True) + match.group(2),
+            text,
+            count=1,
+            flags=re.I,
+        )
+
+    asset = visual["asset"]
+    prefix = "../../../" if locale == "en" else "../../"
+    replacement_src = f'{prefix}assets/projects/{asset}'
+    figure_pattern = r'(<figure\s+class="case-shot"[^>]*>.*?<img\b)([^>]*)(>)(.*?</figure>)'
+    match = re.search(figure_pattern, text, flags=re.I | re.S)
+    if not match:
+        return text
+
+    attrs = match.group(2)
+    attrs = re.sub(r'\s+src="[^"]*"', f' src="{escape(replacement_src, quote=True)}"', attrs, count=1)
+    alt = visual.get("alt", {}).get(locale, project["image_alt"][locale])
+    if re.search(r'\s+alt="[^"]*"', attrs):
+        attrs = re.sub(r'\s+alt="[^"]*"', f' alt="{escape(alt, quote=True)}"', attrs, count=1)
+    else:
+        attrs += f' alt="{escape(alt, quote=True)}"'
+    figure = match.group(1) + attrs + match.group(3) + match.group(4)
+    caption = visual.get("caption", {}).get(locale)
+    if caption:
+        figure = re.sub(r'<figcaption>.*?</figcaption>', f'<figcaption>{escape(caption)}</figcaption>', figure, count=1, flags=re.S)
+    return text[:match.start()] + figure + text[match.end():]
 
 
 def render_case_actions(data: dict) -> None:
@@ -202,30 +250,22 @@ def render_case_actions(data: dict) -> None:
         for locale in ("zh", "en"):
             path = SITE / project["case"][locale].lstrip("/") / "index.html"
             text = path.read_text(encoding="utf-8")
-            actions = f'<div class="case-actions" data-project-actions="{escape(project["slug"], quote=True)}">{render_links(project, locale, on_case_page=True)}</div>'
+            actions = (
+                f'<div class="case-actions" data-project-actions="{escape(project["slug"], quote=True)}">'
+                f'{render_links(project, locale, on_case_page=True)}</div>'
+            )
             pattern = r'<div class="case-actions"[^>]*>.*?</div>'
             if re.search(pattern, text, flags=re.S):
                 text = re.sub(pattern, actions, text, count=1, flags=re.S)
             else:
-                text = text.replace('</header>', actions + '</header>', 1)
-
-            if project["slug"] == "shareholder-cms":
-                text = text.replace('https://yoya9933.page/assets/projects/shareholder-cms.svg', 'https://yoya9933.page/assets/projects/shareholder-cms.png')
-                text = re.sub(r'(?P<prefix>(?:\.\./)+)assets/projects/shareholder-cms\.svg', r'\g<prefix>assets/projects/shareholder-cms.webp', text)
-                if locale == "en":
-                    text = text.replace('Shareholder Gift Service and CMS architecture preview', 'Shareholder Gift Service public website screenshot')
-                    text = text.replace('Shareholder Gift Service and CMS architecture diagram', 'Shareholder Gift Service public website screenshot')
-                    caption = 'The deployment captures the public homepage when reachable; a deterministic architecture visual is used only as a fallback. No authenticated admin page is captured.'
-                else:
-                    text = text.replace('股東紀念品服務與 CMS 平台架構示意', '股東紀念品服務公開網站首頁截圖')
-                    caption = '部署時優先擷取公開正式網站首頁；若外部網站暫時無法連線才使用架構圖備援，不會擷取需要登入的管理後台。'
-                text = re.sub(r'<figcaption>.*?</figcaption>', f'<figcaption>{caption}</figcaption>', text, count=1, flags=re.S)
+                text = text.replace("</header>", actions + "</header>", 1)
+            text = update_case_visual(text, project, locale, data["site_url"])
             path.write_text(text, encoding="utf-8")
 
 
 def render_sitemap(data: dict) -> None:
     site_url = data["site_url"].rstrip("/")
-    urls = [site_url + "/", site_url + "/en/", site_url + "/contact/", site_url + "/en/contact/"]
+    urls = [site_url + "/", site_url + "/en/", site_url + "/contact/", site_url + "/en/contact/", site_url + "/changelog/"]
     for project in sorted(data["projects"], key=lambda p: (p.get("section", ""), p.get("order", 0))):
         urls.append(absolute_case(site_url, project, "zh"))
         urls.append(absolute_case(site_url, project, "en"))

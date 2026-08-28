@@ -1,6 +1,22 @@
-/* Header navigation alignment hardening.
-   Keep EN / CV as one stable tool group and switch to the mobile menu
-   before the desktop navigation becomes crowded. */
+/* Stable portfolio layout rules. This file replaces the former one-off CTA/header fix patches. */
+.project-links {
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 8px;
+}
+
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  line-height: 1.2;
+}
+
+.project-links a:not(.project-primary) {
+  padding: 8px 0;
+}
+
 .nav-wrap {
   flex-wrap: nowrap;
 }
@@ -36,8 +52,6 @@
   line-height: 1;
 }
 
-/* Switch to the compact menu earlier so zoomed or medium-width desktop
-   layouts never squeeze the language / CV controls out of position. */
 @media (max-width: 1080px) {
   .menu-toggle {
     display: inline-flex;
@@ -87,5 +101,15 @@
   .theme-toggle {
     width: 100%;
     min-height: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .project-links {
+    column-gap: 12px;
+  }
+
+  .project-links a {
+    min-height: 40px;
   }
 }

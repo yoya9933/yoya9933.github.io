@@ -1,8 +1,20 @@
 {
   "site_url": "https://yoya9933.page",
+  "selected_title": {
+    "zh": "先看作品，再看技能。",
+    "en": "Start with the work, then the stack."
+  },
   "selected_heading": {
     "zh": "四個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運，以及可持續維護的商業 CMS。",
     "en": "Four selected projects spanning engineering data and AI, multiplayer web, field operations, and a maintainable business CMS."
+  },
+  "additional_title": {
+    "zh": "可靠的 AI 自動化，不只是一條生成鏈。",
+    "en": "Reliable AI automation is more than a generation chain."
+  },
+  "additional_heading": {
+    "zh": "將來源、去重、人工審核模式、失敗恢復、發布狀態與通知納入同一條營運流程。",
+    "en": "Source ingestion, deduplication, review controls, recovery, publish state and notifications are treated as one operational workflow."
   },
   "projects": [
     {
@@ -11,10 +23,7 @@
       "order": 1,
       "featured": true,
       "badge": "FEATURED",
-      "title": {
-        "zh": "浮標資料分析與航道風險評估平台",
-        "en": "Buoy Analytics & Navigation Risk Platform"
-      },
+      "title": {"zh": "浮標資料分析與航道風險評估平台", "en": "Buoy Analytics & Navigation Risk Platform"},
       "card_description": {
         "zh": "資料 QA、LSTM 預測、模型驗證、快取、風險門檻與輸出下載整合成 Streamlit 分析流程。",
         "en": "Data QA, LSTM forecasting, validation, model caching, risk thresholds and downloadable outputs in Streamlit."
@@ -24,14 +33,9 @@
         "en": ["5 time scales", "4 missing-data strategies", "4 export formats"]
       },
       "image": "buoy.webp",
-      "image_alt": {
-        "zh": "浮標資料分析平台功能預覽",
-        "en": "Buoy analytics feature preview"
-      },
-      "case": {
-        "zh": "/projects/buoy/",
-        "en": "/en/projects/buoy/"
-      },
+      "image_alt": {"zh": "浮標資料分析平台功能預覽", "en": "Buoy analytics feature preview"},
+      "media": {"type": "tracked_snapshot", "source": "assets/projects/snapshots/buoy.webp"},
+      "case": {"zh": "/projects/buoy/", "en": "/en/projects/buoy/"},
       "repo": "https://github.com/yoya9933/Buoy-data-analysis-V2",
       "live": null,
       "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"},
@@ -43,10 +47,7 @@
       "order": 2,
       "featured": false,
       "badge": null,
-      "title": {
-        "zh": "楚河棋局｜線上中國象棋",
-        "en": "Chuhe Xiangqi | Online Chinese Chess"
-      },
+      "title": {"zh": "楚河棋局｜線上中國象棋", "en": "Chuhe Xiangqi | Online Chinese Chess"},
       "card_description": {
         "zh": "6 碼房間、標準象棋與揭棋、AI、悔棋、回放與 revision 同步，房間狀態落到資料庫。",
         "en": "Cross-device rooms with two rule modes, AI, undo/replay and revision-based database synchronization."
@@ -56,14 +57,9 @@
         "en": ["6-digit rooms", "2 rule modes", "2 DB backends"]
       },
       "image": "chess.webp",
-      "image_alt": {
-        "zh": "楚河棋局產品預覽",
-        "en": "Chuhe Xiangqi product preview"
-      },
-      "case": {
-        "zh": "/projects/chess/",
-        "en": "/en/projects/chess/"
-      },
+      "image_alt": {"zh": "楚河棋局產品預覽", "en": "Chuhe Xiangqi product preview"},
+      "media": {"type": "tracked_snapshot", "source": "assets/projects/snapshots/chess.webp"},
+      "case": {"zh": "/projects/chess/", "en": "/en/projects/chess/"},
       "repo": "https://github.com/yoya9933/chess-online",
       "live": "https://chuhe-xiangqi-online.sean8411.workers.dev",
       "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"},
@@ -75,10 +71,7 @@
       "order": 3,
       "featured": false,
       "badge": "PRIVACY-SAFE DEMO",
-      "title": {
-        "zh": "活動報到與現場營運系統",
-        "en": "Event Check-in & Operations System"
-      },
+      "title": {"zh": "活動報到與現場營運系統", "en": "Event Check-in & Operations System"},
       "card_description": {
         "zh": "結合 QR 報到、即時簽到與入席統計、名單篩選、座位與現場例外處理的全端活動營運工具。",
         "en": "A full-stack workflow connecting QR check-in, live attendance and seating metrics, operational filters and on-site exception handling."
@@ -88,14 +81,16 @@
         "en": ["30-second refresh", "5 filter dimensions", "D1 / Drizzle"]
       },
       "image": "event-checkin.webp",
-      "image_alt": {
-        "zh": "活動報到與現場營運系統公開 Demo",
-        "en": "Event check-in and operations public demo"
+      "image_alt": {"zh": "活動報到與現場營運系統公開 Demo", "en": "Event check-in and operations public demo"},
+      "media": {
+        "type": "local_capture",
+        "source": "demos/event-checkin/index.html",
+        "width": 1440,
+        "height": 810,
+        "virtual_time_budget": 3500,
+        "quality": 84
       },
-      "case": {
-        "zh": "/projects/event-checkin/",
-        "en": "/en/projects/event-checkin/"
-      },
+      "case": {"zh": "/projects/event-checkin/", "en": "/en/projects/event-checkin/"},
       "repo": null,
       "live": "https://yoya9933.page/demos/event-checkin/",
       "live_label": {"zh": "Public Demo ↗", "en": "Public Demo ↗"},
@@ -107,10 +102,7 @@
       "order": 4,
       "featured": false,
       "badge": "BUSINESS CMS",
-      "title": {
-        "zh": "股東紀念品服務與 CMS 平台",
-        "en": "Shareholder Gift Service & CMS Platform"
-      },
+      "title": {"zh": "股東紀念品服務與 CMS 平台", "en": "Shareholder Gift Service & CMS Platform"},
       "card_description": {
         "zh": "整合公開服務網站、商品與公告後台、Supabase 認證、PostgreSQL 與雲端圖片儲存的商業網站。",
         "en": "A maintainable service website with product and announcement CMS, Supabase authentication, PostgreSQL and cloud image storage."
@@ -120,14 +112,24 @@
         "en": ["Vue 3 / TypeScript", "Supabase Auth + RLS", "CMS + Storage"]
       },
       "image": "shareholder-cms.webp",
-      "image_alt": {
-        "zh": "股東紀念品服務與 CMS 平台公開網站首頁截圖",
-        "en": "Shareholder Gift Service and CMS public website screenshot"
+      "image_alt": {"zh": "股東紀念品服務與 CMS 平台架構圖", "en": "Shareholder Gift Service and CMS architecture diagram"},
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/shareholder-cms.svg",
+        "width": 1440,
+        "height": 810,
+        "quality": 86
       },
-      "case": {
-        "zh": "/projects/shareholder-cms/",
-        "en": "/en/projects/shareholder-cms/"
+      "case_visual": {
+        "asset": "shareholder-cms.webp",
+        "og_asset": "shareholder-cms.png",
+        "alt": {"zh": "股東紀念品服務與 CMS 平台架構圖", "en": "Shareholder Gift Service and CMS architecture diagram"},
+        "caption": {
+          "zh": "Portfolio 使用已審核、可重現的架構圖呈現公開網站、CMS 與 Supabase 資料層；建置流程不會存取需要登入的管理後台。",
+          "en": "The portfolio uses a reviewed, deterministic architecture visual for the public site, CMS and Supabase data layer; the build never accesses authenticated admin pages."
+        }
       },
+      "case": {"zh": "/projects/shareholder-cms/", "en": "/en/projects/shareholder-cms/"},
       "repo": "https://github.com/yoya9933/-------_202601221138_XY_Propose_Minutes",
       "live": "https://sharegift.tw/",
       "live_label": {"zh": "Live Site ↗", "en": "Live Site ↗"},
@@ -140,10 +142,7 @@
       "featured": false,
       "badge": null,
       "eyebrow": "AI AUTOMATION · RELIABILITY",
-      "title": {
-        "zh": "Reliable AI Media Automation Pipeline",
-        "en": "Reliable AI Media Automation Pipeline"
-      },
+      "title": {"zh": "Reliable AI Media Automation Pipeline", "en": "Reliable AI Media Automation Pipeline"},
       "card_description": {
         "zh": "以 MoneyPrinterTurbo 為生成核心，新增四條內容線、RSS 選題與去重、LLM／本機評分 fallback、pending upload 恢復、多平台介面、job 紀錄、日報與通知。",
         "en": "Built around MoneyPrinterTurbo with four editorial profiles, RSS selection and deduplication, LLM/local scoring fallback, pending-upload recovery, multi-platform adapters, job records, daily reports and alerts."
@@ -153,14 +152,15 @@
         "en": ["4 content profiles", "3 publishing adapters", "Retry + audit trail"]
       },
       "image": "ai-media-pipeline.webp",
-      "image_alt": {
-        "zh": "Reliable AI Media Automation Pipeline 架構圖",
-        "en": "Reliable AI Media Automation Pipeline architecture"
+      "image_alt": {"zh": "Reliable AI Media Automation Pipeline 架構圖", "en": "Reliable AI Media Automation Pipeline architecture"},
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/ai-media-pipeline.svg",
+        "width": 1200,
+        "height": 675,
+        "quality": 86
       },
-      "case": {
-        "zh": "/projects/ai-media-pipeline/",
-        "en": "/en/projects/ai-media-pipeline/"
-      },
+      "case": {"zh": "/projects/ai-media-pipeline/", "en": "/en/projects/ai-media-pipeline/"},
       "repo": "https://github.com/yoya9933/autovideos",
       "live": null,
       "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"},
