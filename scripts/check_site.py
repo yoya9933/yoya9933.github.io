@@ -14,6 +14,8 @@ SITE = ROOT / "_site"
 DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECTS = DATA["projects"]
 VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+CHANGELOG_TEXT = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+RELEASE_VERSIONS = re.findall(r"^##\s+v(\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)\s+[—-]", CHANGELOG_TEXT, re.MULTILINE)
 
 FORBIDDEN = (
     "your.name@example.com",
@@ -109,6 +111,8 @@ def main() -> int:
 
     if not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", VERSION):
         errors.append(f"VERSION is not valid SemVer: {VERSION!r}")
+    if not RELEASE_VERSIONS or RELEASE_VERSIONS[0] != VERSION:
+        errors.append("CHANGELOG.md newest release does not match VERSION")
 
     for rel in REQUIRED:
         if not (SITE / rel).exists():
@@ -180,6 +184,11 @@ def main() -> int:
             errors.append("public changelog does not contain the current VERSION")
         if f"/releases/tag/v{VERSION}" not in changelog:
             errors.append("public changelog does not link the current GitHub Release")
+        if len(RELEASE_VERSIONS) > 1:
+            previous = RELEASE_VERSIONS[1]
+            compare_path = f"/compare/v{previous}...v{VERSION}"
+            if compare_path not in changelog:
+                errors.append(f"public changelog does not compare v{previous} to v{VERSION}")
 
     selected = sorted((p for p in PROJECTS if p.get("section") == "selected"), key=lambda p: p["order"])
     for rel, locale in (("index.html", "zh"), ("en/index.html", "en")):
