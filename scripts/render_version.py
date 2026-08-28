@@ -50,7 +50,7 @@ def footer_version(version: str, commit: str) -> str:
         commit_url = f"{REPOSITORY}/commit/{commit}"
         commit_label = commit[:7]
     return (
-        '<span class="site-version" aria-label="Website version">'
+        '<span class="site-version" role="group" aria-label="Website version">'
         f'<a href="{changelog_url}" target="_blank" rel="noopener noreferrer">v{escape(version)}</a>'
         '<span aria-hidden="true">·</span>'
         f'<a href="{commit_url}" target="_blank" rel="noopener noreferrer">{escape(commit_label)}</a>'
