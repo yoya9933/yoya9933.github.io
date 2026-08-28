@@ -12,10 +12,21 @@ cp index.html 404.html CNAME robots.txt sitemap.xml site.webmanifest _site/
 cp -R contact _site/
 cp en/index.html _site/en/
 cp -R en/contact _site/en/
-for project in buoy chess event-checkin shareholder-cms ai-media-pipeline; do
+
+# Project slugs come from one manifest. Adding/removing a portfolio project no longer
+# requires editing this deployment script.
+mapfile -t PROJECT_SLUGS < <(python3 - <<'PY'
+import json
+from pathlib import Path
+for project in json.loads(Path('data/projects.json').read_text(encoding='utf-8'))['projects']:
+    print(project['slug'])
+PY
+)
+for project in "${PROJECT_SLUGS[@]}"; do
   cp -R "projects/$project" "_site/projects/$project"
   cp -R "en/projects/$project" "_site/en/projects/$project"
 done
+
 cp -R demos/event-checkin _site/demos/
 cp assets/styles.css assets/p1.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
 cat assets/project-cta-fix.css >> _site/assets/p1.css
@@ -65,11 +76,10 @@ fi
 cwebp -quiet -q 84 _site/assets/projects/shareholder-cms.png -o _site/assets/projects/snapshots/shareholder-cms.webp
 cp _site/assets/projects/snapshots/shareholder-cms.webp _site/assets/projects/shareholder-cms.webp
 
-# Make the fourth selected project part of the generated HTML itself, not a JS-only insertion.
-python3 scripts/publish_shareholder_project.py
+# One project manifest now drives homepage cards, case-study actions, JSON-LD and sitemap.
+python3 scripts/render_projects.py
 
-# Preserve the established layout while hardening metadata, links and runtime behavior.
-python3 scripts/normalize_publish_copy.py
+# Generic site hardening stays separate from project data.
 python3 scripts/enhance_site.py
 python3 scripts/fix_locale_links.py
 python3 scripts/enhance_runtime.py
