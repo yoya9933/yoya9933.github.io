@@ -84,6 +84,9 @@ python3 scripts/enhance_site.py
 python3 scripts/fix_locale_links.py
 python3 scripts/enhance_runtime.py
 
+# VERSION is the single source of truth for human-readable and machine-readable site version data.
+python3 scripts/render_version.py
+
 # CV has one source of truth: tracked HTML -> generated PDF artifact.
 qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
 python3 scripts/prepare_cv_html.py
