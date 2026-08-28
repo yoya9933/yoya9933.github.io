@@ -34,4 +34,5 @@ jobs:
       - name: Run Lighthouse CI on indexable pages
         run: |
           rm _site/404.html
+          rm -rf _site/demos
           npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json

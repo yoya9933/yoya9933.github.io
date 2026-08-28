@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EventOps Demo｜活動報到與現場營運系統</title>
+  <meta name="description" content="使用完全虛構資料的 QR 報到、即時統計、座位與名單篩選公開展示。">
+  <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07111f">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="event-demo.css">
+</head>
+<body>
+<header class="topbar"><div class="shell topbar-inner"><div class="brand">Event<span>Ops</span> Demo</div><div class="demo-badge">SYNTHETIC DATA ONLY</div></div></header>
+<main>
+  <section class="shell hero">
+    <div><p class="eyebrow">QR CHECK-IN · LIVE OPERATIONS · READ-ONLY ADMIN</p><h1>活動報到與<br>現場營運系統</h1><p>以虛構名單展示 QR 報到、即時人流統計、座位資訊、機構與狀態篩選。正式系統使用 Next.js、REST API、D1 與 Drizzle；這個公開版本不連正式資料庫，也不包含任何真實參與者資料。</p></div>
+    <aside class="notice"><strong>隱私安全示範</strong>所有姓名、學校、單位、座位和 token 都是虛構的。掃描模擬只修改目前分頁的記憶體，重新整理後自動重置。</aside>
+  </section>
+
+  <section class="shell">
+    <div class="scan-card">
+      <h2>模擬 QR 報到</h2><p>選一組虛構 token，模擬前台掃描後更新即時 Dashboard。</p>
+      <div class="scan-form"><select id="tokenSelect" aria-label="選擇虛構報到 token"></select><button class="btn" id="scanButton" type="button">模擬掃描</button></div>
+      <div class="scan-result" id="scanResult">選擇一組虛構 QR token 後即可模擬報到。</div>
+    </div>
+  </section>
+
+  <section class="shell demo-dashboard">
+    <section class="stats" aria-label="即時營運統計">
+      <article class="stat"><span>總人數</span><strong id="totalStat">0</strong></article>
+      <article class="stat ok"><span>已報到</span><strong id="checkedStat">0</strong><small id="rateText"></small></article>
+      <article class="stat blue"><span>已入席</span><strong id="seatedStat">0</strong></article>
+      <article class="stat"><span>現場報名</span><strong id="onsiteStat">0</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>唯讀營運後台</h2><p>支援姓名／ID／機構搜尋，以及機構、報到、入席狀態篩選。</p></div><div class="toolbar"><span class="timestamp" id="updatedAt"></span><button class="btn secondary" id="resetButton" type="button">重置 Demo</button></div></div>
+      <div class="filters">
+        <input id="search" type="search" placeholder="搜尋姓名、ID、機構、系所或座位" aria-label="搜尋虛構名單">
+        <select id="orgFilter" aria-label="機構篩選"></select>
+        <select id="statusFilter" aria-label="報到狀態篩選"><option value="all">全部報到狀態</option><option value="checked">已報到</option><option value="waiting">未報到</option></select>
+        <select id="seatFilter" aria-label="入席狀態篩選"><option value="all">全部入席狀態</option><option value="seated">已入席</option><option value="not-seated">未入席</option></select>
+      </div>
+      <div class="panel-head"><span id="resultCount" class="timestamp"></span></div>
+      <div class="table-wrap"><table><thead><tr><th scope="col">參與者</th><th scope="col">機構</th><th scope="col">單位</th><th scope="col">座位</th><th scope="col">來源</th><th scope="col">報到</th><th scope="col">入席</th><th scope="col">時間</th></tr></thead><tbody id="attendeeBody"></tbody></table></div>
+    </section>
+
+    <section class="privacy" aria-label="公開展示安全設計">
+      <article><strong>去識別化</strong><p>不使用正式活動 Logo、電話、姓名、學校、座位或 token。</p></article>
+      <article><strong>唯讀後台</strong><p>公開版不提供正式資料新增、刪除或座位寫入 API。</p></article>
+      <article><strong>無持久化</strong><p>報到模擬只存在記憶體；重新整理即可恢復初始虛構資料。</p></article>
+    </section>
+  </section>
+</main>
+<footer class="footer"><div class="shell footer-inner"><span>Public privacy-safe product demo</span><a href="/projects/event-checkin/">閱讀 Case Study →</a></div></footer>
+<script src="event-demo.js" defer></script>
+</body></html>
