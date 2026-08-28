@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
+PROJECT_DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
+PROJECT_SLUGS = tuple(project["slug"] for project in PROJECT_DATA["projects"])
+PROJECT_SLUG_PATTERN = "|".join(re.escape(slug) for slug in PROJECT_SLUGS)
 
 
 def ensure_runtime(text: str) -> str:
@@ -36,7 +40,7 @@ def ensure_runtime(text: str) -> str:
     )
 
     text = re.sub(
-        r'(?P<prefix>(?:\.\./)*)assets/projects/(?P<name>buoy|chess|event-checkin|ai-media-pipeline)\.webp',
+        rf'(?P<prefix>(?:\.\./)*)assets/projects/(?P<name>{PROJECT_SLUG_PATTERN})\.webp',
         r'\g<prefix>assets/projects/snapshots/\g<name>.webp',
         text,
         flags=re.I,
@@ -50,7 +54,7 @@ def ensure_runtime(text: str) -> str:
 def main() -> None:
     for path in sorted(SITE.rglob('*.html')):
         path.write_text(ensure_runtime(path.read_text(encoding='utf-8')), encoding='utf-8')
-    print('Applied dark runtime, cache-busted project screenshots and avatar fallback')
+    print(f'Applied dark runtime and snapshot routing for {len(PROJECT_SLUGS)} projects')
 
 
 if __name__ == '__main__':
