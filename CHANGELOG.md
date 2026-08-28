@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.1.1 — 2026-08-29
+
+Stability Patch：降低部署與品質檢查的偶發失敗，並移除外部網站對 production build 的依賴。
+
+- GitHub Actions 升級到目前支援 Node 24 的主要版本，移除既有 Node 20 deprecation 技術債。
+- Lighthouse 改為每頁執行 3 次並使用 median 判定，降低單次量測波動造成的 false negative。
+- Site Quality 無論成功或失敗都保留 Lighthouse report artifact 7 天，方便診斷。
+- 股東紀念品 CMS 的 production build 改用 repository 內已審核的 frozen snapshot，不再於每次部署即時存取 `sharegift.tw`。
+- 保留既有版本、SEO、隱私與 deployment artifact 驗證。
+
 ## v1.1.0 — 2026-08-29
 
 建立完整的網站 Release Management 流程。
