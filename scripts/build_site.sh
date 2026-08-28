@@ -19,6 +19,7 @@ done
 cp -R demos/event-checkin _site/demos/
 cp assets/styles.css assets/p1.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
 cat assets/project-cta-fix.css >> _site/assets/p1.css
+cat assets/header-nav-fix.css >> _site/assets/p1.css
 cp assets/projects/shareholder-cms.svg _site/assets/projects/shareholder-cms.svg
 
 # Social and app icons.
