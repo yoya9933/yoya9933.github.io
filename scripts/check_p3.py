@@ -1,9 +1,13 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
+DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
+PROJECTS = DATA["projects"]
+SELECTED = sorted((p for p in PROJECTS if p.get("section") == "selected"), key=lambda p: p["order"])
 
 
 def main() -> int:
@@ -12,13 +16,12 @@ def main() -> int:
         SITE / "assets/avatar-fallback.svg",
         SITE / "assets/main.js",
         SITE / "assets/portfolio-extra.css",
-        SITE / "assets/projects/buoy.webp",
-        SITE / "assets/projects/chess.webp",
-        SITE / "assets/projects/event-checkin.webp",
-        SITE / "assets/projects/shareholder-cms.webp",
-        SITE / "assets/projects/shareholder-cms.png",
-        SITE / "assets/projects/ai-media-pipeline.webp",
     ]
+    for project in PROJECTS:
+        required_files.append(SITE / "assets/projects" / project["image"])
+        required_files.append(SITE / "assets/projects/snapshots" / project["image"])
+    required_files.append(SITE / "assets/projects/shareholder-cms.png")
+
     for path in required_files:
         if not path.exists():
             errors.append(f"missing P3 asset: {path.relative_to(SITE)}")
@@ -40,19 +43,38 @@ def main() -> int:
 
     home = (SITE / "index.html").read_text(encoding="utf-8")
     en_home = (SITE / "en/index.html").read_text(encoding="utf-8")
-    for rel, text in (("index.html", home), ("en/index.html", en_home)):
+    for rel, text, locale in (("index.html", home, "zh"), ("en/index.html", en_home, "en")):
         for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact", "secondary-project"):
             if token not in text:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if "ncku-return-os" in text or "Credit Map" in text or "學分地圖" in text:
             errors.append(f"retired credit-map content remains in {rel}")
-        for token in ("event-checkin", "shareholder-cms", "ai-media-pipeline"):
-            if token not in text:
-                errors.append(f"project {token!r} missing from {rel}")
-        if 'data-project="shareholder-cms"' not in text:
-            errors.append(f"shareholder CMS must be present in static HTML: {rel}")
+        for project in SELECTED:
+            if f'data-project="{project["slug"]}"' not in text:
+                errors.append(f"selected project {project['slug']!r} missing from {rel}")
+            if project["title"][locale] not in text:
+                errors.append(f"manifest title for {project['slug']!r} missing from {rel}")
+        additional = [p for p in PROJECTS if p.get("section") == "additional"]
+        for project in additional:
+            if f'data-project="{project["slug"]}"' not in text:
+                errors.append(f"additional project {project['slug']!r} missing from {rel}")
+        if DATA["selected_heading"][locale] not in text:
+            errors.append(f"manifest-selected heading copy missing from {rel}")
+
     if 'data-avatar-fallback="/assets/avatar-fallback.svg"' not in home:
         errors.append("home profile avatar lacks local fallback wiring")
+
+    # Every case-study CTA must be rendered from the manifest.
+    for project in PROJECTS:
+        for locale in ("zh", "en"):
+            case_path = SITE / project["case"][locale].lstrip("/") / "index.html"
+            text = case_path.read_text(encoding="utf-8")
+            if f'data-project-actions="{project["slug"]}"' not in text:
+                errors.append(f"manifest-driven case actions missing: {case_path.relative_to(SITE)}")
+            if project.get("live") and project["live"] not in text:
+                errors.append(f"live URL from manifest missing: {case_path.relative_to(SITE)}")
+            if project.get("repo") and project["repo"] not in text:
+                errors.append(f"repo URL from manifest missing: {case_path.relative_to(SITE)}")
 
     demo = (SITE / "demos/event-checkin/index.html").read_text(encoding="utf-8")
     if "noindex,nofollow" not in demo or "SYNTHETIC DATA ONLY" not in demo:
@@ -61,16 +83,29 @@ def main() -> int:
     js = (SITE / "assets/main.js").read_text(encoding="utf-8") if (SITE / "assets/main.js").exists() else ""
     if "portfolioTheme" in js or "prefers-color-scheme: light" in js or "data-theme-toggle" in js:
         errors.append("runtime still contains legacy light-theme behavior")
+    if "projectsGrid" in js or "shareholder-cms" in js:
+        errors.append("runtime project injection fallback still exists")
     for token in ("data-avatar-fallback", "menu-toggle"):
         if token not in js:
             errors.append(f"runtime missing behavior token: {token}")
+
+    sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
+    for project in PROJECTS:
+        for locale in ("zh", "en"):
+            url = DATA["site_url"].rstrip("/") + project["case"][locale]
+            if url not in sitemap:
+                errors.append(f"manifest case URL missing from sitemap: {url}")
+
+    old_demo = "https://chuhe-xiangqi-online.bowersbayley13783.chatgpt.site"
+    if old_demo in home or old_demo in en_home:
+        errors.append("retired chess demo URL leaked into rendered homepage")
 
     if errors:
         print("P3 checks failed:")
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"P3 dark portfolio checks passed for {len(html_files)} HTML files")
+    print(f"P3 checks passed for {len(PROJECTS)} manifest projects across {len(html_files)} HTML files")
     return 0
 
 
