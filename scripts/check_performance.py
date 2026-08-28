@@ -36,7 +36,7 @@ def main() -> int:
         text = html.read_text(encoding="utf-8")
         if "https://github.com/yoya9933.png" in text:
             errors.append(f"third-party GitHub avatar leaked into {html.relative_to(SITE)}")
-        for match in re.finditer(r'<img\b[^>]*src="[^"]*assets/projects/(?:snapshots/)?([^/".]+)\.(?:webp|png)"[^>]*>', text, re.I):
+        for match in re.finditer(r'<img\b[^>]*src="[^"]*assets/projects/(?:snapshots/)?([^/".]+)\.(?:webp|png|svg)"[^>]*>', text, re.I):
             slug = match.group(1)
             tag = match.group(0)
             expected = dimensions.get(slug)
