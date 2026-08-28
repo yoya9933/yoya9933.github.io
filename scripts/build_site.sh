@@ -40,8 +40,7 @@ rsvg-convert -w 192 -h 192 assets/favicon.svg -o _site/assets/icon-192.png
 rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 
 # Frozen captures for public projects already privacy-reviewed and tracked in this repo.
-# Production builds never depend on an external website being reachable.
-for project in buoy chess shareholder-cms; do
+for project in buoy chess; do
   test -s "assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/snapshots/${project}.webp"
   cp "assets/projects/snapshots/${project}.webp" "_site/assets/projects/${project}.webp"
@@ -56,6 +55,12 @@ google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
 cwebp -quiet -q 84 /tmp/event-checkin.png -o _site/assets/projects/snapshots/event-checkin.webp
 cp _site/assets/projects/snapshots/event-checkin.webp _site/assets/projects/event-checkin.webp
 cp /tmp/event-checkin.png _site/assets/projects/event-checkin.png
+
+# Deterministic architecture visual for the shareholder CMS. The production build
+# never needs to access the live business site or an authenticated admin area.
+rsvg-convert -w 1440 -h 810 assets/projects/shareholder-cms.svg -o _site/assets/projects/shareholder-cms.png
+cwebp -quiet -q 86 _site/assets/projects/shareholder-cms.png -o _site/assets/projects/snapshots/shareholder-cms.webp
+cp _site/assets/projects/snapshots/shareholder-cms.webp _site/assets/projects/shareholder-cms.webp
 
 # Deterministic architecture visual for the AI media operations case study.
 rsvg-convert -w 1200 -h 675 assets/projects/ai-media-pipeline.svg -o _site/assets/projects/ai-media-pipeline.png
