@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
 VERSION_FILE = ROOT / "VERSION"
 REPOSITORY = "https://github.com/yoya9933/yoya9933.github.io"
+SITE_URL = "https://yoya9933.page"
 
 
 def read_version() -> str:
@@ -42,7 +43,7 @@ def ensure_version_meta(text: str, version: str) -> str:
 
 
 def footer_version(version: str, commit: str) -> str:
-    changelog_url = f"{REPOSITORY}/blob/main/CHANGELOG.md"
+    changelog_url = "/changelog/"
     if commit == "local":
         commit_url = REPOSITORY
         commit_label = "local"
@@ -51,7 +52,7 @@ def footer_version(version: str, commit: str) -> str:
         commit_label = commit[:7]
     return (
         '<span class="site-version" role="group" aria-label="Website version">'
-        f'<a href="{changelog_url}" target="_blank" rel="noopener noreferrer">v{escape(version)}</a>'
+        f'<a href="{changelog_url}">v{escape(version)}</a>'
         '<span aria-hidden="true">·</span>'
         f'<a href="{commit_url}" target="_blank" rel="noopener noreferrer">{escape(commit_label)}</a>'
         '</span>'
@@ -81,7 +82,9 @@ def main() -> None:
         "version": version,
         "commit": commit,
         "repository": REPOSITORY,
-        "changelog": f"{REPOSITORY}/blob/main/CHANGELOG.md",
+        "changelog": f"{SITE_URL}/changelog/",
+        "source_changelog": f"{REPOSITORY}/blob/main/CHANGELOG.md",
+        "release": f"{REPOSITORY}/releases/tag/v{version}",
         "commit_url": REPOSITORY if commit == "local" else f"{REPOSITORY}/commit/{commit}",
     }
     (SITE / "version.json").write_text(
