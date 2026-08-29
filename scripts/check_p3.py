@@ -8,6 +8,7 @@ SITE = ROOT / "_site"
 DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECTS = DATA["projects"]
 SELECTED = sorted((p for p in PROJECTS if p.get("section") == "selected"), key=lambda p: p["order"])
+GITHUB_AVATAR = "https://github.com/yoya9933.png"
 
 
 def main() -> int:
@@ -60,12 +61,11 @@ def main() -> int:
                 errors.append(f"additional project {project['slug']!r} missing from {rel}")
         if DATA["selected_heading"][locale] not in text:
             errors.append(f"manifest-selected heading copy missing from {rel}")
-        if 'src="/assets/avatar-fallback.svg"' not in text:
-            errors.append(f"local profile avatar missing from {rel}")
-        if "https://github.com/yoya9933.png" in text:
-            errors.append(f"third-party profile avatar leaked into {rel}")
+        if f'src="{GITHUB_AVATAR}"' not in text:
+            errors.append(f"GitHub profile avatar missing from {rel}")
+        if 'src="/assets/avatar-fallback.svg"' in text:
+            errors.append(f"Y placeholder avatar is still active in {rel}")
 
-    # Every case-study CTA must be rendered from the manifest.
     for project in PROJECTS:
         for locale in ("zh", "en"):
             case_path = SITE / project["case"][locale].lstrip("/") / "index.html"
