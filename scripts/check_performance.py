@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
 DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECTS = DATA["projects"]
+GITHUB_AVATAR = "https://github.com/yoya9933.png"
 
 
 def png_dimensions(path: Path) -> tuple[int, int] | None:
@@ -34,8 +35,6 @@ def main() -> int:
 
     for html in sorted(SITE.rglob("*.html")):
         text = html.read_text(encoding="utf-8")
-        if "https://github.com/yoya9933.png" in text:
-            errors.append(f"third-party GitHub avatar leaked into {html.relative_to(SITE)}")
         for match in re.finditer(r'<img\b[^>]*src="[^"]*assets/projects/(?:snapshots/)?([^/".]+)\.(?:webp|png|svg)"[^>]*>', text, re.I):
             slug = match.group(1)
             tag = match.group(0)
@@ -53,8 +52,17 @@ def main() -> int:
 
     for rel in ("index.html", "en/index.html"):
         home = (SITE / rel).read_text(encoding="utf-8")
-        if 'src="/assets/avatar-fallback.svg"' not in home:
-            errors.append(f"local Yoya avatar missing from {rel}")
+        if f'src="{GITHUB_AVATAR}"' not in home:
+            errors.append(f"GitHub profile avatar missing from {rel}")
+        if 'src="/assets/avatar-fallback.svg"' in home:
+            errors.append(f"Y placeholder avatar still active in {rel}")
+        avatar_match = re.search(r'<img\b[^>]*src="https://github\.com/yoya9933\.png"[^>]*>', home, re.I)
+        if avatar_match:
+            tag = avatar_match.group(0)
+            if 'referrerpolicy="no-referrer"' not in tag:
+                errors.append(f"GitHub avatar missing no-referrer policy in {rel}")
+            if 'decoding="async"' not in tag:
+                errors.append(f"GitHub avatar missing async decoding in {rel}")
 
     css_path = SITE / "assets" / "p1.css"
     if css_path.is_file():
@@ -71,7 +79,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Performance & Quality checks passed for {len(PROJECTS)} projects")
+    print(f"Performance & Quality checks passed for {len(PROJECTS)} projects with GitHub hero avatar")
     return 0
 
 
