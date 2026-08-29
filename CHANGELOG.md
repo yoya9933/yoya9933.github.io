@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.5.1 — 2026-08-29
+
+Hero Avatar Patch：依照網站視覺偏好，將首頁右側的 `Y` 品牌 placeholder 恢復成原本 GitHub 帳號頭像。
+
+- 首頁中英文 Hero 重新使用 `https://github.com/yoya9933.png` 作為頭像來源。
+- `enhance_runtime.py` 不再把 GitHub 頭像強制替換成 `/assets/avatar-fallback.svg`。
+- GitHub 頭像保留固定尺寸、async decoding 與 `no-referrer`，避免影響版面穩定性。
+- Performance gate 改為驗證 GitHub 頭像存在，並防止 `Y` placeholder 再次成為首頁 Hero 主圖。
+
 ## v1.5.0 — 2026-08-29
 
 Release / Observability 2.0：讓版本、部署產物與正式站狀態可以互相核對，並在發布後自動確認 production 已切到正確 commit。
