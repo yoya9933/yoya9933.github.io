@@ -9,16 +9,24 @@ SITE = ROOT / "_site"
 PROJECT_DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECT_SLUGS = tuple(project["slug"] for project in PROJECT_DATA["projects"])
 PROJECT_SLUG_PATTERN = "|".join(re.escape(slug) for slug in PROJECT_SLUGS)
+GITHUB_AVATAR = "https://github.com/yoya9933.png"
 
 
-def ensure_local_avatar(tag: str) -> str:
-    tag = re.sub(r'src="https://github\.com/yoya9933\.png"', 'src="/assets/avatar-fallback.svg"', tag, count=1, flags=re.I)
+def ensure_github_avatar(tag: str) -> str:
+    tag = re.sub(
+        r'src="(?:https://github\.com/yoya9933\.png|/assets/avatar-fallback\.svg)"',
+        f'src="{GITHUB_AVATAR}"',
+        tag,
+        count=1,
+        flags=re.I,
+    )
     tag = re.sub(r'\s+data-avatar-fallback="[^"]*"', '', tag, flags=re.I)
-    tag = re.sub(r'\s+referrerpolicy="[^"]*"', '', tag, flags=re.I)
+    if 'referrerpolicy=' not in tag:
+        tag = tag[:-1] + ' referrerpolicy="no-referrer">'
     if 'width=' not in tag:
-        tag = tag[:-1] + ' width="312">'
+        tag = tag[:-1] + ' width="156">'
     if 'height=' not in tag:
-        tag = tag[:-1] + ' height="312">'
+        tag = tag[:-1] + ' height="156">'
     if 'decoding=' not in tag:
         tag = tag[:-1] + ' decoding="async">'
     return tag
@@ -46,8 +54,8 @@ def ensure_runtime(text: str) -> str:
     text = re.sub(r'<button\b[^>]*class="[^"]*menu-toggle[^"]*"[^>]*>', menu_repl, text, count=1, flags=re.I)
 
     text = re.sub(
-        r'<img\b[^>]*src="https://github\.com/yoya9933\.png"[^>]*>',
-        lambda match: ensure_local_avatar(match.group(0)),
+        r'<img\b[^>]*src="(?:https://github\.com/yoya9933\.png|/assets/avatar-fallback\.svg)"[^>]*>',
+        lambda match: ensure_github_avatar(match.group(0)),
         text,
         flags=re.I,
     )
@@ -67,7 +75,7 @@ def ensure_runtime(text: str) -> str:
 def main() -> None:
     for path in sorted(SITE.rglob('*.html')):
         path.write_text(ensure_runtime(path.read_text(encoding='utf-8')), encoding='utf-8')
-    print(f'Applied dark runtime, local avatar and snapshot routing for {len(PROJECT_SLUGS)} projects')
+    print(f'Applied dark runtime, GitHub avatar and snapshot routing for {len(PROJECT_SLUGS)} projects')
 
 
 if __name__ == '__main__':
