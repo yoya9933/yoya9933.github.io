@@ -2,6 +2,17 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.5.0 — 2026-08-29
+
+Release / Observability 2.0：讓版本、部署產物與正式站狀態可以互相核對，並在發布後自動確認 production 已切到正確 commit。
+
+- 正式 Release 改為 immutable version identity：若既有 Git tag 已鎖定其他 commit，同版本的新部署會直接失敗並要求升版。
+- `/version.json` 新增 GitHub Actions workflow、run ID、run number、ref 與 workflow run URL，部署問題可直接追到來源執行紀錄。
+- 新增 `/build-manifest.json`，列出部署檔案數量、大小與 SHA-256；CI 會重新計算並驗證 artifact 完整性。
+- 新增 observability build gate，確認版本、commit、workflow metadata 與 build manifest 一致。
+- GitHub Pages 部署完成後執行 production smoke test，驗證正式站 `/version.json`、`/build-manifest.json` 與核心頁面都已切到同一個版本與 commit。
+- 股東紀念品 CMS 首頁卡片恢復使用 `sharegift.tw` 公開首頁快照；若公開站暫時無法擷取，會自動使用已審核的架構圖 fallback，且不存取登入後台。
+
 ## v1.4.0 — 2026-08-29
 
 Performance & Quality：把圖片尺寸、第三方依賴、鍵盤操作與 Lighthouse 品質門檻納入可驗證的 build invariants。
