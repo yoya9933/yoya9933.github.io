@@ -52,6 +52,11 @@ def build_environment() -> str:
     return "local"
 
 
+def env_int(name: str) -> int | None:
+    value = os.environ.get(name, "").strip()
+    return int(value) if value.isdigit() else None
+
+
 def ensure_version_meta(text: str, version: str) -> str:
     tag = f'<meta name="application-version" content="{escape(version, quote=True)}">'
     pattern = r'<meta\s+name="application-version"\s+content="[^"]*"[^>]*>'
@@ -101,6 +106,14 @@ def main() -> None:
     commit = read_commit()
     build_time = datetime.now(BUILD_TIMEZONE).isoformat(timespec="seconds")
     environment = build_environment()
+    run_id = env_int("GITHUB_RUN_ID")
+    run_number = env_int("GITHUB_RUN_NUMBER")
+    repository_slug = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    workflow_run = (
+        f"https://github.com/{repository_slug}/actions/runs/{run_id}"
+        if repository_slug and run_id is not None
+        else None
+    )
 
     for path in sorted(SITE.rglob("*.html")):
         text = path.read_text(encoding="utf-8")
@@ -115,6 +128,11 @@ def main() -> None:
         "commit": commit,
         "build_time": build_time,
         "environment": environment,
+        "ref": os.environ.get("GITHUB_REF") or None,
+        "workflow": os.environ.get("GITHUB_WORKFLOW") or None,
+        "run_id": run_id,
+        "run_number": run_number,
+        "workflow_run": workflow_run,
         "repository": REPOSITORY,
         "changelog": f"{SITE_URL}/changelog/",
         "source_changelog": f"{REPOSITORY}/blob/main/CHANGELOG.md",
@@ -126,7 +144,7 @@ def main() -> None:
     )
     print(
         f"Rendered website version v{version} ({commit[:7] if commit != 'local' else 'local'}) "
-        f"for {environment} at {build_time}"
+        f"for {environment} at {build_time}; run={run_id or 'local'}"
     )
 
 
