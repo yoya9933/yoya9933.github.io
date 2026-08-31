@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.6.1 — 2026-08-31
+
+Buoy Runtime UI Patch：重新整理浮標 Case Study 的實際 Streamlit 執行畫面，讓大面積白底截圖與深色 Portfolio 視覺更協調。
+
+- 中英文 Buoy Case Study 的 Runtime UI 改為專用 product-window showcase，不再直接把白底截圖鋪滿內容欄。
+- 截圖加入深色框架、runtime title bar 與更克制的說明層級，和 Metrics / Architecture 區塊維持一致的視覺語言。
+- 桌面版限制 runtime capture 的展示高度並聚焦畫面頂部實際功能區，減少無內容白色區域的視覺重量。
+- 手機版使用較短的 capture viewport 與更緊湊的 frame spacing，避免 Case Study 被單張截圖拉得過長。
+- 保留原始 Streamlit runtime 截圖與其可驗證來源，不以重新設計的 mockup 取代實際產品畫面。
+
 ## v1.6.0 — 2026-08-31
 
 Neon Arena Case Study：將即時多人德州撲克正式加入第五個 Selected Work，補上雙語案例、公開 Demo、媒體擷取與作品清單整合。
