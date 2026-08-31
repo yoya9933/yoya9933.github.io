@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.6.2 — 2026-08-31
+
+Chess Product UI Patch：重新整理楚河棋局 Case Study 的產品主視覺，讓大型木質棋盤圖片更自然地融入深色 Portfolio 版面。
+
+- 中英文 Chess Case Study 的 Product 區塊改為專用 product-window showcase，不再把大型主視覺直接浮在內容欄。
+- 保留原本木質棋盤與品牌畫面，但加入深色產品框、title bar 與較克制的說明層級，和前面的 Metrics / Architecture / Engineering 區塊保持一致。
+- 桌面版限制圖片展示高度與比例，避免主視覺壓過工程內容；手機版使用更短的 viewport，降低長頁面負擔。
+- 新增 `LIVE PRODUCT · MULTIPLAYER WEB` 標籤與補充說明，明確把視覺展示和多人同步、重連、持久化等工程成果區分開來。
+- 沿用 v1.6.1 的 showcase 語言，使 Buoy Runtime 與 Chess Product 在不同內容類型下仍共享一致的 Portfolio 視覺系統。
+
 ## v1.6.1 — 2026-08-31
 
 Buoy Runtime UI Patch：重新整理浮標 Case Study 的實際 Streamlit 執行畫面，讓大面積白底截圖與深色 Portfolio 視覺更協調。

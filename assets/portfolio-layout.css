@@ -199,6 +199,111 @@
   line-height: 1.65;
 }
 
+/* Chess product visual: keep the cinematic artwork, but frame it as part of the same
+   dark product system used throughout the case study instead of a floating oversized image. */
+.case-section--product > div {
+  min-width: 0;
+}
+
+.product-showcase {
+  width: min(100%, 980px);
+}
+
+.product-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(125, 211, 252, .22);
+  border-radius: 999px;
+  background: rgba(125, 211, 252, .06);
+  color: var(--accent-2);
+  font: 800 10px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.product-intro {
+  max-width: 720px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.case-shot--product {
+  margin-top: 0;
+  padding: 12px;
+  overflow: visible;
+  border-color: rgba(196, 151, 91, .22);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 84% 0%, rgba(173, 111, 54, .15), transparent 38%),
+    linear-gradient(145deg, rgba(20, 27, 35, .98), rgba(7, 18, 30, .98));
+  box-shadow: 0 24px 70px rgba(2, 8, 23, .34);
+}
+
+.product-window {
+  overflow: hidden;
+  border: 1px solid rgba(196, 151, 91, .22);
+  border-radius: 14px;
+  background: #0a1119;
+}
+
+.product-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 13px;
+  border-bottom: 1px solid rgba(196, 151, 91, .16);
+  background: linear-gradient(90deg, #0a1724, #111923);
+}
+
+.product-window-bar > span {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, .38);
+}
+
+.product-window-bar > span:first-child {
+  background: rgba(217, 169, 103, .88);
+}
+
+.product-window-bar small {
+  margin-left: 4px;
+  color: #9aa9b8;
+  font: 700 10px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.case-shot--product img {
+  display: block;
+  width: 100%;
+  height: clamp(390px, 47vw, 560px);
+  max-height: none;
+  object-fit: cover;
+  object-position: center 48%;
+  background: #0a1119;
+}
+
+.case-shot--product figcaption {
+  padding: 12px 4px 2px;
+  border-top: 0;
+  color: #8298ad;
+  line-height: 1.65;
+}
+
+.product-next {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -284,25 +389,34 @@
     gap: 16px;
   }
 
-  .case-shot--runtime {
+  .case-shot--runtime,
+  .case-shot--product {
     padding: 8px;
     border-radius: 17px;
   }
 
-  .runtime-window {
+  .runtime-window,
+  .product-window {
     border-radius: 11px;
   }
 
-  .runtime-window-bar {
+  .runtime-window-bar,
+  .product-window-bar {
     min-height: 34px;
     padding: 0 10px;
   }
 
-  .runtime-window-bar small {
+  .runtime-window-bar small,
+  .product-window-bar small {
     font-size: 9px;
   }
 
   .case-shot--runtime img {
     height: 270px;
+  }
+
+  .case-shot--product img {
+    height: 300px;
+    object-position: center;
   }
 }
