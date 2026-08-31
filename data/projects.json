@@ -2,8 +2,8 @@
   "site_url": "https://yoya9933.page",
   "selected_title": {"zh": "先看作品，再看技能。", "en": "Start with the work, then the stack."},
   "selected_heading": {
-    "zh": "四個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運，以及可持續維護的商業 CMS。",
-    "en": "Four selected projects spanning engineering data and AI, multiplayer web, field operations, and a maintainable business CMS."
+    "zh": "五個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS，以及伺服器權威的即時多人遊戲。",
+    "en": "Five selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, and a server-authoritative real-time game."
   },
   "additional_title": {"zh": "可靠的 AI 自動化，不只是一條生成鏈。", "en": "Reliable AI automation is more than a generation chain."},
   "additional_heading": {
@@ -113,6 +113,41 @@
         "decision": {"zh": "用 Vue 3 / TypeScript 建公開站與 CMS，Supabase 提供 Email Auth、PostgreSQL、Storage 與 RLS 資料存取控制。", "en": "Use Vue 3 / TypeScript for the public site and CMS, with Supabase Email Auth, PostgreSQL, Storage and RLS-backed data access."},
         "evidence": {"zh": "目前可核對商品 / 公告 2 條主要 CMS 流程、Auth / Database / Storage 3 種 Supabase 能力、9 種 Schema.org type 與 GitHub Actions CI/CD。", "en": "Verified scope includes 2 primary CMS flows, 3 Supabase capabilities (Auth/Database/Storage), 9 Schema.org types and GitHub Actions CI/CD."},
         "next": {"zh": "下一步可強化後台操作稽核、內容版本紀錄與更完整的管理端流程；目前 Portfolio 不宣稱這些已存在。", "en": "Next improvements could add admin auditability, content revision history and richer management workflows; the portfolio does not claim these exist today."}
+      }
+    },
+    {
+      "slug": "neon-arena", "section": "selected", "order": 5, "featured": false, "badge": "REAL-TIME MULTIPLAYER",
+      "title": {"zh": "Neon Arena｜即時多人德州撲克", "en": "Neon Arena | Real-time Multiplayer Hold'em"},
+      "card_description": {
+        "zh": "2–6 人即時牌局，以 Cloudflare Durable Objects 維持伺服器權威狀態、私牌隔離、18 秒回合、斷線重連與主池／邊池結算。",
+        "en": "A 2–6 player real-time table using Cloudflare Durable Objects for server-authoritative state, private-card isolation, 18-second turns, reconnects and main/side-pot settlement."
+      },
+      "tags": {"zh": ["2–6 人即時多人", "Durable Objects + WebSocket", "Server-authoritative"], "en": ["2–6 players", "Durable Objects + WebSocket", "Server-authoritative"]},
+      "image": "neon-arena.webp", "image_alt": {"zh": "Neon Arena 即時多人德州撲克公開 Demo", "en": "Neon Arena real-time multiplayer Hold'em public demo"},
+      "media": {
+        "type": "public_site_capture", "url": "https://neon-arena-holdem.sean8411.workers.dev/", "width": 1440, "height": 900,
+        "virtual_time_budget": 7000, "timeout_seconds": 35, "quality": 84,
+        "fallback_source": "assets/projects/neon-arena.svg", "fallback_width": 1440, "fallback_height": 900
+      },
+      "case_visual": {
+        "asset": "neon-arena.webp", "og_asset": "neon-arena.png",
+        "alt": {"zh": "Neon Arena 即時多人德州撲克公開 Demo", "en": "Neon Arena real-time multiplayer Hold'em public demo"},
+        "caption": {"zh": "Portfolio 優先擷取公開 Neon Arena Demo 作為作品預覽；若外站暫時無法擷取，才回退至已審核的霓虹牌桌 visual。Demo 僅使用虛擬籌碼，沒有付費、儲值或兌現。", "en": "The portfolio prefers a capture of the public Neon Arena demo and falls back to the reviewed neon-table visual when the public site cannot be captured. The demo uses virtual chips only, with no payments, deposits or cash-out."}
+      },
+      "case": {"zh": "/projects/neon-arena/", "en": "/en/projects/neon-arena/"},
+      "repo": null, "live": "https://neon-arena-holdem.sean8411.workers.dev/",
+      "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"}, "schema_category": "GameApplication",
+      "case_facts": {
+        "role": {"zh": "全端即時多人遊戲開發", "en": "Full-stack real-time multiplayer game development"},
+        "scope": {"zh": "牌局規則 · WebSocket · Durable Objects · Reconnect", "en": "Game rules · WebSocket · Durable Objects · reconnect"},
+        "status": {"zh": "Live friends-only prototype", "en": "Live friends-only prototype"},
+        "stack": "React · Cloudflare Workers · Durable Objects / SQLite", "year": "2026"
+      },
+      "case_frame": {
+        "problem": {"zh": "即時德州撲克不只要同步桌面，還必須保護私牌、處理同時操作與回合期限、斷線重連，以及多人 all-in 後的牌池結算。", "en": "Real-time Hold'em must protect hole cards while resolving concurrent actions, turn deadlines, reconnects and multi-player all-in pot settlement."},
+        "decision": {"zh": "採用伺服器權威模型：每房一個 Durable Object，使用 Hibernation WebSocket、SQLite persistence、alarm timeout、玩家個別 snapshot 與 Web Crypto CSPRNG 洗牌。", "en": "Use a server-authoritative model with one Durable Object per room, Hibernation WebSockets, SQLite persistence, alarm-based turn timeouts, per-player snapshots and Web Crypto CSPRNG shuffling."},
+        "evidence": {"zh": "目前已實作 2–6 位同桌、18 秒回合、進行中加入先觀戰、斷線重連、房主轉移、主池／邊池與退款結算；公開 Live Demo 僅使用虛擬籌碼。", "en": "Implemented behavior includes 2–6 players, 18-second turns, mid-hand observers, reconnects, host transfer, main/side pots and refunds; the public live demo uses virtual chips only."},
+        "next": {"zh": "下一步是玩家可驗證的 commit/reveal 公平性、正式帳號與跨裝置身分恢復、觀眾模式，以及席位到期回收。", "en": "Next: player-verifiable commit/reveal fairness, real accounts with cross-device identity recovery, spectator mode and seat-expiry reclamation."}
       }
     },
     {
