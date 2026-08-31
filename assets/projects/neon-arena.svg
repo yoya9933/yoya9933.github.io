@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Neon Arena real-time multiplayer Hold'em</title>
+  <desc id="desc">Dark neon poker table architecture visual used as a reviewed fallback when the public demo cannot be captured.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06111f"/>
+      <stop offset="1" stop-color="#0a1f2d"/>
+    </linearGradient>
+    <radialGradient id="table" cx="50%" cy="44%" r="64%">
+      <stop offset="0" stop-color="#0d4a46"/>
+      <stop offset="1" stop-color="#092a31"/>
+    </radialGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1440" height="900" fill="url(#bg)"/>
+  <circle cx="1180" cy="120" r="230" fill="#123b58" opacity=".22"/>
+  <circle cx="150" cy="790" r="280" fill="#0d766e" opacity=".14"/>
+
+  <text x="80" y="92" fill="#7dd3fc" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4">REAL-TIME MULTIPLAYER GAME SYSTEM</text>
+  <text x="80" y="154" fill="#e8f5ff" font-family="Arial, sans-serif" font-size="52" font-weight="800">Neon Arena</text>
+  <text x="80" y="198" fill="#9eb4c9" font-family="Arial, sans-serif" font-size="24">2–6 player server-authoritative Hold'em</text>
+
+  <ellipse cx="720" cy="515" rx="420" ry="238" fill="#07131f" stroke="#34d3c3" stroke-width="10" opacity=".98" filter="url(#glow)"/>
+  <ellipse cx="720" cy="515" rx="382" ry="202" fill="url(#table)" stroke="#155e75" stroke-width="3"/>
+
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(720 300)"><rect x="-84" y="-35" width="168" height="70" rx="18" fill="#0b1e2d" stroke="#7dd3fc"/><text y="7" fill="#e8f5ff" font-size="19" font-weight="700">PLAYER 1</text></g>
+    <g transform="translate(1040 400)"><rect x="-84" y="-35" width="168" height="70" rx="18" fill="#0b1e2d" stroke="#34d399"/><text y="7" fill="#e8f5ff" font-size="19" font-weight="700">PLAYER 2</text></g>
+    <g transform="translate(1040 640)"><rect x="-84" y="-35" width="168" height="70" rx="18" fill="#0b1e2d" stroke="#34d399"/><text y="7" fill="#e8f5ff" font-size="19" font-weight="700">PLAYER 3</text></g>
+    <g transform="translate(720 738)"><rect x="-84" y="-35" width="168" height="70" rx="18" fill="#0b1e2d" stroke="#7dd3fc"/><text y="7" fill="#e8f5ff" font-size="19" font-weight="700">PLAYER 4</text></g>
+    <g transform="translate(400 640)"><rect x="-84" y="-35" width="168" height="70" rx="18" fill="#0b1e2d" stroke="#34d399"/><text y="7" fill="#e8f5ff" font-size="19" font-weight="700">PLAYER 5</text></g>
+    <g transform="translate(400 400)"><rect x="-84" y="-35" width="168" height="70" rx="18" fill="#0b1e2d" stroke="#34d399"/><text y="7" fill="#e8f5ff" font-size="19" font-weight="700">PLAYER 6</text></g>
+  </g>
+
+  <g transform="translate(560 456)">
+    <rect width="90" height="126" rx="12" fill="#f8fafc" stroke="#7dd3fc" stroke-width="3"/>
+    <text x="18" y="34" fill="#ef4444" font-family="Georgia, serif" font-size="28" font-weight="700">A♥</text>
+  </g>
+  <g transform="translate(675 456)">
+    <rect width="90" height="126" rx="12" fill="#f8fafc" stroke="#7dd3fc" stroke-width="3"/>
+    <text x="18" y="34" fill="#111827" font-family="Georgia, serif" font-size="28" font-weight="700">K♠</text>
+  </g>
+  <g transform="translate(790 456)">
+    <rect width="90" height="126" rx="12" fill="#f8fafc" stroke="#7dd3fc" stroke-width="3"/>
+    <text x="18" y="34" fill="#ef4444" font-family="Georgia, serif" font-size="28" font-weight="700">Q♦</text>
+  </g>
+
+  <g font-family="Arial, sans-serif" font-size="18" fill="#b7c9da">
+    <text x="80" y="800">Cloudflare Workers</text>
+    <text x="300" y="800">Durable Objects</text>
+    <text x="510" y="800">WebSocket</text>
+    <text x="650" y="800">SQLite</text>
+    <text x="760" y="800">18s turn alarm</text>
+    <text x="940" y="800">Reconnect</text>
+    <text x="1060" y="800">Side pots</text>
+  </g>
+  <text x="80" y="850" fill="#5eead4" font-family="Arial, sans-serif" font-size="18" font-weight="700">Virtual chips only · no payments · no cash-out</text>
+</svg>

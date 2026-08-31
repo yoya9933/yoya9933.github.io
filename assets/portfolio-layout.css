@@ -22,6 +22,14 @@
   padding: 8px 0;
 }
 
+/* The legacy renderer class still says has-four-selected. When the manifest grows to
+   exactly five selected cards, restore the featured card to a full-width lead card so
+   the remaining four cards form a balanced 2x2 grid. */
+.projects-grid.has-four-selected:has(> .project-card:nth-child(5):last-child) > .project-card.featured {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
 .nav-wrap {
   flex-wrap: nowrap;
 }
