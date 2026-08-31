@@ -9,9 +9,9 @@ Neon Arena Case Study：將即時多人德州撲克正式加入第五個 Selecte
 - 首頁 Selected Work 由四個擴充為五個，新增 `Neon Arena｜即時多人德州撲克`。
 - 新增中英文 Neon Arena Case Study，聚焦 2–6 人即時多人、伺服器權威狀態、私牌隔離、18 秒回合、斷線重連與主池／邊池結算。
 - Neon Arena 使用 Cloudflare Workers、Durable Objects、Hibernation WebSocket 與 SQLite 的多人架構；Portfolio 明確標示目前仍是朋友局測試版。
-- 首頁與 Case Study 只連公開 Live Demo；原始 `yoya9933/pu` repository 為 private，因此不顯示 GitHub CTA。
-- 建置優先擷取公開 Neon Arena Demo 作為作品預覽，若外站暫時無法擷取則回退至 repository 內已審核的霓虹牌桌 SVG。
-- Demo 明確標示全部籌碼皆為虛擬數字，沒有付費、儲值或兌現；未把 commit/reveal、公用帳號或跨裝置身分恢復等未完成功能寫成既有能力。
+- 首頁與 Case Study 只連公開 Live Demo；原始 repository 為 private，因此不顯示 GitHub CTA，也不在公開網站暴露 private repository 名稱。
+- 建置優先擷取公開 Neon Arena Demo 作為作品預覽，若外站暫時無法擷取則回退至 Portfolio repository 內已審核的霓虹牌桌 SVG。
+- Demo 明確標示全部籌碼皆為虛擬數字，沒有付費、儲值或兌現；未把 commit/reveal、正式帳號或跨裝置身分恢復等未完成功能寫成既有能力。
 - 五張 Selected Work 在桌面維持一張 lead card 加四張 2×2 卡片的平衡版面，並同步進首頁 JSON-LD、sitemap 與 CI manifest 驗證。
 
 ## v1.5.1 — 2026-08-29
