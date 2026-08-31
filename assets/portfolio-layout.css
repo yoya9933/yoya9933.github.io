@@ -101,6 +101,104 @@
   line-height: 1.65;
 }
 
+/* Buoy runtime capture: present the light Streamlit UI as a deliberate product
+   window instead of letting a large white screenshot dominate the dark case study. */
+.case-section--runtime > div {
+  min-width: 0;
+}
+
+.runtime-showcase {
+  width: min(100%, 980px);
+}
+
+.runtime-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(94, 234, 212, .24);
+  border-radius: 999px;
+  background: rgba(94, 234, 212, .07);
+  color: var(--accent);
+  font: 800 10px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.runtime-intro {
+  max-width: 720px;
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.case-shot--runtime {
+  margin-top: 0;
+  padding: 12px;
+  overflow: visible;
+  border-color: rgba(125, 211, 252, .18);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 82% 0%, rgba(94, 234, 212, .11), transparent 38%),
+    linear-gradient(145deg, rgba(12, 31, 48, .96), rgba(6, 18, 31, .98));
+  box-shadow: 0 24px 70px rgba(2, 8, 23, .32);
+}
+
+.runtime-window {
+  overflow: hidden;
+  border: 1px solid rgba(125, 211, 252, .18);
+  border-radius: 14px;
+  background: #f7f9fc;
+}
+
+.runtime-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 13px;
+  border-bottom: 1px solid rgba(125, 211, 252, .16);
+  background: #091827;
+}
+
+.runtime-window-bar > span {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, .44);
+}
+
+.runtime-window-bar > span:first-child {
+  background: rgba(94, 234, 212, .82);
+}
+
+.runtime-window-bar small {
+  margin-left: 4px;
+  color: #8ea6bb;
+  font: 700 10px/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.case-shot--runtime img {
+  display: block;
+  width: 100%;
+  height: clamp(360px, 44vw, 520px);
+  max-height: none;
+  object-fit: cover;
+  object-position: top center;
+  background: #fff;
+}
+
+.case-shot--runtime figcaption {
+  padding: 12px 4px 2px;
+  border-top: 0;
+  color: #7f9bb4;
+  line-height: 1.65;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -184,5 +282,27 @@
   .case-facts dl {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .case-shot--runtime {
+    padding: 8px;
+    border-radius: 17px;
+  }
+
+  .runtime-window {
+    border-radius: 11px;
+  }
+
+  .runtime-window-bar {
+    min-height: 34px;
+    padding: 0 10px;
+  }
+
+  .runtime-window-bar small {
+    font-size: 9px;
+  }
+
+  .case-shot--runtime img {
+    height: 270px;
   }
 }
