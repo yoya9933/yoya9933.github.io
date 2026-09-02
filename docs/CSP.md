@@ -8,11 +8,11 @@ Resources that the browser actually loads while rendering the portfolio:
 
 | Resource type | Runtime source | CSP source |
 | --- | --- | --- |
-| HTML, CSS, JavaScript | `https://yoya9933.page` | `'self'` |
-| Project images, icons, OG assets, manifest, CV | `https://yoya9933.page` | `'self'` |
+| HTML, CSS, JavaScript | `https://yoya9933.page` | explicit `'self'` directives |
+| Project images, icons, OG assets, manifest, CV | `https://yoya9933.page` | explicit `'self'` directives |
 | Hero profile image | `https://github.com/yoya9933.png` | `https://github.com` |
 | GitHub avatar redirect target | GitHub avatar CDN | `https://avatars.githubusercontent.com` |
-| Fonts | Local/system font stacks only; no web-font request | `'self'` only |
+| Fonts | Local/system font stacks only; no web-font request | `font-src 'self'` |
 | Runtime API / XHR / fetch / SSE / WebSocket | None | `connect-src 'none'` |
 | iframe / frame | None | `frame-src 'none'` |
 | audio / video | None | `media-src 'none'` |
@@ -27,8 +27,8 @@ Two public sites are used only during CI media generation: `https://sharegift.tw
 Each published HTML page receives a policy equivalent to:
 
 ```text
-default-src 'self';
-base-uri 'self';
+default-src 'none';
+base-uri 'none';
 object-src 'none';
 script-src 'self' <per-page SHA-256 hashes for inline JSON-LD>;
 script-src-attr 'none';
@@ -41,11 +41,11 @@ media-src 'none';
 frame-src 'none';
 worker-src 'none';
 manifest-src 'self';
-form-action 'self';
+form-action 'none';
 upgrade-insecure-requests
 ```
 
-`'unsafe-inline'`, `'unsafe-eval'`, broad `https:` sources and wildcard `*` sources are intentionally not allowed. Inline JSON-LD is permitted with exact SHA-256 hashes generated from the final rendered page.
+`default-src 'none'` is intentional: every resource class required by the current site is explicitly reopened. `'unsafe-inline'`, `'unsafe-eval'`, broad `https:` sources and wildcard `*` sources are not allowed. Inline JSON-LD is permitted with exact SHA-256 hashes generated from the final rendered page.
 
 ## Meta CSP limitation
 
@@ -71,4 +71,4 @@ Also verify that:
 - structured-data markup remains in the generated HTML;
 - the Event Check-in demo remains interactive.
 
-If a future feature adds an external script, stylesheet, font, image host, API, WebSocket, iframe, media file, or worker, update the inventory and CSP deliberately rather than broadening `default-src`.
+If a future feature adds an external script, stylesheet, font, image host, API, WebSocket, iframe, media file, form, or worker, update the inventory and CSP deliberately rather than broadening `default-src`.
