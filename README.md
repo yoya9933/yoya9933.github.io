@@ -23,6 +23,7 @@ Selected Work：
 - 楚河棋局｜線上中國象棋
 - 活動報到與現場營運系統
 - 股東紀念品服務與 CMS 平台
+- Neon Arena｜即時多人德州撲克
 
 Additional System：
 
@@ -47,6 +48,7 @@ Build 會自動：
 - 將版本寫入所有 HTML 的 `application-version` metadata
 - 在中英文首頁 Footer 顯示 `v版本號 · commit`
 - 由 `CHANGELOG.md` 產生 `/changelog/`
+- 由 project manifest 產生 `sitemap.xml`
 - 產生 `/version.json`，包含版本、commit、build time 與 environment
 - 將 commit 連回該次 GitHub 原始碼
 
@@ -65,7 +67,6 @@ Build 會自動：
 ├── assets/
 ├── scripts/
 ├── .github/workflows/
-├── sitemap.xml
 ├── robots.txt
 └── CNAME
 ```
@@ -90,7 +91,6 @@ _site/
 
 ```bash
 python3 scripts/check_site.py
-python3 scripts/check_p2.py
 python3 scripts/check_p3.py
 ```
 
@@ -98,7 +98,7 @@ Pull request 會執行 Site Quality workflow，包括：
 
 - VERSION / CHANGELOG release metadata validation
 - allowlisted production build
-- internal link 與 stale-content 檢查
+- internal link、SEO、robots 與 stale-content 檢查
 - HTML validation
 - Lighthouse CI
 
