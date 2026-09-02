@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 rm -rf _site
-mkdir -p _site/assets/projects/snapshots _site/projects _site/en/projects _site/demos
+mkdir -p _site/assets/projects _site/projects _site/en/projects _site/demos
 
 # Publish only explicit, privacy-reviewed site inputs.
 cp index.html 404.html CNAME robots.txt sitemap.xml site.webmanifest _site/
@@ -28,7 +28,7 @@ for project in "${PROJECT_SLUGS[@]}"; do
 done
 
 cp -R demos/event-checkin _site/demos/
-cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg assets/avatar-fallback.svg _site/assets/
+cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg _site/assets/
 # p1.css is the deployed component bundle; the second source module contains stable
 # portfolio-specific layout/accessibility rules.
 cat assets/p1.css assets/portfolio-layout.css > _site/assets/p1.css
@@ -51,7 +51,6 @@ python3 scripts/check_case_studies.py
 # Generic site hardening stays separate from project data.
 python3 scripts/enhance_site.py
 python3 scripts/fix_locale_links.py
-python3 scripts/enhance_runtime.py
 
 # CHANGELOG.md is the source for the public version history page.
 python3 scripts/render_changelog.py
