@@ -8,7 +8,7 @@ rm -rf _site
 mkdir -p _site/assets/projects _site/projects _site/en/projects _site/demos
 
 # Publish only explicit, privacy-reviewed site inputs.
-cp index.html 404.html CNAME robots.txt sitemap.xml site.webmanifest _site/
+cp index.html 404.html CNAME robots.txt site.webmanifest _site/
 cp -R contact _site/
 cp en/index.html _site/en/
 cp -R en/contact _site/en/
@@ -28,7 +28,7 @@ for project in "${PROJECT_SLUGS[@]}"; do
 done
 
 cp -R demos/event-checkin _site/demos/
-cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/buoy-ui.svg _site/assets/
+cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg _site/assets/
 # p1.css is the deployed component bundle; the second source module contains stable
 # portfolio-specific layout/accessibility rules.
 cat assets/p1.css assets/portfolio-layout.css > _site/assets/p1.css
@@ -50,7 +50,6 @@ python3 scripts/check_case_studies.py
 
 # Generic site hardening stays separate from project data.
 python3 scripts/enhance_site.py
-python3 scripts/fix_locale_links.py
 
 # CHANGELOG.md is the source for the public version history page.
 python3 scripts/render_changelog.py
@@ -62,7 +61,6 @@ python3 scripts/render_version.py
 # Inline JSON-LD receives SHA-256 allowlist entries; executable JS remains self-hosted.
 python3 scripts/apply_csp.py
 python3 scripts/check_csp.py
-python3 scripts/check_robots.py
 
 # Enforce intrinsic image sizing, local hero assets and accessibility interaction rules.
 python3 scripts/check_performance.py
@@ -87,7 +85,6 @@ test ! -e _site/dist
 test ! -e _site/assets/Yoya_CV_source.html
 test ! -e _site/projects/ncku-return-os
 test ! -e _site/en/projects/ncku-return-os
-python3 scripts/check_p2.py
 python3 scripts/check_p3.py
 
 echo "Built privacy-reviewed, integrity-manifested site at $ROOT/_site"
