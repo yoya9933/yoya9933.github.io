@@ -2,6 +2,19 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.6.3 — 2026-09-02
+
+CSP Security Hardening：盤點正式站瀏覽器實際載入的外部資源，並用最小權限 Content Security Policy 限制未列入來源的 script、style、image、network、frame 與 media 載入。
+
+- 確認 Runtime 沒有外部 web font、CDN JavaScript / CSS、fetch / XHR / SSE / WebSocket、iframe、影音或 worker；相關 CSP directive 預設直接封鎖。
+- Hero GitHub 頭像是目前唯一第三方 Runtime resource，`img-src` 僅額外允許 `https://github.com` 與可能的 avatar redirect `https://avatars.githubusercontent.com`。
+- 新增 `apply_csp.py`，在所有發布 HTML 的 `<head>` 前段自動加入 CSP meta；本機 CSS / JS / 圖片 / manifest 維持 `'self'`。
+- Inline JSON-LD 不使用 `'unsafe-inline'`，而是在每個最終頁面依實際內容產生 SHA-256 allowlist；同時封鎖 inline event handler、inline style attribute 與 `'unsafe-eval'`。
+- `connect-src 'none'`、`frame-src 'none'`、`media-src 'none'`、`worker-src 'none'`、`object-src 'none'`，並啟用 `upgrade-insecure-requests`。
+- 新增 `check_csp.py` build gate：未來若新增外部 script / stylesheet / image host、CSS import/url 或 JavaScript network API，CI 會要求先明確更新 CSP，而不是默默放寬 `default-src`。
+- 新增 `docs/CSP.md`，記錄 Runtime 資源清單、Build-time-only 外站擷取、實際 CSP 規則與部署後 Console 手動驗證方式。
+- GitHub Pages 目前使用 CSP meta，因此 `frame-ancestors` 無法由 meta 強制；若未來改由可設定 response headers 的 edge/proxy 提供服務，應在 HTTP CSP header 補上 `frame-ancestors 'none'`。
+
 ## v1.6.2 — 2026-08-31
 
 Chess Product UI Patch：重新整理楚河棋局 Case Study 的產品主視覺，讓大型木質棋盤圖片更自然地融入深色 Portfolio 版面。

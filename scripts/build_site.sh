@@ -59,6 +59,12 @@ python3 scripts/render_changelog.py
 # VERSION is the single source of truth for human-readable and machine-readable site version data.
 python3 scripts/render_version.py
 
+# Apply a strict per-page CSP only after all script-bearing HTML has been rendered.
+# Inline JSON-LD receives SHA-256 allowlist entries; executable JS remains self-hosted.
+python3 scripts/apply_csp.py
+python3 scripts/check_csp.py
+python3 scripts/check_robots.py
+
 # Enforce intrinsic image sizing, local hero assets and accessibility interaction rules.
 python3 scripts/check_performance.py
 

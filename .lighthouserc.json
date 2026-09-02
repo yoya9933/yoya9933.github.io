@@ -2,7 +2,10 @@
   "ci": {
     "collect": {
       "staticDistDir": "./_site",
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "settings": {
+        "skipAudits": ["robots-txt"]
+      }
     },
     "assert": {
       "assertions": {
