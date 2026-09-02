@@ -28,8 +28,8 @@ def build_policy(text: str) -> str:
     hashes = sorted({sha256_source(body) for body in INLINE_SCRIPT_RE.findall(text)})
     script_sources = " ".join(["'self'", *hashes])
     directives = [
-        "default-src 'self'",
-        "base-uri 'self'",
+        "default-src 'none'",
+        "base-uri 'none'",
         "object-src 'none'",
         f"script-src {script_sources}",
         "script-src-attr 'none'",
@@ -42,7 +42,7 @@ def build_policy(text: str) -> str:
         "frame-src 'none'",
         "worker-src 'none'",
         "manifest-src 'self'",
-        "form-action 'self'",
+        "form-action 'none'",
         "upgrade-insecure-requests",
     ]
     return "; ".join(directives)
