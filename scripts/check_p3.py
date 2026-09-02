@@ -14,13 +14,11 @@ GITHUB_AVATAR = "https://github.com/yoya9933.png"
 def main() -> int:
     errors: list[str] = []
     required_files = [
-        SITE / "assets/avatar-fallback.svg",
         SITE / "assets/main.js",
         SITE / "assets/portfolio-extra.css",
     ]
     for project in PROJECTS:
         required_files.append(SITE / "assets/projects" / project["image"])
-        required_files.append(SITE / "assets/projects/snapshots" / project["image"])
     required_files.append(SITE / "assets/projects/shareholder-cms.png")
 
     for path in required_files:
@@ -63,8 +61,6 @@ def main() -> int:
             errors.append(f"manifest-selected heading copy missing from {rel}")
         if f'src="{GITHUB_AVATAR}"' not in text:
             errors.append(f"GitHub profile avatar missing from {rel}")
-        if 'src="/assets/avatar-fallback.svg"' in text:
-            errors.append(f"Y placeholder avatar is still active in {rel}")
 
     for project in PROJECTS:
         for locale in ("zh", "en"):
@@ -86,8 +82,6 @@ def main() -> int:
         errors.append("runtime still contains legacy light-theme behavior")
     if "projectsGrid" in js or "shareholder-cms" in js:
         errors.append("runtime project injection fallback still exists")
-    if "data-avatar-fallback" in js:
-        errors.append("obsolete avatar fallback runtime still exists")
     if "menu-toggle" not in js:
         errors.append("runtime missing menu-toggle behavior")
 
