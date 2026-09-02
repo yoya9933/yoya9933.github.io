@@ -2,6 +2,17 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.6.4 — 2026-09-03
+
+Ponytail Cleanup：依照 DietrichGebert/ponytail 的 YAGNI / reuse-first 規則，移除已被既有 build 流程覆蓋的補丁層與重複部署資產，不改變公開網站功能。
+
+- 刪除 `enhance_runtime.py`，把真正必要的 dark-mode / theme-color / GitHub avatar hardening 收進既有 `enhance_site.py`。
+- 專案 WebP 只發布一份，不再同時保留 `assets/projects/*.webp` 與 `assets/projects/snapshots/*.webp` 兩份相同 deployment artifact。
+- 移除已停用的 `avatar-fallback.svg` 與對應 build/checker wiring；GitHub 頭像的 privacy/performance 檢查仍保留。
+- 移除 `has-four-selected` renderer flag 與五卡片特例 CSS，直接使用既有 `.project-card.featured` 版面規則。
+- Light theme toggle 仍由 generic hardening 從舊 source 移除，但不再需要獨立 runtime patch stage。
+- 保留 CSP、SEO、accessibility、privacy、Lighthouse、artifact integrity 與 release identity checks。
+
 ## v1.6.3 — 2026-09-02
 
 CSP Security Hardening：盤點正式站瀏覽器實際載入的外部資源，並用最小權限 Content Security Policy 限制未列入來源的 script、style、image、network、frame 與 media 載入。
