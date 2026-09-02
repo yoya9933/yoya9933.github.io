@@ -2,6 +2,17 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.6.5 — 2026-09-03
+
+Ponytail Cleanup II：繼續依照 YAGNI / reuse-first 原則，刪除只修單一硬編碼問題的腳本、重複 checker 與未引用資產，讓既有 build / validation 流程承擔同一份責任。
+
+- 修正中文 Contact 原始頁面的英文版連結後，刪除只做兩個字串 replacement 的 `fix_locale_links.py`。
+- 將 P2 SEO / accessibility 與 robots 驗證收進既有 `check_site.py`，刪除 `check_p2.py` 與 `check_robots.py`，保留原本必要的 SEO、noopener/noreferrer、skip-link、structured data 與 robots 檢查。
+- 刪除根目錄 `sitemap.xml` 重複來源；正式 sitemap 只由 `render_projects.py` 依 manifest 產生。
+- 刪除未被 build 或公開頁面引用的 `buoy-ui.svg`、`buoy-source.svg`、`chess-source.svg`。
+- README / manifest 文件同步目前五個 Selected Work 與實際 lean build 流程。
+- CSP、privacy、Lighthouse、artifact integrity、release identity 與 production smoke test 全部保留。
+
 ## v1.6.4 — 2026-09-03
 
 Ponytail Cleanup：依照 DietrichGebert/ponytail 的 YAGNI / reuse-first 規則，移除已被既有 build 流程覆蓋的補丁層與重複部署資產，不改變公開網站功能。
