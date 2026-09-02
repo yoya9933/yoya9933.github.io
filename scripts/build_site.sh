@@ -48,11 +48,11 @@ python3 scripts/render_projects.py
 python3 scripts/render_case_studies.py
 python3 scripts/check_case_studies.py
 
-# Generic site hardening stays separate from project data.
-python3 scripts/enhance_site.py
-
 # CHANGELOG.md is the source for the public version history page.
 python3 scripts/render_changelog.py
+
+# Generic site hardening applies once to every page generated above.
+python3 scripts/enhance_site.py
 
 # VERSION is the single source of truth for human-readable and machine-readable site version data.
 python3 scripts/render_version.py
