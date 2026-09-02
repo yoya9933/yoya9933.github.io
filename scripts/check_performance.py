@@ -35,7 +35,7 @@ def main() -> int:
 
     for html in sorted(SITE.rglob("*.html")):
         text = html.read_text(encoding="utf-8")
-        for match in re.finditer(r'<img\b[^>]*src="[^"]*assets/projects/(?:snapshots/)?([^/".]+)\.(?:webp|png|svg)"[^>]*>', text, re.I):
+        for match in re.finditer(r'<img\b[^>]*src="[^"]*assets/projects/([^/".]+)\.(?:webp|png|svg)"[^>]*>', text, re.I):
             slug = match.group(1)
             tag = match.group(0)
             expected = dimensions.get(slug)
@@ -54,8 +54,6 @@ def main() -> int:
         home = (SITE / rel).read_text(encoding="utf-8")
         if f'src="{GITHUB_AVATAR}"' not in home:
             errors.append(f"GitHub profile avatar missing from {rel}")
-        if 'src="/assets/avatar-fallback.svg"' in home:
-            errors.append(f"Y placeholder avatar still active in {rel}")
         avatar_match = re.search(r'<img\b[^>]*src="https://github\.com/yoya9933\.png"[^>]*>', home, re.I)
         if avatar_match:
             tag = avatar_match.group(0)

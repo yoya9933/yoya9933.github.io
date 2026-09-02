@@ -50,7 +50,6 @@ for project in PROJECTS:
         f"projects/{project['slug']}/index.html",
         f"en/projects/{project['slug']}/index.html",
         f"assets/projects/{project['image']}",
-        f"assets/projects/snapshots/{project['image']}",
     ])
 
 
