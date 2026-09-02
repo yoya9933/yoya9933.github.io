@@ -35,6 +35,8 @@ REQUIRED = [
     "en/contact/index.html",
     "changelog/index.html",
     "version.json",
+    "robots.txt",
+    "sitemap.xml",
     "demos/event-checkin/index.html",
     "demos/event-checkin/event-demo.css",
     "demos/event-checkin/event-demo.js",
@@ -155,13 +157,24 @@ def main() -> int:
 
     html_files = sorted(SITE.rglob("*.html"))
     version_meta = f'name="application-version" content="{VERSION}"'
+    seo_tokens = ('hreflang="x-default"', 'property="og:url"', 'property="og:locale"', 'name="twitter:title"', 'name="twitter:description"', 'name="twitter:image"')
     for html in html_files:
         text = html.read_text(encoding="utf-8")
+        rel = html.relative_to(SITE)
         for token in FORBIDDEN:
             if token in text:
-                errors.append(f"forbidden token {token!r} found in {html.relative_to(SITE)}")
+                errors.append(f"forbidden token {token!r} found in {rel}")
         if version_meta not in text:
-            errors.append(f"website version metadata missing from {html.relative_to(SITE)}")
+            errors.append(f"website version metadata missing from {rel}")
+        if 'rel="canonical"' in text:
+            for token in seo_tokens:
+                if token not in text:
+                    errors.append(f"{rel}: missing {token}")
+        if "<main" in text and ('class="skip-link"' not in text or not re.search(r'<main\b[^>]*id="main"', text, re.I)):
+            errors.append(f"{rel}: missing skip-link/main target")
+        for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', text, re.I):
+            if "noopener" not in tag or "noreferrer" not in tag:
+                errors.append(f"{rel}: unsafe target=_blank link")
         parser = RefParser()
         parser.feed(text)
         for _, ref in parser.refs:
@@ -170,11 +183,11 @@ def main() -> int:
                 if versions != [VERSION]:
                     errors.append(
                         f"local CSS/JS reference is not cache-busted with v={VERSION} "
-                        f"in {html.relative_to(SITE)}: {ref}"
+                        f"in {rel}: {ref}"
                     )
             target = resolve_local(html, ref)
             if target is not None and not target.exists():
-                errors.append(f"broken local reference in {html.relative_to(SITE)}: {ref}")
+                errors.append(f"broken local reference in {rel}: {ref}")
 
     changelog_path = SITE / "changelog/index.html"
     if changelog_path.exists():
@@ -217,6 +230,8 @@ def main() -> int:
             case = case_path.read_text(encoding="utf-8")
             if f'data-project-actions="{project["slug"]}"' not in case:
                 errors.append(f"manifest-driven project actions missing from {case_path.relative_to(SITE)}")
+            if '"@type":"CreativeWork"' not in case or '"@type":"BreadcrumbList"' not in case:
+                errors.append(f"project structured data missing from {case_path.relative_to(SITE)}")
 
     for rel in ("projects/shareholder-cms/index.html", "en/projects/shareholder-cms/index.html"):
         case_path = SITE / rel
@@ -224,6 +239,22 @@ def main() -> int:
             case = case_path.read_text(encoding="utf-8")
             if "shareholder-cms.webp" not in case or "shareholder-cms.png" not in case:
                 errors.append(f"shareholder CMS case study lacks screenshot/OG assets: {rel}")
+
+    sitemap_path = SITE / "sitemap.xml"
+    if sitemap_path.exists():
+        sitemap = sitemap_path.read_text(encoding="utf-8")
+        for url in (DATA["site_url"] + "/", DATA["site_url"] + "/en/", DATA["site_url"] + "/contact/", DATA["site_url"] + "/en/contact/"):
+            if url not in sitemap:
+                errors.append(f"sitemap missing {url}")
+        if "ncku-return-os" in sitemap or "/demos/" in sitemap:
+            errors.append("sitemap contains retired or noindex content")
+
+    robots_path = SITE / "robots.txt"
+    if robots_path.exists():
+        robots = robots_path.read_text(encoding="utf-8")
+        for token in ("User-agent: *", "Allow: /", f"Sitemap: {DATA['site_url']}/sitemap.xml"):
+            if token not in robots:
+                errors.append(f"robots.txt missing {token!r}")
 
     demo = (SITE / "demos/event-checkin/index.html").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/index.html").exists() else ""
     demo_js = (SITE / "demos/event-checkin/event-demo.js").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/event-demo.js").exists() else ""
