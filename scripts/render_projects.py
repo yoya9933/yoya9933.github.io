@@ -117,7 +117,7 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
         f'<h2>{escape(data["selected_title"][locale])}</h2>'
         f'<p>{escape(data["selected_heading"][locale])}</p>'
         '</div></div>'
-        f'<div class="projects-grid has-four-selected">{cards}</div>'
+        f'<div class="projects-grid">{cards}</div>'
         '</section>'
     )
 
