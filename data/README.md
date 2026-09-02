@@ -18,8 +18,8 @@ During `scripts/build_site.sh`, `scripts/render_projects.py` reads the manifest 
 - Chinese and English homepage project cards
 - homepage selected-project JSON-LD
 - Case Study action buttons
-- project URLs in `sitemap.xml`
+- project URLs in the generated `sitemap.xml`
 
-`enhance_site.py`, `enhance_runtime.py`, `check_site.py`, and `check_p3.py` also read the same manifest rather than maintaining their own project lists.
+`enhance_site.py`, `check_site.py`, and `check_p3.py` also read the same manifest rather than maintaining their own project lists.
 
 Do not add project-specific URL replacement logic to `assets/main.js` or a new one-off publish script. If a project link changes, update `projects.json` only.
