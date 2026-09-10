@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.0 — 2026-09-10
+
+Achievements：把既有首頁成果區擴充成完整的個人重要事蹟，保留公開可核對來源，同時納入競賽、學業表現、技術認證與自行車挑戰紀錄。
+
+- 中文首頁將「成果」改為「事蹟」，完整列出競賽與挑戰、學業與校內表現、技術認證三類紀錄。
+- 英文首頁同步提供相同內容，避免中英文履歷資訊落差。
+- 保留 NODASS、高通台灣 AI 黑客松、臺灣海洋國際青年論壇既有公開證據連結；其他項目明確以個人紀錄列示，不假裝已有第三方驗證。
+- 沿用既有 timeline / heading / reveal 元件，不新增資料層、JavaScript 或第三方依賴。
+
 ## v1.6.5 — 2026-09-03
 
 Ponytail Cleanup II：繼續依照 YAGNI / reuse-first 原則，刪除只修單一硬編碼問題的腳本、重複 checker 與未引用資產，讓既有 build / validation 流程承擔同一份責任。
