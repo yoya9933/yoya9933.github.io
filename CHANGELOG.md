@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.2 — 2026-09-11
+
+Visual Hotfix：修復正式站實際截圖暴露的首頁頭像破圖與 AI Media Automation 流程圖裁切問題，並補上最小必要的回歸檢查。
+
+- 將損壞的 `assets/profile.jpg` 重新編碼為可正常解碼的本地 JPEG，沿用既有圖片路徑、HTML 與 CSP，不重新引入第三方頭像依賴。
+- Additional System 的預覽圖片由 `object-fit: cover` 改為 `contain` 並置中，讓 AI Media Automation 的完整流程圖在桌面與手機版都不再被左右裁切。
+- `check_performance.py` 新增 JPEG 結構與尺寸檢查，CI 會拒絕缺少 SOI / EOI、無有效 SOF 尺寸或過小的 Hero 頭像，避免「檔案存在但瀏覽器無法顯示」再次通過部署。
+- 不新增套件、圖片 loader 或額外 render layer；修正仍沿用既有 build pipeline、local asset 與 performance gate。
+
 ## v1.7.1 — 2026-09-11
 
 Portfolio Polish & Ponytail Cleanup：更新首頁個人照片與資訊順序，同時移除 dark-only 網站已不需要的 theme patch、legacy CSS 與第三方頭像 runtime 依賴。
