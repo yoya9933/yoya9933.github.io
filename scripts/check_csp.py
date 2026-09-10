@@ -11,7 +11,7 @@ from apply_csp import CSP_META_RE, build_policy
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
 ALLOWED_EXTERNAL = {
-    "img": {"github.com", "avatars.githubusercontent.com"},
+    "img": set(),
     "script": set(),
     "style": set(),
     "font": set(),
@@ -125,8 +125,7 @@ def main() -> int:
         return 1
 
     print(
-        "CSP checks passed: self-hosted scripts/styles/fonts; "
-        "external images limited to github.com and avatars.githubusercontent.com; connect-src none"
+        "CSP checks passed: self-hosted scripts/styles/images/fonts; connect-src none"
     )
     return 0
 
