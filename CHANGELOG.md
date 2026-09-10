@@ -2,6 +2,19 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.1 — 2026-09-11
+
+Portfolio Polish & Ponytail Cleanup：更新首頁個人照片與資訊順序，同時移除 dark-only 網站已不需要的 theme patch、legacy CSS 與第三方頭像 runtime 依賴。
+
+- 首頁中英文改用 repository 內的 `assets/profile.jpg`，移除 GitHub avatar runtime request；CSP `img-src` 收緊為僅 `'self'`。
+- 將「事蹟 / Achievements」移到 Selected Work 前方，並同步調整導覽與 section 編號。
+- 移除 Hero 的 `$ build → test → improve_` 裝飾與對應 dead CSS。
+- Contact、404、Buoy / Chess / Neon Arena 等 source HTML 直接固定 dark theme 與 theme-color，不再由 build-time regex 修補。
+- `enhance_site.py` 刪除 theme runtime patch，只保留 SEO、accessibility、安全連結與 intrinsic image dimensions 等有價值的 build hardening。
+- `p1.css` 刪除 legacy light-theme、theme-toggle 與 `has-four-selected` 規則；專案版面由既有 `.project-card.featured` 自然支援五張卡。
+- 首頁由 `render_projects.py` / `data/projects.json` 直接產生專案內容，刪除 source 中失去意義的重複卡片 markup。
+- CSP、privacy、Lighthouse、artifact integrity、release identity、production smoke test 與 menu accessibility checks 全部保留。
+
 ## v1.7.0 — 2026-09-10
 
 Achievements：把既有首頁成果區擴充成完整的個人重要事蹟，保留公開可核對來源，同時納入競賽、學業表現、技術認證與自行車挑戰紀錄。
