@@ -4,13 +4,12 @@ from pathlib import Path
 import json
 import re
 import struct
-import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
 DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECTS = DATA["projects"]
-GITHUB_AVATAR = "https://github.com/yoya9933.png"
+PROFILE_IMAGE = "assets/profile.jpg"
 
 
 def png_dimensions(path: Path) -> tuple[int, int] | None:
@@ -50,17 +49,19 @@ def main() -> int:
             if 'decoding="async"' not in tag:
                 errors.append(f"async decoding missing for {slug} in {html.relative_to(SITE)}")
 
-    for rel in ("index.html", "en/index.html"):
+    if not (SITE / PROFILE_IMAGE).is_file():
+        errors.append(f"local profile image missing: {PROFILE_IMAGE}")
+    for rel, src in (("index.html", PROFILE_IMAGE), ("en/index.html", f"../{PROFILE_IMAGE}")):
         home = (SITE / rel).read_text(encoding="utf-8")
-        if f'src="{GITHUB_AVATAR}"' not in home:
-            errors.append(f"GitHub profile avatar missing from {rel}")
-        avatar_match = re.search(r'<img\b[^>]*src="https://github\.com/yoya9933\.png"[^>]*>', home, re.I)
-        if avatar_match:
-            tag = avatar_match.group(0)
-            if 'referrerpolicy="no-referrer"' not in tag:
-                errors.append(f"GitHub avatar missing no-referrer policy in {rel}")
-            if 'decoding="async"' not in tag:
-                errors.append(f"GitHub avatar missing async decoding in {rel}")
+        match = re.search(rf'<img\b[^>]*src="{re.escape(src)}"[^>]*>', home, re.I)
+        if not match:
+            errors.append(f"local profile image missing from {rel}")
+            continue
+        tag = match.group(0)
+        if 'width="156"' not in tag or 'height="156"' not in tag:
+            errors.append(f"profile image intrinsic display dimensions missing from {rel}")
+        if 'decoding="async"' not in tag:
+            errors.append(f"profile image async decoding missing from {rel}")
 
     css_path = SITE / "assets" / "p1.css"
     if css_path.is_file():
@@ -77,7 +78,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Performance & Quality checks passed for {len(PROJECTS)} projects with GitHub hero avatar")
+    print(f"Performance & Quality checks passed for {len(PROJECTS)} projects with local profile photo")
     return 0
 
 

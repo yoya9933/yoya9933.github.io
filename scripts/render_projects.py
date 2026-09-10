@@ -113,7 +113,7 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
     cards = "".join(render_selected_card(project, locale) for project in selected)
     return (
         '<section class="section shell" id="projects">'
-        '<div class="section-heading"><p class="section-index">01 / SELECTED WORK</p><div>'
+        '<div class="section-heading"><p class="section-index">02 / SELECTED WORK</p><div>'
         f'<h2>{escape(data["selected_title"][locale])}</h2>'
         f'<p>{escape(data["selected_heading"][locale])}</p>'
         '</div></div>'
@@ -125,7 +125,7 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
 def render_additional_section(data: dict, locale: str, project: dict) -> str:
     return (
         '<section class="section shell" id="additional-work">'
-        '<div class="section-heading"><p class="section-index">02 / ADDITIONAL SYSTEM</p><div>'
+        '<div class="section-heading"><p class="section-index">03 / ADDITIONAL SYSTEM</p><div>'
         f'<h2>{escape(data["additional_title"][locale])}</h2>'
         f'<p>{escape(data["additional_heading"][locale])}</p>'
         '</div></div>'

@@ -28,7 +28,7 @@ for project in "${PROJECT_SLUGS[@]}"; do
 done
 
 cp -R demos/event-checkin _site/demos/
-cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg _site/assets/
+cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/profile.jpg _site/assets/
 # p1.css is the deployed component bundle; the second source module contains stable
 # portfolio-specific layout/accessibility rules.
 cat assets/p1.css assets/portfolio-layout.css > _site/assets/p1.css

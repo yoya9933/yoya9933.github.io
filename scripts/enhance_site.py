@@ -76,22 +76,6 @@ def ensure_meta(text: str, key: str, value: str, *, prop: bool = False) -> str:
     return add_before_head_end(text, tag)
 
 
-def enforce_dark_runtime(text: str) -> str:
-    text = re.sub(r'<script\s+data-theme-bootstrap>.*?</script>', '', text, flags=re.I | re.S)
-    text = re.sub(r'<button\b[^>]*data-theme-toggle[^>]*>.*?</button>', '', text, flags=re.I | re.S)
-
-    def dark_html(match: re.Match[str]) -> str:
-        tag = re.sub(r'\sdata-theme="[^"]*"', '', match.group(0), flags=re.I)
-        return tag[:-1] + ' data-theme="dark">'
-
-    text = re.sub(r'<html\b[^>]*>', dark_html, text, count=1, flags=re.I)
-    text = ensure_meta(text, "theme-color", "#07111f")
-    return text.replace(
-        'src="https://github.com/yoya9933.png"',
-        'src="https://github.com/yoya9933.png" decoding="async" referrerpolicy="no-referrer"',
-    )
-
-
 def ensure_x_default(text: str, href: str) -> str:
     if 'hreflang="x-default"' in text:
         return text
@@ -180,7 +164,7 @@ def project_schema(rel: str, text: str, url: str) -> str | None:
 
 def process(path: Path) -> None:
     rel = path.relative_to(SITE).as_posix()
-    text = enforce_dark_runtime(path.read_text(encoding="utf-8"))
+    text = path.read_text(encoding="utf-8")
     if rel == "404.html":
         path.write_text(ensure_accessibility(harden_blank_links(text)), encoding="utf-8")
         return
@@ -218,10 +202,7 @@ def process(path: Path) -> None:
 def main() -> None:
     for html in sorted(SITE.rglob("*.html")):
         process(html)
-    print(
-        f"Enhanced published SEO, dark runtime and intrinsic media dimensions for "
-        f"{len(PROJECT_BY_REL) // 2} project records"
-    )
+    print(f"Enhanced published SEO, accessibility and intrinsic media dimensions for {len(PROJECT_BY_REL) // 2} project records")
 
 
 if __name__ == "__main__":

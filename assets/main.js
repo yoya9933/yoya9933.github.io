@@ -1,9 +1,5 @@
 (() => {
   const root = document.documentElement;
-  root.dataset.theme = 'dark';
-  const themeMeta = document.querySelector('meta[name="theme-color"]');
-  if (themeMeta) themeMeta.setAttribute('content', '#07111f');
-
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#site-nav');
   if (toggle && nav) {

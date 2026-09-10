@@ -35,7 +35,7 @@ def build_policy(text: str) -> str:
         "script-src-attr 'none'",
         "style-src 'self'",
         "style-src-attr 'none'",
-        "img-src 'self' https://github.com https://avatars.githubusercontent.com",
+        "img-src 'self'",
         "font-src 'self'",
         "connect-src 'none'",
         "media-src 'none'",

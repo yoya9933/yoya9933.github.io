@@ -9,9 +9,7 @@ Resources that the browser actually loads while rendering the portfolio:
 | Resource type | Runtime source | CSP source |
 | --- | --- | --- |
 | HTML, CSS, JavaScript | `https://yoya9933.page` | explicit `'self'` directives |
-| Project images, icons, OG assets, manifest, CV | `https://yoya9933.page` | explicit `'self'` directives |
-| Hero profile image | `https://github.com/yoya9933.png` | `https://github.com` |
-| GitHub avatar redirect target | GitHub avatar CDN | `https://avatars.githubusercontent.com` |
+| Project images, profile photo, icons, OG assets, manifest, CV | `https://yoya9933.page` | explicit `'self'` directives |
 | Fonts | Local/system font stacks only; no web-font request | `font-src 'self'` |
 | Runtime API / XHR / fetch / SSE / WebSocket | None | `connect-src 'none'` |
 | iframe / frame | None | `frame-src 'none'` |
@@ -34,7 +32,7 @@ script-src 'self' <per-page SHA-256 hashes for inline JSON-LD>;
 script-src-attr 'none';
 style-src 'self';
 style-src-attr 'none';
-img-src 'self' https://github.com https://avatars.githubusercontent.com;
+img-src 'self';
 font-src 'self';
 connect-src 'none';
 media-src 'none';
@@ -65,7 +63,7 @@ Open the production homepage, both locale homepages, a Case Study, and the Event
 
 Also verify that:
 
-- the GitHub avatar renders;
+- the local profile photo renders;
 - CSS and navigation JavaScript still work;
 - project screenshots/icons render;
 - structured-data markup remains in the generated HTML;
