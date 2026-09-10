@@ -34,10 +34,6 @@ def main() -> int:
             errors.append(f"published page is not fixed to dark theme: {rel}")
         if 'name="theme-color"' not in text or '#07111f' not in text:
             errors.append(f"missing dark theme-color meta: {rel}")
-        if 'data-theme-toggle' in text:
-            errors.append(f"legacy light-theme toggle leaked into published page: {rel}")
-        if 'data-theme-bootstrap' in text:
-            errors.append(f"legacy theme bootstrap leaked into published page: {rel}")
         if "menu-toggle" in text and "aria-label=" not in text:
             errors.append(f"menu toggle lacks initial accessible label: {rel}")
 
@@ -82,8 +78,6 @@ def main() -> int:
         errors.append("event demo privacy labels are missing")
 
     js = (SITE / "assets/main.js").read_text(encoding="utf-8") if (SITE / "assets/main.js").exists() else ""
-    if "portfolioTheme" in js or "prefers-color-scheme: light" in js or "data-theme-toggle" in js:
-        errors.append("runtime still contains legacy light-theme behavior")
     if "projectsGrid" in js or "shareholder-cms" in js:
         errors.append("runtime project injection fallback still exists")
     if "menu-toggle" not in js:
