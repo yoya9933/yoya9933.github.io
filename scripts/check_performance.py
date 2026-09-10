@@ -22,6 +22,45 @@ def png_dimensions(path: Path) -> tuple[int, int] | None:
     return struct.unpack(">II", header[16:24])
 
 
+def jpeg_dimensions(path: Path) -> tuple[int, int] | None:
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    if len(data) < 4 or not data.startswith(b"\xff\xd8") or not data.endswith(b"\xff\xd9"):
+        return None
+
+    sof_markers = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
+    offset = 2
+    while offset < len(data):
+        if data[offset] != 0xFF:
+            return None
+        while offset < len(data) and data[offset] == 0xFF:
+            offset += 1
+        if offset >= len(data):
+            return None
+
+        marker = data[offset]
+        offset += 1
+        if marker == 0xDA:
+            break
+        if marker in {0x01, 0xD8, 0xD9} or 0xD0 <= marker <= 0xD7:
+            continue
+        if offset + 2 > len(data):
+            return None
+
+        segment_length = struct.unpack(">H", data[offset:offset + 2])[0]
+        if segment_length < 2 or offset + segment_length > len(data):
+            return None
+        if marker in sof_markers:
+            if segment_length < 7:
+                return None
+            height, width = struct.unpack(">HH", data[offset + 3:offset + 7])
+            return (width, height) if width > 0 and height > 0 else None
+        offset += segment_length
+    return None
+
+
 def main() -> int:
     errors: list[str] = []
     dimensions: dict[str, tuple[int, int]] = {}
@@ -49,8 +88,13 @@ def main() -> int:
             if 'decoding="async"' not in tag:
                 errors.append(f"async decoding missing for {slug} in {html.relative_to(SITE)}")
 
-    if not (SITE / PROFILE_IMAGE).is_file():
-        errors.append(f"local profile image missing: {PROFILE_IMAGE}")
+    profile_path = SITE / PROFILE_IMAGE
+    profile_dimensions = jpeg_dimensions(profile_path)
+    if not profile_dimensions:
+        errors.append(f"local profile image is missing or invalid JPEG: {PROFILE_IMAGE}")
+    elif min(profile_dimensions) < 156:
+        errors.append(f"local profile image is too small: {profile_dimensions[0]}x{profile_dimensions[1]}")
+
     for rel, src in (("index.html", PROFILE_IMAGE), ("en/index.html", f"../{PROFILE_IMAGE}")):
         home = (SITE / rel).read_text(encoding="utf-8")
         match = re.search(rf'<img\b[^>]*src="{re.escape(src)}"[^>]*>', home, re.I)
@@ -78,7 +122,7 @@ def main() -> int:
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"Performance & Quality checks passed for {len(PROJECTS)} projects with local profile photo")
+    print(f"Performance & Quality checks passed for {len(PROJECTS)} projects with valid local profile photo")
     return 0
 
 
