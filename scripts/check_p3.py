@@ -8,7 +8,7 @@ SITE = ROOT / "_site"
 DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
 PROJECTS = DATA["projects"]
 SELECTED = sorted((p for p in PROJECTS if p.get("section") == "selected"), key=lambda p: p["order"])
-GITHUB_AVATAR = "https://github.com/yoya9933.png"
+PROFILE_IMAGE = "assets/profile.jpg"
 
 
 def main() -> int:
@@ -16,6 +16,7 @@ def main() -> int:
     required_files = [
         SITE / "assets/main.js",
         SITE / "assets/portfolio-extra.css",
+        SITE / PROFILE_IMAGE,
     ]
     for project in PROJECTS:
         required_files.append(SITE / "assets/projects" / project["image"])
@@ -42,7 +43,10 @@ def main() -> int:
 
     home = (SITE / "index.html").read_text(encoding="utf-8")
     en_home = (SITE / "en/index.html").read_text(encoding="utf-8")
-    for rel, text, locale in (("index.html", home, "zh"), ("en/index.html", en_home, "en")):
+    for rel, text, locale, src in (
+        ("index.html", home, "zh", PROFILE_IMAGE),
+        ("en/index.html", en_home, "en", f"../{PROFILE_IMAGE}"),
+    ):
         for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact", "secondary-project"):
             if token not in text:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
@@ -59,8 +63,8 @@ def main() -> int:
                 errors.append(f"additional project {project['slug']!r} missing from {rel}")
         if DATA["selected_heading"][locale] not in text:
             errors.append(f"manifest-selected heading copy missing from {rel}")
-        if f'src="{GITHUB_AVATAR}"' not in text:
-            errors.append(f"GitHub profile avatar missing from {rel}")
+        if f'src="{src}"' not in text:
+            errors.append(f"local profile photo missing from {rel}")
 
     for project in PROJECTS:
         for locale in ("zh", "en"):
