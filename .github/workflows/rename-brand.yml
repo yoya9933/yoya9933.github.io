@@ -1,9 +1,13 @@
 name: Rename portfolio brand
+
 on:
   push:
-    branches: ["ponytail/rename-yoya-to-yu"]
+    branches:
+      - ponytail/rename-yoya-to-yu
+
 permissions:
   contents: write
+
 jobs:
   rename:
     runs-on: ubuntu-latest
@@ -12,33 +16,16 @@ jobs:
         with:
           ref: ponytail/rename-yoya-to-yu
           fetch-depth: 0
-      - name: Rename brand
-        shell: bash
+      - name: Rename public brand and CV
         run: |
           set -euo pipefail
           git grep -Il -z 'Yoya' | xargs -0 sed -i 's/Yoya/Yu/g'
           git mv assets/Yoya_CV_source.html assets/Yu_CV_source.html
           printf '1.7.4\n' > VERSION
-          python3 - <<'PY'
-          from pathlib import Path
-          p = Path('CHANGELOG.md')
-          text = p.read_text(encoding='utf-8')
-          marker = '網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。\n\n'
-          section = '''## v1.7.4 — 2026-09-11
-
-Brand Rename：將 Portfolio 對外品牌名稱由 `Yu` 統一套用到網站、SEO、Case Study、Contact、Release 文案與雙語履歷。
-
-- 所有對外顯示的舊品牌名稱已改為 `Yu`，中英文頁面與 metadata 同步。
-- 履歷 alias 改為 `Yu`，CV source / build output 改名為 `Yu_CV`，網站下載連結同步更新。
-- GitHub 帳號 `yoya9933` 與正式網域 `yoya9933.page` 保持不變，因為它們是實際可用的技術識別與 URL。
-- 不新增 dependency、redirect layer 或 alias abstraction；直接修改既有 source 與 build 路徑。
-
-'''
-          if marker not in text:
-              raise SystemExit('CHANGELOG header marker not found')
-          p.write_text(text.replace(marker, marker + section, 1), encoding='utf-8')
-          PY
-          rm .github/workflows/rename-brand.yml
+          section="$(mktemp)"
+          printf '%s\n' '## v1.7.4 — 2026-09-11' '' 'Brand Rename：將 Portfolio 對外品牌名稱統一改為 `Yu`，包含網站、SEO、Case Study、Contact、Release 文案與雙語履歷。' '' '- 所有對外顯示的舊品牌名稱已改為 `Yu`，中英文頁面與 metadata 同步。' '- 履歷 alias 改為 `Yu`，CV source / build output 改名為 `Yu_CV`，網站下載連結同步更新。' '- GitHub 帳號 `yoya9933` 與正式網域 `yoya9933.page` 保持不變，因為它們是實際可用的技術識別與 URL。' '- 不新增 dependency、redirect layer 或 alias abstraction；直接修改既有 source 與 build 路徑。' '' > "$section"
+          sed -i "4r $section" CHANGELOG.md
+          rm "$section" .github/workflows/rename-brand.yml
           if git grep -n 'Yoya'; then
             echo 'Old brand remains' >&2
             exit 1
