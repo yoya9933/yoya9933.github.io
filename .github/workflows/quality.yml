@@ -25,11 +25,8 @@ jobs:
       - name: Validate VERSION and CHANGELOG release metadata
         run: python3 scripts/release_notes.py > /tmp/release-notes.md
 
-      - name: Build allowlisted site
+      - name: Build and validate allowlisted site
         run: bash scripts/build_site.sh
-
-      - name: Check internal links and stale content
-        run: python3 scripts/check_site.py
 
       - name: Validate HTML
         run: find _site -name '*.html' -print0 | xargs -0 npx --yes html-validate@8
