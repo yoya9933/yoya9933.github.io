@@ -25,7 +25,6 @@ FORBIDDEN = (
     "優選（冠軍）",
     "attendee-tokens.json",
     "attendees.generated.ts",
-    "臺灣綜合大學系統",
 )
 
 REQUIRED = [
@@ -260,6 +259,9 @@ def main() -> int:
     demo_js = (SITE / "demos/event-checkin/event-demo.js").read_text(encoding="utf-8") if (SITE / "demos/event-checkin/event-demo.js").exists() else ""
     if "SYNTHETIC DATA ONLY" not in demo or "SYNTHETIC_DATA_ONLY" not in demo_js:
         errors.append("event demo lacks explicit synthetic-data safeguards")
+    for token in ("臺灣綜合大學系統", "Taiwan Comprehensive University System"):
+        if token in demo or token in demo_js:
+            errors.append(f"event demo exposes production identity: {token!r}")
 
     if errors:
         print("Site checks failed:")
