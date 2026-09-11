@@ -1,0 +1,21 @@
+name: Overtime System Quality
+
+on:
+  push:
+    branches: [overtime-management-system]
+  pull_request:
+    branches: [overtime-management-system]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
