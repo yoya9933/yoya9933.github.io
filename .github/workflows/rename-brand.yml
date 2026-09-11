@@ -1,0 +1,56 @@
+name: Rename portfolio brand
+
+on:
+  push:
+    branches:
+      - ponytail/rename-yoya-to-yu
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ponytail/rename-yoya-to-yu
+          fetch-depth: 0
+      - name: Rename public brand and CV
+        run: |
+          set -euo pipefail
+          old='Yoya'
+          new='Yu'
+          git grep -Il -z "$old" | xargs -0 sed -i "s/${old}/${new}/g"
+          git mv assets/Yoya_CV_source.html assets/Yu_CV_source.html
+          printf '1.7.4\n' > VERSION
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('CHANGELOG.md')
+          text = path.read_text(encoding='utf-8')
+          marker = '網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。\n\n'
+          section = '''## v1.7.4 — 2026-09-11
+
+Brand Rename：將 Portfolio 對外品牌名稱由 `Yoya` 統一改為 `Yu`，包含網站、SEO、Case Study、Contact、Release 文案與雙語履歷。
+
+- 所有對外顯示的 `Yoya` 品牌字樣改為 `Yu`，中英文頁面與 metadata 同步。
+- 履歷內 alias 改為 `Yu`，CV source / build output 由 `Yoya_CV` 改名為 `Yu_CV`，網站下載連結同步更新。
+- GitHub 帳號 `yoya9933` 與正式網域 `yoya9933.page` 保持不變，因為它們是實際可用的技術識別與 URL，不做破壞性假改名。
+- 不新增 dependency、redirect layer 或 alias abstraction；直接修改既有 source 與 build 路徑。
+
+'''
+          if marker not in text:
+              raise SystemExit('CHANGELOG header marker not found')
+          path.write_text(text.replace(marker, marker + section, 1), encoding='utf-8')
+          PY
+          rm .github/workflows/rename-brand.yml
+          if git grep -n 'Yoya' -- . ':!CHANGELOG.md'; then
+            echo 'Unexpected Yoya branding remains' >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Rename portfolio brand from Yoya to Yu'
+          git push origin HEAD:ponytail/rename-yoya-to-yu
