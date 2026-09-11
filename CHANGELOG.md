@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.12 — 2026-09-12
+
+Unified Project Grid：將 Reliable AI Media Automation Pipeline 從獨立的 Additional System 區塊收回 Selected Work，讓它和其他作品使用同一套卡片、排序與導覽邏輯。
+
+- Selected Work 由 6 個擴充為 7 個專案；AI Media Automation Pipeline 改為第 7 個一般作品，不再使用整頁寬的特殊展示區塊。
+- 移除 `additional_title` / `additional_heading`、additional renderer、`#additional-work` 導覽與 placeholder，以及不再使用的 `secondary-project` CSS。
+- 中英文首頁、README、首頁 JSON-LD 與 CI 驗證都改由同一份 Selected Work 清單驅動。
+- 保留加班管理系統與股東紀念品 CMS 的最新實際使用證據；AI Media Automation 的 Case Study、架構圖、GitHub 與能力邊界也維持不變。
+- 不新增 JavaScript、dependency 或額外 layout abstraction。
+
 ## v1.7.11 — 2026-09-12
 
 Overtime Operations Case Study：將加班管理與行政彙整系統加入第六個 Selected Work，補上實際校內使用證據與雙語 Case Study。
@@ -97,7 +107,7 @@ Portfolio Polish & Ponytail Cleanup：更新首頁個人照片與資訊順序，
 - 移除 Hero 的 `$ build → test → improve_` 裝飾與對應 dead CSS。
 - Contact、404、Buoy / Chess / Neon Arena 等 source HTML 直接固定 dark theme 與 theme-color，不再由 build-time regex 修補。
 - `enhance_site.py` 刪除 theme runtime patch，只保留 SEO、accessibility、安全連結與 intrinsic image dimensions 等有價值的 build hardening。
-- `p1.css` 刪除 legacy light-theme、theme-toggle 與 `has-four-selected` 規則；專案版面由既有 `.project-card.featured` 自然支援五張卡。
+- `p1.css` 刪除 legacy light-theme、theme-toggle` 與 `has-four-selected` 規則；專案版面由既有 `.project-card.featured` 自然支援五張卡。
 - 首頁由 `render_projects.py` / `data/projects.json` 直接產生專案內容，刪除 source 中失去意義的重複卡片 markup。
 - CSP、privacy、Lighthouse、artifact integrity、release identity、production smoke test 與 menu accessibility checks 全部保留。
 
