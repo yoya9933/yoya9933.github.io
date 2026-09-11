@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.10 — 2026-09-12
+
+Unified Project Grid：將 Reliable AI Media Automation Pipeline 從獨立的 Additional System 區塊收回 Selected Work，讓它和其他作品使用同一套卡片、排序與導覽邏輯。
+
+- Selected Work 由 5 個擴充為 6 個專案；AI Media Automation Pipeline 改為第 6 個一般作品，不再使用整頁寬的特殊展示區塊。
+- 移除 `additional_title` / `additional_heading`、additional renderer、`#additional-work` 導覽與 placeholder，以及不再使用的 `secondary-project` CSS。
+- 中英文首頁、README、首頁 JSON-LD 與 CI 驗證都改由同一份 Selected Work 清單驅動。
+- 保留 AI Media Automation 的 Case Study、架構圖、GitHub 與既有能力邊界；不新增 JavaScript、dependency 或額外 layout abstraction。
+
 ## v1.7.9 — 2026-09-12
 
 Chess Product Image Layout Fix：修正楚河棋局 Case Study 主視覺在產品展示框內因固定高度與 `object-fit: cover` 被左右裁切，導致「楚河棋局」文字與畫面內容超出可視範圍。
