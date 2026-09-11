@@ -1,4 +1,4 @@
-# Yoya Portfolio
+# Yu Portfolio
 
 [![Version](https://img.shields.io/github/v/release/yoya9933/yoya9933.github.io?label=version)](https://github.com/yoya9933/yoya9933.github.io/releases/latest)
 [![Release and Deploy](https://github.com/yoya9933/yoya9933.github.io/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/yoya9933/yoya9933.github.io/actions/workflows/deploy.yml)

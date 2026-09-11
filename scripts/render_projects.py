@@ -149,7 +149,7 @@ def home_schema(data: dict, locale: str, selected: list[dict]) -> str:
         {
             "@type": "Person",
             "@id": site_url + "/#person",
-            "name": "Yoya",
+            "name": "Yu",
             "url": site_url + "/",
             "sameAs": ["https://github.com/yoya9933"],
             "knowsAbout": [
@@ -164,7 +164,7 @@ def home_schema(data: dict, locale: str, selected: list[dict]) -> str:
             "@type": "WebSite",
             "@id": home + "#website",
             "url": home,
-            "name": "Yoya | Engineering × Data × AI Portfolio" if locale == "en" else "Yoya｜Engineering × Data × AI Portfolio",
+            "name": "Yu | Engineering × Data × AI Portfolio" if locale == "en" else "Yu｜Engineering × Data × AI Portfolio",
             "inLanguage": language,
             "author": {"@id": site_url + "/#person"},
         },

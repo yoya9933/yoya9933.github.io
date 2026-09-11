@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.4 — 2026-09-11
+
+Brand Rename：將 Portfolio 對外品牌名稱統一改為 `Yu`，包含網站、SEO、Case Study、Contact、Release 文案與雙語履歷。
+
+- 所有對外顯示的舊品牌名稱已改為 `Yu`，中英文頁面與 metadata 同步。
+- 履歷 alias 改為 `Yu`，CV source / build output 改名為 `Yu_CV`，網站下載連結同步更新。
+- GitHub 帳號 `yoya9933` 與正式網域 `yoya9933.page` 保持不變，因為它們是實際可用的技術識別與 URL。
+- 不新增 dependency、redirect layer 或 alias abstraction；直接修改既有 source 與 build 路徑。
+
 ## v1.7.3 — 2026-09-11
 
 Profile Image Quality Hotfix：改用原始上傳照片重新輸出高品質本地 JPEG，移除上一版救援縮圖造成的明顯模糊。
@@ -133,7 +142,7 @@ Release / Observability 2.0：讓版本、部署產物與正式站狀態可以�
 Performance & Quality：把圖片尺寸、第三方依賴、鍵盤操作與 Lighthouse 品質門檻納入可驗證的 build invariants。
 
 - 專案圖片在 build 時從實際 PNG 產物取得 intrinsic width / height，避免以固定 1200×720 猜測尺寸造成 layout shift。
-- Hero avatar 改為本地 `Yoya` 品牌 SVG，不再在頁面載入 GitHub avatar，減少第三方 waterfall 與隱私依賴。
+- Hero avatar 改為本地 `Yu` 品牌 SVG，不再在頁面載入 GitHub avatar，減少第三方 waterfall 與隱私依賴。
 - 新增全站 `:focus-visible` 鍵盤 focus 樣式與 `prefers-reduced-motion` 降低動態效果規則。
 - 新增 `check_performance.py`，驗證專案圖片尺寸、async decoding、本地 avatar 與 accessibility CSS 不會在後續 build 遺失。
 - Lighthouse 仍採 3 次 median，但門檻提升為 Performance ≥ 75、Accessibility ≥ 95、Best Practices ≥ 90、SEO ≥ 95。

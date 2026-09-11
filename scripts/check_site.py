@@ -40,7 +40,7 @@ REQUIRED = [
     "demos/event-checkin/index.html",
     "demos/event-checkin/event-demo.css",
     "demos/event-checkin/event-demo.js",
-    "assets/Yoya_CV.pdf",
+    "assets/Yu_CV.pdf",
     "assets/portfolio-extra.css",
     "assets/projects/shareholder-cms.png",
     "assets/projects/shareholder-cms.svg",
@@ -152,7 +152,7 @@ def main() -> int:
             errors.append(f"retired credit-map page leaked into deployment: {retired.relative_to(SITE)}")
     if (SITE / "dist").exists():
         errors.append("stale dist directory leaked into deployment artifact")
-    if (SITE / "assets/Yoya_CV_source.html").exists():
+    if (SITE / "assets/Yu_CV_source.html").exists():
         errors.append("CV source HTML leaked into deployment artifact")
 
     html_files = sorted(SITE.rglob("*.html"))
