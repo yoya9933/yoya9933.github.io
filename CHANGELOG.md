@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.9 — 2026-09-12
+
+Chess Product Image Layout Fix：修正楚河棋局 Case Study 主視覺在產品展示框內因固定高度與 `object-fit: cover` 被左右裁切，導致「楚河棋局」文字與畫面內容超出可視範圍。
+
+- 保留既有 product window、品牌主視覺與 build-time intrinsic dimensions，不重新製圖、不新增 JavaScript 或 dependency。
+- `.case-shot--product img` 改為依原始比例完整顯示，使用 `height: auto` 與 `object-fit: contain`，桌面與手機都不再強制固定高度裁切。
+- Buoy runtime 仍保留刻意的固定 viewport crop；只移除 Chess product 不必要的裁切規則。
+
 ## v1.7.8 — 2026-09-12
 
 Case Study Screenshot Layout Fix：修正 Event Check-in Case Study 的公開 Demo 截圖在桌面窄欄位被固定 intrinsic height 與 `object-fit: cover` 橫向裁切的問題。
