@@ -65,9 +65,10 @@ python3 scripts/check_csp.py
 # Enforce intrinsic image sizing, local hero assets and accessibility interaction rules.
 python3 scripts/check_performance.py
 
-# CV has one source of truth: tracked HTML -> generated PDF artifact.
+# CV source and generated QR live beside the temporary print HTML, so the browser can
+# resolve the QR image natively without a build-time HTML rewrite.
 qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
-python3 scripts/prepare_cv_html.py
+cp assets/Yu_CV_source.html /tmp/Yu_CV_print.html
 google-chrome --headless=new --no-sandbox --disable-gpu \
   --print-to-pdf=/tmp/Yu_CV.pdf --no-pdf-header-footer \
   file:///tmp/Yu_CV_print.html >/dev/null 2>&1
