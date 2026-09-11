@@ -2,8 +2,8 @@
   "site_url": "https://yoya9933.page",
   "selected_title": {"zh": "先看作品，再看技能。", "en": "Start with the work, then the stack."},
   "selected_heading": {
-    "zh": "五個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS，以及伺服器權威的即時多人遊戲。",
-    "en": "Five selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, and a server-authoritative real-time game."
+    "zh": "六個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS、即時多人遊戲，以及實際投入校內行政使用的加班管理系統。",
+    "en": "Six selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, a server-authoritative real-time game, and an overtime operations system used in university administration."
   },
   "additional_title": {"zh": "可靠的 AI 自動化，不只是一條生成鏈。", "en": "Reliable AI automation is more than a generation chain."},
   "additional_heading": {
@@ -148,6 +148,32 @@
         "decision": {"zh": "採用伺服器權威模型：每房一個 Durable Object，使用 Hibernation WebSocket、SQLite persistence、alarm timeout、玩家個別 snapshot 與 Web Crypto CSPRNG 洗牌。", "en": "Use a server-authoritative model with one Durable Object per room, Hibernation WebSockets, SQLite persistence, alarm-based turn timeouts, per-player snapshots and Web Crypto CSPRNG shuffling."},
         "evidence": {"zh": "目前已實作 2–6 位同桌、18 秒回合、進行中加入先觀戰、斷線重連、房主轉移、主池／邊池與退款結算；公開 Live Demo 僅使用虛擬籌碼。", "en": "Implemented behavior includes 2–6 players, 18-second turns, mid-hand observers, reconnects, host transfer, main/side pots and refunds; the public live demo uses virtual chips only."},
         "next": {"zh": "下一步是玩家可驗證的 commit/reveal 公平性、正式帳號與跨裝置身分恢復、觀眾模式，以及席位到期回收。", "en": "Next: player-verifiable commit/reveal fairness, real accounts with cross-device identity recovery, spectator mode and seat-expiry reclamation."}
+      }
+    },
+    {
+      "slug": "overtime-management", "section": "selected", "order": 6, "featured": false, "badge": "IN USE · NCKU CTLD",
+      "title": {"zh": "加班管理與行政彙整系統", "en": "Overtime Operations System"},
+      "card_description": {
+        "zh": "將加班申請、主管審核、角色權限與行政彙整整合成可操作流程，目前由國立成功大學教務處教學發展中心實際使用。",
+        "en": "An overtime submission, manager review, role-based access and administrative consolidation workflow currently used by NCKU’s Center for Teaching and Learning Development."
+      },
+      "tags": {"zh": ["成大教發中心使用", "React + Worker", "D1 + RBAC"], "en": ["Used by NCKU CTLD", "React + Worker", "D1 + RBAC"]},
+      "image": "overtime-management.webp", "image_alt": {"zh": "加班管理與行政彙整系統架構預覽", "en": "Overtime operations system architecture preview"},
+      "media": {"type": "svg_render", "source": "assets/projects/overtime-management.svg", "width": 1440, "height": 900, "quality": 86},
+      "case": {"zh": "/projects/overtime-management/", "en": "/en/projects/overtime-management/"},
+      "repo": "https://github.com/yoya9933/yoya9933.github.io/tree/overtime-management-system", "live": null,
+      "live_label": {"zh": "Live Site ↗", "en": "Live Site ↗"}, "schema_category": "BusinessApplication",
+      "case_facts": {
+        "role": {"zh": "行政流程系統開發", "en": "Administrative workflow system development"},
+        "scope": {"zh": "加班申請 · 主管審核 · 權限 · 行政彙整", "en": "Overtime requests · manager review · RBAC · reporting"},
+        "status": {"zh": "國立成功大學教務處教學發展中心實際使用", "en": "In use at NCKU Center for Teaching and Learning Development"},
+        "stack": "React · Vite · Cloudflare Workers · D1", "year": "2026"
+      },
+      "case_frame": {
+        "problem": {"zh": "校內加班資料若分散在訊息、表單與人工彙整流程中，容易增加主管審核、追蹤與行政整理成本。", "en": "When overtime data is scattered across messages, forms and manual consolidation, manager review, tracking and administrative reporting become harder to maintain."},
+        "decision": {"zh": "以 React 前端搭配 Cloudflare Worker API 與 D1，將申請、審核、角色權限與資料彙整放進同一個流程，並在後端驗證時段與重複申請。", "en": "Use a React frontend with a Cloudflare Worker API and D1 to keep submission, approval, role controls and reporting in one workflow, with server-side time and overlap validation."},
+        "evidence": {"zh": "系統目前由國立成功大學教務處教學發展中心實際使用；公開作品版只保留可檢視的程式與虛構資料，不公開正式人員資料、帳密、資料庫或 production 入口。", "en": "The system is currently used by NCKU’s Center for Teaching and Learning Development; the public portfolio snapshot exposes only reviewable code and synthetic data, not staff data, credentials, databases or the production entry point."},
+        "next": {"zh": "後續可再強化完整 audit trail、匯出格式與校方正式流程的整合；目前作品集不把這些列為已完成。", "en": "Future work could strengthen audit trails, export formats and integration with formal university workflows; the portfolio does not claim those as completed features."}
       }
     },
     {
