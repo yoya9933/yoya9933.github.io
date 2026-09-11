@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Overtime Operations System architecture</title>
+  <desc id="desc">A dark portfolio visual showing employee submission, manager review, role controls and Cloudflare D1 persistence.</desc>
+  <rect width="1440" height="900" rx="36" fill="#08111f"/>
+  <rect x="52" y="52" width="1336" height="796" rx="28" fill="#0d1a2b" stroke="#213a56" stroke-width="2"/>
+  <text x="96" y="132" fill="#8fb7ff" font-family="system-ui, sans-serif" font-size="28" font-weight="700">IN USE · NCKU CTLD</text>
+  <text x="96" y="205" fill="#f5f8ff" font-family="system-ui, sans-serif" font-size="54" font-weight="800">Overtime Operations System</text>
+  <text x="96" y="255" fill="#9fb0c5" font-family="system-ui, sans-serif" font-size="24">Submission · Manager review · RBAC · Administrative consolidation</text>
+
+  <g font-family="system-ui, sans-serif">
+    <rect x="96" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#2d6cdf" stroke-width="3"/>
+    <text x="126" y="410" fill="#8fb7ff" font-size="22" font-weight="700">01 · EMPLOYEE</text>
+    <text x="126" y="458" fill="#ffffff" font-size="30" font-weight="800">Overtime request</text>
+    <text x="126" y="500" fill="#a9b7c7" font-size="20">date · time · reason</text>
+
+    <rect x="410" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#44a37b" stroke-width="3"/>
+    <text x="440" y="410" fill="#8de4bb" font-size="22" font-weight="700">02 · MANAGER</text>
+    <text x="440" y="458" fill="#ffffff" font-size="30" font-weight="800">Review flow</text>
+    <text x="440" y="500" fill="#a9b7c7" font-size="20">approve · reject · log</text>
+
+    <rect x="724" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#d19b4c" stroke-width="3"/>
+    <text x="754" y="410" fill="#f5c874" font-size="22" font-weight="700">03 · ADMIN</text>
+    <text x="754" y="458" fill="#ffffff" font-size="30" font-weight="800">Role controls</text>
+    <text x="754" y="500" fill="#a9b7c7" font-size="20">staff · manager · secretary</text>
+
+    <rect x="1038" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#9b7be8" stroke-width="3"/>
+    <text x="1068" y="410" fill="#c6b5ff" font-size="22" font-weight="700">04 · DATA</text>
+    <text x="1068" y="458" fill="#ffffff" font-size="30" font-weight="800">D1 persistence</text>
+    <text x="1068" y="500" fill="#a9b7c7" font-size="20">requests · users · sessions</text>
+
+    <path d="M356 445 H398" stroke="#55718f" stroke-width="4" stroke-linecap="round"/>
+    <path d="M670 445 H712" stroke="#55718f" stroke-width="4" stroke-linecap="round"/>
+    <path d="M984 445 H1026" stroke="#55718f" stroke-width="4" stroke-linecap="round"/>
+
+    <rect x="96" y="620" width="1202" height="138" rx="22" fill="#0a1523" stroke="#203650" stroke-width="2"/>
+    <text x="128" y="672" fill="#8fb7ff" font-size="22" font-weight="700">STACK</text>
+    <text x="128" y="721" fill="#ffffff" font-size="28" font-weight="700">React + Vite</text>
+    <text x="390" y="721" fill="#ffffff" font-size="28" font-weight="700">Cloudflare Workers</text>
+    <text x="765" y="721" fill="#ffffff" font-size="28" font-weight="700">Cloudflare D1</text>
+    <text x="1032" y="721" fill="#ffffff" font-size="28" font-weight="700">Server-side validation</text>
+  </g>
+</svg>
