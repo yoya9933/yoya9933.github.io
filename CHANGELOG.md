@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.11 — 2026-09-12
+
+Unified Project Grid：將 Reliable AI Media Automation Pipeline 從獨立的 Additional System 區塊收回 Selected Work，讓它和其他作品使用同一套卡片、排序與導覽邏輯。
+
+- Selected Work 由 5 個擴充為 6 個專案；AI Media Automation Pipeline 改為第 6 個一般作品，不再使用整頁寬的特殊展示區塊。
+- 移除 `additional_title` / `additional_heading`、additional renderer、`#additional-work` 導覽與 placeholder，以及不再使用的 `secondary-project` CSS。
+- 中英文首頁、README、首頁 JSON-LD 與 CI 驗證都改由同一份 Selected Work 清單驅動。
+- 保留 AI Media Automation 的 Case Study、架構圖、GitHub 與既有能力邊界；不新增 JavaScript、dependency 或額外 layout abstraction。
+
 ## v1.7.10 — 2026-09-12
 
 Shareholder CMS Production Evidence：將股東紀念品 CMS 從一般商業網站描述更新為大倉代領實際營運中的業界系統，讓首頁與 Case Study 明確反映真實使用狀態。
@@ -234,7 +243,7 @@ Stability Patch：降低部署與品質檢查的偶發失敗，並移除外部�
 
 - 建立 Git tag 與 GitHub Release，讓正式版本固定對應到 Git commit。
 - 新增 `/changelog/` 網站更新紀錄頁，並由 `CHANGELOG.md` 自動產生。
-- GitHub Actions 在部署前驗證 `VERSION` / `CHANGELOG.md`，並自動建立缺少的 tag / release。
+- GitHub Actions 在部署前驗證 `VERSION` / `CHANGELOG.md`，並自動建立缺少的 Git tag / GitHub Release，再進入 Pages build 與部署。
 - `/version.json` 新增含時區的 build time 與 `production` / `ci` / `local` environment 資訊。
 - README 加入版本、Release & Deploy、Site Quality 與正式網站 Badge。
 - CSS / JavaScript 靜態資產加入以網站版本為基準的 cache-busting query。
