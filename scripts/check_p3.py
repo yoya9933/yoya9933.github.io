@@ -43,9 +43,11 @@ def main() -> int:
         ("index.html", home, "zh", PROFILE_IMAGE),
         ("en/index.html", en_home, "en", f"../{PROFILE_IMAGE}"),
     ):
-        for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact", "secondary-project"):
+        for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact"):
             if token not in text:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
+        if "additional-work" in text or "secondary-project" in text:
+            errors.append(f"retired standalone additional-work layout remains in {rel}")
         if "ncku-return-os" in text or "Credit Map" in text or "學分地圖" in text:
             errors.append(f"retired credit-map content remains in {rel}")
         for project in SELECTED:
@@ -53,10 +55,6 @@ def main() -> int:
                 errors.append(f"selected project {project['slug']!r} missing from {rel}")
             if project["title"][locale] not in text:
                 errors.append(f"manifest title for {project['slug']!r} missing from {rel}")
-        additional = [p for p in PROJECTS if p.get("section") == "additional"]
-        for project in additional:
-            if f'data-project="{project["slug"]}"' not in text:
-                errors.append(f"additional project {project['slug']!r} missing from {rel}")
         if DATA["selected_heading"][locale] not in text:
             errors.append(f"manifest-selected heading copy missing from {rel}")
         if f'src="{src}"' not in text:
