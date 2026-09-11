@@ -86,5 +86,6 @@ test ! -e _site/assets/Yu_CV_source.html
 test ! -e _site/projects/ncku-return-os
 test ! -e _site/en/projects/ncku-return-os
 python3 scripts/check_p3.py
+python3 scripts/check_site.py
 
-echo "Built privacy-reviewed, integrity-manifested site at $ROOT/_site"
+echo "Built and validated privacy-reviewed, integrity-manifested site at $ROOT/_site"
