@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.3 — 2026-09-11
+
+Profile Image Quality Hotfix：改用原始上傳照片重新輸出高品質本地 JPEG，移除上一版救援縮圖造成的明顯模糊。
+
+- `assets/profile.jpg` 直接由原始 428×592 照片重新輸出為高品質 JPEG，沿用既有圖片路徑、HTML、CSS 與 CSP。
+- 不新增圖片 loader、第三方服務、AI 放大流程或 dependency；瀏覽器仍直接顯示既有本地靜態資產。
+- 沿用 v1.7.2 的 JPEG 結構與最小尺寸 CI gate，避免損壞或尺寸不足的頭像再次通過部署。
+
 ## v1.7.2 — 2026-09-11
 
 Visual Hotfix：修復正式站實際截圖暴露的首頁頭像破圖與 AI Media Automation 流程圖裁切問題，並補上最小必要的回歸檢查。
