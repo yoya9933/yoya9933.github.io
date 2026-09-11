@@ -93,8 +93,7 @@
 }
 
 /* Generic case-study screenshots keep their intrinsic aspect ratio. Build hardening
-   adds width/height attributes for layout stability, so explicitly restore auto height
-   before the specialized runtime/product showcases apply their deliberate crops. */
+   adds width/height attributes for layout stability, so explicitly restore auto height. */
 .case-shot img {
   height: auto;
 }
@@ -197,8 +196,8 @@
   line-height: 1.65;
 }
 
-/* Chess product visual: keep the cinematic artwork, but frame it as part of the same
-   dark product system used throughout the case study instead of a floating oversized image. */
+/* Chess product visual: keep the cinematic artwork inside the product frame while
+   preserving the complete source image instead of cropping its brand content. */
 .case-section--product > div {
   min-width: 0;
 }
@@ -281,10 +280,10 @@
 .case-shot--product img {
   display: block;
   width: 100%;
-  height: clamp(390px, 47vw, 560px);
+  height: auto;
   max-height: none;
-  object-fit: cover;
-  object-position: center 48%;
+  object-fit: contain;
+  object-position: center;
   background: #0a1119;
 }
 
@@ -413,7 +412,6 @@
   }
 
   .case-shot--product img {
-    height: 300px;
-    object-position: center;
+    height: auto;
   }
 }
