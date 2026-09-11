@@ -24,9 +24,7 @@ Selected Work：
 - 活動報到與現場營運系統
 - 股東紀念品服務與 CMS 平台
 - Neon Arena｜即時多人德州撲克
-
-Additional System：
-
+- 加班管理與行政彙整系統
 - Reliable AI Media Automation Pipeline
 
 另提供中英文首頁、Case Study、Contact 與建置時產生的雙語 CV PDF。

@@ -23,7 +23,7 @@ def load_data() -> dict:
     if orders != list(range(1, len(selected) + 1)):
         raise RuntimeError(f"selected project order must be contiguous from 1; got {orders}")
 
-    for key in ("selected_title", "selected_heading", "additional_title", "additional_heading"):
+    for key in ("selected_title", "selected_heading"):
         if not all(data.get(key, {}).get(locale) for locale in ("zh", "en")):
             raise RuntimeError(f"missing bilingual homepage copy: {key}")
 
@@ -90,25 +90,6 @@ def render_selected_card(project: dict, locale: str) -> str:
     )
 
 
-def render_additional_card(project: dict, locale: str) -> str:
-    prefix = "../" if locale == "en" else ""
-    tags = "".join(f"<li>{escape(tag)}</li>" for tag in project["tags"][locale])
-    note = project.get("note", {}).get(locale)
-    note_html = f'<p class="case-meta-note">{escape(note)}</p>' if note else ""
-    return (
-        f'<article class="secondary-project" data-project="{escape(project["slug"], quote=True)}">'
-        f'<div class="secondary-project-media"><img src="{prefix}assets/projects/{escape(project["image"], quote=True)}" '
-        f'alt="{escape(project["image_alt"][locale], quote=True)}" loading="lazy" decoding="async"></div>'
-        '<div class="secondary-project-copy">'
-        f'<p class="eyebrow">{escape(project.get("eyebrow", ""))}</p>'
-        f'<h3>{escape(project["title"][locale])}</h3>'
-        f'<p>{escape(project["card_description"][locale])}</p>'
-        f'<ul class="tags">{tags}</ul>'
-        f'<div class="project-links">{render_links(project, locale)}</div>'
-        f'{note_html}</div></article>'
-    )
-
-
 def render_selected_section(data: dict, locale: str, selected: list[dict]) -> str:
     cards = "".join(render_selected_card(project, locale) for project in selected)
     return (
@@ -118,18 +99,6 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
         f'<p>{escape(data["selected_heading"][locale])}</p>'
         '</div></div>'
         f'<div class="projects-grid">{cards}</div>'
-        '</section>'
-    )
-
-
-def render_additional_section(data: dict, locale: str, project: dict) -> str:
-    return (
-        '<section class="section shell" id="additional-work">'
-        '<div class="section-heading"><p class="section-index">03 / ADDITIONAL SYSTEM</p><div>'
-        f'<h2>{escape(data["additional_title"][locale])}</h2>'
-        f'<p>{escape(data["additional_heading"][locale])}</p>'
-        '</div></div>'
-        f'{render_additional_card(project, locale)}'
         '</section>'
     )
 
@@ -196,13 +165,8 @@ def replace_home_schema(text: str, schema: str) -> str:
 
 def render_home(path: Path, data: dict, locale: str) -> None:
     selected = sorted((p for p in data["projects"] if p.get("section") == "selected"), key=lambda p: p["order"])
-    additional = sorted((p for p in data["projects"] if p.get("section") == "additional"), key=lambda p: p["order"])
-    if len(additional) != 1:
-        raise RuntimeError("homepage expects exactly one additional project")
-
     text = path.read_text(encoding="utf-8")
     text = replace_section(text, "projects", render_selected_section(data, locale, selected))
-    text = replace_section(text, "additional-work", render_additional_section(data, locale, additional[0]))
     text = replace_home_schema(text, home_schema(data, locale, selected))
     path.write_text(text, encoding="utf-8")
 
