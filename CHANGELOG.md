@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.10 — 2026-09-12
+
+Overtime Operations Case Study：將加班管理與行政彙整系統加入第六個 Selected Work，補上實際校內使用證據與雙語 Case Study。
+
+- 首頁 Selected Work 由五個擴充為六個，新增「加班管理與行政彙整系統 / Overtime Operations System」。
+- 明確標示系統目前由國立成功大學教務處教學發展中心實際使用，並區分「實際內部使用」與「成大官方加班系統／校方背書」兩種不同主張。
+- 新增中英文 Case Study，整理加班申請、主管審核、角色權限、D1 persistence、時段與重複申請後端驗證等已完成範圍。
+- Production 帳號、資料庫、正式人員資料與營運入口不公開；作品頁只連隱私清理後的公開 source snapshot。
+- 使用既有 `svg_render` media pipeline 產生首頁與 OG 預覽圖，不新增 JavaScript、第三方服務或 build dependency。
+
 ## v1.7.9 — 2026-09-12
 
 Chess Product Image Layout Fix：修正楚河棋局 Case Study 主視覺在產品展示框內因固定高度與 `object-fit: cover` 被左右裁切，導致「楚河棋局」文字與畫面內容超出可視範圍。
@@ -65,7 +75,7 @@ Profile Image Quality Hotfix：改用原始上傳照片重新輸出高品質本�
 
 Visual Hotfix：修復正式站實際截圖暴露的首頁頭像破圖與 AI Media Automation 流程圖裁切問題，並補上最小必要的回歸檢查。
 
-- 將損壞的 `assets/profile.jpg` 重新編碼為可正常解碼的本地 JPEG，沿用既有圖片路徑、HTML 與 CSP，不重新引入第三方頭像依賴。
+- 將損壞的 `assets/profile.jpg` 重新編碼為可正常解碼的本地 JPEG，沿用既有圖片路徑、HTML、CSS 與 CSP，不重新引入第三方頭像依賴。
 - Additional System 的預覽圖片由 `object-fit: cover` 改為 `contain` 並置中，讓 AI Media Automation 的完整流程圖在桌面與手機版都不再被左右裁切。
 - `check_performance.py` 新增 JPEG 結構與尺寸檢查，CI 會拒絕缺少 SOI / EOI、無有效 SOF 尺寸或過小的 Hero 頭像，避免「檔案存在但瀏覽器無法顯示」再次通過部署。
 - 不新增套件、圖片 loader 或額外 render layer；修正仍沿用既有 build pipeline、local asset 與 performance gate。
