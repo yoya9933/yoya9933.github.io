@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.8 — 2026-09-12
+
+Case Study Screenshot Layout Fix：修正 Event Check-in Case Study 的公開 Demo 截圖在桌面窄欄位被固定 intrinsic height 與 `object-fit: cover` 橫向裁切的問題。
+
+- 沿用既有 Case Study 圖片與 build-time intrinsic `width` / `height`，不重新截圖、不新增 JavaScript 或 dependency。
+- 共用 `.case-shot img` 明確使用 `height: auto`，讓一般 Case Study 截圖維持原始比例並完整顯示左右內容。
+- Buoy runtime 與 Chess product 既有專用 showcase 仍保留各自明確的固定高度與裁切規則，不受這次 generic 修正影響。
+
 ## v1.7.7 — 2026-09-12
 
 EventOps Evidence & CV Cleanup：補上活動報到系統實際投入 2026 臺灣綜合大學系統新進教師專業知能研習營的使用證據，並同步更新中英履歷與精簡 CV build。

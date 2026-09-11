@@ -92,6 +92,13 @@
   line-height: 1.65;
 }
 
+/* Generic case-study screenshots keep their intrinsic aspect ratio. Build hardening
+   adds width/height attributes for layout stability, so explicitly restore auto height
+   before the specialized runtime/product showcases apply their deliberate crops. */
+.case-shot img {
+  height: auto;
+}
+
 /* Buoy runtime capture: present the light Streamlit UI as a deliberate product
    window instead of letting a large white screenshot dominate the dark case study. */
 .case-section--runtime > div {
