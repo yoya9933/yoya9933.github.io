@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.5 — 2026-09-11
+
+Profile Position Patch：將首頁 Hero 的大頭照區塊往下移，改善照片在右側卡片內過度靠上的視覺重心。
+
+- 沿用既有 `assets/profile.jpg`、HTML 與圖片品質，不重新裁切或壓縮照片。
+- 直接在既有 CSS 加上最小的 `margin-top` 位移，不新增 JavaScript、dependency 或圖片處理流程。
+- CSP、accessibility、Lighthouse 與既有圖片驗證維持不變。
+
 ## v1.7.4 — 2026-09-11
 
 Brand Rename：將 Portfolio 對外品牌名稱統一改為 `Yu`，包含網站、SEO、Case Study、Contact、Release 文案與雙語履歷。
