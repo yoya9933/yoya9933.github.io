@@ -2,13 +2,8 @@
   "site_url": "https://yoya9933.page",
   "selected_title": {"zh": "先看作品，再看技能。", "en": "Start with the work, then the stack."},
   "selected_heading": {
-    "zh": "五個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS，以及伺服器權威的即時多人遊戲。",
-    "en": "Five selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, and a server-authoritative real-time game."
-  },
-  "additional_title": {"zh": "可靠的 AI 自動化，不只是一條生成鏈。", "en": "Reliable AI automation is more than a generation chain."},
-  "additional_heading": {
-    "zh": "將來源、去重、人工審核模式、失敗恢復、發布狀態與通知納入同一條營運流程。",
-    "en": "Source ingestion, deduplication, review controls, recovery, publish state and notifications are treated as one operational workflow."
+    "zh": "六個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS、即時多人遊戲，以及 AI 自動化。",
+    "en": "Six selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, real-time multiplayer, and AI automation."
   },
   "projects": [
     {
@@ -151,8 +146,7 @@
       }
     },
     {
-      "slug": "ai-media-pipeline", "section": "additional", "order": 1, "featured": false, "badge": null,
-      "eyebrow": "AI AUTOMATION · RELIABILITY",
+      "slug": "ai-media-pipeline", "section": "selected", "order": 6, "featured": false, "badge": "AI AUTOMATION",
       "title": {"zh": "Reliable AI Media Automation Pipeline", "en": "Reliable AI Media Automation Pipeline"},
       "card_description": {"zh": "以 MoneyPrinterTurbo 為生成核心，新增四條內容線、RSS 選題與去重、LLM／本機評分 fallback、pending upload 恢復、多平台介面、job 紀錄、日報與通知。", "en": "Built around MoneyPrinterTurbo with four editorial profiles, RSS selection and deduplication, LLM/local scoring fallback, pending-upload recovery, multi-platform adapters, job records, daily reports and alerts."},
       "tags": {"zh": ["4 條內容線", "3 個發布介面", "Retry + Audit Trail"], "en": ["4 content profiles", "3 publishing adapters", "Retry + audit trail"]},
@@ -161,7 +155,6 @@
       "case": {"zh": "/projects/ai-media-pipeline/", "en": "/en/projects/ai-media-pipeline/"},
       "repo": "https://github.com/yoya9933/autovideos", "live": null,
       "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"},
-      "note": {"zh": "Portfolio 明確區分上游框架與自行新增的自動化／營運層，不把既有生成引擎宣稱為從零實作。", "en": "The portfolio separates the upstream generation framework from the automation and operations layer added around it."},
       "schema_category": "MultimediaApplication",
       "case_facts": {
         "role": {"zh": "自動化與可靠性 orchestration", "en": "Automation & reliability orchestration"},
