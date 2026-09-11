@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.7 — 2026-09-12
+
+EventOps Evidence & CV Cleanup：補上活動報到系統實際投入 2026 臺灣綜合大學系統新進教師專業知能研習營的使用證據，並同步更新中英履歷與精簡 CV build。
+
+- Event Check-in Case Study 明確限定本人負責後端實作，補上 2026-08-28 成大活動的官方公開來源，正式 repository / database 仍維持 private，公開 Demo 僅使用虛構資料。
+- 中英雙語履歷以 Event Check-in 實際活動後端取代已退役的 NCKU Return OS，並將中文 alias 統一為 `Yu`。
+- `assets/Yu_CV_source.html` 直接保存最終正確內容，不再由 build-time regex 替換專案。
+- CV QR 改用瀏覽器原生相對路徑解析 `/tmp/portfolio-qr.png`；刪除兩份內嵌 base64 與 `scripts/prepare_cv_html.py`。
+- `scripts/build_site.sh` 成為網站驗證單一入口，GitHub Actions 不再重複執行同一批 checker；CSP、privacy、accessibility、Lighthouse、artifact integrity、release identity 與 production smoke test 全部保留。
+
 ## v1.7.6 — 2026-09-11
 
 Profile Crop Fix：重新裁切首頁 Hero 個人照，保留頭頂上方留白，避免圓角方框切到頭髮。

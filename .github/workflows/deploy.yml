@@ -87,14 +87,8 @@ jobs:
           sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode
           google-chrome --version
 
-      - name: Build allowlisted site
+      - name: Build and validate allowlisted site
         run: bash scripts/build_site.sh
-
-      - name: Verify deployment artifact
-        run: |
-          python3 scripts/check_site.py
-          python3 scripts/check_build_manifest.py
-          python3 scripts/check_observability.py
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v6
