@@ -21,25 +21,15 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          version = Path('VERSION')
-          version.write_text('1.7.6\n')
+          Path('VERSION').write_text('1.7.6\n')
           changelog = Path('CHANGELOG.md')
           text = changelog.read_text()
           marker = '# Changelog\n\n網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。\n\n'
-          entry = '''## v1.7.6 — 2026-09-11
-
-Profile Crop Fix：重新裁切首頁 Hero 個人照，保留頭頂上方留白，避免圓角方框切到頭髮。
-
-- 直接替換既有 `assets/profile.jpg`，不增加 CSS hack、JavaScript、圖片 loader 或 dependency。
-- 維持 320×320 本地 JPEG、既有 CSP 與圖片品質驗證。
-- 這次修正的是圖片內容裁切，不再靠移動整個頭像區塊處理。
-
-'''
+          entry = '## v1.7.6 — 2026-09-11\n\nProfile Crop Fix：重新裁切首頁 Hero 個人照，保留頭頂上方留白，避免圓角方框切到頭髮。\n\n- 直接替換既有 `assets/profile.jpg`，不增加 CSS hack、JavaScript、圖片 loader 或 dependency。\n- 維持 320×320 本地 JPEG、既有 CSP 與圖片品質驗證。\n- 這次修正的是圖片內容裁切，不再靠移動整個頭像區塊處理。\n\n'
           if '## v1.7.6 — 2026-09-11' not in text:
               if marker not in text:
                   raise SystemExit('changelog marker missing')
-              text = text.replace(marker, marker + entry, 1)
-              changelog.write_text(text)
+              changelog.write_text(text.replace(marker, marker + entry, 1))
           PY
       - name: Commit final release files and remove temporary workflow
         run: |
