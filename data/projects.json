@@ -84,11 +84,11 @@
       }
     },
     {
-      "slug": "shareholder-cms", "section": "selected", "order": 4, "featured": false, "badge": "BUSINESS CMS",
+      "slug": "shareholder-cms", "section": "selected", "order": 4, "featured": false, "badge": "IN PRODUCTION",
       "title": {"zh": "股東紀念品服務與 CMS 平台", "en": "Shareholder Gift Service & CMS Platform"},
-      "card_description": {"zh": "整合公開服務網站、商品與公告後台、Supabase 認證、PostgreSQL 與雲端圖片儲存的商業網站。", "en": "A maintainable service website with product and announcement CMS, Supabase authentication, PostgreSQL and cloud image storage."},
-      "tags": {"zh": ["Vue 3 / TypeScript", "Supabase Auth + RLS", "CMS + Storage"], "en": ["Vue 3 / TypeScript", "Supabase Auth + RLS", "CMS + Storage"]},
-      "image": "shareholder-cms.webp", "image_alt": {"zh": "股東紀念品服務網站公開首頁預覽", "en": "Shareholder Gift Service public homepage preview"},
+      "card_description": {"zh": "目前由大倉代領實際營運使用，整合公開服務網站、商品與公告 CMS、Supabase 認證、PostgreSQL 與雲端圖片儲存。", "en": "Currently used in production by 大倉代領, combining the public service site, product and announcement CMS, Supabase authentication, PostgreSQL and cloud image storage."},
+      "tags": {"zh": ["業界使用中 · 大倉代領", "Vue 3 / TypeScript", "Supabase CMS"], "en": ["In production · 大倉代領", "Vue 3 / TypeScript", "Supabase CMS"]},
+      "image": "shareholder-cms.webp", "image_alt": {"zh": "大倉代領股東紀念品服務網站公開首頁預覽", "en": "大倉代領 shareholder gift service public homepage preview"},
       "media": {
         "type": "public_site_capture", "url": "https://sharegift.tw/", "width": 1440, "height": 900,
         "virtual_time_budget": 6000, "timeout_seconds": 35, "quality": 84,
@@ -96,8 +96,8 @@
       },
       "case_visual": {
         "asset": "shareholder-cms.webp", "og_asset": "shareholder-cms.png",
-        "alt": {"zh": "股東紀念品服務網站公開首頁預覽", "en": "Shareholder Gift Service public homepage preview"},
-        "caption": {"zh": "Portfolio 優先擷取 sharegift.tw 的公開首頁作為作品預覽；若公開站暫時無法擷取，才回退至已審核的架構圖。建置流程不會存取需要登入的管理後台。", "en": "The portfolio prefers a build-time capture of the public sharegift.tw homepage; if the public site cannot be captured, it falls back to the reviewed architecture visual. The build never accesses authenticated admin pages."}
+        "alt": {"zh": "大倉代領股東紀念品服務網站公開首頁預覽", "en": "大倉代領 shareholder gift service public homepage preview"},
+        "caption": {"zh": "Portfolio 優先擷取大倉代領目前營運中的 sharegift.tw 公開首頁作為作品預覽；若公開站暫時無法擷取，才回退至已審核的架構圖。建置流程不會存取需要登入的管理後台。", "en": "The portfolio prefers a build-time capture of the production site sharegift.tw currently operated by 大倉代領; if the public site cannot be captured, it falls back to the reviewed architecture visual. The build never accesses authenticated admin pages."}
       },
       "case": {"zh": "/projects/shareholder-cms/", "en": "/en/projects/shareholder-cms/"},
       "repo": "https://github.com/yoya9933/-------_202601221138_XY_Propose_Minutes", "live": "https://sharegift.tw/",
@@ -105,13 +105,13 @@
       "case_facts": {
         "role": {"zh": "前端與 CMS 整合", "en": "Frontend & CMS integration"},
         "scope": {"zh": "公開網站 · CMS · Auth / RLS · Storage", "en": "Public site · CMS · Auth / RLS · Storage"},
-        "status": {"zh": "Live service site", "en": "Live service site"},
+        "status": {"zh": "業界使用中 · 大倉代領", "en": "In production · 大倉代領"},
         "stack": "Vue 3 · TypeScript · Supabase", "year": "2026"
       },
       "case_frame": {
         "problem": {"zh": "商業服務網站的商品與公告若每次都靠修改程式發布，內容維護成本會快速增加。", "en": "A service website becomes costly to maintain when every product or announcement update requires a code change and redeploy."},
         "decision": {"zh": "用 Vue 3 / TypeScript 建公開站與 CMS，Supabase 提供 Email Auth、PostgreSQL、Storage 與 RLS 資料存取控制。", "en": "Use Vue 3 / TypeScript for the public site and CMS, with Supabase Email Auth, PostgreSQL, Storage and RLS-backed data access."},
-        "evidence": {"zh": "目前可核對商品 / 公告 2 條主要 CMS 流程、Auth / Database / Storage 3 種 Supabase 能力、9 種 Schema.org type 與 GitHub Actions CI/CD。", "en": "Verified scope includes 2 primary CMS flows, 3 Supabase capabilities (Auth/Database/Storage), 9 Schema.org types and GitHub Actions CI/CD."},
+        "evidence": {"zh": "公開站 sharegift.tw 目前以「大倉代領股東紀念品」品牌實際營運；Repository 可核對商品 / 公告 2 條主要 CMS 流程、Auth / Database / Storage 3 種 Supabase 能力、9 種 Schema.org type 與 GitHub Actions CI/CD。", "en": "The public site sharegift.tw is live under the 大倉代領 shareholder-gift service brand; the repository verifies 2 primary CMS flows, 3 Supabase capabilities (Auth/Database/Storage), 9 Schema.org types and GitHub Actions CI/CD."},
         "next": {"zh": "下一步可強化後台操作稽核、內容版本紀錄與更完整的管理端流程；目前 Portfolio 不宣稱這些已存在。", "en": "Next improvements could add admin auditability, content revision history and richer management workflows; the portfolio does not claim these exist today."}
       }
     },

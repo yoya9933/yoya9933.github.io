@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.10 — 2026-09-12
+
+Shareholder CMS Production Evidence：將股東紀念品 CMS 從一般商業網站描述更新為大倉代領實際營運中的業界系統，讓首頁與 Case Study 明確反映真實使用狀態。
+
+- `data/projects.json` 將第四個 Selected Work 標示為 `IN PRODUCTION`，首頁中英文同步顯示「業界使用中 · 大倉代領」。
+- Case Study Status / Evidence 明確標示 `sharegift.tw` 由大倉代領實際營運，同時保留 repository 可核對的 CMS、Auth、Database、Storage 與 CI/CD 技術範圍。
+- 不新增資料層、元件、dependency 或一次性 render patch；沿用現有 project manifest、renderer 與公開網站擷取流程。
+
 ## v1.7.9 — 2026-09-12
 
 Chess Product Image Layout Fix：修正楚河棋局 Case Study 主視覺在產品展示框內因固定高度與 `object-fit: cover` 被左右裁切，導致「楚河棋局」文字與畫面內容超出可視範圍。
