@@ -56,11 +56,11 @@ def canonical(text: str) -> str | None:
 
 def title(text: str) -> str:
     match = re.search(r'<title>(.*?)</title>', text, re.I | re.S)
-    return re.sub(r'\s+', ' ', match.group(1)).strip() if match else "Yoya Portfolio"
+    return re.sub(r'\s+', ' ', match.group(1)).strip() if match else "Yu Portfolio"
 
 
 def description(text: str) -> str:
-    return attr(text, "description") or "Engineering, data and AI portfolio by Yoya."
+    return attr(text, "description") or "Engineering, data and AI portfolio by Yu."
 
 
 def add_before_head_end(text: str, fragment: str) -> str:
@@ -139,7 +139,7 @@ def project_schema(rel: str, text: str, url: str) -> str | None:
         "url": url,
         "description": description(text),
         "inLanguage": lang,
-        "author": {"@type": "Person", "name": "Yoya", "url": "https://yoya9933.page/"},
+        "author": {"@type": "Person", "name": "Yu", "url": "https://yoya9933.page/"},
     }
     if project.get("repo"):
         work["codeRepository"] = project["repo"]

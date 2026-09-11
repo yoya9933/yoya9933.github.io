@@ -59,14 +59,14 @@ jobs:
           if [ -n "$tag_commit" ]; then
             gh release create "$tag" \
               --repo "$GITHUB_REPOSITORY" \
-              --title "Yoya Portfolio $tag" \
+              --title "Yu Portfolio $tag" \
               --notes-file release-notes.md \
               --latest
           else
             gh release create "$tag" \
               --repo "$GITHUB_REPOSITORY" \
               --target "$GITHUB_SHA" \
-              --title "Yoya Portfolio $tag" \
+              --title "Yu Portfolio $tag" \
               --notes-file release-notes.md \
               --latest
           fi

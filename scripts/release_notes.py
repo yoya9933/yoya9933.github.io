@@ -23,6 +23,6 @@ body = match.group("body").strip()
 if not body:
     raise SystemExit(f"CHANGELOG.md section for v{VERSION} is empty")
 
-print(f"## Yoya Portfolio v{VERSION}\n")
+print(f"## Yu Portfolio v{VERSION}\n")
 print(body)
 print(f"\nWebsite: https://yoya9933.page/\nChangelog: https://yoya9933.page/changelog/")

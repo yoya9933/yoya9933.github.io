@@ -17,7 +17,7 @@ DELAY = int(os.environ.get("SMOKE_DELAY_SECONDS", "5"))
 def get(path: str, *, cache_key: str) -> tuple[int, bytes, str]:
     sep = "&" if "?" in path else "?"
     url = f"{BASE_URL}{path}{sep}smoke={cache_key}"
-    request = Request(url, headers={"User-Agent": "Yoya-Portfolio-Deployment-Smoke/1.0", "Cache-Control": "no-cache"})
+    request = Request(url, headers={"User-Agent": "Yu-Portfolio-Deployment-Smoke/1.0", "Cache-Control": "no-cache"})
     with urlopen(request, timeout=15) as response:
         return response.status, response.read(), response.headers.get("Content-Type", "")
 

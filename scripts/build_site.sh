@@ -69,11 +69,11 @@ python3 scripts/check_performance.py
 qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
 python3 scripts/prepare_cv_html.py
 google-chrome --headless=new --no-sandbox --disable-gpu \
-  --print-to-pdf=/tmp/Yoya_CV.pdf --no-pdf-header-footer \
-  file:///tmp/Yoya_CV_print.html >/dev/null 2>&1
+  --print-to-pdf=/tmp/Yu_CV.pdf --no-pdf-header-footer \
+  file:///tmp/Yu_CV_print.html >/dev/null 2>&1
 gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
   -dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages=true -dCompressFonts=true \
-  -sOutputFile=_site/assets/Yoya_CV.pdf /tmp/Yoya_CV.pdf
+  -sOutputFile=_site/assets/Yu_CV.pdf /tmp/Yu_CV.pdf
 
 # Finalize an integrity manifest only after every public artifact, including the CV,
 # exists. No site files may be mutated after this point.
@@ -82,7 +82,7 @@ python3 scripts/check_build_manifest.py
 python3 scripts/check_observability.py
 
 test ! -e _site/dist
-test ! -e _site/assets/Yoya_CV_source.html
+test ! -e _site/assets/Yu_CV_source.html
 test ! -e _site/projects/ncku-return-os
 test ! -e _site/en/projects/ncku-return-os
 python3 scripts/check_p3.py
