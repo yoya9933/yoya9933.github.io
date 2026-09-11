@@ -1,4 +1,9 @@
-/target
+node_modules/
 dist/
-_site/
-lhci_reports/
+.dev.vars
+.env
+.env.*
+!.env.example
+!.env.demo
+.wrangler/
+.DS_Store

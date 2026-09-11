@@ -1,107 +1,92 @@
-# Yu Portfolio
+# Overtime Operations System｜加班管理系統
 
-[![Version](https://img.shields.io/github/v/release/yoya9933/yoya9933.github.io?label=version)](https://github.com/yoya9933/yoya9933.github.io/releases/latest)
-[![Release and Deploy](https://github.com/yoya9933/yoya9933.github.io/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/yoya9933/yoya9933.github.io/actions/workflows/deploy.yml)
-[![Site Quality](https://github.com/yoya9933/yoya9933.github.io/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/yoya9933/yoya9933.github.io/actions/workflows/quality.yml)
-[![Website](https://img.shields.io/badge/website-yoya9933.page-5eead4)](https://yoya9933.page/)
+以校內行政流程為背景的加班資料整理、主管審核與行政彙整工具。
 
-個人作品集網站，正式網址為 `https://yoya9933.page/`。網站採純靜態 HTML / CSS / JavaScript，並以 GitHub Actions 建立經過 allowlist 的 `_site` 部署產物。
+> **實際使用**：本系統目前由 **國立成功大學教務處教學發展中心** 內部使用，協助加班資料整理、主管審核與行政彙整。正式加班申請、時數認定與核銷仍以學校正式系統與行政程序為準。
+>
+> **Real-world use**: This system is currently used internally by the **Center for Teaching and Learning Development, Office of Academic Affairs, National Cheng Kung University (NCKU)** to assist with overtime data collection, manager review, and administrative consolidation. Official overtime recognition and reimbursement remain subject to NCKU's formal systems and procedures.
 
-**Current website version:** [`VERSION`](./VERSION)
+官方單位資訊：<https://ctld-acad.ncku.edu.tw/index.php>
 
-- 版本單一來源：[`VERSION`](./VERSION)
-- 版本紀錄：[`CHANGELOG.md`](./CHANGELOG.md)／[網站版 Changelog](https://yoya9933.page/changelog/)
-- GitHub 正式版本：[`Releases`](https://github.com/yoya9933/yoya9933.github.io/releases)
-- 正式站機器可讀資訊：`https://yoya9933.page/version.json`
-- 網頁 Footer 會顯示版本號與實際部署的 Git commit short SHA。
+## 我負責的內容
 
-## 代表內容
+- 設計並實作加班申請、審核、角色權限與行政彙整流程。
+- 建立 Cloudflare Worker API 與 D1 資料模型。
+- 實作首次登入改密碼、PBKDF2-SHA256 密碼雜湊、雜湊 session token 與 HttpOnly cookie。
+- 在後端驗證 30 分鐘時段、最早加班時間、申請時數與重疊時段，避免只依賴前端檢查。
+- 將同仁、主管、秘書與管理者權限分開，敏感查詢與角色異動在 API 再做授權檢查。
 
-Selected Work：
+## 核心功能
 
-- 浮標資料分析與航道風險評估平台
-- 楚河棋局｜線上中國象棋
-- 活動報到與現場營運系統
-- 股東紀念品服務與 CMS 平台
-- Neon Arena｜即時多人德州撲克
+- 學校 Email 登入與首次登入強制改密碼。
+- 同仁提出加班申請並查看自己的紀錄。
+- 主管核准／駁回並保留審核紀錄。
+- 秘書查看行政彙整與資料檢核畫面。
+- 管理者調整使用者角色。
+- D1 持久化加班申請、帳號、session 與 approval log。
 
-Additional System：
+## 技術架構
 
-- Reliable AI Media Automation Pipeline
+| Layer | Technology |
+| --- | --- |
+| Frontend | React 19 + Vite |
+| UI | Phosphor Icons + Recharts |
+| API / Runtime | Cloudflare Workers |
+| Database | Cloudflare D1 / SQLite |
+| Authentication | PBKDF2-SHA256 + HttpOnly session cookie |
 
-另提供中英文首頁、Case Study、Contact 與建置時產生的雙語 CV PDF。
+## 公開版與 Production 的界線
 
-活動報到的正式系統與資料庫維持 private。此 repository 只發布以虛構資料製作、無持久化寫入權限的公開 Demo。
+這個 branch 是從實際系統整理出的 **sanitized portfolio snapshot**，不是 production repository。為保護實際使用者與部署環境：
 
-## 版本管理
+- 不包含任何教發中心同仁姓名、Email、加班事由或正式資料庫內容。
+- 不包含 production D1 ID、Cloudflare account / project ID、密碼、token 或其他 secret。
+- 畫面中的示範資料全部使用明確的測試名稱。
+- 公開版移除「API 失敗時假裝已儲存」的 fallback；寫入失敗會明確顯示資料未儲存。
+- 公開版登入預設採 fail-closed allowlist 設計，部署者需設定允許的 Email 或 Email domain；管理者帳號也需由環境設定明確指定。
 
-網站版本採 Semantic Versioning：
+因此，這個 repository 可以用來檢視我的程式設計與系統架構，但無法從公開程式碼取得或進入教發中心的 production 環境。
 
-```text
-MAJOR.MINOR.PATCH
+## 本機查看 UI
+
+```bash
+npm install
+npm run dev:demo
 ```
 
-發布新版本時修改根目錄 `VERSION`，並同步在 `CHANGELOG.md` 新增相同版本的說明。Pull request 會先驗證兩者一致；合併到 `main` 後，Release workflow 會自動建立尚未存在的 Git tag / GitHub Release，再進入 Pages build 與部署。
+`dev:demo` 使用純前端 synthetic data，不連 production API 或 D1。
 
-Build 會自動：
+## Production-like 設定
 
-- 將版本寫入所有 HTML 的 `application-version` metadata
-- 在中英文首頁 Footer 顯示 `v版本號 · commit`
-- 由 `CHANGELOG.md` 產生 `/changelog/`
-- 由 project manifest 產生 `sitemap.xml`
-- 產生 `/version.json`，包含版本、commit、build time 與 environment
-- 將 commit 連回該次 GitHub 原始碼
+Worker 版本使用下列環境變數；**請只放在部署平台 secret / environment，不要 commit 真實值**：
 
-## 結構
+```text
+INITIAL_PASSWORD=replace-me
+ALLOWED_EMAILS=user1@example.edu.tw,user2@example.edu.tw
+ALLOWED_EMAIL_DOMAINS=example.edu.tw
+ADMIN_EMAILS=admin@example.edu.tw
+```
+
+登入 allowlist 的判斷順序：若有 `ALLOWED_EMAILS` 則使用精確 Email 名單；否則使用 `ALLOWED_EMAIL_DOMAINS`。兩者皆未設定時拒絕登入，避免部署失誤造成公開註冊。
+
+## Repository layout
 
 ```text
 .
-├── VERSION
-├── CHANGELOG.md
-├── data/projects.json
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── styles.css
+├── worker/
+│   └── index.js
+├── db/
+│   └── schema.ts
+├── migrations/
+│   └── 0000_overtime_core.sql
 ├── index.html
-├── en/
-├── projects/
-├── demos/event-checkin/
-├── contact/
-├── assets/
-├── scripts/
-├── .github/workflows/
-├── robots.txt
-└── CNAME
+└── package.json
 ```
 
-## 本機建置
+## Scope note
 
-建置腳本需要 Chromium、`librsvg2-bin`、WebP、Ghostscript、Noto CJK 字型與 `qrencode`：
-
-```bash
-bash scripts/build_site.sh
-```
-
-輸出位置：
-
-```text
-_site/
-```
-
-部署腳本只會複製明確允許的公開檔案，不會把 repository metadata、CV 原始 HTML、淘汰的專案頁面或 private event data 放入 Pages artifact。
-
-## 驗證
-
-```bash
-python3 scripts/check_site.py
-python3 scripts/check_p3.py
-```
-
-Pull request 會執行 Site Quality workflow，包括：
-
-- VERSION / CHANGELOG release metadata validation
-- allowlisted production build
-- internal link、SEO、robots 與 stale-content 檢查
-- HTML validation
-- Lighthouse CI
-
-## 部署
-
-Push / merge 到 `main` 後，`.github/workflows/deploy.yml` 會依序執行版本驗證、必要的 Git tag / GitHub Release 建立、`_site` 建置與驗證，最後部署到 GitHub Pages。
+這是我開發並投入實際行政使用的工具；它不是「國立成功大學官方加班系統」，也不代表校方對此公開 repository 的背書或認證。公開 repository 只用來展示工程實作與作品集證據。
