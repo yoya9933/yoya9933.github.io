@@ -19,19 +19,19 @@ jobs:
       - name: Rename public brand and CV
         run: |
           set -euo pipefail
-          git grep -Il -z 'Yoya' | xargs -0 sed -i 's/Yoya/Yu/g'
+          git grep -Il -z 'Yoya' -- ':!.github/workflows/*' | xargs -0 sed -i 's/Yoya/Yu/g'
           git mv assets/Yoya_CV_source.html assets/Yu_CV_source.html
           printf '1.7.4\n' > VERSION
           section="$(mktemp)"
           printf '%s\n' '## v1.7.4 — 2026-09-11' '' 'Brand Rename：將 Portfolio 對外品牌名稱統一改為 `Yu`，包含網站、SEO、Case Study、Contact、Release 文案與雙語履歷。' '' '- 所有對外顯示的舊品牌名稱已改為 `Yu`，中英文頁面與 metadata 同步。' '- 履歷 alias 改為 `Yu`，CV source / build output 改名為 `Yu_CV`，網站下載連結同步更新。' '- GitHub 帳號 `yoya9933` 與正式網域 `yoya9933.page` 保持不變，因為它們是實際可用的技術識別與 URL。' '- 不新增 dependency、redirect layer 或 alias abstraction；直接修改既有 source 與 build 路徑。' '' > "$section"
           sed -i "4r $section" CHANGELOG.md
-          rm "$section" .github/workflows/rename-brand.yml
-          if git grep -n 'Yoya'; then
-            echo 'Old brand remains' >&2
+          rm "$section"
+          if git grep -n 'Yoya' -- ':!.github/workflows/*'; then
+            echo 'Old brand remains outside workflows' >&2
             exit 1
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
+          git add -A ':!.github/workflows/*'
           git commit -m 'Rename portfolio brand to Yu'
           git push origin HEAD:ponytail/rename-yoya-to-yu
