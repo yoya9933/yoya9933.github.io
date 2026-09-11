@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.6 — 2026-09-11
+
+Profile Crop Fix：重新裁切首頁 Hero 個人照，保留頭頂上方留白，避免圓角方框切到頭髮。
+
+- 直接替換既有 `assets/profile.jpg`，不增加 CSS hack、JavaScript、圖片 loader 或 dependency。
+- 維持 320×320 本地 JPEG、既有 CSP 與圖片品質驗證。
+- 這次修正的是圖片內容裁切，不再靠移動整個頭像區塊處理。
+
 ## v1.7.5 — 2026-09-11
 
 Profile Position Patch：將首頁 Hero 的大頭照區塊往下移，改善照片在右側卡片內過度靠上的視覺重心。
