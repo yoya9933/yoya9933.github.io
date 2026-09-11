@@ -1,0 +1,32 @@
+name: Materialize profile asset
+
+on:
+  push:
+    branches:
+      - ponytail/profile-hq
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ponytail/profile-hq
+          fetch-depth: 0
+      - name: Decode verified profile image
+        run: |
+          cat tmp/profile_b64_*.txt | base64 -d > assets/profile.jpg
+          test "$(git hash-object assets/profile.jpg)" = "9ae777e416ac3f0970b57c09a1e1a3602405067e"
+      - name: Commit exact binary and remove staging files
+        run: |
+          rm -f tmp/profile_b64_*.txt .github/workflows/materialize-profile.yml
+          rmdir tmp 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Materialize high-quality profile JPEG"
+          git push origin HEAD:ponytail/profile-hq
