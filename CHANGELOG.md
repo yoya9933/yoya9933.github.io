@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.9 — 2026-09-12
+
+Overtime Operations Case Study：將加班管理與行政彙整系統加入第六個 Selected Work，補上實際校內使用證據與雙語 Case Study。
+
+- 首頁 Selected Work 由五個擴充為六個，新增「加班管理與行政彙整系統 / Overtime Operations System」。
+- 明確標示系統目前由國立成功大學教務處教學發展中心實際使用，並區分「實際內部使用」與「成大官方加班系統／校方背書」兩種不同主張。
+- 新增中英文 Case Study，整理加班申請、主管審核、角色權限、D1 persistence、時段與重複申請後端驗證等已完成範圍。
+- Production 帳號、資料庫、正式人員資料與營運入口不公開；作品頁只連隱私清理後的公開 source snapshot。
+- 使用既有 `svg_render` media pipeline 產生首頁與 OG 預覽圖，不新增 JavaScript、第三方服務或 build dependency。
+
 ## v1.7.8 — 2026-09-12
 
 Case Study Screenshot Layout Fix：修正 Event Check-in Case Study 的公開 Demo 截圖在桌面窄欄位被固定 intrinsic height 與 `object-fit: cover` 橫向裁切的問題。
