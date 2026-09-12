@@ -27,7 +27,7 @@ for project in "${PROJECT_SLUGS[@]}"; do
   cp -R "en/projects/$project" "_site/en/projects/$project"
 done
 
-cp -R demos/event-checkin _site/demos/
+cp -R demos/event-checkin demos/ai-media-pipeline _site/demos/
 cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/profile.jpg _site/assets/
 # p1.css is the deployed component bundle; the second source module contains stable
 # portfolio-specific layout/accessibility rules.
