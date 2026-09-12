@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.13 — 2026-09-13
+
+Overtime Preview UI Fix：將加班管理與行政彙整系統的首頁／Case Study 預覽從抽象架構圖改為依實際系統版面重製的隱私安全 UI，讓作品縮圖更接近真正投入使用的產品。
+
+- 沿用既有 `svg_render` media pipeline，只替換 `assets/projects/overtime-management.svg`，不新增 screenshot 工具、JavaScript 或 dependency。
+- 預覽版面依原系統 `overtime-demo/src/App.jsx` 與 `styles.css` 的實際結構重製：深色側邊導覽、加班申請三步驟、日期／時段、事由、工時影響與送出操作。
+- 預覽只使用測試管理者、示範日期與虛構加班事由，不包含教發中心人員姓名、Email、正式資料庫內容、production 帳號或營運入口。
+- build 仍輸出原有 `overtime-management.webp` / PNG 路徑，因此首頁、OG 圖與 Case Study 不需要新增另一套媒體 wiring。
+
 ## v1.7.12 — 2026-09-12
 
 Unified Project Grid：將 Reliable AI Media Automation Pipeline 從獨立的 Additional System 區塊收回 Selected Work，讓它和其他作品使用同一套卡片、排序與導覽邏輯。
