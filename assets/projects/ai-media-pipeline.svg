@@ -1,17 +1,90 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
-<title id="title">Reliable AI Media Automation Pipeline</title><desc id="desc">A dark technical diagram showing source ingestion, deduplication, editorial selection, media generation, publishing adapters, and observability.</desc>
-<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#0c2635"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#020817" flood-opacity=".42"/></filter></defs>
-<rect width="1200" height="675" rx="30" fill="url(#bg)"/><circle cx="1035" cy="70" r="190" fill="#2dd4bf" opacity=".08"/><circle cx="100" cy="620" r="230" fill="#7dd3fc" opacity=".06"/>
-<g font-family="Inter,Arial,sans-serif"><text x="70" y="82" fill="#5eead4" font-size="17" font-weight="800" letter-spacing="3">RELIABLE AI MEDIA AUTOMATION</text><text x="70" y="132" fill="#eff6ff" font-size="42" font-weight="850">From source selection to recoverable publishing</text><text x="70" y="169" fill="#9fb0c7" font-size="18">Deduplication · audit trail · failure recovery · multi-platform adapters</text></g>
-<g filter="url(#shadow)" font-family="Inter,Arial,sans-serif">
-<g transform="translate(65 240)"><rect width="160" height="180" rx="18" fill="#0e2036" stroke="#28506a"/><text x="22" y="40" fill="#7dd3fc" font-size="13" font-weight="800">01 / SOURCES</text><text x="22" y="82" fill="#eff6ff" font-size="21" font-weight="800">RSS Feeds</text><text x="22" y="113" fill="#9fb0c7" font-size="14">4 topic profiles</text><text x="22" y="137" fill="#9fb0c7" font-size="14">full-text fallback</text><text x="22" y="161" fill="#9fb0c7" font-size="14">source metadata</text></g>
-<g transform="translate(250 240)"><rect width="160" height="180" rx="18" fill="#0e2036" stroke="#28506a"/><text x="22" y="40" fill="#7dd3fc" font-size="13" font-weight="800">02 / GUARD</text><text x="22" y="82" fill="#eff6ff" font-size="21" font-weight="800">Dedup State</text><text x="22" y="113" fill="#9fb0c7" font-size="14">seen.json</text><text x="22" y="137" fill="#9fb0c7" font-size="14">profile filters</text><text x="22" y="161" fill="#9fb0c7" font-size="14">event de-dup</text></g>
-<g transform="translate(435 240)"><rect width="160" height="180" rx="18" fill="#0e2036" stroke="#2dd4bf"/><text x="22" y="40" fill="#5eead4" font-size="13" font-weight="800">03 / EDITOR</text><text x="22" y="82" fill="#eff6ff" font-size="21" font-weight="800">LLM Select</text><text x="22" y="113" fill="#9fb0c7" font-size="14">editorial brief</text><text x="22" y="137" fill="#9fb0c7" font-size="14">local score fallback</text><text x="22" y="161" fill="#9fb0c7" font-size="14">dry-run review</text></g>
-<g transform="translate(620 240)"><rect width="160" height="180" rx="18" fill="#0e2036" stroke="#28506a"/><text x="22" y="40" fill="#7dd3fc" font-size="13" font-weight="800">04 / BUILD</text><text x="22" y="82" fill="#eff6ff" font-size="21" font-weight="800">Media Task</text><text x="22" y="113" fill="#9fb0c7" font-size="14">script · TTS</text><text x="22" y="137" fill="#9fb0c7" font-size="14">captions · assets</text><text x="22" y="161" fill="#9fb0c7" font-size="14">video composition</text></g>
-<g transform="translate(805 240)"><rect width="160" height="180" rx="18" fill="#0e2036" stroke="#28506a"/><text x="22" y="40" fill="#7dd3fc" font-size="13" font-weight="800">05 / PUBLISH</text><text x="22" y="82" fill="#eff6ff" font-size="21" font-weight="800">Adapters</text><text x="22" y="113" fill="#9fb0c7" font-size="14">YouTube</text><text x="22" y="137" fill="#9fb0c7" font-size="14">Instagram Reels</text><text x="22" y="161" fill="#9fb0c7" font-size="14">Facebook Reels</text></g>
-<g transform="translate(990 240)"><rect width="145" height="180" rx="18" fill="#0e2036" stroke="#2dd4bf"/><text x="18" y="40" fill="#5eead4" font-size="13" font-weight="800">06 / OPS</text><text x="18" y="82" fill="#eff6ff" font-size="20" font-weight="800">Observe</text><text x="18" y="113" fill="#9fb0c7" font-size="13">job records</text><text x="18" y="137" fill="#9fb0c7" font-size="13">publish status</text><text x="18" y="161" fill="#9fb0c7" font-size="13">alerts + reports</text></g>
-</g>
-<g stroke="#5eead4" stroke-width="3" fill="none" opacity=".8"><path d="M225 330h25"/><path d="M410 330h25"/><path d="M595 330h25"/><path d="M780 330h25"/><path d="M965 330h25"/></g>
-<g fill="#5eead4"><path d="M246 324l10 6-10 6z"/><path d="M431 324l10 6-10 6z"/><path d="M616 324l10 6-10 6z"/><path d="M801 324l10 6-10 6z"/><path d="M986 324l10 6-10 6z"/></g>
-<g font-family="Inter,Arial,sans-serif"><rect x="70" y="485" width="1060" height="112" rx="18" fill="#0a1a2b" stroke="#213d53"/><text x="96" y="523" fill="#5eead4" font-size="14" font-weight="800">RECOVERY LOOP</text><text x="96" y="555" fill="#eff6ff" font-size="18" font-weight="750">pending_upload.json keeps a generated video recoverable after an upload failure.</text><text x="96" y="582" fill="#9fb0c7" font-size="15">The next run retries the pending publish before generating another video; job, source and platform results stay traceable.</text></g>
+  <title id="title">AI 媒體自動化 Dashboard 預覽</title>
+  <desc id="desc">深色工程監控風的 AI 媒體自動化 Dashboard，顯示 KPI、內容管線、四條內容線、發布狀態、任務紀錄與通知。所有資料皆為公開 Demo 的虛構資料。</desc>
+  <defs>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#020817" flood-opacity=".4"/></filter>
+  </defs>
+  <rect width="1200" height="675" rx="28" fill="#07111f"/>
+  <rect x="0" y="0" width="182" height="675" fill="#091625"/>
+  <path d="M182 0v675" stroke="#17304a"/>
+
+  <g font-family="Inter,Arial,'Microsoft JhengHei',sans-serif">
+    <rect x="18" y="20" width="34" height="34" rx="9" fill="#315dff"/>
+    <text x="35" y="42" fill="#fff" font-size="12" font-weight="800" text-anchor="middle">AI</text>
+    <text x="64" y="34" fill="#f3f7fc" font-size="16" font-weight="800">AI 媒體自動化</text>
+    <text x="64" y="50" fill="#6f87a0" font-size="9">MoneyPrinterTurbo</text>
+
+    <g font-size="11" font-weight="700">
+      <rect x="14" y="82" width="154" height="38" rx="8" fill="#102a49" stroke="#254e82"/>
+      <text x="28" y="105" fill="#fff">01</text><text x="54" y="105" fill="#fff">總覽</text>
+      <text x="28" y="146" fill="#5c7894">02</text><text x="54" y="146" fill="#9db1c6">內容管線</text>
+      <text x="28" y="184" fill="#5c7894">03</text><text x="54" y="184" fill="#9db1c6">內容主題線</text>
+      <text x="28" y="222" fill="#5c7894">04</text><text x="54" y="222" fill="#9db1c6">RSS 選題</text>
+      <text x="28" y="260" fill="#5c7894">05</text><text x="54" y="260" fill="#9db1c6">任務紀錄</text>
+      <text x="28" y="298" fill="#5c7894">06</text><text x="54" y="298" fill="#9db1c6">待上傳恢復</text>
+      <rect x="143" y="286" width="20" height="18" rx="9" fill="#1e52ff"/><text x="153" y="299" fill="#fff" font-size="9" text-anchor="middle">3</text>
+      <text x="28" y="336" fill="#5c7894">07</text><text x="54" y="336" fill="#9db1c6">發布管理</text>
+      <text x="28" y="374" fill="#5c7894">08</text><text x="54" y="374" fill="#9db1c6">日報與分析</text>
+      <text x="28" y="412" fill="#5c7894">09</text><text x="54" y="412" fill="#9db1c6">通知中心</text>
+    </g>
+
+    <rect x="18" y="595" width="146" height="56" rx="10" fill="#0d1c2c" stroke="#183650"/>
+    <circle cx="31" cy="613" r="4" fill="#28d47a"/>
+    <text x="43" y="616" fill="#77e6a5" font-size="10" font-weight="800">系統運行中</text>
+    <text x="31" y="636" fill="#7590a9" font-size="8">公開示範 · 虛構資料</text>
+
+    <text x="207" y="31" fill="#5d8ec2" font-size="8" font-weight="900" letter-spacing="1.8">RELIABLE AI MEDIA AUTOMATION</text>
+    <text x="207" y="58" fill="#eef5fc" font-size="25" font-weight="850">早安，讓內容自動發生。</text>
+    <text x="207" y="78" fill="#7e96ad" font-size="10">RSS → 去重 → 評分 → MoneyPrinterTurbo → 待上傳恢復 → 多平台發布</text>
+    <rect x="910" y="24" width="112" height="30" rx="8" fill="#0b251b" stroke="#18472f"/><circle cx="925" cy="39" r="4" fill="#28d47a"/><text x="936" y="43" fill="#83e9aa" font-size="9" font-weight="800">自動運行中</text>
+    <rect x="1031" y="24" width="71" height="30" rx="8" fill="#0a1827" stroke="#234767"/><text x="1066" y="43" fill="#acd0f5" font-size="9" font-weight="800" text-anchor="middle">暫停管線</text>
+    <rect x="1110" y="24" width="73" height="30" rx="8" fill="#315dff"/><text x="1147" y="43" fill="#fff" font-size="9" font-weight="800" text-anchor="middle">立即執行</text>
+
+    <g filter="url(#shadow)">
+      <g transform="translate(207 100)"><rect width="226" height="76" rx="10" fill="#0b1827" stroke="#18344d"/><text x="16" y="23" fill="#8aa2b9" font-size="9" font-weight="800">今日任務數</text><text x="16" y="53" fill="#fff" font-size="27" font-weight="850">12</text><text x="58" y="51" fill="#50dc91" font-size="9">↑ 3 較昨日</text></g>
+      <g transform="translate(445 100)"><rect width="226" height="76" rx="10" fill="#0b1827" stroke="#18472f"/><text x="16" y="23" fill="#8aa2b9" font-size="9" font-weight="800">成功發布</text><text x="16" y="53" fill="#fff" font-size="27" font-weight="850">10</text><text x="58" y="51" fill="#61dfa0" font-size="9">83.3%</text></g>
+      <g transform="translate(683 100)"><rect width="226" height="76" rx="10" fill="#0b1827" stroke="#6b5425"/><text x="16" y="23" fill="#8aa2b9" font-size="9" font-weight="800">待上傳任務</text><text x="16" y="53" fill="#fff" font-size="27" font-weight="850">3</text><text x="45" y="51" fill="#e0b459" font-size="9">需恢復</text></g>
+      <g transform="translate(921 100)"><rect width="262" height="76" rx="10" fill="#0b1827" stroke="#18344d"/><text x="16" y="23" fill="#8aa2b9" font-size="9" font-weight="800">生成內容數</text><text x="16" y="53" fill="#fff" font-size="27" font-weight="850">48</text><text x="58" y="51" fill="#50dc91" font-size="9">↑ 12 較昨日</text></g>
+    </g>
+
+    <rect x="207" y="188" width="976" height="218" rx="12" fill="#0b1827" stroke="#18344d"/>
+    <text x="226" y="214" fill="#5d8ec2" font-size="8" font-weight="900" letter-spacing="1.4">CORE WORKFLOW</text>
+    <text x="226" y="237" fill="#eef5fc" font-size="16" font-weight="850">內容生成管線</text>
+    <text x="226" y="253" fill="#718aa2" font-size="9">從選題到發布，每一步都有 fallback、狀態與恢復點。</text>
+    <rect x="1077" y="207" width="85" height="24" rx="12" fill="#0b271b"/><circle cx="1091" cy="219" r="4" fill="#28d47a"/><text x="1101" y="222" fill="#6fe29d" font-size="8" font-weight="800">運行中</text>
+
+    <g font-size="9">
+      <g transform="translate(226 278)"><rect width="122" height="105" rx="9" fill="#0a1726" stroke="#226955"/><text x="12" y="21" fill="#7daeff" font-size="8" font-weight="900">01</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">RSS 來源</text><text x="12" y="64" fill="#7891aa">熱門話題與來源</text><text x="12" y="87" fill="#5fdd9a">128 sources</text></g>
+      <g transform="translate(360 278)"><rect width="122" height="105" rx="9" fill="#0a1726" stroke="#226955"/><text x="12" y="21" fill="#7daeff" font-size="8" font-weight="900">02</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">去重過濾</text><text x="12" y="64" fill="#7891aa">內容指紋比對</text><text x="12" y="87" fill="#5fdd9a">312 items</text></g>
+      <g transform="translate(494 278)"><rect width="122" height="105" rx="9" fill="#0a1726" stroke="#226955"/><text x="12" y="21" fill="#7daeff" font-size="8" font-weight="900">03</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">主題評分</text><text x="12" y="64" fill="#7891aa">LLM / Local</text><text x="12" y="87" fill="#5fdd9a">96 items</text></g>
+      <g transform="translate(628 278)"><rect width="122" height="105" rx="9" fill="#0a1726" stroke="#226955"/><text x="12" y="21" fill="#7daeff" font-size="8" font-weight="900">04</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">腳本生成</text><text x="12" y="64" fill="#7891aa">內容規格與腳本</text><text x="12" y="87" fill="#5fdd9a">24 scripts</text></g>
+      <g transform="translate(762 278)"><rect width="122" height="105" rx="9" fill="#0a1726" stroke="#7447ff"/><text x="12" y="21" fill="#a992ff" font-size="8" font-weight="900">05</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">媒體生成</text><text x="12" y="64" fill="#7891aa">MoneyPrinterTurbo</text><text x="12" y="87" fill="#a992ff">3 / 5 處理中</text></g>
+      <g transform="translate(896 278)"><rect width="122" height="105" rx="9" fill="#0a1726" stroke="#7d6128"/><text x="12" y="21" fill="#e0b459" font-size="8" font-weight="900">06</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">待上傳恢復</text><text x="12" y="64" fill="#7891aa">中斷後續傳</text><text x="12" y="87" fill="#e0b459">3 jobs</text></g>
+      <g transform="translate(1030 278)"><rect width="132" height="105" rx="9" fill="#0a1726" stroke="#28527a"/><text x="12" y="21" fill="#7daeff" font-size="8" font-weight="900">07</text><text x="12" y="46" fill="#fff" font-size="12" font-weight="800">多平台發布</text><text x="12" y="64" fill="#7891aa">發布介面與紀錄</text><text x="12" y="87" fill="#7daeff">3 adapters</text></g>
+    </g>
+
+    <rect x="207" y="418" width="617" height="119" rx="12" fill="#0b1827" stroke="#18344d"/>
+    <text x="225" y="443" fill="#eef5fc" font-size="14" font-weight="850">四條內容線</text>
+    <g font-size="9"><rect x="225" y="460" width="137" height="57" rx="8" fill="#091625" stroke="#28527a"/><text x="238" y="480" fill="#fff" font-weight="800">科技新知</text><text x="238" y="498" fill="#7089a1">8 / 10 jobs · 運行中</text><rect x="238" y="505" width="100" height="4" rx="2" fill="#152b3d"/><rect x="238" y="505" width="80" height="4" rx="2" fill="#3d7fff"/>
+    <rect x="373" y="460" width="137" height="57" rx="8" fill="#091625" stroke="#5b3fa8"/><text x="386" y="480" fill="#fff" font-weight="800">AI 工具</text><text x="386" y="498" fill="#7089a1">6 / 10 jobs · 運行中</text><rect x="386" y="505" width="100" height="4" rx="2" fill="#152b3d"/><rect x="386" y="505" width="60" height="4" rx="2" fill="#8757ff"/>
+    <rect x="521" y="460" width="137" height="57" rx="8" fill="#091625" stroke="#226955"/><text x="534" y="480" fill="#fff" font-weight="800">投資理財</text><text x="534" y="498" fill="#7089a1">5 / 10 jobs · 運行中</text><rect x="534" y="505" width="100" height="4" rx="2" fill="#152b3d"/><rect x="534" y="505" width="50" height="4" rx="2" fill="#2fd58b"/>
+    <rect x="669" y="460" width="137" height="57" rx="8" fill="#091625" stroke="#7d6128"/><text x="682" y="480" fill="#fff" font-weight="800">生活養生</text><text x="682" y="498" fill="#7089a1">5 / 10 jobs · 排程中</text><rect x="682" y="505" width="100" height="4" rx="2" fill="#152b3d"/><rect x="682" y="505" width="50" height="4" rx="2" fill="#f3aa2e"/></g>
+
+    <rect x="836" y="418" width="347" height="119" rx="12" fill="#0b1827" stroke="#18344d"/>
+    <text x="854" y="443" fill="#eef5fc" font-size="14" font-weight="850">平台發布狀態</text>
+    <g font-size="9"><text x="854" y="468" fill="#fff" font-weight="800">YouTube</text><rect x="968" y="456" width="45" height="18" rx="9" fill="#0e3325"/><text x="990" y="468" fill="#61dfa0" text-anchor="middle">正常</text><text x="1147" y="468" fill="#71899f" text-anchor="end">今日 4</text>
+    <text x="854" y="494" fill="#fff" font-weight="800">TikTok</text><rect x="968" y="482" width="45" height="18" rx="9" fill="#0e3325"/><text x="990" y="494" fill="#61dfa0" text-anchor="middle">正常</text><text x="1147" y="494" fill="#71899f" text-anchor="end">今日 2</text>
+    <text x="854" y="520" fill="#fff" font-weight="800">Instagram</text><rect x="968" y="508" width="55" height="18" rx="9" fill="#3a2d12"/><text x="996" y="520" fill="#f2c66e" text-anchor="middle">排程中</text><text x="1147" y="520" fill="#71899f" text-anchor="end">今日 3</text></g>
+
+    <rect x="207" y="549" width="617" height="103" rx="12" fill="#0b1827" stroke="#18344d"/>
+    <text x="225" y="574" fill="#eef5fc" font-size="14" font-weight="850">最近任務紀錄</text>
+    <g font-size="8"><text x="225" y="596" fill="#718aa2">10:22</text><text x="275" y="596" fill="#eef5fc">AI 讓工作效率提升 10 倍</text><text x="513" y="596" fill="#61dfa0">已發布</text><text x="600" y="596" fill="#8aa2b9">YouTube</text><text x="786" y="596" fill="#fff" text-anchor="end">92</text>
+    <path d="M225 606h562" stroke="#173047"/><text x="225" y="625" fill="#718aa2">09:45</text><text x="275" y="625" fill="#eef5fc">本週值得關注的 AI 工具</text><text x="513" y="625" fill="#61dfa0">已發布</text><text x="600" y="625" fill="#8aa2b9">TikTok</text><text x="786" y="625" fill="#fff" text-anchor="end">88</text></g>
+
+    <rect x="836" y="549" width="347" height="103" rx="12" fill="#0b1827" stroke="#18344d"/>
+    <text x="854" y="574" fill="#eef5fc" font-size="14" font-weight="850">最新通知</text>
+    <circle cx="860" cy="597" r="4" fill="#28d47a"/><text x="873" y="600" fill="#eef5fc" font-size="8">任務執行完成 · 2 分鐘前</text>
+    <circle cx="860" cy="620" r="4" fill="#ff5b68"/><text x="873" y="623" fill="#eef5fc" font-size="8">發布失敗，已加入恢復佇列</text>
+    <circle cx="860" cy="643" r="4" fill="#3d86ff"/><text x="873" y="646" fill="#eef5fc" font-size="8">LLM 無回應，切換本機評分</text>
+  </g>
 </svg>

@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.15 — 2026-09-13
+
+AI Media Operations Dashboard：將 Reliable AI Media Automation Pipeline 從純架構圖提升為可操作的隱私安全公開 Dashboard，並同步讓首頁預覽圖改成接近實際操作介面的深色工程監控風格。
+
+- 新增 `demos/ai-media-pipeline/`，以原生 HTML / CSS / JavaScript 實作總覽、內容管線、四條內容線、任務紀錄、待上傳恢復、平台發布狀態、日報與通知。
+- Demo 支援側欄導覽、暫停／恢復管線、手動觸發示範任務與待上傳恢復操作；全部資料皆為虛構內容，不讀取 `autovideos` production 狀態、帳號、token 或平台憑證。
+- `assets/projects/ai-media-pipeline.svg` 改為與新 Dashboard 相同視覺語言，沿用既有 `svg_render` media pipeline 與 `ai-media-pipeline.webp` / PNG 公開路徑，不新增 screenshot framework。
+- `scripts/build_site.sh` 只在既有 privacy-reviewed allowlist 加入 `demos/ai-media-pipeline`；不新增 dependency、前端框架、外部 CDN 或 runtime network request。
+- 正式內容生成與發布仍由 `yoya9933/autovideos` / MoneyPrinterTurbo orchestration 負責；Portfolio Demo 僅作產品介面與可靠性流程展示。
+
 ## v1.7.14 — 2026-09-13
 
 Overtime Preview UI Fix：將加班管理與行政彙整系統的首頁／Case Study 預覽從抽象架構圖改為依實際系統版面重製的隱私安全 UI，讓作品縮圖更接近真正投入使用的產品。
