@@ -174,7 +174,7 @@
     {
       "slug": "ai-media-pipeline", "section": "selected", "order": 7, "featured": false, "badge": "AI AUTOMATION",
       "title": {"zh": "Reliable AI Media Automation Pipeline", "en": "Reliable AI Media Automation Pipeline"},
-      "card_description": {"zh": "以 MoneyPrinterTurbo 為生成核心，新增四條內容線、RSS 選題與去重、LLM／本機評分 fallback、pending upload 恢復、多平台介面、job 紀錄、日報與通知。", "en": "Built around MoneyPrinterTurbo with four editorial profiles, RSS selection and deduplication, LLM/local scoring fallback, pending-upload recovery, multi-platform adapters, job records, daily reports and alerts."},
+      "card_description": {"zh": "設計並實作 AI 內容自動化流程，整合選題、內容生成、發布與任務追蹤，降低重複性人工操作，提升多主題、多平台內容產製與管理效率。", "en": "Designed and built an AI content automation workflow that connects topic selection, content generation, publishing and task tracking to reduce repetitive manual work and improve multi-topic, multi-platform content operations."},
       "tags": {"zh": ["4 條內容線", "3 個發布介面", "Retry + Audit Trail"], "en": ["4 content profiles", "3 publishing adapters", "Retry + audit trail"]},
       "image": "ai-media-pipeline.webp", "image_alt": {"zh": "Reliable AI Media Automation Pipeline 架構圖", "en": "Reliable AI Media Automation Pipeline architecture"},
       "media": {"type": "svg_render", "source": "assets/projects/ai-media-pipeline.svg", "width": 1200, "height": 675, "quality": 86},
