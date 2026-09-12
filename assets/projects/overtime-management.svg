@@ -1,42 +1,154 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
-  <title id="title">Overtime Operations System architecture</title>
-  <desc id="desc">A dark portfolio visual showing employee submission, manager review, role controls and Cloudflare D1 persistence.</desc>
-  <rect width="1440" height="900" rx="36" fill="#08111f"/>
-  <rect x="52" y="52" width="1336" height="796" rx="28" fill="#0d1a2b" stroke="#213a56" stroke-width="2"/>
-  <text x="96" y="132" fill="#8fb7ff" font-family="system-ui, sans-serif" font-size="28" font-weight="700">IN USE · NCKU CTLD</text>
-  <text x="96" y="205" fill="#f5f8ff" font-family="system-ui, sans-serif" font-size="54" font-weight="800">Overtime Operations System</text>
-  <text x="96" y="255" fill="#9fb0c5" font-family="system-ui, sans-serif" font-size="24">Submission · Manager review · RBAC · Administrative consolidation</text>
+  <title id="title">加班管理系統操作介面預覽</title>
+  <desc id="desc">依實際加班管理系統版面重製的隱私安全 UI 預覽，包含側邊導覽、加班日期與時段、事由、工時影響與申請流程。</desc>
+  <rect width="1440" height="900" fill="#fbfaf7"/>
 
-  <g font-family="system-ui, sans-serif">
-    <rect x="96" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#2d6cdf" stroke-width="3"/>
-    <text x="126" y="410" fill="#8fb7ff" font-size="22" font-weight="700">01 · EMPLOYEE</text>
-    <text x="126" y="458" fill="#ffffff" font-size="30" font-weight="800">Overtime request</text>
-    <text x="126" y="500" fill="#a9b7c7" font-size="20">date · time · reason</text>
+  <g font-family="'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif">
+    <!-- Sidebar: mirrors the production UI structure -->
+    <rect x="0" y="0" width="205" height="900" fill="#182532"/>
+    <g fill="#f8fbff">
+      <circle cx="35" cy="40" r="15" fill="none" stroke="#f8fbff" stroke-width="3"/>
+      <path d="M35 31v10l7 4" fill="none" stroke="#f8fbff" stroke-width="3" stroke-linecap="round"/>
+      <text x="62" y="48" font-size="19" font-weight="700">加班管理系統</text>
+    </g>
 
-    <rect x="410" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#44a37b" stroke-width="3"/>
-    <text x="440" y="410" fill="#8de4bb" font-size="22" font-weight="700">02 · MANAGER</text>
-    <text x="440" y="458" fill="#ffffff" font-size="30" font-weight="800">Review flow</text>
-    <text x="440" y="500" fill="#a9b7c7" font-size="20">approve · reject · log</text>
+    <g font-size="16" fill="#eef4f8">
+      <rect x="9" y="84" width="187" height="58" rx="8" fill="transparent"/>
+      <path d="M27 112l10-10 10 10v13H40v-8h-6v8h-7z" fill="none" stroke="#eef4f8" stroke-width="2.4" stroke-linejoin="round"/>
+      <text x="62" y="120">首頁</text>
 
-    <rect x="724" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#d19b4c" stroke-width="3"/>
-    <text x="754" y="410" fill="#f5c874" font-size="22" font-weight="700">03 · ADMIN</text>
-    <text x="754" y="458" fill="#ffffff" font-size="30" font-weight="800">Role controls</text>
-    <text x="754" y="500" fill="#a9b7c7" font-size="20">staff · manager · secretary</text>
+      <rect x="9" y="150" width="187" height="62" rx="8" fill="#1767d7"/>
+      <rect x="25" y="166" width="21" height="28" rx="3" fill="none" stroke="#fff" stroke-width="2.3"/>
+      <path d="M30 173h11M30 180h11M30 187h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <text x="62" y="188" fill="#fff" font-weight="700">加班申請</text>
 
-    <rect x="1038" y="355" width="260" height="180" rx="24" fill="#12263d" stroke="#9b7be8" stroke-width="3"/>
-    <text x="1068" y="410" fill="#c6b5ff" font-size="22" font-weight="700">04 · DATA</text>
-    <text x="1068" y="458" fill="#ffffff" font-size="30" font-weight="800">D1 persistence</text>
-    <text x="1068" y="500" fill="#a9b7c7" font-size="20">requests · users · sessions</text>
+      <rect x="9" y="218" width="187" height="62" rx="8" fill="transparent"/>
+      <path d="M26 239h20M26 247h20M26 255h14" stroke="#eef4f8" stroke-width="2.4" stroke-linecap="round"/>
+      <text x="62" y="256">我的紀錄</text>
 
-    <path d="M356 445 H398" stroke="#55718f" stroke-width="4" stroke-linecap="round"/>
-    <path d="M670 445 H712" stroke="#55718f" stroke-width="4" stroke-linecap="round"/>
-    <path d="M984 445 H1026" stroke="#55718f" stroke-width="4" stroke-linecap="round"/>
+      <rect x="9" y="286" width="187" height="62" rx="8" fill="transparent"/>
+      <circle cx="32" cy="309" r="7" fill="none" stroke="#eef4f8" stroke-width="2.2"/>
+      <circle cx="44" cy="314" r="5" fill="none" stroke="#eef4f8" stroke-width="2.2"/>
+      <path d="M23 330c1-8 17-8 18 0M39 330c1-6 12-6 13 0" fill="none" stroke="#eef4f8" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="62" y="324">審核作業</text>
 
-    <rect x="96" y="620" width="1202" height="138" rx="22" fill="#0a1523" stroke="#203650" stroke-width="2"/>
-    <text x="128" y="672" fill="#8fb7ff" font-size="22" font-weight="700">STACK</text>
-    <text x="128" y="721" fill="#ffffff" font-size="28" font-weight="700">React + Vite</text>
-    <text x="390" y="721" fill="#ffffff" font-size="28" font-weight="700">Cloudflare Workers</text>
-    <text x="765" y="721" fill="#ffffff" font-size="28" font-weight="700">Cloudflare D1</text>
-    <text x="1032" y="721" fill="#ffffff" font-size="28" font-weight="700">Server-side validation</text>
+      <rect x="9" y="354" width="187" height="62" rx="8" fill="transparent"/>
+      <rect x="25" y="372" width="24" height="19" rx="2" fill="none" stroke="#eef4f8" stroke-width="2.2"/>
+      <path d="M31 391v-7M37 391v-12M43 391v-5" stroke="#eef4f8" stroke-width="2.2"/>
+      <text x="62" y="392">報表中心</text>
+
+      <rect x="9" y="422" width="187" height="62" rx="8" fill="transparent"/>
+      <circle cx="35" cy="443" r="7" fill="none" stroke="#eef4f8" stroke-width="2.2"/>
+      <path d="M24 463c1-10 21-10 22 0" fill="none" stroke="#eef4f8" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="62" y="460">人員權限</text>
+    </g>
+
+    <line x1="18" y1="812" x2="186" y2="812" stroke="#40505e"/>
+    <circle cx="35" cy="845" r="15" fill="#304457"/>
+    <path d="M30 844a5 5 0 1 1 10 0M27 854c1-7 15-7 16 0" fill="none" stroke="#d8e1e8" stroke-width="2" stroke-linecap="round"/>
+    <text x="60" y="841" fill="#f8fbff" font-size="14" font-weight="700">測試管理者</text>
+    <text x="60" y="861" fill="#c7d1d9" font-size="12">系統管理者</text>
+
+    <!-- Workspace -->
+    <g transform="translate(205,0)">
+      <rect width="1235" height="900" fill="#fbfaf7"/>
+      <line x1="32" y1="72" x2="1203" y2="72" stroke="#d7dde2"/>
+
+      <g font-size="15" fill="#384657">
+        <rect x="32" y="0" width="1171" height="72" fill="#fbfaf7"/>
+        <rect x="32" y="24" width="20" height="20" rx="3" fill="none" stroke="#445160" stroke-width="2"/>
+        <line x1="37" y1="20" x2="37" y2="28" stroke="#445160" stroke-width="2"/>
+        <line x1="47" y1="20" x2="47" y2="28" stroke="#445160" stroke-width="2"/>
+        <text x="64" y="39">2026-09-12　星期六</text>
+        <rect x="224" y="23" width="92" height="26" rx="13" fill="#e7f4dd"/>
+        <text x="240" y="41" fill="#2f7029" font-size="12" font-weight="700">資料庫已連線</text>
+        <circle cx="940" cy="36" r="10" fill="none" stroke="#e34d35" stroke-width="2"/>
+        <path d="M940 30v7l4 2" fill="none" stroke="#e34d35" stroke-width="2" stroke-linecap="round"/>
+        <text x="958" y="41" fill="#e34d35" font-size="14" font-weight="700">常態申請需於今日 16:00 前送出</text>
+      </g>
+
+      <g transform="translate(32,103)">
+        <text x="0" y="0" fill="#172337" font-size="29" font-weight="800">加班申請 <tspan font-size="20" font-weight="600">（當日申請）</tspan></text>
+        <text x="0" y="34" fill="#677383" font-size="15">三步驟完成申請，送出後將由主管進行審核。</text>
+
+        <!-- steps -->
+        <g transform="translate(0,70)" font-size="17" font-weight="800" fill="#1767d7">
+          <circle cx="21" cy="21" r="21" fill="#1767d7"/>
+          <text x="21" y="28" text-anchor="middle" fill="#fff" font-size="17">1</text>
+          <text x="54" y="27">選擇日期與時段</text>
+          <line x1="205" y1="21" x2="300" y2="21" stroke="#1767d7" stroke-width="2"/>
+          <circle cx="330" cy="21" r="21" fill="#1767d7"/>
+          <text x="330" y="28" text-anchor="middle" fill="#fff" font-size="17">2</text>
+          <text x="363" y="27">填寫事由</text>
+          <line x1="465" y1="21" x2="610" y2="21" stroke="#1767d7" stroke-width="2"/>
+          <circle cx="640" cy="21" r="21" fill="#1767d7"/>
+          <text x="640" y="28" text-anchor="middle" fill="#fff" font-size="17">3</text>
+          <text x="673" y="27">確認工時影響</text>
+        </g>
+
+        <!-- column separators -->
+        <line x1="365" y1="136" x2="365" y2="660" stroke="#d9dee3"/>
+        <line x1="805" y1="136" x2="805" y2="660" stroke="#d9dee3"/>
+
+        <!-- column 1 -->
+        <g transform="translate(0,148)">
+          <text x="0" y="18" fill="#253244" font-size="15" font-weight="700">▣　加班日期</text>
+          <rect x="0" y="35" width="330" height="51" rx="7" fill="#fff" stroke="#bcc7d0"/>
+          <text x="16" y="67" fill="#253244" font-size="15">2026/09/12（星期六）</text>
+
+          <text x="0" y="128" fill="#253244" font-size="15" font-weight="700">◷　加班時段</text>
+          <rect x="0" y="145" width="143" height="51" rx="7" fill="#fff" stroke="#bcc7d0"/>
+          <text x="18" y="177" fill="#253244" font-size="15">18:00</text>
+          <path d="M118 165l6 6 6-6" fill="none" stroke="#687585" stroke-width="2"/>
+          <text x="154" y="177" fill="#687585" font-size="16">～</text>
+          <rect x="179" y="145" width="151" height="51" rx="7" fill="#fff" stroke="#bcc7d0"/>
+          <text x="197" y="177" fill="#253244" font-size="15">20:00</text>
+          <path d="M304 165l6 6 6-6" fill="none" stroke="#687585" stroke-width="2"/>
+          <text x="0" y="220" fill="#687585" font-size="12">最早 16:30 開始，每 30 分鐘為一個區間，單次至少 30 分鐘。</text>
+
+          <rect x="0" y="252" width="330" height="112" rx="8" fill="#f4f8fd" stroke="#b8d2f1"/>
+          <circle cx="36" cy="307" r="13" fill="none" stroke="#1767d7" stroke-width="2.3"/>
+          <path d="M36 299v9l6 3" fill="none" stroke="#1767d7" stroke-width="2.3" stroke-linecap="round"/>
+          <text x="183" y="294" fill="#1767d7" font-size="16" text-anchor="middle">本次申請時數</text>
+          <text x="177" y="338" fill="#1767d7" font-size="42" font-weight="800" text-anchor="middle">2</text>
+          <text x="202" y="338" fill="#1767d7" font-size="15">小時</text>
+        </g>
+
+        <!-- column 2 -->
+        <g transform="translate(393,148)">
+          <text x="0" y="18" fill="#253244" font-size="15" font-weight="700">▤　加班事由</text>
+          <rect x="0" y="35" width="385" height="330" rx="7" fill="#fff" stroke="#bcc7d0"/>
+          <text x="16" y="70" fill="#253244" font-size="15">活動資料彙整與行政報表核對，</text>
+          <text x="16" y="96" fill="#253244" font-size="15">完成當日工作內容整理與交接。</text>
+          <text x="327" y="347" fill="#75808d" font-size="12">32 / 200</text>
+        </g>
+
+        <!-- column 3 -->
+        <g transform="translate(833,148)">
+          <text x="0" y="18" fill="#253244" font-size="17" font-weight="700">本週加班時數 <tspan fill="#697586" font-size="13" font-weight="400">（09/07～09/13）</tspan></text>
+          <circle cx="140" cy="166" r="102" fill="none" stroke="#e9edf2" stroke-width="36"/>
+          <circle cx="140" cy="166" r="102" fill="none" stroke="#1767d7" stroke-width="36" stroke-dasharray="150 491" stroke-dashoffset="0" transform="rotate(-90 140 166)"/>
+          <circle cx="140" cy="166" r="102" fill="none" stroke="#f18a2a" stroke-width="36" stroke-dasharray="80 561" stroke-dashoffset="-155" transform="rotate(-90 140 166)"/>
+          <circle cx="140" cy="166" r="102" fill="none" stroke="#76b947" stroke-width="36" stroke-dasharray="65 576" stroke-dashoffset="-240" transform="rotate(-90 140 166)"/>
+          <text x="140" y="151" text-anchor="middle" fill="#172337" font-size="14">送出後預估</text>
+          <text x="140" y="190" text-anchor="middle" fill="#172337" font-size="40" font-weight="800">7.5</text>
+          <text x="140" y="214" text-anchor="middle" fill="#172337" font-size="14">小時</text>
+
+          <g transform="translate(290,90)" font-size="14">
+            <circle cx="7" cy="8" r="5" fill="#1767d7"/><text x="20" y="13" fill="#5c6876">已核准</text><text x="20" y="35" fill="#172337" font-size="17" font-weight="700">4 小時</text>
+            <circle cx="7" cy="75" r="5" fill="#f18a2a"/><text x="20" y="80" fill="#5c6876">待審核</text><text x="20" y="102" fill="#172337" font-size="17" font-weight="700">1.5 小時</text>
+            <circle cx="7" cy="142" r="5" fill="#76b947"/><text x="20" y="147" fill="#5c6876">本次申請</text><text x="20" y="169" fill="#172337" font-size="17" font-weight="700">2 小時</text>
+          </g>
+
+          <rect x="0" y="300" width="337" height="52" rx="7" fill="#f4f8fd" stroke="#b8d2f1"/>
+          <text x="15" y="331" fill="#315f9a" font-size="13">送出後預估總時數</text>
+          <text x="321" y="331" text-anchor="end" fill="#172337" font-size="13" font-weight="700">7.5 小時（38%）</text>
+        </g>
+
+        <line x1="0" y1="683" x2="1171" y2="683" stroke="#d9dee3"/>
+        <rect x="445" y="710" width="285" height="58" rx="8" fill="#1767d7"/>
+        <text x="587" y="747" fill="#fff" text-anchor="middle" font-size="19" font-weight="800">送出加班申請</text>
+      </g>
+    </g>
   </g>
 </svg>
