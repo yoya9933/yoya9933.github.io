@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.16 — 2026-09-13
+
+Resume-oriented AI Media Summary：將首頁 Reliable AI Media Automation Pipeline 的專案介紹由功能與技術名詞清單，改成更適合履歷快速閱讀的成果導向敘述。
+
+- 中文介紹改為聚焦「選題、內容生成、發布、任務追蹤」與「降低重複人工操作、提升多主題／多平台管理效率」。
+- 英文介紹同步改寫，避免中英文首頁資訊落差。
+- 僅更新 `data/projects.json` 的 card description；技術細節仍保留於 Case Study、tags 與公開 repository，不新增元件、dependency 或執行邏輯。
+
 ## v1.7.15 — 2026-09-13
 
 AI Media Operations Dashboard：將 Reliable AI Media Automation Pipeline 從純架構圖提升為可操作的隱私安全公開 Dashboard，並同步讓首頁預覽圖改成接近實際操作介面的深色工程監控風格。
