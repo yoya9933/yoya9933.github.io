@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="app-shell">
-    <aside class="sidebar">
+    <aside class="sidebar" aria-label="Dashboard 側邊欄">
       <a class="brand" href="/projects/ai-media-pipeline/" aria-label="返回 Case Study">
         <span class="brand-mark">AI</span>
         <span><strong>AI 媒體自動化</strong><small>MoneyPrinterTurbo</small></span>
@@ -85,7 +85,7 @@
           </div>
         </section>
 
-        <aside class="panel publish-panel" id="publish">
+        <aside class="panel publish-panel" id="publish" aria-label="平台發布狀態">
           <div class="panel-head compact"><div><h2>平台發布狀態</h2><p>最近一次同步結果</p></div></div>
           <div class="publish-list">
             <div><strong>YouTube</strong><span class="pill ok">正常</span><small>今日 4</small></div>
@@ -100,7 +100,7 @@
           <div class="panel-head compact"><div><h2>最近任務紀錄</h2><p>可追溯內容線、平台、分數與結果。</p></div><button class="ghost small" type="button">查看全部</button></div>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>時間</th><th>主題</th><th>內容線</th><th>狀態</th><th>平台</th><th>分數</th></tr></thead>
+              <thead><tr><th scope="col">時間</th><th scope="col">主題</th><th scope="col">內容線</th><th scope="col">狀態</th><th scope="col">平台</th><th scope="col">分數</th></tr></thead>
               <tbody id="jobRows">
                 <tr><td>10:22</td><td>AI 讓工作效率提升 10 倍</td><td>科技新知</td><td><span class="pill ok">已發布</span></td><td>YouTube</td><td>92</td></tr>
                 <tr><td>09:45</td><td>本週值得關注的 AI 工具</td><td>AI 工具</td><td><span class="pill ok">已發布</span></td><td>TikTok</td><td>88</td></tr>
