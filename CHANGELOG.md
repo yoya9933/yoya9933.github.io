@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.13 — 2026-09-13
+
+Capability Focus：移除中文首頁重複且偏抽象的 WHAT I BUILD 區塊，將能力描述收斂成一個更具體的端到端交付區塊。
+
+- 將「WHAT I BUILD」與「SKILLS」重複資訊合併為單一 `CAPABILITIES` 區塊。
+- 三個能力主軸改為 `Data → Decision`、`Product → Production`、`Automation → Operations`，直接說明可完成的工作流程與對應技術。
+- 中文與英文首頁同步使用相同資訊架構，導覽文字改為「能力 / Capabilities」，後續 Contact 編號同步前移。
+- 不新增元件、JavaScript、dependency 或新的資料層；沿用既有 skill-group 版型。
+
 ## v1.7.12 — 2026-09-12
 
 Unified Project Grid：將 Reliable AI Media Automation Pipeline 從獨立的 Additional System 區塊收回 Selected Work，讓它和其他作品使用同一套卡片、排序與導覽邏輯。
