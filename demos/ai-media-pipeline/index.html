@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI 媒體自動化｜公開 Demo</title>
+  <meta name="description" content="Reliable AI Media Automation Pipeline 的隱私安全公開 Dashboard Demo。">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#07111f">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/projects/ai-media-pipeline/" aria-label="返回 Case Study">
+        <span class="brand-mark">AI</span>
+        <span><strong>AI 媒體自動化</strong><small>MoneyPrinterTurbo</small></span>
+      </a>
+
+      <nav class="nav" aria-label="Dashboard 導覽">
+        <button class="nav-item active" type="button" data-nav="overview"><span>01</span>總覽</button>
+        <button class="nav-item" type="button" data-nav="pipeline"><span>02</span>內容管線</button>
+        <button class="nav-item" type="button" data-nav="lines"><span>03</span>內容主題線</button>
+        <button class="nav-item" type="button" data-nav="rss"><span>04</span>RSS 選題</button>
+        <button class="nav-item" type="button" data-nav="jobs"><span>05</span>任務紀錄</button>
+        <button class="nav-item" type="button" data-nav="recovery"><span>06</span>待上傳恢復 <b>3</b></button>
+        <button class="nav-item" type="button" data-nav="publish"><span>07</span>發布管理</button>
+        <button class="nav-item" type="button" data-nav="reports"><span>08</span>日報與分析</button>
+        <button class="nav-item" type="button" data-nav="alerts"><span>09</span>通知中心 <b>4</b></button>
+      </nav>
+
+      <div class="sidebar-status">
+        <span class="status-dot"></span>
+        <div><strong>系統運行中</strong><small>公開示範 · 虛構資料</small></div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">RELIABLE AI MEDIA AUTOMATION</p>
+          <h1>早安，讓內容自動發生。</h1>
+          <p class="subcopy">RSS → 去重 → 評分 → MoneyPrinterTurbo → 待上傳恢復 → 多平台發布</p>
+        </div>
+        <div class="top-actions">
+          <div class="system-state"><span class="status-dot"></span><span id="systemState">自動運行中</span></div>
+          <button class="ghost" id="pauseButton" type="button">暫停管線</button>
+          <button class="primary" id="runButton" type="button">立即執行</button>
+        </div>
+      </header>
+
+      <section class="metrics" aria-label="今日摘要">
+        <article class="metric"><span>今日任務數</span><strong id="jobsMetric">12</strong><small class="up">↑ 3 較昨日</small></article>
+        <article class="metric success"><span>成功發布</span><strong id="successMetric">10</strong><small>成功率 83.3%</small></article>
+        <article class="metric warning"><span>待上傳任務</span><strong id="pendingMetric">3</strong><small>需要恢復或確認</small></article>
+        <article class="metric"><span>生成內容數</span><strong id="contentMetric">48</strong><small class="up">↑ 12 較昨日</small></article>
+      </section>
+
+      <section class="panel pipeline-panel" id="pipeline">
+        <div class="panel-head">
+          <div><p class="eyebrow">CORE WORKFLOW</p><h2>內容生成管線</h2><p>從選題到發布，每一步都有 fallback、狀態與恢復點。</p></div>
+          <span class="live-badge"><span class="status-dot"></span>自動運行中</span>
+        </div>
+
+        <div class="pipeline-grid">
+          <article class="stage done"><span class="stage-no">01</span><h3>RSS 來源</h3><p>抓取熱門話題與來源</p><small>128 sources · 進行中</small></article>
+          <article class="stage done"><span class="stage-no">02</span><h3>去重過濾</h3><p>比對近期內容指紋</p><small>312 items · 已完成</small></article>
+          <article class="stage done"><span class="stage-no">03</span><h3>主題評分</h3><p>LLM / 本機模型 fallback</p><small>96 items · 已完成</small></article>
+          <article class="stage done"><span class="stage-no">04</span><h3>腳本生成</h3><p>內容規格與腳本建立</p><small>24 scripts · 已完成</small></article>
+          <article class="stage active"><span class="stage-no">05</span><h3>媒體生成</h3><p>MoneyPrinterTurbo</p><small>3 / 5 · 處理中</small></article>
+          <article class="stage warning"><span class="stage-no">06</span><h3>待上傳恢復</h3><p>中斷後自動續傳</p><small>3 jobs · 等待處理</small></article>
+          <article class="stage"><span class="stage-no">07</span><h3>多平台發布</h3><p>發布介面與紀錄</p><small>3 adapters · 準備中</small></article>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel content-lines" id="lines">
+          <div class="panel-head compact"><div><h2>四條內容線</h2><p>各自擁有來源、提示詞與發布節奏。</p></div><button class="ghost small" type="button">管理內容線</button></div>
+          <div class="line-grid">
+            <article><span class="line-accent blue"></span><h3>科技新知</h3><p>AI、軟體、產品與產業趨勢</p><strong>8 / 10 jobs</strong><div class="progress"><i style="--p:80%"></i></div><small>運行中</small></article>
+            <article><span class="line-accent purple"></span><h3>AI 工具</h3><p>工具實測、教學與工作流</p><strong>6 / 10 jobs</strong><div class="progress"><i style="--p:60%"></i></div><small>運行中</small></article>
+            <article><span class="line-accent green"></span><h3>投資理財</h3><p>市場重點、財經與數據摘要</p><strong>5 / 10 jobs</strong><div class="progress"><i style="--p:50%"></i></div><small>運行中</small></article>
+            <article><span class="line-accent amber"></span><h3>生活養生</h3><p>健康生活與實用知識</p><strong>5 / 10 jobs</strong><div class="progress"><i style="--p:50%"></i></div><small>排程中</small></article>
+          </div>
+        </section>
+
+        <aside class="panel publish-panel" id="publish">
+          <div class="panel-head compact"><div><h2>平台發布狀態</h2><p>最近一次同步結果</p></div></div>
+          <div class="publish-list">
+            <div><strong>YouTube</strong><span class="pill ok">正常</span><small>今日 4</small></div>
+            <div><strong>TikTok</strong><span class="pill ok">正常</span><small>今日 2</small></div>
+            <div><strong>Instagram</strong><span class="pill queued">排程中</span><small>今日 3</small></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="bottom-grid">
+        <section class="panel jobs-panel" id="jobs">
+          <div class="panel-head compact"><div><h2>最近任務紀錄</h2><p>可追溯內容線、平台、分數與結果。</p></div><button class="ghost small" type="button">查看全部</button></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>時間</th><th>主題</th><th>內容線</th><th>狀態</th><th>平台</th><th>分數</th></tr></thead>
+              <tbody id="jobRows">
+                <tr><td>10:22</td><td>AI 讓工作效率提升 10 倍</td><td>科技新知</td><td><span class="pill ok">已發布</span></td><td>YouTube</td><td>92</td></tr>
+                <tr><td>09:45</td><td>本週值得關注的 AI 工具</td><td>AI 工具</td><td><span class="pill ok">已發布</span></td><td>TikTok</td><td>88</td></tr>
+                <tr><td>08:30</td><td>市場晨間摘要</td><td>投資理財</td><td><span class="pill queued">生成中</span></td><td>Instagram</td><td>85</td></tr>
+                <tr><td>07:15</td><td>五個改善睡眠的小習慣</td><td>生活養生</td><td><span class="pill ok">已發布</span></td><td>TikTok</td><td>78</td></tr>
+                <tr><td>06:50</td><td>OpenAI 最新模型發表</td><td>科技新知</td><td><span class="pill fail">失敗</span></td><td>—</td><td>90</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel recovery-panel" id="recovery">
+          <div class="panel-head compact"><div><h2>待上傳恢復</h2><p>中斷後可以安全續傳。</p></div><span class="count" id="recoveryCount">3</span></div>
+          <div class="recovery-list" id="recoveryList">
+            <article><div><strong>科技產品開箱評測</strong><small>YouTube · 已生成</small></div><button type="button" data-recover>恢復</button></article>
+            <article><div><strong>2026 經濟趨勢分析</strong><small>Instagram · 已生成</small></div><button type="button" data-recover>恢復</button></article>
+            <article><div><strong>健康飲食的科學依據</strong><small>TikTok · 已生成</small></div><button type="button" data-recover>恢復</button></article>
+          </div>
+        </section>
+      </section>
+
+      <section class="insight-grid">
+        <section class="panel report" id="reports">
+          <div class="panel-head compact"><div><h2>今日摘要</h2><p>公開 Demo 以虛構數字展示日報介面。</p></div></div>
+          <div class="report-values"><div><strong>24</strong><span>總處理任務</span></div><div><strong>83%</strong><span>發布成功率</span></div><div><strong>3</strong><span>恢復任務</span></div><div><strong>2.8h</strong><span>估計節省時間</span></div></div>
+        </section>
+
+        <section class="panel alerts" id="alerts">
+          <div class="panel-head compact"><div><h2>最新通知</h2><p>任務、恢復與發布異常</p></div></div>
+          <ul>
+            <li class="good"><span></span><div><strong>任務執行完成</strong><small>AI 工具內容已發布 · 2 分鐘前</small></div></li>
+            <li class="bad"><span></span><div><strong>發布失敗</strong><small>網路連線異常，已加入恢復佇列 · 18 分鐘前</small></div></li>
+            <li class="info"><span></span><div><strong>Fallback 啟用</strong><small>LLM 評分無回應，切換本機評分 · 35 分鐘前</small></div></li>
+          </ul>
+        </section>
+      </section>
+
+      <footer class="demo-note">PUBLIC PRODUCT DEMO · SYNTHETIC DATA ONLY · 正式執行仍由 autovideos / MoneyPrinterTurbo orchestration 負責</footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="dashboard.js" defer></script>
+</body>
+</html>
