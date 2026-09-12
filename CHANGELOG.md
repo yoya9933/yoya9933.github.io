@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.14 — 2026-09-13
+
+Overtime Preview UI Fix：將加班管理與行政彙整系統的首頁／Case Study 預覽從抽象架構圖改為依實際系統版面重製的隱私安全 UI，讓作品縮圖更接近真正投入使用的產品。
+
+- 沿用既有 `svg_render` media pipeline，只替換 `assets/projects/overtime-management.svg`，不新增 screenshot 工具、JavaScript 或 dependency。
+- 預覽版面依原系統 `overtime-demo/src/App.jsx` 與 `styles.css` 的實際結構重製：深色側邊導覽、加班申請三步驟、日期／時段、事由、工時影響與送出操作。
+- 預覽只使用測試管理者、示範日期與虛構加班事由，不包含教發中心人員姓名、Email、正式資料庫內容、production 帳號或營運入口。
+- build 仍輸出原有 `overtime-management.webp` / PNG 路徑，因此首頁、OG 圖與 Case Study 不需要新增另一套媒體 wiring。
+
 ## v1.7.13 — 2026-09-13
 
 Capability Focus：移除中文首頁重複且偏抽象的 WHAT I BUILD 區塊，將能力描述收斂成一個更具體的端到端交付區塊。
@@ -102,7 +111,7 @@ Profile Image Quality Hotfix：改用原始上傳照片重新輸出高品質本�
 
 Visual Hotfix：修復正式站實際截圖暴露的首頁頭像破圖與 AI Media Automation 流程圖裁切問題，並補上最小必要的回歸檢查。
 
-- 將損壞的 `assets/profile.jpg` 重新編碼為可正常解碼的本地 JPEG，沿用既有圖片路徑、HTML、CSS 與 CSP，不重新引入第三方頭像依賴。
+- 將損壞的 `assets/profile.jpg` 重新編碼為可正常解碼的本地 JPEG，沿用既有圖片路徑、HTML 與 CSP，不重新引入第三方頭像依賴。
 - Additional System 的預覽圖片由 `object-fit: cover` 改為 `contain` 並置中，讓 AI Media Automation 的完整流程圖在桌面與手機版都不再被左右裁切。
 - `check_performance.py` 新增 JPEG 結構與尺寸檢查，CI 會拒絕缺少 SOI / EOI、無有效 SOF 尺寸或過小的 Hero 頭像，避免「檔案存在但瀏覽器無法顯示」再次通過部署。
 - 不新增套件、圖片 loader 或額外 render layer；修正仍沿用既有 build pipeline、local asset 與 performance gate。
