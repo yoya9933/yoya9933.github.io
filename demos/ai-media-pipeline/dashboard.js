@@ -25,25 +25,23 @@ let paused = false;
 pauseButton.addEventListener('click', () => {
   paused = !paused;
   pauseButton.textContent = paused ? '恢復管線' : '暫停管線';
-  systemState.textContent = paused ? '已暫停' : '自動運行中';
+  systemState.textContent = paused ? 'Demo 已暫停' : 'Demo 自動運行中';
   showToast(paused ? 'Demo 管線已暫停。' : 'Demo 管線已恢復。');
 });
 
 $('#runButton').addEventListener('click', () => {
   if (paused) {
-    showToast('目前為暫停狀態，請先恢復管線。');
+    showToast('目前為暫停狀態，請先恢復 Demo 管線。');
     return;
   }
 
   const jobs = $('#jobsMetric');
-  const content = $('#contentMetric');
   jobs.textContent = String(Number(jobs.textContent) + 1);
-  content.textContent = String(Number(content.textContent) + 1);
 
   const row = document.createElement('tr');
-  row.innerHTML = '<td>現在</td><td>手動觸發的示範任務</td><td>科技新知</td><td><span class="pill queued">生成中</span></td><td>YouTube</td><td>—</td>';
+  row.innerHTML = '<td>現在</td><td>手動觸發的示範任務</td><td>tech</td><td><span class="pill queued">生成中</span></td><td>YouTube</td><td>—</td>';
   $('#jobRows').prepend(row);
-  showToast('已建立一筆新的 Demo 任務。');
+  showToast('已建立一筆新的 synthetic Demo 任務。');
 });
 
 function updateRecoveryCount() {
@@ -59,7 +57,7 @@ $$('[data-recover]').forEach((button) => {
     button.textContent = '已恢復';
     button.closest('article').classList.add('recovered');
     updateRecoveryCount();
-    showToast('已將任務移回發布佇列。');
+    showToast('已將 Demo 任務移回發布佇列。');
   });
 });
 
