@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.17 — 2026-09-13
+
+AI Media Dashboard Evidence Patch：校正公開 Dashboard 與 Portfolio 預覽中的示範資料與平台名稱，讓介面只呈現 `autovideos` repository 可核對的能力邊界。
+
+- 四條內容線改為實際的 `tech` / `consumer_money` / `cybersecurity` / `science_future` topic profiles。
+- 發布介面改為 publisher registry 目前支援的 YouTube / Instagram Reels / Facebook Reels，移除未支援的 TikTok。
+- 移除節省工時、production 成功率與其他缺乏固定 evidence 的成效數字；任務列與狀態數值皆明確標示為 synthetic Demo。
+- Dashboard 與 `ai-media-pipeline.svg` 預覽同步呈現 `pending_upload.json` recovery、job / publish status、Email / Telegram 通知與 LLM → local scoring fallback。
+- 不新增 dependency、framework、backend 或 network call；沿用 v1.7.15 的原生靜態 Demo 與既有 CSP / CI。
+
 ## v1.7.16 — 2026-09-13
 
 Resume-oriented AI Media Summary：將首頁 Reliable AI Media Automation Pipeline 的專案介紹由功能與技術名詞清單，改成更適合履歷快速閱讀的成果導向敘述。
@@ -171,7 +181,7 @@ Ponytail Cleanup II：繼續依照 YAGNI / reuse-first 原則，刪除只修單�
 
 Ponytail Cleanup：依照 DietrichGebert/ponytail 的 YAGNI / reuse-first 規則，移除已被既有 build 流程覆蓋的補丁層與重複部署資產，不改變公開網站功能。
 
-- 刪除 `enhance_runtime.py`，把真正必要的 dark-mode / theme-color / GitHub avatar hardening 收進既有 `enhance_site.py`。
+- 刪除 `enhance_runtime.py`，把真正必要的 dark-mode / theme-color / GitHub avatar hardening收進既有 `enhance_site.py`。
 - 專案 WebP 只發布一份，不再同時保留 `assets/projects/*.webp` 與 `assets/projects/snapshots/*.webp` 兩份相同 deployment artifact。
 - 移除已停用的 `avatar-fallback.svg` 與對應 build/checker wiring；GitHub 頭像的 privacy/performance 檢查仍保留。
 - 移除 `has-four-selected` renderer flag 與五卡片特例 CSS，直接使用既有 `.project-card.featured` 版面規則。
