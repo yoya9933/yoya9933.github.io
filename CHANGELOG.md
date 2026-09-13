@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.7.18 — 2026-09-14
+
+Lean CI Checks：精簡網站品質流程，保留正式建置完整性檢查與部署後版本驗證。
+
+- 移除 PR 與部署流程重複執行的 HTML 驗證及 Lighthouse CI，縮短 CI 時間並減少效能分數波動造成的阻擋。
+- PR 保留 allowlisted build 與 `check_site.py`；正式部署仍執行相同檢查，並確認線上版本與 Git commit。
+- 保留 VERSION / CHANGELOG 與不可變 Release tag 檢查，確保正式版本紀錄正確。
+
 ## v1.7.17 — 2026-09-13
 
 AI Media Dashboard Evidence Patch：校正公開 Dashboard 與 Portfolio 預覽中的示範資料與平台名稱，讓介面只呈現 `autovideos` repository 可核對的能力邊界。
