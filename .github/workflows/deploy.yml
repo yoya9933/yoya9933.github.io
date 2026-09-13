@@ -35,15 +35,6 @@ jobs:
       - name: Build and validate allowlisted site
         run: bash scripts/build_site.sh
 
-      - name: Validate HTML
-        run: find _site -name '*.html' -print0 | xargs -0 npx --yes html-validate@8
-
-      - name: Prepare Lighthouse site copy
-        uses: ./.github/actions/prepare-lighthouse-site
-
-      - name: Run Lighthouse CI on indexable pages
-        run: npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
-
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v6
 

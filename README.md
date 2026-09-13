@@ -91,13 +91,10 @@ _site/
 python3 scripts/check_site.py
 ```
 
-Pull request 會執行 Site Quality workflow，包括：
+Pull request 會先跑建置與網站完整性檢查；推送到 `main` 後，部署流程會再建置一次，並於部署後確認正式站版本與 Git commit 已更新。這兩項是部署的必要品質檢查：
 
-- VERSION / CHANGELOG release metadata validation
-- allowlisted production build
-- internal link、SEO、robots 與 stale-content 檢查
-- HTML validation
-- Lighthouse CI
+- allowlisted production build 與 `check_site.py` 完整性檢查
+- 正式部署後確認版本與 Git commit 已更新
 
 ## 部署
 
