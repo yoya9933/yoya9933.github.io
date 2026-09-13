@@ -15,23 +15,14 @@ cp -R en/contact _site/en/
 
 # Project slugs come from one manifest. Adding/removing a portfolio project no longer
 # requires editing this deployment script.
-mapfile -t PROJECT_SLUGS < <(python3 - <<'PY'
-import json
-from pathlib import Path
-for project in json.loads(Path('data/projects.json').read_text(encoding='utf-8'))['projects']:
-    print(project['slug'])
-PY
-)
+mapfile -t PROJECT_SLUGS < <(python3 -c "import json; print('\n'.join(p['slug'] for p in json.load(open('data/projects.json', encoding='utf-8'))['projects']))")
 for project in "${PROJECT_SLUGS[@]}"; do
   cp -R "projects/$project" "_site/projects/$project"
   cp -R "en/projects/$project" "_site/en/projects/$project"
 done
 
 cp -R demos/event-checkin demos/ai-media-pipeline _site/demos/
-cp assets/styles.css assets/portfolio-extra.css assets/main.js assets/favicon.svg assets/og-image.svg assets/profile.jpg _site/assets/
-# p1.css is the deployed component bundle; the second source module contains stable
-# portfolio-specific layout/accessibility rules.
-cat assets/p1.css assets/portfolio-layout.css > _site/assets/p1.css
+cp assets/styles.css assets/main.js assets/favicon.svg assets/og-image.svg assets/profile.jpg _site/assets/
 
 # Social and app icons.
 rsvg-convert -w 1200 -h 630 assets/og-image.svg -o _site/assets/og-image.png
@@ -42,29 +33,12 @@ rsvg-convert -w 512 -h 512 assets/favicon.svg -o _site/assets/icon-512.png
 # data/projects.json owns each project's public media build plan.
 python3 scripts/build_project_media.py
 
-# The project manifest drives homepage sections, project links/visuals, structured data
-# and standardized evidence-based Case Study framing.
-python3 scripts/render_projects.py
-python3 scripts/render_case_studies.py
-python3 scripts/check_case_studies.py
-
-# CHANGELOG.md is the source for the public version history page.
-python3 scripts/render_changelog.py
-
-# Generic site hardening applies once to every page generated above.
-python3 scripts/enhance_site.py
-
-# VERSION is the single source of truth for human-readable and machine-readable site version data.
-python3 scripts/render_version.py
-
-# Apply a strict per-page CSP only after all script-bearing HTML has been rendered.
+# Render all project data, changelog, SEO, accessibility, version and CSP metadata in one pass.
+python3 scripts/render_site.py
 # Inline JSON-LD receives SHA-256 allowlist entries; executable JS remains self-hosted.
-python3 scripts/apply_csp.py
-python3 scripts/check_csp.py
+python3 scripts/apply_csp.py --check
 
 # Enforce intrinsic image sizing, local hero assets and accessibility interaction rules.
-python3 scripts/check_performance.py
-
 # CV source and generated QR live beside the temporary print HTML, so the browser can
 # resolve the QR image natively without a build-time HTML rewrite.
 qrencode -o /tmp/portfolio-qr.png -s 8 'https://yoya9933.page/'
@@ -79,14 +53,12 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook \
 # Finalize an integrity manifest only after every public artifact, including the CV,
 # exists. No site files may be mutated after this point.
 python3 scripts/build_manifest.py
-python3 scripts/check_build_manifest.py
-python3 scripts/check_observability.py
+python3 scripts/build_manifest.py --check
 
 test ! -e _site/dist
 test ! -e _site/assets/Yu_CV_source.html
 test ! -e _site/projects/ncku-return-os
 test ! -e _site/en/projects/ncku-return-os
-python3 scripts/check_p3.py
 python3 scripts/check_site.py
 
 echo "Built and validated privacy-reviewed, integrity-manifested site at $ROOT/_site"

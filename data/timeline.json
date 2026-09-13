@@ -1,0 +1,427 @@
+{
+  "groups": [
+    {
+      "heading": {
+        "zh": "競賽與挑戰",
+        "en": "Competitions & challenges"
+      },
+      "items": [
+        {
+          "date": {
+            "zh": "2025",
+            "en": "2025"
+          },
+          "title": {
+            "zh": "NODASS 海洋大數據競賽",
+            "en": "NODASS Ocean Big Data Competition"
+          },
+          "detail": {
+            "zh": "特優 / Great Prize ·",
+            "en": "Great Prize ·"
+          },
+          "link": {
+            "url": "https://www.namr.gov.tw/en/home.jsp?id=47&parentpath=0%2C5",
+            "label": {
+              "zh": "官方名單 ↗",
+              "en": "official winners ↗"
+            }
+          }
+        },
+        {
+          "date": {
+            "zh": "2025",
+            "en": "2025"
+          },
+          "title": {
+            "zh": "高通台灣 AI 黑客松",
+            "en": "Qualcomm Taiwan AI Hackathon"
+          },
+          "detail": {
+            "zh": "季軍 ·",
+            "en": "3rd Place ·"
+          },
+          "link": {
+            "url": "https://compotech.com.tw/a/press/2025/0830/61616.html",
+            "label": {
+              "zh": "結果報導 ↗",
+              "en": "result ↗"
+            }
+          }
+        },
+        {
+          "date": {
+            "zh": "2025",
+            "en": "2025"
+          },
+          "title": {
+            "zh": "臺灣海洋國際青年論壇",
+            "en": "Taiwan Ocean International Youth Forum"
+          },
+          "detail": {
+            "zh": "領航之星獎 ·",
+            "en": "Leadership Star Award ·"
+          },
+          "link": {
+            "url": "https://news.pchome.com.tw/politics/mna/20250905/index-75703100006144230001.html",
+            "label": {
+              "zh": "公開報導 ↗",
+              "en": "report ↗"
+            }
+          }
+        },
+        {
+          "date": {
+            "zh": "2024",
+            "en": "2024"
+          },
+          "title": {
+            "zh": "梅山 36 灣自行車挑戰賽",
+            "en": "Meishan 36 Turns Cycling Challenge"
+          },
+          "detail": {
+            "zh": "總成績 05:18:13",
+            "en": "05:18:13 overall time"
+          }
+        },
+        {
+          "date": {
+            "zh": "2023",
+            "en": "2023"
+          },
+          "title": {
+            "zh": "學校盃全國象棋團體錦標賽",
+            "en": "National School Cup Chinese Chess Team Championship"
+          },
+          "detail": {
+            "zh": "冠軍",
+            "en": "Champion"
+          }
+        },
+        {
+          "date": {
+            "zh": "2018",
+            "en": "2018"
+          },
+          "title": {
+            "zh": "國際運算思維挑戰賽",
+            "en": "International Computational Thinking Challenge"
+          },
+          "detail": {
+            "zh": "220 分 · PR94",
+            "en": "220 points · PR94"
+          }
+        },
+        {
+          "date": {
+            "zh": "2018",
+            "en": "2018"
+          },
+          "title": {
+            "zh": "國際運算思維挑戰賽",
+            "en": "International Computational Thinking Challenge"
+          },
+          "detail": {
+            "zh": "195 分 · PR84",
+            "en": "195 points · PR84"
+          }
+        },
+        {
+          "date": {
+            "zh": "2016",
+            "en": "2016"
+          },
+          "title": {
+            "zh": "象棋主委盃暨中國石化杯",
+            "en": "Chinese Chess Chairperson's Cup & China Petrochemical Cup"
+          },
+          "detail": {
+            "zh": "冠軍",
+            "en": "Champion"
+          }
+        },
+        {
+          "date": {
+            "zh": "2015",
+            "en": "2015"
+          },
+          "title": {
+            "zh": "市長盃全國象棋錦標賽",
+            "en": "Mayor's Cup National Chinese Chess Championship"
+          },
+          "detail": {
+            "zh": "亞軍",
+            "en": "Runner-up"
+          }
+        },
+        {
+          "date": {
+            "zh": "2015",
+            "en": "2015"
+          },
+          "title": {
+            "zh": "象棋主委盃",
+            "en": "Chinese Chess Chairperson's Cup"
+          },
+          "detail": {
+            "zh": "亞軍",
+            "en": "Runner-up"
+          }
+        },
+        {
+          "date": {
+            "zh": "2013",
+            "en": "2013"
+          },
+          "title": {
+            "zh": "卓越杯數學競賽",
+            "en": "Excellence Cup Mathematics Competition"
+          },
+          "detail": {
+            "zh": "優選",
+            "en": "Merit Award"
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "zh": "學業與校內表現",
+        "en": "Academic recognition"
+      },
+      "items": [
+        {
+          "date": {
+            "zh": "113 學年度",
+            "en": "AY 113"
+          },
+          "title": {
+            "zh": "成績優良獎",
+            "en": "Academic Excellence Award"
+          },
+          "detail": {
+            "zh": "學業表現",
+            "en": "Academic performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "112 學年度",
+            "en": "AY 112"
+          },
+          "title": {
+            "zh": "市長獎",
+            "en": "Mayor's Award"
+          },
+          "detail": {
+            "zh": "畢業表現",
+            "en": "Graduation recognition"
+          }
+        },
+        {
+          "date": {
+            "zh": "112 學年度",
+            "en": "AY 112"
+          },
+          "title": {
+            "zh": "畢業成績優良",
+            "en": "Graduation Academic Excellence"
+          },
+          "detail": {
+            "zh": "學業表現",
+            "en": "Academic performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "110 年度",
+            "en": "110"
+          },
+          "title": {
+            "zh": "高雄數位學園競賽活動",
+            "en": "Kaohsiung Digital Learning Competition"
+          },
+          "detail": {
+            "zh": "表現優異",
+            "en": "Outstanding Performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "109 學年度",
+            "en": "AY 109"
+          },
+          "title": {
+            "zh": "校長獎",
+            "en": "Principal's Award"
+          },
+          "detail": {
+            "zh": "學業與綜合表現",
+            "en": "Academic and overall performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "109 學年度",
+            "en": "AY 109"
+          },
+          "title": {
+            "zh": "家長會長獎",
+            "en": "Parent Association President Award"
+          },
+          "detail": {
+            "zh": "學業與綜合表現",
+            "en": "Academic and overall performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "109 年度",
+            "en": "109"
+          },
+          "title": {
+            "zh": "高雄數位學園競賽活動",
+            "en": "Kaohsiung Digital Learning Competition"
+          },
+          "detail": {
+            "zh": "表現優異",
+            "en": "Outstanding Performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "108 年度",
+            "en": "108"
+          },
+          "title": {
+            "zh": "高雄數位學園競賽活動",
+            "en": "Kaohsiung Digital Learning Competition"
+          },
+          "detail": {
+            "zh": "表現優異",
+            "en": "Outstanding Performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "107 學年度",
+            "en": "AY 107"
+          },
+          "title": {
+            "zh": "成績優良獎",
+            "en": "Academic Excellence Award"
+          },
+          "detail": {
+            "zh": "學業表現",
+            "en": "Academic performance"
+          }
+        },
+        {
+          "date": {
+            "zh": "107 年度",
+            "en": "107"
+          },
+          "title": {
+            "zh": "高雄數位學園競賽活動",
+            "en": "Kaohsiung Digital Learning Competition"
+          },
+          "detail": {
+            "zh": "表現優異",
+            "en": "Outstanding Performance"
+          }
+        }
+      ]
+    },
+    {
+      "heading": {
+        "zh": "技術認證",
+        "en": "Technical certifications"
+      },
+      "items": [
+        {
+          "date": {
+            "zh": "CERT",
+            "en": "CERT"
+          },
+          "title": {
+            "zh": "ModelScope Agent Engineer",
+            "en": "ModelScope Agent Engineer"
+          },
+          "detail": {
+            "zh": "Agent Engineering",
+            "en": "Agent Engineering"
+          }
+        },
+        {
+          "date": {
+            "zh": "CERT",
+            "en": "CERT"
+          },
+          "title": {
+            "zh": "iFLYTEK Fine-tuning Engineer",
+            "en": "iFLYTEK Fine-tuning Engineer"
+          },
+          "detail": {
+            "zh": "Model Fine-tuning",
+            "en": "Model Fine-tuning"
+          }
+        },
+        {
+          "date": {
+            "zh": "CERT",
+            "en": "CERT"
+          },
+          "title": {
+            "zh": "iFLYTEK SPARK Prompt Engineer",
+            "en": "iFLYTEK SPARK Prompt Engineer"
+          },
+          "detail": {
+            "zh": "Prompt Engineering",
+            "en": "Prompt Engineering"
+          }
+        },
+        {
+          "date": {
+            "zh": "CERT",
+            "en": "CERT"
+          },
+          "title": {
+            "zh": "Ant Group Agent Engineer",
+            "en": "Ant Group Agent Engineer"
+          },
+          "detail": {
+            "zh": "Agent Engineering",
+            "en": "Agent Engineering"
+          }
+        },
+        {
+          "date": {
+            "zh": "CERT",
+            "en": "CERT"
+          },
+          "title": {
+            "zh": "NVIDIA｜透過 Jetson Nano 開發人工智慧應用",
+            "en": "NVIDIA | Developing AI Applications with Jetson Nano"
+          },
+          "detail": {
+            "zh": "Edge AI",
+            "en": "Edge AI"
+          }
+        },
+        {
+          "date": {
+            "zh": "CERT",
+            "en": "CERT"
+          },
+          "title": {
+            "zh": "浪潮信息｜大模型開發工程師",
+            "en": "Inspur | Large Model Development Engineer"
+          },
+          "detail": {
+            "zh": "Large Model Development",
+            "en": "Large Model Development"
+          }
+        }
+      ]
+    }
+  ]
+}

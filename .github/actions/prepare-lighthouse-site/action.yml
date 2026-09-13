@@ -1,0 +1,13 @@
+name: Prepare Lighthouse site copy
+description: Create an audit-only copy without the error page or noindex demos.
+runs:
+  using: composite
+  steps:
+    - name: Copy indexable pages to the Lighthouse target
+      shell: bash
+      run: |
+        rm -rf _lhci_site
+        mkdir -p _lhci_site
+        cp -R _site/. _lhci_site/
+        rm -f _lhci_site/404.html
+        rm -rf _lhci_site/demos

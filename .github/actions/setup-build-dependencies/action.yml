@@ -1,0 +1,11 @@
+name: Install portfolio build dependencies
+description: Install the native tools required to build the static portfolio.
+runs:
+  using: composite
+  steps:
+    - name: Install deterministic build dependencies
+      shell: bash
+      run: |
+        sudo apt-get update -qq
+        sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode python3-pil
+        google-chrome --version

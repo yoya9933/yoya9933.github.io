@@ -17,13 +17,10 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Install build dependencies
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode
-          google-chrome --version
+        uses: ./.github/actions/setup-build-dependencies
 
       - name: Validate VERSION and CHANGELOG release metadata
-        run: python3 scripts/release_notes.py > /tmp/release-notes.md
+        run: python3 scripts/render_changelog.py --release-notes > /tmp/release-notes.md
 
       - name: Build and validate allowlisted site
         run: bash scripts/build_site.sh
@@ -31,11 +28,11 @@ jobs:
       - name: Validate HTML
         run: find _site -name '*.html' -print0 | xargs -0 npx --yes html-validate@8
 
+      - name: Prepare Lighthouse site copy
+        uses: ./.github/actions/prepare-lighthouse-site
+
       - name: Run Lighthouse CI on indexable pages
-        run: |
-          rm _site/404.html
-          rm -rf _site/demos
-          npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
+        run: npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
 
       - name: Upload Lighthouse reports
         if: always()

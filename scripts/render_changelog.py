@@ -3,10 +3,12 @@ from __future__ import annotations
 from html import escape
 from pathlib import Path
 import re
+import sys
 
-ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT / "_site"
+from common import ROOT, SITE, SEMVER_RE
+
 CHANGELOG = ROOT / "CHANGELOG.md"
+VERSION_FILE = ROOT / "VERSION"
 REPOSITORY = "https://github.com/yoya9933/yoya9933.github.io"
 
 HEADER_RE = re.compile(r"^##\s+v(?P<version>\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)\s+[—-]\s+(?P<date>.+?)\s*$")
@@ -77,7 +79,27 @@ def render_release(release: dict[str, object], previous_version: str | None) -> 
     )
 
 
-def main() -> None:
+def release_notes() -> None:
+    version = VERSION_FILE.read_text(encoding="utf-8").strip()
+    if not SEMVER_RE.fullmatch(version):
+        raise SystemExit(f"Invalid SemVer in VERSION: {version!r}")
+    source = CHANGELOG.read_text(encoding="utf-8")
+    pattern = re.compile(
+        rf"^##\s+v{re.escape(version)}\s+[—-]\s+.+?\n(?P<body>.*?)(?=^##\s+v|\Z)",
+        re.MULTILINE | re.DOTALL,
+    )
+    match = pattern.search(source)
+    if not match:
+        raise SystemExit(f"CHANGELOG.md has no section for v{version}")
+    body = match.group("body").strip()
+    if not body:
+        raise SystemExit(f"CHANGELOG.md section for v{version} is empty")
+    print(f"## Yu Portfolio v{version}\n")
+    print(body)
+    print(f"\nWebsite: https://yoya9933.page/\nChangelog: https://yoya9933.page/changelog/")
+
+
+def render_page() -> tuple[Path, str, int]:
     releases = parse_releases()
     cards = "".join(
         render_release(
@@ -87,11 +109,18 @@ def main() -> None:
         for index, release in enumerate(releases)
     )
     target = SITE / "changelog" / "index.html"
-    target.parent.mkdir(parents=True, exist_ok=True)
+    html = f'''<!DOCTYPE html><html lang="zh-Hant-TW" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07111f"><title>更新紀錄｜Yu Portfolio</title><meta name="description" content="Yu Portfolio 的正式網站版本、更新內容與 GitHub Release 紀錄。"><link rel="canonical" href="https://yoya9933.page/changelog/"><link rel="icon" href="../assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="更新紀錄｜Yu Portfolio"><meta property="og:description" content="網站版本、更新內容與 GitHub Release 紀錄。"><meta property="og:image" content="https://yoya9933.page/assets/og-image.png"><link rel="stylesheet" href="../assets/styles.css"><link rel="alternate" hreflang="x-default" href="https://yoya9933.page/changelog/"></head><body class="case-page"><nav class="case-nav shell"><a href="../">← 回首頁</a><span class="toolbar"><a href="{REPOSITORY}/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Changelog ↗</a></span></nav><header class="case-hero shell"><p class="eyebrow">CHANGELOG</p><h1>網站更新紀錄。</h1><p>每個正式版本都由 <code>VERSION</code>、<code>CHANGELOG.md</code>、Git tag 與 GitHub Release 對應；相鄰版本可直接查看 GitHub Compare。</p></header><main class="case-content shell"><section class="case-section"><div class="case-grid">{cards}</div></section></main><script src="../assets/main.js" defer></script></body></html>'''
+    return target, html, len(releases)
 
-    html = f'''<!DOCTYPE html><html lang="zh-Hant-TW" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07111f"><title>更新紀錄｜Yu Portfolio</title><meta name="description" content="Yu Portfolio 的正式網站版本、更新內容與 GitHub Release 紀錄。"><link rel="canonical" href="https://yoya9933.page/changelog/"><link rel="icon" href="../assets/favicon.svg"><meta property="og:type" content="website"><meta property="og:title" content="更新紀錄｜Yu Portfolio"><meta property="og:description" content="網站版本、更新內容與 GitHub Release 紀錄。"><meta property="og:image" content="https://yoya9933.page/assets/og-image.png"><link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="../assets/p1.css"><link rel="stylesheet" href="../assets/portfolio-extra.css"></head><body class="case-page"><nav class="case-nav shell"><a href="../">← 回首頁</a><span class="toolbar"><a href="{REPOSITORY}/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Changelog ↗</a></span></nav><header class="case-hero shell"><p class="eyebrow">CHANGELOG</p><h1>網站更新紀錄。</h1><p>每個正式版本都由 <code>VERSION</code>、<code>CHANGELOG.md</code>、Git tag 與 GitHub Release 對應；相鄰版本可直接查看 GitHub Compare。</p></header><main class="case-content shell"><section class="case-section"><div class="case-grid">{cards}</div></section></main><script src="../assets/main.js" defer></script></body></html>'''
+
+def main() -> None:
+    if "--release-notes" in sys.argv[1:]:
+        release_notes()
+        return
+    target, html, count = render_page()
+    target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html, encoding="utf-8")
-    print(f"Rendered {len(releases)} changelog release(s)")
+    print(f"Rendered {count} changelog release(s)")
 
 
 if __name__ == "__main__":

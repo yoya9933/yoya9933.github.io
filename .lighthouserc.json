@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./_site",
+      "staticDistDir": "./_lhci_site",
       "numberOfRuns": 3,
       "settings": {
         "skipAudits": ["robots-txt"]

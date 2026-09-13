@@ -1,6 +1,6 @@
 # Content Security Policy
 
-This portfolio is published as a static GitHub Pages site. The production CSP is generated per HTML page by `scripts/apply_csp.py` and validated by `scripts/check_csp.py`.
+This portfolio is published as a static GitHub Pages site. The production CSP is generated per HTML page by `scripts/apply_csp.py`; run `python3 scripts/apply_csp.py --check` to validate the policy and local-only resource rules.
 
 ## Runtime resource inventory
 

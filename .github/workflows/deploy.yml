@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
 
 permissions:
   contents: write
@@ -16,7 +15,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  release:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -25,7 +27,43 @@ jobs:
           fetch-depth: 0
 
       - name: Validate VERSION and CHANGELOG
-        run: python3 scripts/release_notes.py > release-notes.md
+        run: python3 scripts/render_changelog.py --release-notes > release-notes.md
+
+      - name: Install deterministic build dependencies
+        uses: ./.github/actions/setup-build-dependencies
+
+      - name: Build and validate allowlisted site
+        run: bash scripts/build_site.sh
+
+      - name: Validate HTML
+        run: find _site -name '*.html' -print0 | xargs -0 npx --yes html-validate@8
+
+      - name: Prepare Lighthouse site copy
+        uses: ./.github/actions/prepare-lighthouse-site
+
+      - name: Run Lighthouse CI on indexable pages
+        run: npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+      - name: Verify production release identity
+        env:
+          EXPECTED_COMMIT: ${{ github.sha }}
+          SMOKE_ATTEMPTS: "12"
+          SMOKE_DELAY_SECONDS: "5"
+        run: |
+          export EXPECTED_VERSION="$(tr -d '[:space:]' < VERSION)"
+          python3 scripts/verify_production.py
 
       - name: Enforce immutable version and create GitHub Release
         if: github.ref == 'refs/heads/main'
@@ -70,43 +108,3 @@ jobs:
               --notes-file release-notes.md \
               --latest
           fi
-
-  deploy:
-    needs: release
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
-      - name: Install deterministic build dependencies
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq librsvg2-bin webp ghostscript fonts-noto-cjk qrencode
-          google-chrome --version
-
-      - name: Build and validate allowlisted site
-        run: bash scripts/build_site.sh
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v6
-
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: '_site'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
-
-      - name: Verify production release identity
-        env:
-          EXPECTED_COMMIT: ${{ github.sha }}
-          SMOKE_ATTEMPTS: "12"
-          SMOKE_DELAY_SECONDS: "5"
-        run: |
-          export EXPECTED_VERSION="$(tr -d '[:space:]' < VERSION)"
-          python3 scripts/verify_production.py

@@ -39,7 +39,7 @@ Selected Work：
 MAJOR.MINOR.PATCH
 ```
 
-發布新版本時修改根目錄 `VERSION`，並同步在 `CHANGELOG.md` 新增相同版本的說明。Pull request 會先驗證兩者一致；合併到 `main` 後，Release workflow 會自動建立尚未存在的 Git tag / GitHub Release，再進入 Pages build 與部署。
+發布新版本時修改根目錄 `VERSION`，並同步在 `CHANGELOG.md` 新增相同版本的說明。Pull request 會先驗證兩者一致；合併到 `main` 後，Release workflow 會先完成建置、品質檢查、Pages 部署與正式站版本驗證，再建立尚未存在的 Git tag / GitHub Release。
 
 Build 會自動：
 
@@ -71,7 +71,7 @@ Build 會自動：
 
 ## 本機建置
 
-建置腳本需要 Chromium、`librsvg2-bin`、WebP、Ghostscript、Noto CJK 字型與 `qrencode`：
+建置腳本需要 Chromium、`librsvg2-bin`、WebP、Ghostscript、Noto CJK 字型、`qrencode` 與 Pillow（`python3-pil`）：
 
 ```bash
 bash scripts/build_site.sh
@@ -89,7 +89,6 @@ _site/
 
 ```bash
 python3 scripts/check_site.py
-python3 scripts/check_p3.py
 ```
 
 Pull request 會執行 Site Quality workflow，包括：
@@ -102,4 +101,4 @@ Pull request 會執行 Site Quality workflow，包括：
 
 ## 部署
 
-Push / merge 到 `main` 後，`.github/workflows/deploy.yml` 會依序執行版本驗證、必要的 Git tag / GitHub Release 建立、`_site` 建置與驗證，最後部署到 GitHub Pages。
+Push / merge 到 `main` 後，`.github/workflows/deploy.yml` 會依序執行版本驗證、`_site` 建置與品質檢查、部署及正式站驗證，成功後才建立必要的 Git tag / GitHub Release。

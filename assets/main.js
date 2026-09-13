@@ -26,7 +26,7 @@
   }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealTargets = document.querySelectorAll('.section-heading, .project-card, .focus-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture, .v4-reveal');
+  const revealTargets = document.querySelectorAll('.section-heading, .project-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture, .v4-reveal');
   if (!reduceMotion && 'IntersectionObserver' in window && revealTargets.length) {
     document.body.classList.add('reveal-ready');
     revealTargets.forEach((element, index) => {

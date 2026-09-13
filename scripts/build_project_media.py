@@ -2,13 +2,12 @@ from __future__ import annotations
 
 from pathlib import Path
 from urllib.parse import urlparse
-import json
 import shutil
 import subprocess
 
-ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT / "_site"
-DATA = json.loads((ROOT / "data/projects.json").read_text(encoding="utf-8"))
+from common import ROOT, SITE, load_projects, project_image
+
+DATA = load_projects()
 PUBLIC = SITE / "assets" / "projects"
 
 
@@ -17,10 +16,7 @@ def run(*args: str) -> None:
 
 
 def webp_path(project: dict) -> Path:
-    image = project["image"]
-    if Path(image).suffix.lower() != ".webp":
-        raise RuntimeError(f"project image must be WebP: {project['slug']} -> {image}")
-    return PUBLIC / image
+    return PUBLIC / project_image(project)
 
 
 def build_tracked(project: dict, media: dict) -> None:

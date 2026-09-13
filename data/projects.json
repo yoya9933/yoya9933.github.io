@@ -1,199 +1,649 @@
 {
   "site_url": "https://yoya9933.page",
-  "selected_title": {"zh": "先看作品，再看技能。", "en": "Start with the work, then the stack."},
+  "selected_title": {
+    "zh": "先看作品，再看技能。",
+    "en": "Start with the work, then the stack."
+  },
   "selected_heading": {
     "zh": "七個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS、即時多人遊戲、校內行政系統，以及 AI 自動化。",
     "en": "Seven selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, real-time multiplayer, university administration, and AI automation."
   },
   "projects": [
     {
-      "slug": "buoy", "section": "selected", "order": 1, "featured": true, "badge": "FEATURED",
-      "title": {"zh": "浮標資料分析與航道風險評估平台", "en": "Buoy Analytics & Navigation Risk Platform"},
+      "slug": "buoy",
+      "order": 1,
+      "featured": true,
+      "badge": "FEATURED",
+      "title": {
+        "zh": "浮標資料分析與航道風險評估平台",
+        "en": "Buoy Analytics & Navigation Risk Platform"
+      },
       "card_description": {
         "zh": "資料 QA、LSTM 預測、模型驗證、快取、風險門檻與輸出下載整合成 Streamlit 分析流程。",
         "en": "Data QA, LSTM forecasting, validation, model caching, risk thresholds and downloadable outputs in Streamlit."
       },
-      "tags": {"zh": ["5 種時間尺度", "4 種缺值策略", "4 種輸出"], "en": ["5 time scales", "4 missing-data strategies", "4 export formats"]},
-      "image": "buoy.webp", "image_alt": {"zh": "浮標資料分析平台功能預覽", "en": "Buoy analytics feature preview"},
-      "media": {"type": "tracked_snapshot", "source": "assets/projects/snapshots/buoy.webp"},
-      "case": {"zh": "/projects/buoy/", "en": "/en/projects/buoy/"},
-      "repo": "https://github.com/yoya9933/Buoy-data-analysis-V2", "live": null,
-      "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"}, "schema_category": "DataApplication",
-      "case_facts": {
-        "role": {"zh": "資料與 ML 流程開發", "en": "Data & ML pipeline development"},
-        "scope": {"zh": "Data QA · LSTM · 風險規則 · Streamlit", "en": "Data QA · LSTM · risk rules · Streamlit"},
-        "status": {"zh": "公開 Repository / Case Study", "en": "Public repository / case study"},
-        "stack": "Python · Streamlit · Keras / LSTM", "year": "2026"
+      "tags": {
+        "zh": [
+          "5 種時間尺度",
+          "4 種缺值策略",
+          "4 種輸出"
+        ],
+        "en": [
+          "5 time scales",
+          "4 missing-data strategies",
+          "4 export formats"
+        ]
       },
-      "case_frame": {
-        "problem": {"zh": "海洋觀測資料需要先處理品質、缺值與時間尺度，模型結果也必須轉成可判讀的風險訊號。", "en": "Marine observations need QA, missing-data handling and time-scale normalization before model output can become an interpretable risk signal."},
-        "decision": {"zh": "把 resample、缺值策略、模型驗證、cache、風險門檻與 export 串成同一條分析流程。", "en": "Connect resampling, missing-data strategies, validation, caching, risk thresholds and exports in one analysis workflow."},
-        "evidence": {"zh": "Repository 可核對 5 種時間尺度、4 種缺值策略與 4 種輸出；不把未固定資料集的模型分數包裝成成果。", "en": "The repository verifies 5 time scales, 4 missing-data strategies and 4 exports; model scores without a fixed benchmark are not presented as performance claims."},
-        "next": {"zh": "下一步是固定 benchmark 資料集、加入 baseline / model comparison，並把資料來源與驗證流程再自動化。", "en": "Next: establish a fixed benchmark dataset, add baseline/model comparisons and automate more of the data/validation pipeline."}
-      }
-    },
-    {
-      "slug": "chess", "section": "selected", "order": 2, "featured": false, "badge": null,
-      "title": {"zh": "楚河棋局｜線上中國象棋", "en": "Chuhe Xiangqi | Online Chinese Chess"},
-      "card_description": {"zh": "6 碼房間、標準象棋與揭棋、AI、悔棋、回放與 revision 同步，房間狀態落到資料庫。", "en": "Cross-device rooms with two rule modes, AI, undo/replay and revision-based database synchronization."},
-      "tags": {"zh": ["6 碼房間", "2 種棋類模式", "2 種資料庫後端"], "en": ["6-digit rooms", "2 rule modes", "2 DB backends"]},
-      "image": "chess.webp", "image_alt": {"zh": "楚河棋局產品預覽", "en": "Chuhe Xiangqi product preview"},
-      "media": {"type": "tracked_snapshot", "source": "assets/projects/snapshots/chess.webp"},
-      "case": {"zh": "/projects/chess/", "en": "/en/projects/chess/"},
-      "repo": "https://github.com/yoya9933/chess-online", "live": "https://chuhe-xiangqi-online.sean8411.workers.dev",
-      "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"}, "schema_category": "GameApplication",
-      "case_facts": {
-        "role": {"zh": "全端 Web 產品開發", "en": "Full-stack web product development"},
-        "scope": {"zh": "棋規 · 多人房間 · 狀態同步 · Persistence", "en": "Game rules · multiplayer rooms · state sync · persistence"},
-        "status": {"zh": "Live", "en": "Live"},
-        "stack": "JavaScript · HTTP API · Neon Postgres / D1", "year": "2026"
+      "image_alt": {
+        "zh": "浮標資料分析平台功能預覽",
+        "en": "Buoy analytics feature preview"
       },
-      "case_frame": {
-        "problem": {"zh": "多人棋局除了規則正確，還要避免不同裝置的舊狀態覆蓋新棋局，並處理重連與房間生命週期。", "en": "A multiplayer board game must prevent stale cross-device state from overwriting newer moves while handling reconnects and room lifecycle."},
-        "decision": {"zh": "使用 revision + polling、player token、heartbeat 與持久化房間 state，把 UI 規則與多人同步分層。", "en": "Use revision-based polling, player tokens, heartbeats and persisted room state to separate UI rules from multiplayer synchronization."},
-        "evidence": {"zh": "可核對 6 碼房間、2 種主要棋規、Neon Postgres / Cloudflare D1 兩種資料庫後端，並有公開 Live Demo。", "en": "Verified features include 6-digit rooms, 2 primary rule modes, Neon Postgres / Cloudflare D1 backends and a public live demo."},
-        "next": {"zh": "下一步是抽出共用 game engine、補自動化規則測試，並讓 server 成為規則權威來源。", "en": "Next: extract a shared game engine, add automated rule tests and make the server authoritative for game rules."}
-      }
-    },
-    {
-      "slug": "event-checkin", "section": "selected", "order": 3, "featured": false, "badge": "PRIVACY-SAFE DEMO",
-      "title": {"zh": "活動報到與現場營運系統", "en": "Event Check-in & Operations System"},
-      "card_description": {"zh": "結合 QR 報到、即時簽到與入席統計、名單篩選、座位與現場例外處理的全端活動營運工具。", "en": "A full-stack workflow connecting QR check-in, live attendance and seating metrics, operational filters and on-site exception handling."},
-      "tags": {"zh": ["30 秒更新", "5 維篩選", "D1 / Drizzle"], "en": ["30-second refresh", "5 filter dimensions", "D1 / Drizzle"]},
-      "image": "event-checkin.webp", "image_alt": {"zh": "活動報到與現場營運系統公開 Demo", "en": "Event check-in and operations public demo"},
-      "media": {"type": "local_capture", "source": "demos/event-checkin/index.html", "width": 1440, "height": 810, "virtual_time_budget": 3500, "quality": 84},
-      "case": {"zh": "/projects/event-checkin/", "en": "/en/projects/event-checkin/"},
-      "repo": null, "live": "https://yoya9933.page/demos/event-checkin/",
-      "live_label": {"zh": "Public Demo ↗", "en": "Public Demo ↗"}, "schema_category": "BusinessApplication",
-      "case_facts": {
-        "role": {"zh": "全端現場營運工具開發", "en": "Full-stack operations tool development"},
-        "scope": {"zh": "QR 報到 · 即時統計 · 篩選 · 座位", "en": "QR check-in · live metrics · filters · seating"},
-        "status": {"zh": "正式系統 + 隱私安全公開 Demo", "en": "Production system + privacy-safe public demo"},
-        "stack": "Next.js · Cloudflare D1 · Drizzle", "year": "2026"
-      },
-      "case_frame": {
-        "problem": {"zh": "活動現場需要在有限時間內完成報到、搜尋、篩選、座位確認與例外處理，而且操作狀態必須快速回饋。", "en": "On-site operations need fast check-in, search, filtering, seating confirmation and exception handling with immediate feedback."},
-        "decision": {"zh": "以 Next.js API → D1 → Drizzle 串接資料層，搭配 QR、30 秒統計更新與多維篩選支援現場操作。", "en": "Use Next.js API → D1 → Drizzle for the data path, with QR workflows, 30-second metric refreshes and multi-dimensional filters."},
-        "evidence": {"zh": "目前可核對 30 秒更新、5 維篩選、預先報名 / 現場兩種名單來源與 CSV export；公開 Demo 僅使用 24 筆虛構資料。", "en": "Verified behavior includes 30-second refreshes, 5 filter dimensions, preregistration/onsite sources and CSV export; the public demo uses only 24 synthetic records."},
-        "next": {"zh": "多活動、正式帳號 / RBAC、audit log、idempotency、多裝置衝突與 offline queue 都明確列為未來升級，不宣稱已完成。", "en": "Multi-event support, real accounts/RBAC, audit logs, idempotency, multi-device conflict handling and an offline queue remain explicitly future work."}
-      }
-    },
-    {
-      "slug": "shareholder-cms", "section": "selected", "order": 4, "featured": false, "badge": "IN PRODUCTION",
-      "title": {"zh": "股東紀念品服務與 CMS 平台", "en": "Shareholder Gift Service & CMS Platform"},
-      "card_description": {"zh": "目前由大倉代領實際營運使用，整合公開服務網站、商品與公告 CMS、Supabase 認證、PostgreSQL 與雲端圖片儲存。", "en": "Currently used in production by 大倉代領, combining the public service site, product and announcement CMS, Supabase authentication, PostgreSQL and cloud image storage."},
-      "tags": {"zh": ["業界使用中 · 大倉代領", "Vue 3 / TypeScript", "Supabase CMS"], "en": ["In production · 大倉代領", "Vue 3 / TypeScript", "Supabase CMS"]},
-      "image": "shareholder-cms.webp", "image_alt": {"zh": "大倉代領股東紀念品服務網站公開首頁預覽", "en": "大倉代領 shareholder gift service public homepage preview"},
       "media": {
-        "type": "public_site_capture", "url": "https://sharegift.tw/", "width": 1440, "height": 900,
-        "virtual_time_budget": 6000, "timeout_seconds": 35, "quality": 84,
-        "fallback_source": "assets/projects/shareholder-cms.svg", "fallback_width": 1440, "fallback_height": 810
+        "type": "tracked_snapshot",
+        "source": "assets/projects/snapshots/buoy.webp"
+      },
+      "repo": "https://github.com/yoya9933/Buoy-data-analysis-V2",
+      "live": null,
+      "case_facts": {
+        "role": {
+          "zh": "資料與 ML 流程開發",
+          "en": "Data & ML pipeline development"
+        },
+        "scope": {
+          "zh": "Data QA · LSTM · 風險規則 · Streamlit",
+          "en": "Data QA · LSTM · risk rules · Streamlit"
+        },
+        "status": {
+          "zh": "公開 Repository / Case Study",
+          "en": "Public repository / case study"
+        },
+        "stack": "Python · Streamlit · Keras / LSTM"
+      },
+      "case_frame": {
+        "problem": {
+          "zh": "海洋觀測資料需要先處理品質、缺值與時間尺度，模型結果也必須轉成可判讀的風險訊號。",
+          "en": "Marine observations need QA, missing-data handling and time-scale normalization before model output can become an interpretable risk signal."
+        },
+        "decision": {
+          "zh": "把 resample、缺值策略、模型驗證、cache、風險門檻與 export 串成同一條分析流程。",
+          "en": "Connect resampling, missing-data strategies, validation, caching, risk thresholds and exports in one analysis workflow."
+        },
+        "evidence": {
+          "zh": "Repository 可核對 5 種時間尺度、4 種缺值策略與 4 種輸出；不把未固定資料集的模型分數包裝成成果。",
+          "en": "The repository verifies 5 time scales, 4 missing-data strategies and 4 exports; model scores without a fixed benchmark are not presented as performance claims."
+        },
+        "next": {
+          "zh": "下一步是固定 benchmark 資料集、加入 baseline / model comparison，並把資料來源與驗證流程再自動化。",
+          "en": "Next: establish a fixed benchmark dataset, add baseline/model comparisons and automate more of the data/validation pipeline."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "浮標資料分析平台｜Yu Case Study",
+          "description": "浮標資料分析、LSTM 預測、資料品質檢查與航道風險評估平台 Case Study。",
+          "og_title": "浮標資料分析與航道風險評估平台｜Yu",
+          "og_description": "5 種時間尺度、4 種缺值策略、4 種輸出，從 Data QA 到 LSTM 與風險判讀。"
+        },
+        "en": {
+          "title": "Buoy Analytics Platform | Yu Case Study",
+          "description": "Buoy data QA, LSTM forecasting, validation, model caching and navigation-risk rules in Streamlit.",
+          "og_title": "Buoy Analytics & Navigation Risk Platform",
+          "og_description": "Buoy data QA, LSTM forecasting, validation, model caching and navigation-risk rules in Streamlit."
+        }
+      }
+    },
+    {
+      "slug": "chess",
+      "order": 2,
+      "featured": false,
+      "badge": null,
+      "title": {
+        "zh": "楚河棋局｜線上中國象棋",
+        "en": "Chuhe Xiangqi | Online Chinese Chess"
+      },
+      "card_description": {
+        "zh": "6 碼房間、標準象棋與揭棋、AI、悔棋、回放與 revision 同步，房間狀態落到資料庫。",
+        "en": "Cross-device rooms with two rule modes, AI, undo/replay and revision-based database synchronization."
+      },
+      "tags": {
+        "zh": [
+          "6 碼房間",
+          "2 種棋類模式",
+          "2 種資料庫後端"
+        ],
+        "en": [
+          "6-digit rooms",
+          "2 rule modes",
+          "2 DB backends"
+        ]
+      },
+      "image_alt": {
+        "zh": "楚河棋局產品預覽",
+        "en": "Chuhe Xiangqi product preview"
+      },
+      "media": {
+        "type": "tracked_snapshot",
+        "source": "assets/projects/snapshots/chess.webp"
+      },
+      "repo": "https://github.com/yoya9933/chess-online",
+      "live": "https://chuhe-xiangqi-online.sean8411.workers.dev",
+      "live_label": {
+        "zh": "Live Demo ↗",
+        "en": "Live Demo ↗"
+      },
+      "case_facts": {
+        "role": {
+          "zh": "全端 Web 產品開發",
+          "en": "Full-stack web product development"
+        },
+        "scope": {
+          "zh": "棋規 · 多人房間 · 狀態同步 · Persistence",
+          "en": "Game rules · multiplayer rooms · state sync · persistence"
+        },
+        "status": {
+          "zh": "Live",
+          "en": "Live"
+        },
+        "stack": "JavaScript · HTTP API · Neon Postgres / D1"
+      },
+      "case_frame": {
+        "problem": {
+          "zh": "多人棋局除了規則正確，還要避免不同裝置的舊狀態覆蓋新棋局，並處理重連與房間生命週期。",
+          "en": "A multiplayer board game must prevent stale cross-device state from overwriting newer moves while handling reconnects and room lifecycle."
+        },
+        "decision": {
+          "zh": "使用 revision + polling、player token、heartbeat 與持久化房間 state，把 UI 規則與多人同步分層。",
+          "en": "Use revision-based polling, player tokens, heartbeats and persisted room state to separate UI rules from multiplayer synchronization."
+        },
+        "evidence": {
+          "zh": "可核對 6 碼房間、2 種主要棋規、Neon Postgres / Cloudflare D1 兩種資料庫後端，並有公開 Live Demo。",
+          "en": "Verified features include 6-digit rooms, 2 primary rule modes, Neon Postgres / Cloudflare D1 backends and a public live demo."
+        },
+        "next": {
+          "zh": "下一步是抽出共用 game engine、補自動化規則測試，並讓 server 成為規則權威來源。",
+          "en": "Next: extract a shared game engine, add automated rule tests and make the server authoritative for game rules."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "楚河棋局｜Yu Case Study",
+          "description": "免註冊跨裝置中國象棋 Web 產品：6 碼房間、兩種棋類模式、雙資料庫後端、revision 同步。",
+          "og_title": "楚河棋局｜線上中國象棋｜Yu",
+          "og_description": "跨裝置房間、revision 同步、API 與資料庫整合的 Web 產品。"
+        },
+        "en": {
+          "title": "Chuhe Xiangqi | Yu Case Study",
+          "description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends.",
+          "og_title": "Chuhe Xiangqi | Online Chinese Chess",
+          "og_description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends."
+        }
+      }
+    },
+    {
+      "slug": "event-checkin",
+      "order": 3,
+      "featured": false,
+      "badge": "PRIVACY-SAFE DEMO",
+      "title": {
+        "zh": "活動報到與現場營運系統",
+        "en": "Event Check-in & Operations System"
+      },
+      "card_description": {
+        "zh": "結合 QR 報到、即時簽到與入席統計、名單篩選、座位與現場例外處理的全端活動營運工具。",
+        "en": "A full-stack workflow connecting QR check-in, live attendance and seating metrics, operational filters and on-site exception handling."
+      },
+      "tags": {
+        "zh": [
+          "30 秒更新",
+          "5 維篩選",
+          "D1 / Drizzle"
+        ],
+        "en": [
+          "30-second refresh",
+          "5 filter dimensions",
+          "D1 / Drizzle"
+        ]
+      },
+      "image_alt": {
+        "zh": "活動報到與現場營運系統公開 Demo",
+        "en": "Event check-in and operations public demo"
+      },
+      "media": {
+        "type": "local_capture",
+        "source": "demos/event-checkin/index.html",
+        "width": 1440,
+        "height": 810,
+        "virtual_time_budget": 3500,
+        "quality": 84
+      },
+      "repo": null,
+      "live": "https://yoya9933.page/demos/event-checkin/",
+      "live_label": {
+        "zh": "Public Demo ↗",
+        "en": "Public Demo ↗"
+      },
+      "case_facts": {
+        "role": {
+          "zh": "全端現場營運工具開發",
+          "en": "Full-stack operations tool development"
+        },
+        "scope": {
+          "zh": "QR 報到 · 即時統計 · 篩選 · 座位",
+          "en": "QR check-in · live metrics · filters · seating"
+        },
+        "status": {
+          "zh": "正式系統 + 隱私安全公開 Demo",
+          "en": "Production system + privacy-safe public demo"
+        },
+        "stack": "Next.js · Cloudflare D1 · Drizzle"
+      },
+      "case_frame": {
+        "problem": {
+          "zh": "活動現場需要在有限時間內完成報到、搜尋、篩選、座位確認與例外處理，而且操作狀態必須快速回饋。",
+          "en": "On-site operations need fast check-in, search, filtering, seating confirmation and exception handling with immediate feedback."
+        },
+        "decision": {
+          "zh": "以 Next.js API → D1 → Drizzle 串接資料層，搭配 QR、30 秒統計更新與多維篩選支援現場操作。",
+          "en": "Use Next.js API → D1 → Drizzle for the data path, with QR workflows, 30-second metric refreshes and multi-dimensional filters."
+        },
+        "evidence": {
+          "zh": "目前可核對 30 秒更新、5 維篩選、預先報名 / 現場兩種名單來源與 CSV export；公開 Demo 僅使用 24 筆虛構資料。",
+          "en": "Verified behavior includes 30-second refreshes, 5 filter dimensions, preregistration/onsite sources and CSV export; the public demo uses only 24 synthetic records."
+        },
+        "next": {
+          "zh": "多活動、正式帳號 / RBAC、audit log、idempotency、多裝置衝突與 offline queue 都明確列為未來升級，不宣稱已完成。",
+          "en": "Multi-event support, real accounts/RBAC, audit logs, idempotency, multi-device conflict handling and an offline queue remain explicitly future work."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "活動報到與現場營運系統｜Yu Case Study",
+          "description": "實際支援臺灣綜合大學系統 2026 新進教師專業知能研習營的報到系統後端：QR 報到、即時統計、座位與現場營運。",
+          "og_title": "活動報到與現場營運系統｜Yu",
+          "og_description": "實際活動使用的報到後端：QR 報到、30 秒即時更新、五維篩選、座位與現場營運。"
+        },
+        "en": {
+          "title": "Event Check-in & Operations System | Yu Case Study",
+          "description": "The backend I built for the 2026 Taiwan Comprehensive University System New Faculty Professional Development Camp: QR check-in, live operations metrics, seating and field workflows.",
+          "og_title": "Event Check-in & Operations System | Yu",
+          "og_description": "A production-used event backend with QR check-in, 30-second live updates, five filter dimensions, seating and field operations."
+        }
+      }
+    },
+    {
+      "slug": "shareholder-cms",
+      "order": 4,
+      "featured": false,
+      "badge": "IN PRODUCTION",
+      "title": {
+        "zh": "股東紀念品服務與 CMS 平台",
+        "en": "Shareholder Gift Service & CMS Platform"
+      },
+      "card_description": {
+        "zh": "目前由大倉代領實際營運使用，整合公開服務網站、商品與公告 CMS、Supabase 認證、PostgreSQL 與雲端圖片儲存。",
+        "en": "Currently used in production by 大倉代領, combining the public service site, product and announcement CMS, Supabase authentication, PostgreSQL and cloud image storage."
+      },
+      "tags": {
+        "zh": [
+          "業界使用中 · 大倉代領",
+          "Vue 3 / TypeScript",
+          "Supabase CMS"
+        ],
+        "en": [
+          "In production · 大倉代領",
+          "Vue 3 / TypeScript",
+          "Supabase CMS"
+        ]
+      },
+      "image_alt": {
+        "zh": "大倉代領股東紀念品服務網站公開首頁預覽",
+        "en": "大倉代領 shareholder gift service public homepage preview"
+      },
+      "media": {
+        "type": "public_site_capture",
+        "url": "https://sharegift.tw/",
+        "width": 1440,
+        "height": 900,
+        "virtual_time_budget": 6000,
+        "timeout_seconds": 35,
+        "quality": 84,
+        "fallback_source": "assets/projects/shareholder-cms.svg",
+        "fallback_width": 1440,
+        "fallback_height": 810
       },
       "case_visual": {
-        "asset": "shareholder-cms.webp", "og_asset": "shareholder-cms.png",
-        "alt": {"zh": "大倉代領股東紀念品服務網站公開首頁預覽", "en": "大倉代領 shareholder gift service public homepage preview"},
-        "caption": {"zh": "Portfolio 優先擷取大倉代領目前營運中的 sharegift.tw 公開首頁作為作品預覽；若公開站暫時無法擷取，才回退至已審核的架構圖。建置流程不會存取需要登入的管理後台。", "en": "The portfolio prefers a build-time capture of the production site sharegift.tw currently operated by 大倉代領; if the public site cannot be captured, it falls back to the reviewed architecture visual. The build never accesses authenticated admin pages."}
+        "caption": {
+          "zh": "Portfolio 優先擷取大倉代領目前營運中的 sharegift.tw 公開首頁作為作品預覽；若公開站暫時無法擷取，才回退至已審核的架構圖。建置流程不會存取需要登入的管理後台。",
+          "en": "The portfolio prefers a build-time capture of the production site sharegift.tw currently operated by 大倉代領; if the public site cannot be captured, it falls back to the reviewed architecture visual. The build never accesses authenticated admin pages."
+        }
       },
-      "case": {"zh": "/projects/shareholder-cms/", "en": "/en/projects/shareholder-cms/"},
-      "repo": "https://github.com/yoya9933/-------_202601221138_XY_Propose_Minutes", "live": "https://sharegift.tw/",
-      "live_label": {"zh": "Live Site ↗", "en": "Live Site ↗"}, "schema_category": "BusinessApplication",
+      "repo": "https://github.com/yoya9933/-------_202601221138_XY_Propose_Minutes",
+      "live": "https://sharegift.tw/",
+      "live_label": {
+        "zh": "Live Site ↗",
+        "en": "Live Site ↗"
+      },
       "case_facts": {
-        "role": {"zh": "前端與 CMS 整合", "en": "Frontend & CMS integration"},
-        "scope": {"zh": "公開網站 · CMS · Auth / RLS · Storage", "en": "Public site · CMS · Auth / RLS · Storage"},
-        "status": {"zh": "業界使用中 · 大倉代領", "en": "In production · 大倉代領"},
-        "stack": "Vue 3 · TypeScript · Supabase", "year": "2026"
+        "role": {
+          "zh": "前端與 CMS 整合",
+          "en": "Frontend & CMS integration"
+        },
+        "scope": {
+          "zh": "公開網站 · CMS · Auth / RLS · Storage",
+          "en": "Public site · CMS · Auth / RLS · Storage"
+        },
+        "status": {
+          "zh": "業界使用中 · 大倉代領",
+          "en": "In production · 大倉代領"
+        },
+        "stack": "Vue 3 · TypeScript · Supabase"
       },
       "case_frame": {
-        "problem": {"zh": "商業服務網站的商品與公告若每次都靠修改程式發布，內容維護成本會快速增加。", "en": "A service website becomes costly to maintain when every product or announcement update requires a code change and redeploy."},
-        "decision": {"zh": "用 Vue 3 / TypeScript 建公開站與 CMS，Supabase 提供 Email Auth、PostgreSQL、Storage 與 RLS 資料存取控制。", "en": "Use Vue 3 / TypeScript for the public site and CMS, with Supabase Email Auth, PostgreSQL, Storage and RLS-backed data access."},
-        "evidence": {"zh": "公開站 sharegift.tw 目前以「大倉代領股東紀念品」品牌實際營運；Repository 可核對商品 / 公告 2 條主要 CMS 流程、Auth / Database / Storage 3 種 Supabase 能力、9 種 Schema.org type 與 GitHub Actions CI/CD。", "en": "The public site sharegift.tw is live under the 大倉代領 shareholder-gift service brand; the repository verifies 2 primary CMS flows, 3 Supabase capabilities (Auth/Database/Storage), 9 Schema.org types and GitHub Actions CI/CD."},
-        "next": {"zh": "下一步可強化後台操作稽核、內容版本紀錄與更完整的管理端流程；目前 Portfolio 不宣稱這些已存在。", "en": "Next improvements could add admin auditability, content revision history and richer management workflows; the portfolio does not claim these exist today."}
+        "problem": {
+          "zh": "商業服務網站的商品與公告若每次都靠修改程式發布，內容維護成本會快速增加。",
+          "en": "A service website becomes costly to maintain when every product or announcement update requires a code change and redeploy."
+        },
+        "decision": {
+          "zh": "用 Vue 3 / TypeScript 建公開站與 CMS，Supabase 提供 Email Auth、PostgreSQL、Storage 與 RLS 資料存取控制。",
+          "en": "Use Vue 3 / TypeScript for the public site and CMS, with Supabase Email Auth, PostgreSQL, Storage and RLS-backed data access."
+        },
+        "evidence": {
+          "zh": "公開站 sharegift.tw 目前以「大倉代領股東紀念品」品牌實際營運；Repository 可核對商品 / 公告 2 條主要 CMS 流程、Auth / Database / Storage 3 種 Supabase 能力、9 種 Schema.org type 與 GitHub Actions CI/CD。",
+          "en": "The public site sharegift.tw is live under the 大倉代領 shareholder-gift service brand; the repository verifies 2 primary CMS flows, 3 Supabase capabilities (Auth/Database/Storage), 9 Schema.org types and GitHub Actions CI/CD."
+        },
+        "next": {
+          "zh": "下一步可強化後台操作稽核、內容版本紀錄與更完整的管理端流程；目前 Portfolio 不宣稱這些已存在。",
+          "en": "Next improvements could add admin auditability, content revision history and richer management workflows; the portfolio does not claim these exist today."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "股東紀念品服務與 CMS 平台｜Yu Case Study",
+          "description": "以 Vue、TypeScript 與 Supabase 建立股東紀念品代領服務官網與內容管理後台，整合公告、商品、認證、資料庫與圖片儲存。",
+          "og_title": "股東紀念品服務與 CMS 平台｜Yu",
+          "og_description": "把公開服務網站、商品與公告後台、Supabase Auth、PostgreSQL 與 Storage 接成一套可營運的商業網站流程。"
+        },
+        "en": {
+          "title": "Shareholder Gift Service & CMS Platform | Yu Case Study",
+          "description": "A Vue, TypeScript and Supabase business-service website with product and announcement CMS, authentication, PostgreSQL and object storage.",
+          "og_title": "Shareholder Gift Service & CMS Platform | Yu",
+          "og_description": "A maintainable business-service website connecting public pages, a content admin panel, Supabase Auth, PostgreSQL and Storage."
+        }
       }
     },
     {
-      "slug": "neon-arena", "section": "selected", "order": 5, "featured": false, "badge": "REAL-TIME MULTIPLAYER",
-      "title": {"zh": "Neon Arena｜即時多人德州撲克", "en": "Neon Arena | Real-time Multiplayer Hold'em"},
+      "slug": "neon-arena",
+      "order": 5,
+      "featured": false,
+      "badge": "REAL-TIME MULTIPLAYER",
+      "title": {
+        "zh": "Neon Arena｜即時多人德州撲克",
+        "en": "Neon Arena | Real-time Multiplayer Hold'em"
+      },
       "card_description": {
         "zh": "2–6 人即時牌局，以 Cloudflare Durable Objects 維持伺服器權威狀態、私牌隔離、18 秒回合、斷線重連與主池／邊池結算。",
         "en": "A 2–6 player real-time table using Cloudflare Durable Objects for server-authoritative state, private-card isolation, 18-second turns, reconnects and main/side-pot settlement."
       },
-      "tags": {"zh": ["2–6 人即時多人", "Durable Objects + WebSocket", "Server-authoritative"], "en": ["2–6 players", "Durable Objects + WebSocket", "Server-authoritative"]},
-      "image": "neon-arena.webp", "image_alt": {"zh": "Neon Arena 即時多人德州撲克公開 Demo", "en": "Neon Arena real-time multiplayer Hold'em public demo"},
+      "tags": {
+        "zh": [
+          "2–6 人即時多人",
+          "Durable Objects + WebSocket",
+          "Server-authoritative"
+        ],
+        "en": [
+          "2–6 players",
+          "Durable Objects + WebSocket",
+          "Server-authoritative"
+        ]
+      },
+      "image_alt": {
+        "zh": "Neon Arena 即時多人德州撲克公開 Demo",
+        "en": "Neon Arena real-time multiplayer Hold'em public demo"
+      },
       "media": {
-        "type": "public_site_capture", "url": "https://neon-arena-holdem.sean8411.workers.dev/", "width": 1440, "height": 900,
-        "virtual_time_budget": 7000, "timeout_seconds": 35, "quality": 84,
-        "fallback_source": "assets/projects/neon-arena.svg", "fallback_width": 1440, "fallback_height": 900
+        "type": "public_site_capture",
+        "url": "https://neon-arena-holdem.sean8411.workers.dev/",
+        "width": 1440,
+        "height": 900,
+        "virtual_time_budget": 7000,
+        "timeout_seconds": 35,
+        "quality": 84,
+        "fallback_source": "assets/projects/neon-arena.svg",
+        "fallback_width": 1440,
+        "fallback_height": 900
       },
       "case_visual": {
-        "asset": "neon-arena.webp", "og_asset": "neon-arena.png",
-        "alt": {"zh": "Neon Arena 即時多人德州撲克公開 Demo", "en": "Neon Arena real-time multiplayer Hold'em public demo"},
-        "caption": {"zh": "Portfolio 優先擷取公開 Neon Arena Demo 作為作品預覽；若外站暫時無法擷取，才回退至已審核的霓虹牌桌 visual。Demo 僅使用虛擬籌碼，沒有付費、儲值或兌現。", "en": "The portfolio prefers a capture of the public Neon Arena demo and falls back to the reviewed neon-table visual when the public site cannot be captured. The demo uses virtual chips only, with no payments, deposits or cash-out."}
+        "caption": {
+          "zh": "Portfolio 優先擷取公開 Neon Arena Demo 作為作品預覽；若外站暫時無法擷取，才回退至已審核的霓虹牌桌 visual。Demo 僅使用虛擬籌碼，沒有付費、儲值或兌現。",
+          "en": "The portfolio prefers a capture of the public Neon Arena demo and falls back to the reviewed neon-table visual when the public site cannot be captured. The demo uses virtual chips only, with no payments, deposits or cash-out."
+        }
       },
-      "case": {"zh": "/projects/neon-arena/", "en": "/en/projects/neon-arena/"},
-      "repo": null, "live": "https://neon-arena-holdem.sean8411.workers.dev/",
-      "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"}, "schema_category": "GameApplication",
+      "repo": null,
+      "live": "https://neon-arena-holdem.sean8411.workers.dev/",
+      "live_label": {
+        "zh": "Live Demo ↗",
+        "en": "Live Demo ↗"
+      },
       "case_facts": {
-        "role": {"zh": "全端即時多人遊戲開發", "en": "Full-stack real-time multiplayer game development"},
-        "scope": {"zh": "牌局規則 · WebSocket · Durable Objects · Reconnect", "en": "Game rules · WebSocket · Durable Objects · reconnect"},
-        "status": {"zh": "Live friends-only prototype", "en": "Live friends-only prototype"},
-        "stack": "React · Cloudflare Workers · Durable Objects / SQLite", "year": "2026"
+        "role": {
+          "zh": "全端即時多人遊戲開發",
+          "en": "Full-stack real-time multiplayer game development"
+        },
+        "scope": {
+          "zh": "牌局規則 · WebSocket · Durable Objects · Reconnect",
+          "en": "Game rules · WebSocket · Durable Objects · reconnect"
+        },
+        "status": {
+          "zh": "Live friends-only prototype",
+          "en": "Live friends-only prototype"
+        },
+        "stack": "React · Cloudflare Workers · Durable Objects / SQLite"
       },
       "case_frame": {
-        "problem": {"zh": "即時德州撲克不只要同步桌面，還必須保護私牌、處理同時操作與回合期限、斷線重連，以及多人 all-in 後的牌池結算。", "en": "Real-time Hold'em must protect hole cards while resolving concurrent actions, turn deadlines, reconnects and multi-player all-in pot settlement."},
-        "decision": {"zh": "採用伺服器權威模型：每房一個 Durable Object，使用 Hibernation WebSocket、SQLite persistence、alarm timeout、玩家個別 snapshot 與 Web Crypto CSPRNG 洗牌。", "en": "Use a server-authoritative model with one Durable Object per room, Hibernation WebSockets, SQLite persistence, alarm-based turn timeouts, per-player snapshots and Web Crypto CSPRNG shuffling."},
-        "evidence": {"zh": "目前已實作 2–6 位同桌、18 秒回合、進行中加入先觀戰、斷線重連、房主轉移、主池／邊池與退款結算；公開 Live Demo 僅使用虛擬籌碼。", "en": "Implemented behavior includes 2–6 players, 18-second turns, mid-hand observers, reconnects, host transfer, main/side pots and refunds; the public live demo uses virtual chips only."},
-        "next": {"zh": "下一步是玩家可驗證的 commit/reveal 公平性、正式帳號與跨裝置身分恢復、觀眾模式，以及席位到期回收。", "en": "Next: player-verifiable commit/reveal fairness, real accounts with cross-device identity recovery, spectator mode and seat-expiry reclamation."}
+        "problem": {
+          "zh": "即時德州撲克不只要同步桌面，還必須保護私牌、處理同時操作與回合期限、斷線重連，以及多人 all-in 後的牌池結算。",
+          "en": "Real-time Hold'em must protect hole cards while resolving concurrent actions, turn deadlines, reconnects and multi-player all-in pot settlement."
+        },
+        "decision": {
+          "zh": "採用伺服器權威模型：每房一個 Durable Object，使用 Hibernation WebSocket、SQLite persistence、alarm timeout、玩家個別 snapshot 與 Web Crypto CSPRNG 洗牌。",
+          "en": "Use a server-authoritative model with one Durable Object per room, Hibernation WebSockets, SQLite persistence, alarm-based turn timeouts, per-player snapshots and Web Crypto CSPRNG shuffling."
+        },
+        "evidence": {
+          "zh": "目前已實作 2–6 位同桌、18 秒回合、進行中加入先觀戰、斷線重連、房主轉移、主池／邊池與退款結算；公開 Live Demo 僅使用虛擬籌碼。",
+          "en": "Implemented behavior includes 2–6 players, 18-second turns, mid-hand observers, reconnects, host transfer, main/side pots and refunds; the public live demo uses virtual chips only."
+        },
+        "next": {
+          "zh": "下一步是玩家可驗證的 commit/reveal 公平性、正式帳號與跨裝置身分恢復、觀眾模式，以及席位到期回收。",
+          "en": "Next: player-verifiable commit/reveal fairness, real accounts with cross-device identity recovery, spectator mode and seat-expiry reclamation."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "Neon Arena｜即時多人德州撲克｜Yu Case Study",
+          "description": "2–6 人即時多人德州撲克：Cloudflare Durable Objects、WebSocket、SQLite、伺服器權威狀態、私牌隔離、回合逾時與斷線重連。",
+          "og_title": "Neon Arena｜即時多人德州撲克｜Yu",
+          "og_description": "以 Durable Objects 與 WebSocket 建立伺服器權威的 2–6 人即時牌局。"
+        },
+        "en": {
+          "title": "Neon Arena | Real-time Multiplayer Hold'em | Yu Case Study",
+          "description": "A 2–6 player real-time Hold'em system using Cloudflare Durable Objects, WebSocket, SQLite, server-authoritative state, private-card isolation, turn timeouts and reconnects.",
+          "og_title": "Neon Arena | Real-time Multiplayer Hold'em",
+          "og_description": "A server-authoritative 2–6 player game built on Durable Objects and WebSocket."
+        }
       }
     },
     {
-      "slug": "overtime-management", "section": "selected", "order": 6, "featured": false, "badge": "IN USE · NCKU CTLD",
-      "title": {"zh": "加班管理與行政彙整系統", "en": "Overtime Operations System"},
+      "slug": "overtime-management",
+      "order": 6,
+      "featured": false,
+      "badge": "IN USE · NCKU CTLD",
+      "title": {
+        "zh": "加班管理與行政彙整系統",
+        "en": "Overtime Operations System"
+      },
       "card_description": {
         "zh": "將加班申請、主管審核、角色權限與行政彙整整合成可操作流程，目前由國立成功大學教務處教學發展中心實際使用。",
         "en": "An overtime submission, manager review, role-based access and administrative consolidation workflow currently used by NCKU’s Center for Teaching and Learning Development."
       },
-      "tags": {"zh": ["成大教發中心使用", "React + Worker", "D1 + RBAC"], "en": ["Used by NCKU CTLD", "React + Worker", "D1 + RBAC"]},
-      "image": "overtime-management.webp", "image_alt": {"zh": "加班管理與行政彙整系統架構預覽", "en": "Overtime operations system architecture preview"},
-      "media": {"type": "svg_render", "source": "assets/projects/overtime-management.svg", "width": 1440, "height": 900, "quality": 86},
-      "case": {"zh": "/projects/overtime-management/", "en": "/en/projects/overtime-management/"},
-      "repo": "https://github.com/yoya9933/yoya9933.github.io/tree/overtime-management-system", "live": null,
-      "live_label": {"zh": "Live Site ↗", "en": "Live Site ↗"}, "schema_category": "BusinessApplication",
+      "tags": {
+        "zh": [
+          "成大教發中心使用",
+          "React + Worker",
+          "D1 + RBAC"
+        ],
+        "en": [
+          "Used by NCKU CTLD",
+          "React + Worker",
+          "D1 + RBAC"
+        ]
+      },
+      "image_alt": {
+        "zh": "加班管理與行政彙整系統架構預覽",
+        "en": "Overtime operations system architecture preview"
+      },
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/overtime-management.svg",
+        "width": 1440,
+        "height": 900,
+        "quality": 86
+      },
+      "repo": "https://github.com/yoya9933/yoya9933.github.io/tree/overtime-management-system",
+      "live": null,
       "case_facts": {
-        "role": {"zh": "行政流程系統開發", "en": "Administrative workflow system development"},
-        "scope": {"zh": "加班申請 · 主管審核 · 權限 · 行政彙整", "en": "Overtime requests · manager review · RBAC · reporting"},
-        "status": {"zh": "國立成功大學教務處教學發展中心實際使用", "en": "In use at NCKU Center for Teaching and Learning Development"},
-        "stack": "React · Vite · Cloudflare Workers · D1", "year": "2026"
+        "role": {
+          "zh": "行政流程系統開發",
+          "en": "Administrative workflow system development"
+        },
+        "scope": {
+          "zh": "加班申請 · 主管審核 · 權限 · 行政彙整",
+          "en": "Overtime requests · manager review · RBAC · reporting"
+        },
+        "status": {
+          "zh": "國立成功大學教務處教學發展中心實際使用",
+          "en": "In use at NCKU Center for Teaching and Learning Development"
+        },
+        "stack": "React · Vite · Cloudflare Workers · D1"
       },
       "case_frame": {
-        "problem": {"zh": "校內加班資料若分散在訊息、表單與人工彙整流程中，容易增加主管審核、追蹤與行政整理成本。", "en": "When overtime data is scattered across messages, forms and manual consolidation, manager review, tracking and administrative reporting become harder to maintain."},
-        "decision": {"zh": "以 React 前端搭配 Cloudflare Worker API 與 D1，將申請、審核、角色權限與資料彙整放進同一個流程，並在後端驗證時段與重複申請。", "en": "Use a React frontend with a Cloudflare Worker API and D1 to keep submission, approval, role controls and reporting in one workflow, with server-side time and overlap validation."},
-        "evidence": {"zh": "系統目前由國立成功大學教務處教學發展中心實際使用；公開作品版只保留可檢視的程式與虛構資料，不公開正式人員資料、帳密、資料庫或 production 入口。", "en": "The system is currently used by NCKU’s Center for Teaching and Learning Development; the public portfolio snapshot exposes only reviewable code and synthetic data, not staff data, credentials, databases or the production entry point."},
-        "next": {"zh": "後續可再強化完整 audit trail、匯出格式與校方正式流程的整合；目前作品集不把這些列為已完成。", "en": "Future work could strengthen audit trails, export formats and integration with formal university workflows; the portfolio does not claim those as completed features."}
+        "problem": {
+          "zh": "校內加班資料若分散在訊息、表單與人工彙整流程中，容易增加主管審核、追蹤與行政整理成本。",
+          "en": "When overtime data is scattered across messages, forms and manual consolidation, manager review, tracking and administrative reporting become harder to maintain."
+        },
+        "decision": {
+          "zh": "以 React 前端搭配 Cloudflare Worker API 與 D1，將申請、審核、角色權限與資料彙整放進同一個流程，並在後端驗證時段與重複申請。",
+          "en": "Use a React frontend with a Cloudflare Worker API and D1 to keep submission, approval, role controls and reporting in one workflow, with server-side time and overlap validation."
+        },
+        "evidence": {
+          "zh": "系統目前由國立成功大學教務處教學發展中心實際使用；公開作品版只保留可檢視的程式與虛構資料，不公開正式人員資料、帳密、資料庫或 production 入口。",
+          "en": "The system is currently used by NCKU’s Center for Teaching and Learning Development; the public portfolio snapshot exposes only reviewable code and synthetic data, not staff data, credentials, databases or the production entry point."
+        },
+        "next": {
+          "zh": "後續可再強化完整 audit trail、匯出格式與校方正式流程的整合；目前作品集不把這些列為已完成。",
+          "en": "Future work could strengthen audit trails, export formats and integration with formal university workflows; the portfolio does not claim those as completed features."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "加班管理與行政彙整系統｜Yu Case Study",
+          "description": "目前由國立成功大學教務處教學發展中心實際使用的加班管理與行政彙整系統：申請、主管審核、角色權限與資料整理。",
+          "og_title": "加班管理與行政彙整系統｜Yu",
+          "og_description": "實際投入成大教發中心內部行政使用的加班申請、主管審核與彙整工具。"
+        },
+        "en": {
+          "title": "Overtime Operations System | Yu Case Study",
+          "description": "An overtime request, manager review, role control and administrative consolidation system currently used by NCKU's Center for Teaching and Learning Development.",
+          "og_title": "Overtime Operations System | Yu",
+          "og_description": "An internal administrative workflow system in real use at NCKU CTLD."
+        }
       }
     },
     {
-      "slug": "ai-media-pipeline", "section": "selected", "order": 7, "featured": false, "badge": "AI AUTOMATION",
-      "title": {"zh": "Reliable AI Media Automation Pipeline", "en": "Reliable AI Media Automation Pipeline"},
-      "card_description": {"zh": "設計並實作 AI 內容自動化流程，整合選題、內容生成、發布與任務追蹤，降低重複性人工操作，提升多主題、多平台內容產製與管理效率。", "en": "Designed and built an AI content automation workflow that connects topic selection, content generation, publishing and task tracking to reduce repetitive manual work and improve multi-topic, multi-platform content operations."},
-      "tags": {"zh": ["4 條內容線", "3 個發布介面", "Retry + Audit Trail"], "en": ["4 content profiles", "3 publishing adapters", "Retry + audit trail"]},
-      "image": "ai-media-pipeline.webp", "image_alt": {"zh": "Reliable AI Media Automation Pipeline 架構圖", "en": "Reliable AI Media Automation Pipeline architecture"},
-      "media": {"type": "svg_render", "source": "assets/projects/ai-media-pipeline.svg", "width": 1200, "height": 675, "quality": 86},
-      "case": {"zh": "/projects/ai-media-pipeline/", "en": "/en/projects/ai-media-pipeline/"},
-      "repo": "https://github.com/yoya9933/autovideos", "live": null,
-      "live_label": {"zh": "Live Demo ↗", "en": "Live Demo ↗"},
-      "schema_category": "MultimediaApplication",
+      "slug": "ai-media-pipeline",
+      "order": 7,
+      "featured": false,
+      "badge": "AI AUTOMATION",
+      "title": {
+        "zh": "Reliable AI Media Automation Pipeline",
+        "en": "Reliable AI Media Automation Pipeline"
+      },
+      "card_description": {
+        "zh": "設計並實作 AI 內容自動化流程，整合選題、內容生成、發布與任務追蹤，降低重複性人工操作，提升多主題、多平台內容產製與管理效率。",
+        "en": "Designed and built an AI content automation workflow that connects topic selection, content generation, publishing and task tracking to reduce repetitive manual work and improve multi-topic, multi-platform content operations."
+      },
+      "tags": {
+        "zh": [
+          "4 條內容線",
+          "3 個發布介面",
+          "Retry + Audit Trail"
+        ],
+        "en": [
+          "4 content profiles",
+          "3 publishing adapters",
+          "Retry + audit trail"
+        ]
+      },
+      "image_alt": {
+        "zh": "Reliable AI Media Automation Pipeline 架構圖",
+        "en": "Reliable AI Media Automation Pipeline architecture"
+      },
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/ai-media-pipeline.svg",
+        "width": 1200,
+        "height": 675,
+        "quality": 86
+      },
+      "repo": "https://github.com/yoya9933/autovideos",
+      "live": null,
       "case_facts": {
-        "role": {"zh": "自動化與可靠性 orchestration", "en": "Automation & reliability orchestration"},
-        "scope": {"zh": "RSS · 去重 · fallback · 發布恢復 · 通知", "en": "RSS · dedupe · fallback · publish recovery · alerts"},
-        "status": {"zh": "公開 Repository / Case Study", "en": "Public repository / case study"},
-        "stack": "Python · MoneyPrinterTurbo · publishing adapters", "year": "2026"
+        "role": {
+          "zh": "自動化與可靠性 orchestration",
+          "en": "Automation & reliability orchestration"
+        },
+        "scope": {
+          "zh": "RSS · 去重 · fallback · 發布恢復 · 通知",
+          "en": "RSS · dedupe · fallback · publish recovery · alerts"
+        },
+        "status": {
+          "zh": "公開 Repository / Case Study",
+          "en": "Public repository / case study"
+        },
+        "stack": "Python · MoneyPrinterTurbo · publishing adapters"
       },
       "case_frame": {
-        "problem": {"zh": "自動生成流程真正的營運風險不只在生成品質，還包含重複來源、選題失敗、發布中斷與失敗後無法追蹤。", "en": "Operational risk in an automated media pipeline includes duplicate sources, selection failure, interrupted publishing and poor failure traceability—not only generation quality."},
-        "decision": {"zh": "在上游 MoneyPrinterTurbo 外新增 RSS intake / dedupe、LLM→本機評分 fallback、pending upload recovery、job JSON、日報與通知。", "en": "Add RSS intake/deduplication, LLM→local-scoring fallback, pending-upload recovery, job JSON records, daily reports and notifications around the upstream MoneyPrinterTurbo engine."},
-        "evidence": {"zh": "目前可核對 4 條內容線、3 個發布平台介面、2 個通知通道，以及 `--dry-run` / `--no-upload` / manual review 3 種安全執行控制。", "en": "Verified scope includes 4 content profiles, 3 publishing platform interfaces, 2 notification channels and 3 execution controls: `--dry-run`, `--no-upload` and manual review."},
-        "next": {"zh": "設定中已有品質門檻欄位，但主流程目前沒有把它強制成 publish blocker；下一步才是把 quality gate 真正接進發布決策。", "en": "Quality-threshold fields exist in configuration, but the main flow does not currently enforce them as a publish blocker; wiring that gate into publish decisions is future work."}
+        "problem": {
+          "zh": "自動生成流程真正的營運風險不只在生成品質，還包含重複來源、選題失敗、發布中斷與失敗後無法追蹤。",
+          "en": "Operational risk in an automated media pipeline includes duplicate sources, selection failure, interrupted publishing and poor failure traceability—not only generation quality."
+        },
+        "decision": {
+          "zh": "在上游 MoneyPrinterTurbo 外新增 RSS intake / dedupe、LLM→本機評分 fallback、pending upload recovery、job JSON、日報與通知。",
+          "en": "Add RSS intake/deduplication, LLM→local-scoring fallback, pending-upload recovery, job JSON records, daily reports and notifications around the upstream MoneyPrinterTurbo engine."
+        },
+        "evidence": {
+          "zh": "目前可核對 4 條內容線、3 個發布平台介面、2 個通知通道，以及 `--dry-run` / `--no-upload` / manual review 3 種安全執行控制。",
+          "en": "Verified scope includes 4 content profiles, 3 publishing platform interfaces, 2 notification channels and 3 execution controls: `--dry-run`, `--no-upload` and manual review."
+        },
+        "next": {
+          "zh": "設定中已有品質門檻欄位，但主流程目前沒有把它強制成 publish blocker；下一步才是把 quality gate 真正接進發布決策。",
+          "en": "Quality-threshold fields exist in configuration, but the main flow does not currently enforce them as a publish blocker; wiring that gate into publish decisions is future work."
+        }
+      },
+      "case_page": {
+        "zh": {
+          "title": "Reliable AI Media Automation Pipeline｜Yu Case Study",
+          "description": "以去重、可追溯紀錄、失敗恢復、多平台發布介面與人工審核模式為核心的 AI 媒體自動化工作流。",
+          "og_title": "Reliable AI Media Automation Pipeline｜Yu",
+          "og_description": "4 條內容線、3 個發布介面、去重、失敗恢復、稽核紀錄與通知。"
+        },
+        "en": {
+          "title": "Reliable AI Media Automation Pipeline | Yu Case Study",
+          "description": "An AI media workflow designed around deduplication, traceable records, upload recovery, multi-platform adapters and human review modes.",
+          "og_title": "Reliable AI Media Automation Pipeline | Yu",
+          "og_description": "Four content profiles, three publishing adapters, deduplication, recovery, audit records and notifications."
+        }
       }
     }
-  ]
+  ],
+  "project_year": "2026"
 }
