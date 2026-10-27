@@ -119,8 +119,8 @@ def performance_errors() -> list[str]:
             errors.append(f"local profile image missing from {rel}")
             continue
         tag = match.group(0)
-        if 'width="156"' not in tag or 'height="156"' not in tag:
-            errors.append(f"profile image intrinsic display dimensions missing from {rel}")
+        if 'width="428"' not in tag or 'height="592"' not in tag:
+            errors.append(f"profile image intrinsic dimensions missing from {rel}")
         if 'decoding="async"' not in tag:
             errors.append(f"profile image async decoding missing from {rel}")
 
@@ -265,10 +265,11 @@ def main() -> int:
                     errors.append(f"{rel}: missing {token}")
         if "<main" in text and ('class="skip-link"' not in text or not re.search(r'<main\b[^>]*id="main"', text, re.I)):
             errors.append(f"{rel}: missing skip-link/main target")
-        if 'data-theme="dark"' not in text:
-            errors.append(f"{rel}: published page is not fixed to dark theme")
-        if 'name="theme-color"' not in text or '#07111f' not in text:
-            errors.append(f"{rel}: missing dark theme-color meta")
+        if not (rel.parts and rel.parts[0] == "demos"):
+            if 'data-theme="light"' not in text:
+                errors.append(f"{rel}: published portfolio page is not fixed to light theme")
+            if 'name="theme-color"' not in text or '#f6f8ff' not in text:
+                errors.append(f"{rel}: missing light theme-color meta")
         if "menu-toggle" in text and "aria-label=" not in text:
             errors.append(f"{rel}: menu toggle lacks initial accessible label")
         for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', text, re.I):
