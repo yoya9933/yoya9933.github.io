@@ -349,9 +349,9 @@ def render_case_page(project: dict, locale: str, data: dict) -> str:
         raise RuntimeError(f"case-study content missing: {fragment}")
     content = fragment.read_text(encoding="utf-8").strip()
     return (
-        '<!DOCTYPE html><html lang="' + escape(lang, quote=True) + '" data-theme="dark"><head>'
+        '<!DOCTYPE html><html lang="' + escape(lang, quote=True) + '" data-theme="light"><head>'
         '<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta name="theme-color" content="#07111f">'
+        '<meta name="theme-color" content="#f6f8ff">'
         f'<title>{escape(page["title"])}</title>'
         f'<meta name="description" content="{escape(page["description"], quote=True)}">'
         f'<link rel="canonical" href="{escape(canonical, quote=True)}">'
