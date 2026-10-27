@@ -2,6 +2,17 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.0 — 2026-10-27
+
+Sharegift-inspired Visual Redesign：重做 Portfolio 的整體視覺系統，參考 sharegift.tw 清楚的商業網站資訊層級與卡片節奏，但改用 Yu 自己的藍紫／青綠配色與工程作品內容。
+
+- 全站由深色工程 Dashboard 風格改為淺色產品網站：白色卡片、柔和背景、清楚 CTA、較大的留白與一致圓角層級。
+- Hero、Achievements、Selected Work、Capabilities、Contact、Case Study 與 Changelog 共用同一套新版視覺語言；中英文內容與既有資訊架構不變。
+- 首頁個人照恢復原始 428×592 直式構圖，放大照片框並完整顯示，不再用 1:1 cover 裁切頭部。
+- Portfolio 頁面固定 light theme；兩個 privacy-safe Demo 保留各自深色產品介面，CI 只對正式 Portfolio 頁面驗證 light theme。
+- 更新 favicon、PWA theme color 與 OG social image，使品牌資產與新版配色一致。
+- 不新增 framework、JavaScript、第三方字型或 runtime dependency；CSP、SEO、privacy、accessibility、reduced-motion、build manifest、Release identity 與 deployment smoke check 全部保留。
+
 ## v1.7.18 — 2026-09-14
 
 Lean CI Checks：精簡網站品質流程，保留正式建置完整性檢查與部署後版本驗證。
