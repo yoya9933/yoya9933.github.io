@@ -107,8 +107,8 @@ def performance_errors() -> list[str]:
     size = jpeg_dimensions(profile_path)
     if not size:
         errors.append("local profile image is missing or invalid JPEG: assets/profile.jpg")
-    elif min(size) < 156:
-        errors.append(f"local profile image is too small: {size[0]}x{size[1]}")
+    elif size != (428, 592):
+        errors.append(f"profile image must match the full 428x592 portrait: {size[0]}x{size[1]}")
 
     for rel, src in (("index.html", "assets/profile.jpg"), ("en/index.html", "../assets/profile.jpg")):
         path = SITE / rel
