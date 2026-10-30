@@ -21,12 +21,6 @@ FACT_LABELS = {
     "zh": {"role": "角色", "scope": "範圍", "status": "狀態", "stack": "技術", "year": "年份"},
     "en": {"role": "Role", "scope": "Scope", "status": "Status", "stack": "Stack", "year": "Year"},
 }
-FRAME_LABELS = {
-    "zh": {"heading": "專案脈絡與工程判斷", "problem": "Problem", "decision": "Decision", "evidence": "Evidence", "next": "Next"},
-    "en": {"heading": "Project framing and engineering decisions", "problem": "Problem", "decision": "Decision", "evidence": "Evidence", "next": "Next"},
-}
-
-
 def localized(value: object, locale: str) -> str:
     if isinstance(value, dict):
         result = value.get(locale)
@@ -51,36 +45,12 @@ def facts_html(project: dict, locale: str, year: str) -> str:
     return f'<div class="case-facts" data-case-facts="{escape(project["slug"], quote=True)}"><dl>{items}</dl></div>'
 
 
-def framing_html(project: dict, locale: str) -> str:
-    frame = project.get("case_frame")
-    if not isinstance(frame, dict):
-        raise RuntimeError(f"case_frame missing for {project['slug']}")
-    labels = FRAME_LABELS[locale]
-    cards = "".join(
-        '<article class="case-card">'
-        f'<strong>{escape(labels[key])}</strong>{escape(localized(frame.get(key), locale))}'
-        '</article>'
-        for key in ("problem", "decision", "evidence", "next")
-    )
-    return (
-        f'<section class="case-section case-framing" data-case-framing="{escape(project["slug"], quote=True)}">'
-        '<h2>00 / Project framing</h2><div>'
-        f'<h3>{escape(labels["heading"])}</h3><div class="case-grid">{cards}</div>'
-        '</div></section>'
-    )
-
-
-def render_case_framing(text: str, project: dict, locale: str, year: str) -> str:
+def render_case_facts(text: str, project: dict, locale: str, year: str) -> str:
     text = re.sub(r'<div class="case-facts"[^>]*>.*?</dl></div>', '', text, flags=re.I | re.S)
-    text = re.sub(r'<section class="case-section case-framing"[^>]*>.*?</section>', '', text, flags=re.I | re.S)
     header_end = text.find("</header>")
     if header_end < 0:
         raise RuntimeError(f"case header missing: {project['slug']} ({locale})")
-    text = text[:header_end] + facts_html(project, locale, year) + text[header_end:]
-    main = re.search(r'<main\b[^>]*class="[^"]*case-content[^"]*"[^>]*>', text, flags=re.I)
-    if not main:
-        raise RuntimeError(f"case main missing: {project['slug']} ({locale})")
-    return text[:main.end()] + framing_html(project, locale) + text[main.end():]
+    return text[:header_end] + facts_html(project, locale, year) + text[header_end:]
 
 
 def load_data() -> dict:
@@ -330,7 +300,7 @@ def render_case_actions_text(text: str, project: dict, locale: str, data: dict) 
     else:
         text = text.replace("</header>", actions + "</header>", 1)
     text = update_case_visual(text, project, locale, data["site_url"])
-    return render_case_framing(text, project, locale, data["project_year"])
+    return render_case_facts(text, project, locale, data["project_year"])
 
 
 def render_case_page(project: dict, locale: str, data: dict) -> str:
