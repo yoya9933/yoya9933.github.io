@@ -22,7 +22,7 @@ for project in "${PROJECT_SLUGS[@]}"; do
 done
 
 cp -R demos/event-checkin demos/ai-media-pipeline _site/demos/
-cp assets/styles.css assets/main.js assets/favicon.svg assets/og-image.svg assets/profile.jpg _site/assets/
+cp assets/styles.css assets/main.js assets/favicon.svg assets/og-image.svg assets/profile.webp _site/assets/
 
 # Social and app icons.
 rsvg-convert -w 1200 -h 630 assets/og-image.svg -o _site/assets/og-image.png

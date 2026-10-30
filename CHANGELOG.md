@@ -2,6 +2,16 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.1 — 2026-10-31
+
+Homepage personal introduction and portrait fix：將首頁 AI 式口號改為自然的第一人稱自我介紹，右側照片改用完整直式原圖。
+
+- 中英文首頁 Hero 改以個人姓名、興趣與實際專案類型介紹，不再堆砌抽象技術口號。
+- 移除右側重複的 POSITIONING 卡片文案與多餘裝飾，改成簡潔的直式個人照。
+- 修復原先 320×320 方形圖片已切到頭頂的問題，改用完整 428×592 WebP 人像，保留頭頂留白並減少檔案大小。
+- 在網站品質檢查加入人像尺寸驗證，防止未來再將裁切照片當成原始直式圖片部署。
+- 保留所有現有作品、成果、履歷連結、SEO、CSP 與無障礙規則，不新增相依套件。
+
 ## v1.8.0 — 2026-10-27
 
 Sharegift-inspired Visual Redesign：重做 Portfolio 的整體視覺系統，參考 sharegift.tw 清楚的商業網站資訊層級與卡片節奏，但改用 Yu 自己的藍紫／青綠配色與工程作品內容。
