@@ -59,24 +59,6 @@
         },
         "stack": "Python · Streamlit · Keras / LSTM"
       },
-      "case_frame": {
-        "problem": {
-          "zh": "海洋觀測資料需要先處理品質、缺值與時間尺度，模型結果也必須轉成可判讀的風險訊號。",
-          "en": "Marine observations need QA, missing-data handling and time-scale normalization before model output can become an interpretable risk signal."
-        },
-        "decision": {
-          "zh": "把 resample、缺值策略、模型驗證、cache、風險門檻與 export 串成同一條分析流程。",
-          "en": "Connect resampling, missing-data strategies, validation, caching, risk thresholds and exports in one analysis workflow."
-        },
-        "evidence": {
-          "zh": "Repository 可核對 5 種時間尺度、4 種缺值策略與 4 種輸出；不把未固定資料集的模型分數包裝成成果。",
-          "en": "The repository verifies 5 time scales, 4 missing-data strategies and 4 exports; model scores without a fixed benchmark are not presented as performance claims."
-        },
-        "next": {
-          "zh": "下一步是固定 benchmark 資料集、加入 baseline / model comparison，並把資料來源與驗證流程再自動化。",
-          "en": "Next: establish a fixed benchmark dataset, add baseline/model comparisons and automate more of the data/validation pipeline."
-        }
-      },
       "case_page": {
         "zh": {
           "title": "浮標資料分析平台｜Yu Case Study",
@@ -145,24 +127,6 @@
           "en": "Live"
         },
         "stack": "JavaScript · HTTP API · Neon Postgres / D1"
-      },
-      "case_frame": {
-        "problem": {
-          "zh": "多人棋局除了規則正確，還要避免不同裝置的舊狀態覆蓋新棋局，並處理重連與房間生命週期。",
-          "en": "A multiplayer board game must prevent stale cross-device state from overwriting newer moves while handling reconnects and room lifecycle."
-        },
-        "decision": {
-          "zh": "使用 revision + polling、player token、heartbeat 與持久化房間 state，把 UI 規則與多人同步分層。",
-          "en": "Use revision-based polling, player tokens, heartbeats and persisted room state to separate UI rules from multiplayer synchronization."
-        },
-        "evidence": {
-          "zh": "可核對 6 碼房間、2 種主要棋規、Neon Postgres / Cloudflare D1 兩種資料庫後端，並有公開 Live Demo。",
-          "en": "Verified features include 6-digit rooms, 2 primary rule modes, Neon Postgres / Cloudflare D1 backends and a public live demo."
-        },
-        "next": {
-          "zh": "下一步是抽出共用 game engine、補自動化規則測試，並讓 server 成為規則權威來源。",
-          "en": "Next: extract a shared game engine, add automated rule tests and make the server authoritative for game rules."
-        }
       },
       "case_page": {
         "zh": {
@@ -236,24 +200,6 @@
           "en": "Production system + privacy-safe public demo"
         },
         "stack": "Next.js · Cloudflare D1 · Drizzle"
-      },
-      "case_frame": {
-        "problem": {
-          "zh": "活動現場需要在有限時間內完成報到、搜尋、篩選、座位確認與例外處理，而且操作狀態必須快速回饋。",
-          "en": "On-site operations need fast check-in, search, filtering, seating confirmation and exception handling with immediate feedback."
-        },
-        "decision": {
-          "zh": "以 Next.js API → D1 → Drizzle 串接資料層，搭配 QR、30 秒統計更新與多維篩選支援現場操作。",
-          "en": "Use Next.js API → D1 → Drizzle for the data path, with QR workflows, 30-second metric refreshes and multi-dimensional filters."
-        },
-        "evidence": {
-          "zh": "目前可核對 30 秒更新、5 維篩選、預先報名 / 現場兩種名單來源與 CSV export；公開 Demo 僅使用 24 筆虛構資料。",
-          "en": "Verified behavior includes 30-second refreshes, 5 filter dimensions, preregistration/onsite sources and CSV export; the public demo uses only 24 synthetic records."
-        },
-        "next": {
-          "zh": "多活動、正式帳號 / RBAC、audit log、idempotency、多裝置衝突與 offline queue 都明確列為未來升級，不宣稱已完成。",
-          "en": "Multi-event support, real accounts/RBAC, audit logs, idempotency, multi-device conflict handling and an offline queue remain explicitly future work."
-        }
       },
       "case_page": {
         "zh": {
@@ -338,24 +284,6 @@
         },
         "stack": "Vue 3 · TypeScript · Supabase"
       },
-      "case_frame": {
-        "problem": {
-          "zh": "商業服務網站的商品與公告若每次都靠修改程式發布，內容維護成本會快速增加。",
-          "en": "A service website becomes costly to maintain when every product or announcement update requires a code change and redeploy."
-        },
-        "decision": {
-          "zh": "用 Vue 3 / TypeScript 建公開站與 CMS，Supabase 提供 Email Auth、PostgreSQL、Storage 與 RLS 資料存取控制。",
-          "en": "Use Vue 3 / TypeScript for the public site and CMS, with Supabase Email Auth, PostgreSQL, Storage and RLS-backed data access."
-        },
-        "evidence": {
-          "zh": "公開站 sharegift.tw 目前以「大倉代領股東紀念品」品牌實際營運；Repository 可核對商品 / 公告 2 條主要 CMS 流程、Auth / Database / Storage 3 種 Supabase 能力、9 種 Schema.org type 與 GitHub Actions CI/CD。",
-          "en": "The public site sharegift.tw is live under the 大倉代領 shareholder-gift service brand; the repository verifies 2 primary CMS flows, 3 Supabase capabilities (Auth/Database/Storage), 9 Schema.org types and GitHub Actions CI/CD."
-        },
-        "next": {
-          "zh": "下一步可強化後台操作稽核、內容版本紀錄與更完整的管理端流程；目前 Portfolio 不宣稱這些已存在。",
-          "en": "Next improvements could add admin auditability, content revision history and richer management workflows; the portfolio does not claim these exist today."
-        }
-      },
       "case_page": {
         "zh": {
           "title": "股東紀念品服務與 CMS 平台｜Yu Case Study",
@@ -439,24 +367,6 @@
         },
         "stack": "React · Cloudflare Workers · Durable Objects / SQLite"
       },
-      "case_frame": {
-        "problem": {
-          "zh": "即時德州撲克不只要同步桌面，還必須保護私牌、處理同時操作與回合期限、斷線重連，以及多人 all-in 後的牌池結算。",
-          "en": "Real-time Hold'em must protect hole cards while resolving concurrent actions, turn deadlines, reconnects and multi-player all-in pot settlement."
-        },
-        "decision": {
-          "zh": "採用伺服器權威模型：每房一個 Durable Object，使用 Hibernation WebSocket、SQLite persistence、alarm timeout、玩家個別 snapshot 與 Web Crypto CSPRNG 洗牌。",
-          "en": "Use a server-authoritative model with one Durable Object per room, Hibernation WebSockets, SQLite persistence, alarm-based turn timeouts, per-player snapshots and Web Crypto CSPRNG shuffling."
-        },
-        "evidence": {
-          "zh": "目前已實作 2–6 位同桌、18 秒回合、進行中加入先觀戰、斷線重連、房主轉移、主池／邊池與退款結算；公開 Live Demo 僅使用虛擬籌碼。",
-          "en": "Implemented behavior includes 2–6 players, 18-second turns, mid-hand observers, reconnects, host transfer, main/side pots and refunds; the public live demo uses virtual chips only."
-        },
-        "next": {
-          "zh": "下一步是玩家可驗證的 commit/reveal 公平性、正式帳號與跨裝置身分恢復、觀眾模式，以及席位到期回收。",
-          "en": "Next: player-verifiable commit/reveal fairness, real accounts with cross-device identity recovery, spectator mode and seat-expiry reclamation."
-        }
-      },
       "case_page": {
         "zh": {
           "title": "Neon Arena｜即時多人德州撲克｜Yu Case Study",
@@ -525,24 +435,6 @@
         },
         "stack": "React · Vite · Cloudflare Workers · D1"
       },
-      "case_frame": {
-        "problem": {
-          "zh": "校內加班資料若分散在訊息、表單與人工彙整流程中，容易增加主管審核、追蹤與行政整理成本。",
-          "en": "When overtime data is scattered across messages, forms and manual consolidation, manager review, tracking and administrative reporting become harder to maintain."
-        },
-        "decision": {
-          "zh": "以 React 前端搭配 Cloudflare Worker API 與 D1，將申請、審核、角色權限與資料彙整放進同一個流程，並在後端驗證時段與重複申請。",
-          "en": "Use a React frontend with a Cloudflare Worker API and D1 to keep submission, approval, role controls and reporting in one workflow, with server-side time and overlap validation."
-        },
-        "evidence": {
-          "zh": "系統目前由國立成功大學教務處教學發展中心實際使用；公開作品版只保留可檢視的程式與虛構資料，不公開正式人員資料、帳密、資料庫或 production 入口。",
-          "en": "The system is currently used by NCKU’s Center for Teaching and Learning Development; the public portfolio snapshot exposes only reviewable code and synthetic data, not staff data, credentials, databases or the production entry point."
-        },
-        "next": {
-          "zh": "後續可再強化完整 audit trail、匯出格式與校方正式流程的整合；目前作品集不把這些列為已完成。",
-          "en": "Future work could strengthen audit trails, export formats and integration with formal university workflows; the portfolio does not claim those as completed features."
-        }
-      },
       "case_page": {
         "zh": {
           "title": "加班管理與行政彙整系統｜Yu Case Study",
@@ -610,24 +502,6 @@
           "en": "Public repository / case study"
         },
         "stack": "Python · MoneyPrinterTurbo · publishing adapters"
-      },
-      "case_frame": {
-        "problem": {
-          "zh": "自動生成流程真正的營運風險不只在生成品質，還包含重複來源、選題失敗、發布中斷與失敗後無法追蹤。",
-          "en": "Operational risk in an automated media pipeline includes duplicate sources, selection failure, interrupted publishing and poor failure traceability—not only generation quality."
-        },
-        "decision": {
-          "zh": "在上游 MoneyPrinterTurbo 外新增 RSS intake / dedupe、LLM→本機評分 fallback、pending upload recovery、job JSON、日報與通知。",
-          "en": "Add RSS intake/deduplication, LLM→local-scoring fallback, pending-upload recovery, job JSON records, daily reports and notifications around the upstream MoneyPrinterTurbo engine."
-        },
-        "evidence": {
-          "zh": "目前可核對 4 條內容線、3 個發布平台介面、2 個通知通道，以及 `--dry-run` / `--no-upload` / manual review 3 種安全執行控制。",
-          "en": "Verified scope includes 4 content profiles, 3 publishing platform interfaces, 2 notification channels and 3 execution controls: `--dry-run`, `--no-upload` and manual review."
-        },
-        "next": {
-          "zh": "設定中已有品質門檻欄位，但主流程目前沒有把它強制成 publish blocker；下一步才是把 quality gate 真正接進發布決策。",
-          "en": "Quality-threshold fields exist in configuration, but the main flow does not currently enforce them as a publish blocker; wiring that gate into publish decisions is future work."
-        }
       },
       "case_page": {
         "zh": {

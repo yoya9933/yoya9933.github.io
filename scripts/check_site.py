@@ -344,11 +344,12 @@ def main() -> int:
             case = case_path.read_text(encoding="utf-8")
             if f'data-project-actions="{project["slug"]}"' not in case:
                 errors.append(f"manifest-driven project actions missing from {case_path.relative_to(SITE)}")
-            for required in (f'data-case-facts="{project["slug"]}"', f'data-case-framing="{project["slug"]}"', "00 / Project framing"):
-                if required not in case:
-                    errors.append(f"case study missing {required!r}: {case_path.relative_to(SITE)}")
-            if project.get("case_facts") is None or project.get("case_frame") is None:
-                errors.append(f"{project['slug']} missing case_facts or case_frame in data/projects.json")
+            if f'data-case-facts="{project["slug"]}"' not in case:
+                errors.append(f"case study missing project facts: {case_path.relative_to(SITE)}")
+            if 'data-case-framing="' in case or "00 / Project framing" in case:
+                errors.append(f"obsolete template appears in case study: {case_path.relative_to(SITE)}")
+            if project.get("case_facts") is None:
+                errors.append(f"{project['slug']} missing case_facts in data/projects.json")
             if project.get("live") and project["live"] not in case:
                 errors.append(f"live URL from manifest missing: {case_path.relative_to(SITE)}")
             if project.get("repo") and project["repo"] not in case:
@@ -438,10 +439,10 @@ def main() -> int:
 
     event_case = SITE / "projects/event-checkin/index.html"
     if event_case.is_file() and "24 筆虛構資料" not in event_case.read_text(encoding="utf-8"):
-        errors.append("EventOps case framing must preserve the synthetic-data evidence boundary")
+        errors.append("Event check-in case study must explicitly mark demo records as synthetic")
     ai_case = SITE / "projects/ai-media-pipeline/index.html"
-    if ai_case.is_file() and "沒有把它強制成 publish blocker" not in ai_case.read_text(encoding="utf-8"):
-        errors.append("AI pipeline case framing must preserve the unenforced quality-gate limitation")
+    if ai_case.is_file() and "還沒有把品質檢查接進正式發布流程" not in ai_case.read_text(encoding="utf-8"):
+        errors.append("AI media case study must state that the quality gate is not enforced")
     for token in ("臺灣綜合大學系統", "Taiwan Comprehensive University System"):
         if token in demo or token in demo_js:
             errors.append(f"event demo exposes production identity: {token!r}")

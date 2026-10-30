@@ -777,10 +777,6 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
   line-height: 1.55;
 }
 
-.case-framing .case-card {
-  line-height: 1.65;
-}
-
 /* Generic case-study screenshots keep their intrinsic aspect ratio. Build hardening
    adds width/height attributes for layout stability, so explicitly restore auto height. */
 .case-shot img {
