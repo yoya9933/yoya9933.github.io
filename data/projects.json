@@ -19,8 +19,8 @@
         "en": "Buoy Analytics & Navigation Risk Platform"
       },
       "card_description": {
-        "zh": "資料 QA、LSTM 預測、模型驗證、快取、風險門檻與輸出下載整合成 Streamlit 分析流程。",
-        "en": "Data QA, LSTM forecasting, validation, model caching, risk thresholds and downloadable outputs in Streamlit."
+        "zh": "延續 2025 NODASS 海洋大數據競賽的得獎經驗，這個工具能整理浮標觀測資料、跑 LSTM 預測，並依波高和風速顯示風險提醒。",
+        "en": "Inspired by my award-winning experience at the 2025 NODASS Ocean Big Data Competition, this Streamlit app analyzes buoy observations, runs LSTM forecasts, and flags wave and wind risks."
       },
       "tags": {
         "zh": [
@@ -62,15 +62,15 @@
       "case_page": {
         "zh": {
           "title": "浮標資料分析平台｜Yu Case Study",
-          "description": "浮標資料分析、LSTM 預測、資料品質檢查與航道風險評估平台 Case Study。",
+          "description": "延續 2025 NODASS 海洋大數據競賽經驗的浮標資料分析專案，提供 Streamlit 資料整理、LSTM 預測和風險提醒。",
           "og_title": "浮標資料分析與航道風險評估平台｜Yu",
-          "og_description": "5 種時間尺度、4 種缺值策略、4 種輸出，從 Data QA 到 LSTM 與風險判讀。"
+          "og_description": "2025 NODASS 海洋大數據競賽相關的後續實作：浮標資料處理、LSTM 預測與波高、風速風險提醒。"
         },
         "en": {
           "title": "Buoy Analytics Platform | Yu Case Study",
-          "description": "Buoy data QA, LSTM forecasting, validation, model caching and navigation-risk rules in Streamlit.",
+          "description": "Buoy analysis project following the 2025 NODASS Ocean Big Data Competition: Streamlit data preparation, LSTM forecasts and risk alerts.",
           "og_title": "Buoy Analytics & Navigation Risk Platform",
-          "og_description": "Buoy data QA, LSTM forecasting, validation, model caching and navigation-risk rules in Streamlit."
+          "og_description": "A follow-up buoy analysis project informed by the 2025 NODASS Ocean Big Data Competition, with data cleaning, LSTM forecasts and risk alerts."
         }
       }
     },
