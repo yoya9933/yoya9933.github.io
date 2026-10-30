@@ -41,7 +41,7 @@ REQUIRED = [
     "demos/event-checkin/event-demo.js",
     "assets/Yu_CV.pdf",
     "assets/styles.css",
-    "assets/profile.jpg",
+    "assets/profile.webp",
     "assets/projects/shareholder-cms.png",
     "assets/projects/shareholder-cms.svg",
     "assets/projects/event-checkin.png",
@@ -68,11 +68,11 @@ class RefParser(HTMLParser):
                 self.refs.append((attr, value))
 
 
-def jpeg_dimensions(path: Path) -> tuple[int, int] | None:
+def webp_dimensions(path: Path) -> tuple[int, int] | None:
     try:
         from PIL import Image
         with Image.open(path) as image:
-            if image.format != "JPEG":
+            if image.format != "WEBP":
                 return None
             return image.size
     except (OSError, ValueError):
@@ -104,13 +104,13 @@ def performance_errors() -> list[str]:
                 errors.append(f"async decoding missing for {slug} in {html.relative_to(SITE)}")
 
     profile_path = SITE / "assets" / "profile.jpg"
-    size = jpeg_dimensions(profile_path)
+    size = webp_dimensions(profile_path)
     if not size:
-        errors.append("local profile image is missing or invalid JPEG: assets/profile.jpg")
+        errors.append("local profile image is missing or invalid WebP: assets/profile.webp")
     elif size != (428, 592):
         errors.append(f"profile image must match the full 428x592 portrait: {size[0]}x{size[1]}")
 
-    for rel, src in (("index.html", "assets/profile.jpg"), ("en/index.html", "../assets/profile.jpg")):
+    for rel, src in (("index.html", "assets/profile.webp"), ("en/index.html", "../assets/profile.webp")):
         path = SITE / rel
         if not path.is_file():
             continue
@@ -315,7 +315,7 @@ def main() -> int:
             errors.append(f"retired standalone additional-work layout remains in {rel}")
         if "ncku-return-os" in home or "Credit Map" in home or "學分地圖" in home:
             errors.append(f"retired credit-map content remains in {rel}")
-        profile_src = "../assets/profile.jpg" if locale == "en" else 'src="assets/profile.jpg"'
+        profile_src = "../assets/profile.webp" if locale == "en" else 'src="assets/profile.webp"'
         if profile_src not in home:
             errors.append(f"local profile photo missing from {rel}")
         if 'class="site-version"' not in home or f">v{VERSION}</a>" not in home:
