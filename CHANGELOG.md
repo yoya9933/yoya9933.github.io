@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.2 — 2026-10-31
+
+Section 03 copy refresh：把首頁「Capabilities」從制式的能力宣示改成實際做過的事情。
+
+- 中英文 03 區標題改為 WHAT I DO，拿掉 Data → Decision、Product → Production 等套版式標語。
+- 三項內容直接描述資料分析、網站與系統、自動化工具的實際經驗，並以現有作品為例，減少技術名詞堆疊。
+- 僅修改首頁中英文文字，不變更既有元件、功能、相依套件或安全規則。
+
 ## v1.8.1 — 2026-10-31
 
 Homepage personal introduction and portrait fix：將首頁 AI 式口號改為自然的第一人稱自我介紹，右側照片改用完整直式原圖。
