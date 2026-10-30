@@ -103,7 +103,7 @@ def performance_errors() -> list[str]:
             if 'decoding="async"' not in tag:
                 errors.append(f"async decoding missing for {slug} in {html.relative_to(SITE)}")
 
-    profile_path = SITE / "assets" / "profile.jpg"
+    profile_path = SITE / "assets" / "profile.webp"
     size = webp_dimensions(profile_path)
     if not size:
         errors.append("local profile image is missing or invalid WebP: assets/profile.webp")
