@@ -189,8 +189,8 @@
         "en": "Event Check-in & Operations System"
       },
       "card_description": {
-        "zh": "結合 QR 報到、即時簽到與入席統計、名單篩選、座位與現場例外處理的全端活動營運工具。",
-        "en": "A full-stack workflow connecting QR check-in, live attendance and seating metrics, operational filters and on-site exception handling."
+        "zh": "為成功大學主辦的 2026 台綜大新進教師專業知能研習營開發報到系統後端，活動當天實際使用，支援 QR 報到、名單查詢、即時統計與座位管理。",
+        "en": "Built the check-in backend used at the 2026 TCUS New Faculty Professional Development Camp, hosted by National Cheng Kung University, covering QR check-in, attendee lookup, live counts and seating."
       },
       "tags": {
         "zh": [
@@ -224,8 +224,8 @@
       },
       "case_facts": {
         "role": {
-          "zh": "全端現場營運工具開發",
-          "en": "Full-stack operations tool development"
+          "zh": "活動報到系統後端開發",
+          "en": "Event check-in backend development"
         },
         "scope": {
           "zh": "QR 報到 · 即時統計 · 篩選 · 座位",
@@ -258,15 +258,15 @@
       "case_page": {
         "zh": {
           "title": "活動報到與現場營運系統｜Yu Case Study",
-          "description": "實際支援臺灣綜合大學系統 2026 新進教師專業知能研習營的報到系統後端：QR 報到、即時統計、座位與現場營運。",
+          "description": "為成功大學主辦的臺灣綜合大學系統 2026 新進教師專業知能研習營開發的報到系統後端：QR 報到、即時統計、座位與現場營運。",
           "og_title": "活動報到與現場營運系統｜Yu",
-          "og_description": "實際活動使用的報到後端：QR 報到、30 秒即時更新、五維篩選、座位與現場營運。"
+          "og_description": "成功大學主辦的 2026 台綜大新進教師研習營實際使用的報到後端：QR 報到、即時統計與座位管理。"
         },
         "en": {
           "title": "Event Check-in & Operations System | Yu Case Study",
-          "description": "The backend I built for the 2026 Taiwan Comprehensive University System New Faculty Professional Development Camp: QR check-in, live operations metrics, seating and field workflows.",
+          "description": "Backend for the 2026 Taiwan Comprehensive University System New Faculty Professional Development Camp, hosted by National Cheng Kung University: QR check-in, live counts and seating workflows.",
           "og_title": "Event Check-in & Operations System | Yu",
-          "og_description": "A production-used event backend with QR check-in, 30-second live updates, five filter dimensions, seating and field operations."
+          "og_description": "An event check-in backend used at the 2026 TCUS New Faculty Camp hosted by National Cheng Kung University."
         }
       }
     },
