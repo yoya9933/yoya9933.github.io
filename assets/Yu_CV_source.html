@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wang Xiangyu - Engineering × Data × AI CV</title>
+<title>Wang Xiangyu - CV | Web Systems and Data Projects</title>
 <style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
@@ -31,11 +31,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
 .main { position:absolute; left:64mm; top:0; width:146mm; height:297mm; padding:13mm 12mm 10mm 11mm; overflow:hidden; }
 .kicker { color:#0f8c82; font-size:7.2pt; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; margin-bottom:2mm; }
 .summary { font-size:9.2pt; line-height:1.65; color:#334155; margin:0 0 5mm; }
-.metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:2.4mm; margin:0 0 6mm; }
-.metric { border:1px solid #dbe5ee; border-radius:3mm; padding:3mm; background:#f8fbfd; min-height:18mm; }
-.metric b { display:block; font-size:14pt; color:#07111f; line-height:1; }
-.metric span { display:block; margin-top:1.7mm; font-size:6.8pt; color:#64748b; line-height:1.35; font-weight:600; }
-.section { margin-top:5mm; }
+.section { margin-top:4.5mm; }
 .section-head { display:flex; align-items:center; gap:3mm; margin-bottom:3.2mm; }
 .section-head h2 { margin:0; font-size:9pt; letter-spacing:.9px; text-transform:uppercase; color:#07111f; font-weight:900; white-space:nowrap; }
 .section-head .line { height:1px; flex:1; background:linear-gradient(90deg,#2dd4bf,#cbd5e1); }
@@ -43,23 +39,23 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
 .edu strong { font-size:10.5pt; color:#0f172a; }
 .edu p { margin:1mm 0 0; font-size:8pt; color:#64748b; line-height:1.45; }
 .edu .loc { text-align:right; font-size:7.5pt; color:#64748b; line-height:1.45; }
-.project { border:1px solid #e2e8f0; border-radius:3.2mm; padding:3.5mm 4mm; margin-bottom:2.8mm; background:#fff; box-shadow:0 .6mm 1.8mm rgba(15,23,42,.035); }
+.project { border:0; border-bottom:1px solid #dbe5ee; border-radius:0; padding:1.8mm 0 2.5mm; margin-bottom:2.5mm; background:transparent; box-shadow:none; }
 .project-top { display:flex; align-items:flex-start; justify-content:space-between; gap:3mm; }
-.project h3 { margin:0; font-size:9.5pt; line-height:1.35; color:#0f172a; }
-.badge { flex:none; font-size:6.3pt; color:#0f766e; background:#e8fffb; border:1px solid #b9f3e9; border-radius:99px; padding:1mm 1.8mm; font-weight:800; }
-.project ul { margin:2mm 0 2mm 4mm; padding:0; }
-.project li { margin:.8mm 0; font-size:7.6pt; line-height:1.42; color:#475569; }
+.project h3 { margin:0; font-size:9.4pt; line-height:1.35; color:#0f172a; }
+.project h3 a { color:inherit; text-decoration:none; }
+.badge { flex:none; font-size:6.6pt; color:#0f766e; background:none; border:0; border-radius:0; padding:0; font-weight:800; white-space:nowrap; }
+.project ul { margin:1.5mm 0 1.5mm 4mm; padding:0; }
+.project li { margin:.5mm 0; font-size:7.5pt; line-height:1.42; color:#475569; }
 .tech { display:flex; flex-wrap:wrap; gap:1.5mm; }
 .tech span { font-size:6.4pt; padding:.9mm 1.6mm; border-radius:99px; background:#f1f5f9; color:#475569; font-weight:700; }
-.proof { margin-top:3.5mm; padding:3mm 3.5mm; border-radius:3mm; background:#07111f; color:#eaf5ff; display:flex; align-items:center; justify-content:space-between; gap:5mm; }
-.proof strong { font-size:8pt; color:#5eead4; }
-.proof span { font-size:7pt; line-height:1.45; color:#c9d7e6; }
-.proof a { color:#fff; text-decoration:none; font-weight:700; }
+.other-work { font-size:7.5pt; line-height:1.5; color:#475569; margin:2mm 0 0; }
+.other-work strong { color:#122033; }
+.other-work a, .small-note a { color:#0f766e; text-decoration:none; font-weight:700; }
 .small-note { font-size:6.5pt; color:#94a3b8; line-height:1.45; margin-top:2.5mm; }
 .zh .name { font-size:24pt; }
 .zh .role { font-size:10pt; }
 .zh .summary { font-size:8.9pt; line-height:1.7; }
-.zh .project li { font-size:7.4pt; line-height:1.48; }
+.zh .project li { font-size:7.4pt; line-height:1.43; }
 .zh .project h3 { font-size:9.3pt; }
 .en .rail-item strong { font-size:7.2pt; }
 .en .rail-item span { font-size:6.7pt; }
@@ -73,7 +69,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
     <div class="brand">
       <h1 class="name">Wang Xiangyu</h1>
       <div class="alias">Yu</div>
-      <div class="role">Engineering × Data × AI<br>Practical tools from real problems.</div>
+      <div class="role">Web systems · Data analysis<br>Automation & side projects</div>
     </div>
     <div>
       <div class="rail-title">Contact</div>
@@ -87,15 +83,15 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       </div>
     </div>
     <div>
-      <div class="rail-title">Core stack</div>
+      <div class="rail-title">Tools I use</div>
       <div class="stack">
-        <span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">LSTM</span>
-        <span class="pill">JavaScript</span><span class="pill">Next.js</span><span class="pill">Streamlit</span>
-        <span class="pill">REST API</span><span class="pill">Cloudflare D1</span><span class="pill">Git / CI</span>
+        <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">React / Vue</span>
+        <span class="pill">Next.js</span><span class="pill">REST API</span><span class="pill">Cloudflare D1</span>
+        <span class="pill">Supabase</span><span class="pill">PostgreSQL</span><span class="pill">Git / CI</span>
       </div>
     </div>
     <div>
-      <div class="rail-title">Verified highlights</div>
+      <div class="rail-title">Awards</div>
       <div class="rail-list">
         <div class="rail-item"><strong>NODASS Ocean Big Data</strong><span>2025 · Great Prize</span></div>
         <div class="rail-item"><strong>Qualcomm TW AI Hackathon</strong><span>2025 · 3rd Place</span></div>
@@ -104,13 +100,9 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
     </div>
   </aside>
   <main class="main">
-    <div class="kicker">Profile</div>
-    <p class="summary">Engineering student building practical data, AI, and web tools. I turn real-world problems into inspectable workflows that connect data quality, modeling, business rules, APIs, databases, and deployment—including a backend used in a real university event.</p>
-    <div class="metrics">
-      <div class="metric"><b>3</b><span>selected end-to-end projects</span></div>
-      <div class="metric"><b>3</b><span>publicly verifiable 2025 awards</span></div>
-      <div class="metric"><b>LIVE</b><span>production-used event backend</span></div>
-    </div>
+    <div class="kicker">About me</div>
+    <p class="summary">I study at National Cheng Kung University and build websites, data tools and small applications. Recent projects include a check-in backend used at an NCKU-hosted faculty camp, an overtime management tool used by an NCKU unit, and a live business website.</p>
+    
     <section class="section">
       <div class="section-head"><h2>Education</h2><div class="line"></div></div>
       <div class="edu">
@@ -121,32 +113,41 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
     <section class="section">
       <div class="section-head"><h2>Selected Projects</h2><div class="line"></div></div>
       <article class="project">
-        <div class="project-top"><h3>Buoy Data Analysis & Navigation Risk Platform</h3><span class="badge">DATA + AI</span></div>
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/event-checkin/">TCUS Faculty Camp · Event Check-in</a></h3><span class="badge">USED IN 2026</span></div>
         <ul>
-          <li>Built a Streamlit workflow spanning data QA, LSTM forecasting, train/validation evaluation, model caching, and threshold-based risk interpretation.</li>
-          <li>Supports 5 aggregation scales, 4 missing-data strategies, and 4 export formats for reproducible analysis outputs.</li>
+          <li>Built the backend for check-in at the 2026 TCUS New Faculty Camp, hosted by NCKU on August 28.</li>
+          <li>Handled QR check-in, attendee search, live attendance/seating counts, walk-ins and CSV exports; the public demo uses fictional data.</li>
         </ul>
-        <div class="tech"><span>Python</span><span>Streamlit</span><span>Pandas</span><span>LSTM</span><span>Plotly</span></div>
+        <div class="tech"><span>Next.js</span><span>TypeScript</span><span>Cloudflare D1</span><span>Drizzle</span></div>
       </article>
       <article class="project">
-        <div class="project-top"><h3>Chuhe Xiangqi · Online Chinese Chess</h3><span class="badge">WEB PRODUCT</span></div>
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/overtime-management/">NCKU CTLD · Overtime Management</a></h3><span class="badge">IN INTERNAL USE</span></div>
         <ul>
-          <li>Built a no-signup browser product with 6-digit rooms, standard chess / Jieqi modes, AI, undo, replay, sandbox and custom setup.</li>
-          <li>Implemented revision-based polling and persistent room state with Neon Postgres or Cloudflare D1 backends.</li>
+          <li>Built a tool now used by NCKU's Center for Teaching and Learning Development for overtime requests, manager reviews and admin summaries.</li>
+          <li>Added role-based access, time-overlap checks and session security with React, Cloudflare Workers and D1.</li>
         </ul>
-        <div class="tech"><span>JavaScript</span><span>Next.js</span><span>REST API</span><span>Neon Postgres</span></div>
+        <div class="tech"><span>React</span><span>Cloudflare Workers</span><span>D1</span><span>Auth</span></div>
       </article>
       <article class="project">
-        <div class="project-top"><h3>Event Check-in & Operations System</h3><span class="badge">BACKEND OPS</span></div>
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/shareholder-cms/">Sharegift.tw · Business Website & CMS</a></h3><span class="badge">LIVE WEBSITE</span></div>
         <ul>
-          <li>Implemented the backend used for the 2026 Taiwan Comprehensive University System New Faculty Professional Development Camp at NCKU.</li>
-          <li>Connected QR check-in, attendee/admin APIs, D1/Drizzle state, live attendance/seating metrics, filters, walk-in handling and CSV export; the public demo uses only synthetic data.</li>
+          <li>Built the service website and content management tools for 大倉代領, a shareholder-gift business operating at sharegift.tw.</li>
+          <li>Admins can update products, announcements and images using Vue 3, Supabase Auth, PostgreSQL and Storage.</li>
         </ul>
-        <div class="tech"><span>TypeScript</span><span>Next.js</span><span>REST API</span><span>Cloudflare D1</span><span>Drizzle</span></div>
+        <div class="tech"><span>Vue 3</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span></div>
       </article>
+      <article class="project">
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/buoy/">Buoy Data Analysis & Risk Alerts</a></h3><span class="badge">DATA / ML</span></div>
+        <ul>
+          <li>Built a Streamlit app for buoy data cleaning, visualization, LSTM forecasts and wave/wind alerts, following my 2025 NODASS competition experience.</li>
+          <li>Added time-based validation, missing-data handling, model caching and downloadable results.</li>
+        </ul>
+        <div class="tech"><span>Python</span><span>Pandas</span><span>Streamlit</span><span>LSTM</span></div>
+      </article>
+      <p class="other-work"><strong>Other projects:</strong> <a href="https://yoya9933.page/en/projects/chess/">Chuhe Xiangqi</a> (online chess), <a href="https://yoya9933.page/en/projects/neon-arena/">Neon Arena</a> (multiplayer game), <a href="https://yoya9933.page/en/projects/ai-media-pipeline/">AI Media Automation</a>.</p>
     </section>
-    <div class="proof"><div><strong>Proof over claims</strong><br><span>Live demos, code, screenshots, architecture and award evidence are collected on the portfolio.</span></div><a href="https://yoya9933.page/">yoya9933.page ↗</a></div>
-    <div class="small-note">Bilingual CV · English page 1 / Traditional Chinese page 2</div>
+    
+    <div class="small-note">Projects, demos and code: <a href="https://yoya9933.page/">yoya9933.page</a> · English 1 / 中文 2</div>
   </main>
 </section>
 <section class="page zh">
@@ -154,7 +155,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
     <div class="brand">
       <h1 class="name">王祥宇</h1>
       <div class="alias">Yu</div>
-      <div class="role">工程 × 資料 × AI<br>把真實問題做成能用的工具。</div>
+      <div class="role">網站系統 · 資料分析<br>自動化與個人專案</div>
     </div>
     <div>
       <div class="rail-title">聯絡入口</div>
@@ -168,31 +169,27 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       </div>
     </div>
     <div>
-      <div class="rail-title">核心技能</div>
+      <div class="rail-title">使用的工具</div>
       <div class="stack">
-        <span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">LSTM</span>
-        <span class="pill">JavaScript</span><span class="pill">Next.js</span><span class="pill">Streamlit</span>
-        <span class="pill">REST API</span><span class="pill">Cloudflare D1</span><span class="pill">Git / CI</span>
+        <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">React / Vue</span>
+        <span class="pill">Next.js</span><span class="pill">REST API</span><span class="pill">Cloudflare D1</span>
+        <span class="pill">Supabase</span><span class="pill">PostgreSQL</span><span class="pill">Git / CI</span>
       </div>
     </div>
     <div>
-      <div class="rail-title">成果亮點</div>
+      <div class="rail-title">競賽與獎項</div>
       <div class="rail-list">
         <div class="rail-item"><strong>2025 NODASS 海洋大數據競賽</strong><span>特優</span></div>
         <div class="rail-item"><strong>2025 高通台灣 AI 黑客松</strong><span>季軍</span></div>
         <div class="rail-item"><strong>2025 台灣海洋國際青年論壇</strong><span>領航之星獎</span></div>
       </div>
     </div>
-    <div class="rail-bottom">作品集與程式碼皆使用公開連結；履歷不放未公開的私人 Email。</div>
+    <div class="rail-bottom">詳細作品與程式碼可透過上方網址或 QR Code 查看。</div>
   </aside>
   <main class="main">
-    <div class="kicker">個人摘要</div>
-    <p class="summary">以工程背景結合資料分析、AI 應用與 Web 產品開發，將真實問題整理成能操作、能驗證、能迭代的工具；除了資料與模型專案，也完成曾實際投入大學活動現場使用的報到系統後端。</p>
-    <div class="metrics">
-      <div class="metric"><b>3</b><span>個端到端代表專案</span></div>
-      <div class="metric"><b>3</b><span>項 2025 公開可驗證成果</span></div>
-      <div class="metric"><b>LIVE</b><span>實際活動使用後端</span></div>
-    </div>
+    <div class="kicker">關於我</div>
+    <p class="summary">目前就讀成功大學，平常會寫網站、整理資料，也做一些自己的小專案。最近完成的作品包括成大主辦教師研習營使用的報到後端、教發中心使用的加班管理系統，以及已投入營運的商業網站。</p>
+    
     <section class="section">
       <div class="section-head"><h2>學歷</h2><div class="line"></div></div>
       <div class="edu">
@@ -201,34 +198,43 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       </div>
     </section>
     <section class="section">
-      <div class="section-head"><h2>代表作品</h2><div class="line"></div></div>
+      <div class="section-head"><h2>代表專案</h2><div class="line"></div></div>
       <article class="project">
-        <div class="project-top"><h3>浮標資料分析與航道風險評估平台</h3><span class="badge">DATA + AI</span></div>
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/event-checkin/">台綜大教師研習營 · 活動報到後端</a></h3><span class="badge">2026 實際使用</span></div>
         <ul>
-          <li>以 Streamlit 串接資料品質檢查、LSTM 預測、訓練 / 驗證評估、模型快取與風險門檻判讀。</li>
-          <li>支援 5 種時間尺度、4 種缺值處理策略，以及 CSV / HTML / TXT / ZIP 共 4 種輸出。</li>
+          <li>負責成大主辦的 2026 台綜大新進教師專業知能研習營報到系統後端，活動於 8 月 28 日舉行。</li>
+          <li>處理 QR 報到、名單查詢、即時人數、座位狀態、現場報名及 CSV 匯出；公開展示使用虛構資料。</li>
         </ul>
-        <div class="tech"><span>Python</span><span>Streamlit</span><span>Pandas</span><span>LSTM</span><span>Plotly</span></div>
+        <div class="tech"><span>Next.js</span><span>TypeScript</span><span>Cloudflare D1</span><span>Drizzle</span></div>
       </article>
       <article class="project">
-        <div class="project-top"><h3>楚河棋局 · 線上中國象棋</h3><span class="badge">WEB PRODUCT</span></div>
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/overtime-management/">成大教發中心 · 加班管理系統</a></h3><span class="badge">單位使用中</span></div>
         <ul>
-          <li>完成免註冊 6 碼房間、標準象棋 / 揭棋、AI、悔棋、棋譜回放、沙盤與自訂棋局。</li>
-          <li>以 polling + revision 控制跨裝置同步，房間狀態可使用 Neon Postgres 或 Cloudflare D1 持久化。</li>
+          <li>開發成大教務處教學發展中心實際使用的內部工具，整合加班申請、主管審核與行政查詢。</li>
+          <li>實作不同角色權限、時段重疊檢查和登入安全，使用 React、Cloudflare Workers 與 D1。</li>
         </ul>
-        <div class="tech"><span>JavaScript</span><span>Next.js</span><span>REST API</span><span>Neon Postgres</span></div>
+        <div class="tech"><span>React</span><span>Cloudflare Workers</span><span>D1</span><span>權限管理</span></div>
       </article>
       <article class="project">
-        <div class="project-top"><h3>活動報到與現場營運系統</h3><span class="badge">BACKEND OPS</span></div>
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/shareholder-cms/">大倉代領 · 股東紀念品網站與後台</a></h3><span class="badge">商業營運中</span></div>
         <ul>
-          <li>負責 2026 臺灣綜合大學系統新進教師專業知能研習營（成大，8/28）實際使用的報到系統後端。</li>
-          <li>串接 QR 報到、attendee/admin API、D1/Drizzle、即時報到 / 入席狀態、篩選、現場報名與 CSV 匯出；公開 Demo 僅使用虛構資料。</li>
+          <li>開發 sharegift.tw 對外服務網站及商品、公告管理後台，目前由大倉代領實際營運使用。</li>
+          <li>使用 Vue 3 與 Supabase，讓管理者更新商品、公告和圖片，不必每次修改程式碼。</li>
         </ul>
-        <div class="tech"><span>TypeScript</span><span>Next.js</span><span>REST API</span><span>Cloudflare D1</span><span>Drizzle</span></div>
+        <div class="tech"><span>Vue 3</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span></div>
       </article>
+      <article class="project">
+        <div class="project-top"><h3><a href="https://yoya9933.page/projects/buoy/">浮標資料分析與風險提醒</a></h3><span class="badge">資料分析</span></div>
+        <ul>
+          <li>延續 2025 NODASS 海洋大數據競賽得獎經驗，用 Streamlit 製作浮標資料整理、圖表和 LSTM 預測工具。</li>
+          <li>加入缺值處理、時間序列驗證、模型快取、波高／風速提醒與結果下載。</li>
+        </ul>
+        <div class="tech"><span>Python</span><span>Pandas</span><span>Streamlit</span><span>LSTM</span></div>
+      </article>
+      <p class="other-work"><strong>其他作品：</strong><a href="https://yoya9933.page/projects/chess/">楚河棋局（線上象棋）</a>、<a href="https://yoya9933.page/projects/neon-arena/">Neon Arena（多人遊戲）</a>、<a href="https://yoya9933.page/projects/ai-media-pipeline/">AI 影片自動化</a>。</p>
     </section>
-    <div class="proof"><div><strong>用證據取代口號</strong><br><span>作品集集中 Live Demo、程式碼、實際截圖、架構與獎項證據。</span></div><a href="https://yoya9933.page/">yoya9933.page ↗</a></div>
-    <div class="small-note">中英雙語履歷 · 第 1 頁英文 / 第 2 頁繁體中文</div>
+    
+    <div class="small-note">專案、程式碼與 Demo：<a href="https://yoya9933.page/">yoya9933.page</a> · 英文第 1 頁／中文第 2 頁</div>
   </main>
 </section>
 </body>
