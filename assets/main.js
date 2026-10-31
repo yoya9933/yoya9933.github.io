@@ -22,7 +22,7 @@
     });
     nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
     document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 1080) closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
   }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
