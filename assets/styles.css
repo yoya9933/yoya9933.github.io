@@ -1041,6 +1041,7 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .achievements-mobile { display: none; }
 
 @media (max-width: 900px) {
+  #highlights, #projects, #skills, #contact { scroll-margin-top: 88px; }
   .achievements-desktop { display: none; }
   .achievements-mobile { display: block; }
   .achievements-more { margin-top: 14px; }
