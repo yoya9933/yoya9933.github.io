@@ -25,7 +25,8 @@
               "zh": "官方名單 ↗",
               "en": "official winners ↗"
             }
-          }
+          },
+          "mobile_featured": true
         },
         {
           "date": {
@@ -46,7 +47,8 @@
               "zh": "結果報導 ↗",
               "en": "result ↗"
             }
-          }
+          },
+          "mobile_featured": true
         },
         {
           "date": {
@@ -67,7 +69,8 @@
               "zh": "公開報導 ↗",
               "en": "report ↗"
             }
-          }
+          },
+          "mobile_featured": true
         },
         {
           "date": {
@@ -95,7 +98,8 @@
           "detail": {
             "zh": "冠軍",
             "en": "Champion"
-          }
+          },
+          "mobile_featured": true
         },
         {
           "date": {
@@ -201,7 +205,8 @@
           "detail": {
             "zh": "學業表現",
             "en": "Academic performance"
-          }
+          },
+          "mobile_featured": true
         },
         {
           "date": {
@@ -349,7 +354,8 @@
           "detail": {
             "zh": "Agent Engineering",
             "en": "Agent Engineering"
-          }
+          },
+          "mobile_featured": true
         },
         {
           "date": {
