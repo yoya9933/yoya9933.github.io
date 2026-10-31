@@ -25,6 +25,20 @@
     window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
   }
 
+  // A subtle glow follows the mouse within project cards, never on touch or reduced motion.
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  if (finePointer.matches) {
+    document.querySelectorAll('.project-card').forEach((card) => {
+      card.classList.add('pointer-glow');
+      card.addEventListener('pointermove', (event) => {
+        if (!finePointer.matches) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--pointer-x', (event.clientX - rect.left) + 'px');
+        card.style.setProperty('--pointer-y', (event.clientY - rect.top) + 'px');
+      }, { passive: true });
+    });
+  }
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = document.querySelectorAll('.section-heading, .project-card, .skill-groups article, .timeline-item, .contact, .case-section, .metric, .architecture, .v4-reveal');
   if (!reduceMotion && 'IntersectionObserver' in window && revealTargets.length) {
