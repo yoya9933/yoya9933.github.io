@@ -1037,6 +1037,177 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
   }
 }
 
+/* Keep the complete desktop record; on smaller screens show a short list first. */
+.achievements-mobile { display: none; }
+
+@media (max-width: 900px) {
+  .achievements-desktop { display: none; }
+  .achievements-mobile { display: block; }
+  .achievements-more { margin-top: 14px; }
+  .achievements-more summary {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--accent-strong);
+    font-weight: 750;
+    cursor: pointer;
+  }
+  .achievements-more summary::after {
+    content: "+";
+    font-size: 22px;
+    line-height: 1;
+  }
+  .achievements-more[open] summary::after { content: "−"; }
+  .achievements-more summary::-webkit-details-marker { display: none; }
+  .achievements-more summary:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .achievements-more-content { padding-top: 22px; }
+  .achievements-more-content .achievement-group + .achievement-group { margin-top: 24px; }
+  .achievement-group > h3 { font-size: 16px; }
+}
+
+@media (min-width: 621px) and (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(205px, .48fr);
+    align-items: center;
+    gap: 24px;
+    padding-block: 56px;
+  }
+  .hero h1 { font-size: clamp(40px, 5.6vw, 52px); }
+  .hero-tagline { font-size: clamp(21px, 2.8vw, 26px); }
+  .hero-lead { line-height: 1.7; }
+  .hero-actions { margin-top: 24px; }
+  .profile-card { justify-self: end; width: min(100%, 235px); }
+}
+
+@media (max-width: 620px) {
+  /* Put the actual, uncropped portrait alongside the name, not below both buttons. */
+  .hero {
+    grid-template-columns: minmax(0, 1fr) clamp(100px, 28vw, 136px);
+    column-gap: 16px;
+    row-gap: 0;
+    align-items: start;
+    padding-block: 32px 42px;
+  }
+  .hero-copy { display: contents; }
+  .hero h1 {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    font-size: clamp(32px, 9vw, 40px);
+    line-height: 1.15;
+  }
+  .profile-card {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    width: 100%;
+    padding: 4px;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+  .profile-card img { height: auto; border-radius: 12px; }
+  .hero-tagline {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 16px;
+    font-size: clamp(19px, 5.2vw, 22px);
+    line-height: 1.45;
+  }
+  .hero-lead {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.68;
+  }
+  .hero-actions {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .hero-actions .button {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .section { padding-block: 48px; }
+  .section-heading { margin-bottom: 22px; }
+  .section-heading p:not(.section-index) { font-size: 14px; line-height: 1.65; }
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 15px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+  .timeline-item strong { font-size: 15px; }
+  .timeline-item time { padding: 2px 7px; }
+  .timeline-item div { display: block; }
+  .timeline-item span { margin-top: 4px; text-align: left; font-size: 13px; }
+
+  .projects-grid { gap: 14px; }
+  .project-card {
+    min-height: 0;
+    padding: 14px;
+    border-radius: 17px;
+    box-shadow: none;
+  }
+  .project-media { margin-bottom: 14px; border-radius: 12px; }
+  .project-media img {
+    object-fit: contain;
+    object-position: center;
+  }
+  .project-card:hover .project-media img { transform: none; }
+  .project-card h3 {
+    margin: 14px 0 8px;
+    font-size: clamp(21px, 5.8vw, 26px);
+    line-height: 1.23;
+  }
+  .project-card p { font-size: 14px; line-height: 1.7; }
+  .tags { gap: 5px; margin-top: 14px; }
+  .tags li { padding: 4px 7px; font-size: 10px; }
+  .project-links { padding-top: 12px; gap: 8px 14px; }
+  .project-links a { min-height: 44px; }
+
+  .case-nav { gap: 10px; flex-wrap: wrap; }
+  .case-hero { padding: 25px 18px; }
+  .case-hero h1 {
+    font-size: clamp(30px, 8.5vw, 40px);
+    line-height: 1.13;
+    overflow-wrap: anywhere;
+  }
+  .case-hero p { font-size: 15px; line-height: 1.7; }
+  .case-content { padding-bottom: 56px; }
+  .case-section { padding: 20px 16px; }
+  .case-section h3 { font-size: 23px; }
+  .case-card, .architecture .node, .metric { padding: 14px; }
+  .case-facts dd { overflow-wrap: anywhere; }
+  .case-shot--runtime img {
+    height: auto;
+    max-height: 330px;
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 380px) and (max-width: 620px) {
+  .case-facts dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* Version and changelog details */
 .site-version{display:inline-flex;align-items:center;gap:7px;color:var(--faint);font:700 11px/1.4 var(--mono);white-space:nowrap}.site-version a{color:inherit;text-decoration:none}.site-version a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.changelog-release{grid-column:1/-1}.changelog-release-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:18px}.changelog-release-head h2{margin:4px 0 0;font-size:clamp(30px,4vw,44px)}.changelog-release-head time{color:var(--faint);font:700 12px/1.4 var(--mono);white-space:nowrap}.changelog-release p{color:var(--muted)}.changelog-release ul{margin:18px 0 22px;padding-left:22px;color:var(--muted)}.changelog-release li+li{margin-top:10px}.changelog-release code{font-family:var(--mono);color:var(--text)}.changelog-release a{color:var(--accent);font-weight:700;text-decoration:none}.changelog-release a:hover{text-decoration:underline;text-underline-offset:3px}@media(max-width:620px){.site-version{width:100%;justify-content:center;margin-top:6px}.changelog-release-head{display:block}.changelog-release-head time{display:block;margin-top:8px}}
 
