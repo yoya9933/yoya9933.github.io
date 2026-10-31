@@ -303,6 +303,13 @@ def main() -> int:
                 errors.append(f"public changelog does not compare v{previous} to v{VERSION}")
 
     selected = selected_projects(DATA)
+    timeline_groups = json.loads((ROOT / "data/timeline.json").read_text(encoding="utf-8"))["groups"]
+    timeline_count = sum(len(group["items"]) for group in timeline_groups)
+    mobile_featured = sum(
+        bool(item.get("mobile_featured")) for group in timeline_groups for item in group["items"]
+    )
+    if mobile_featured != 6:
+        errors.append(f"mobile achievement selection must contain 6 entries, got {mobile_featured}")
     for rel, locale in (("index.html", "zh"), ("en/index.html", "en")):
         home_path = SITE / rel
         if not home_path.exists():
@@ -311,6 +318,14 @@ def main() -> int:
         for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact"):
             if token not in home:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
+        if home.count('class="timeline-item"') != timeline_count * 2:
+            errors.append(f"mobile and desktop timelines do not cover all achievements in {rel}")
+        if home.count('class="achievements-mobile"') != 1 or home.count('class="achievements-desktop"') != 1:
+            errors.append(f"responsive achievement containers missing from {rel}")
+        remaining = timeline_count - mobile_featured
+        label = f"查看其餘 {remaining} 筆事蹟" if locale == "zh" else f"View {remaining} more achievements"
+        if f"<summary>{label}</summary>" not in home or home.count('class="achievements-more"') != 1:
+            errors.append(f"accessible native achievement disclosure missing from {rel}")
         if "additional-work" in home or "secondary-project" in home:
             errors.append(f"retired standalone additional-work layout remains in {rel}")
         if "ncku-return-os" in home or "Credit Map" in home or "學分地圖" in home:
@@ -424,6 +439,8 @@ def main() -> int:
             errors.append("runtime project injection fallback still exists")
         if "menu-toggle" not in runtime_js:
             errors.append("runtime missing menu-toggle behavior")
+        if "window.innerWidth > 900" not in runtime_js:
+            errors.append("menu reset breakpoint differs from the 900px CSS mobile nav")
     if (SITE / "sitemap.xml").exists():
         sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
         for project in PROJECTS:
