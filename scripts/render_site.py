@@ -144,30 +144,55 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
     )
 
 
-def render_timeline(groups: list[dict], locale: str) -> str:
-    rendered_groups: list[str] = []
-    for group in groups:
-        items: list[str] = []
-        for item in group["items"]:
-            detail = localized(item["detail"], locale)
-            link = item.get("link")
-            if link:
-                detail += (
-                    f' <a class="evidence-link" href="{escape(link["url"], quote=True)}" '
-                    'target="_blank" rel="noopener noreferrer">'
-                    f'{escape(localized(link["label"], locale))}</a>'
-                )
-            items.append(
-                '<div class="timeline-item">'
-                f'<time>{escape(localized(item["date"], locale))}</time>'
-                f'<div><strong>{escape(localized(item["title"], locale))}</strong>'
-                f'<span>{detail}</span></div></div>'
-            )
-        rendered_groups.append(
-            f'<div class="achievement-group"><h3>{escape(localized(group["heading"], locale))}</h3>'
-            f'<div class="timeline">{"".join(items)}</div></div>'
+def render_timeline_item(item: dict, locale: str) -> str:
+    detail = escape(localized(item["detail"], locale))
+    link = item.get("link")
+    if link:
+        detail += (
+            f' <a class="evidence-link" href="{escape(link["url"], quote=True)}" '
+            'target="_blank" rel="noopener noreferrer">'
+            f'{escape(localized(link["label"], locale))}</a>'
         )
-    return "".join(rendered_groups)
+    return (
+        '<div class="timeline-item">'
+        f'<time>{escape(localized(item["date"], locale))}</time>'
+        f'<div><strong>{escape(localized(item["title"], locale))}</strong>'
+        f'<span>{detail}</span></div></div>'
+    )
+
+
+def render_timeline_groups(groups: list[dict], locale: str) -> str:
+    return "".join(
+        '<div class="achievement-group">'
+        f'<h3>{escape(localized(group["heading"], locale))}</h3>'
+        f'<div class="timeline">{"".join(render_timeline_item(item, locale) for item in group["items"])}</div>'
+        '</div>'
+        for group in groups if group["items"]
+    )
+
+
+def render_timeline(groups: list[dict], locale: str) -> str:
+    featured = [item for group in groups for item in group["items"] if item.get("mobile_featured")]
+    if len(featured) != 6:
+        raise RuntimeError(f"expected 6 selected mobile achievements, got {len(featured)}")
+    remaining = [
+        {**group, "items": [item for item in group["items"] if not item.get("mobile_featured")]}
+        for group in groups
+    ]
+    remaining_count = sum(len(group["items"]) for group in remaining)
+    more_label = (
+        f"查看其餘 {remaining_count} 筆事蹟" if locale == "zh"
+        else f"View {remaining_count} more achievements"
+    )
+    return (
+        f'<div class="achievements-desktop">{render_timeline_groups(groups, locale)}</div>'
+        '<div class="achievements-mobile">'
+        f'<div class="timeline">{"".join(render_timeline_item(item, locale) for item in featured)}</div>'
+        '<details class="achievements-more">'
+        f'<summary>{escape(more_label)}</summary>'
+        f'<div class="achievements-more-content">{render_timeline_groups(remaining, locale)}</div>'
+        '</details></div>'
+    )
 
 
 def render_timeline_section(text: str, locale: str) -> str:
