@@ -2,6 +2,13 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.10 — 2026-11-01
+
+雙語履歷補上六項既有技術認證，保留原本的中英文各一頁設計。
+
+- 英文與中文履歷側欄新增 Technical Certifications／技術認證，使用 `data/timeline.json` 已列出的六項名稱。
+- 不自行添加未確認的取得日期、證書編號或驗證連結；專案、競賽及聯絡資訊保持不變。
+
 ## v1.8.9 — 2026-11-01
 
 Contact 文案調整：將中文首頁聯絡區塊改為更自然的實習與合作邀請。
