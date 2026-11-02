@@ -48,6 +48,10 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
 .project li { margin:.5mm 0; font-size:7.5pt; line-height:1.42; color:#475569; }
 .tech { display:flex; flex-wrap:wrap; gap:1.5mm; }
 .tech span { font-size:6.4pt; padding:.9mm 1.6mm; border-radius:99px; background:#f1f5f9; color:#475569; font-weight:700; }
+.research-list { display:flex; flex-direction:column; gap:1.8mm; }
+.research-item { border-bottom:1px solid #dbe5ee; padding:0 0 1.4mm; }
+.research-item h3 { margin:0; color:#0f172a; font-size:8.8pt; line-height:1.38; }
+.research-item p { margin:.65mm 0 0; color:#475569; font-size:7.6pt; line-height:1.4; }
 .other-work { font-size:7.5pt; line-height:1.5; color:#475569; margin:2mm 0 0; }
 .other-work strong { color:#122033; }
 .other-work a, .small-note a { color:#0f766e; text-decoration:none; font-weight:700; }
@@ -69,7 +73,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
     <div class="brand">
       <h1 class="name">Wang Xiangyu</h1>
       <div class="alias">Yu</div>
-      <div class="role">Web systems · Data analysis<br>Automation & side projects</div>
+      <div class="role">Research · Data analysis<br>Web systems & automation</div>
     </div>
     <div>
       <div class="rail-title">Contact</div>
@@ -112,7 +116,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
   </aside>
   <main class="main">
     <div class="kicker">About me</div>
-    <p class="summary">I study at National Cheng Kung University. I have developed systems used by university events, an NCKU unit, and a business, including an event check-in backend, an overtime management tool, and a website with a CMS. I also build data analysis and automation projects.</p>
+    <p class="summary">I study at National Cheng Kung University and have worked as a research assistant on LSTM research, reservoir data preparation, and website setup. I have also built systems used by university units and a business.</p>
     
     <section class="section">
       <div class="section-head"><h2>Education</h2><div class="line"></div></div>
@@ -122,7 +126,24 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       </div>
     </section>
     <section class="section">
-      <div class="section-head"><h2>Relevant Development Experience</h2><div class="line"></div></div>
+      <div class="section-head"><h2>Research Assistant Experience</h2><div class="line"></div></div>
+      <div class="research-list">
+        <article class="research-item">
+          <h3>Research Assistant · R.O.C. Naval Academy</h3>
+          <p>Worked on research involving Long Short-Term Memory (LSTM) models.</p>
+        </article>
+        <article class="research-item">
+          <h3>Research Assistant · NCKU Department of Hydraulic and Ocean Engineering</h3>
+          <p>Cleaned and consolidated reservoir hydrological data for research.</p>
+        </article>
+        <article class="research-item">
+          <h3>Research Assistant · NCKU Center for Teaching and Learning Development</h3>
+          <p>Set up websites as part of the center's work.</p>
+        </article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-head"><h2>Applied Development Projects</h2><div class="line"></div></div>
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/event-checkin/">TCUS Faculty Camp · Event Check-in</a></h3><span class="badge">USED IN 2026</span></div>
         <ul>
@@ -169,7 +190,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
     <div class="brand">
       <h1 class="name">王祥宇</h1>
       <div class="alias">Yu</div>
-      <div class="role">網站系統 · 資料分析<br>自動化與個人專案</div>
+      <div class="role">研究助理 · 資料處理<br>網站與系統開發</div>
     </div>
     <div>
       <div class="rail-title">聯絡入口</div>
@@ -213,7 +234,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
   </aside>
   <main class="main">
     <div class="kicker">關於我</div>
-    <p class="summary">目前就讀成功大學水利及海洋工程學系，曾為校內活動、行政單位及商家開發實際投入使用的系統，包括活動報到後端、加班管理系統與商業網站 CMS，也持續做資料分析和自動化專案。</p>
+    <p class="summary">目前就讀成大水利及海洋工程學系，曾在海軍官校、成大水利系與教發中心擔任研究助理，參與 LSTM 研究、水庫水文資料整理及網站架設，也開發過實際投入使用的校內與商業系統。</p>
     
     <section class="section">
       <div class="section-head"><h2>學歷</h2><div class="line"></div></div>
@@ -223,7 +244,24 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       </div>
     </section>
     <section class="section">
-      <div class="section-head"><h2>實務開發經歷</h2><div class="line"></div></div>
+      <div class="section-head"><h2>研究助理經歷</h2><div class="line"></div></div>
+      <div class="research-list">
+        <article class="research-item">
+          <h3>海軍軍官學校｜研究助理</h3>
+          <p>參與 LSTM（長短期記憶網路）相關研究。</p>
+        </article>
+        <article class="research-item">
+          <h3>國立成功大學水利及海洋工程學系｜研究助理</h3>
+          <p>負責水庫水文資料的清洗與彙整。</p>
+        </article>
+        <article class="research-item">
+          <h3>國立成功大學教學發展中心｜研究助理</h3>
+          <p>協助架設網站。</p>
+        </article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-head"><h2>實務開發專案</h2><div class="line"></div></div>
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/event-checkin/">台綜大教師研習營 · 活動報到後端</a></h3><span class="badge">2026 實際使用</span></div>
         <ul>
