@@ -84,8 +84,8 @@
         "en": "Chuhe Xiangqi | Online Chinese Chess"
       },
       "card_description": {
-        "zh": "6 碼房間、標準象棋與揭棋、AI、悔棋、回放與 revision 同步，房間狀態落到資料庫。",
-        "en": "Cross-device rooms with two rule modes, AI, undo/replay and revision-based database synchronization."
+        "zh": "已上線的多人中國象棋，支援標準象棋與揭棋；伺服器判定棋步、WebSocket 同步，並有單元與多人端對端測試。",
+        "en": "A live multiplayer Xiangqi site with server-validated moves, WebSocket updates, and unit/multiplayer end-to-end tests."
       },
       "tags": {
         "zh": [
@@ -119,14 +119,14 @@
           "en": "Full-stack web product development"
         },
         "scope": {
-          "zh": "棋規 · 多人房間 · 狀態同步 · Persistence",
-          "en": "Game rules · multiplayer rooms · state sync · persistence"
+          "zh": "伺服器棋規 · 多人房間 · WebSocket · D1",
+          "en": "Server rules · multiplayer rooms · WebSocket · D1"
         },
         "status": {
           "zh": "Live",
           "en": "Live"
         },
-        "stack": "JavaScript · HTTP API · Neon Postgres / D1"
+        "stack": "JavaScript · Cloudflare Workers · Durable Objects · D1"
       },
       "case_page": {
         "zh": {
