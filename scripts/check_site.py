@@ -302,6 +302,11 @@ def main() -> int:
             if compare_path not in changelog:
                 errors.append(f"public changelog does not compare v{previous} to v{VERSION}")
 
+    cv_source = (ROOT / "assets/Yu_CV_source.html").read_text(encoding="utf-8")
+    for token in ("National Taiwan University", "國立臺灣大學", "Yin-Ying Fang", "方銀營"):
+        if token not in cv_source:
+            errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
+
     selected = selected_projects(DATA)
     timeline_groups = json.loads((ROOT / "data/timeline.json").read_text(encoding="utf-8"))["groups"]
     timeline_count = sum(len(group["items"]) for group in timeline_groups)
@@ -318,6 +323,10 @@ def main() -> int:
         for token in ("hero", "profile-card", "projects-grid", "project-card", "skill-groups", "timeline", "contact"):
             if token not in home:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
+        if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
+            errors.append(f"research experience section incomplete in {rel}")
+        if ("方銀營" if locale == "zh" else "Yin-Ying Fang") not in home:
+            errors.append(f"NTU research assistant details missing in {rel}")
         if home.count('class="timeline-item"') != timeline_count * 2:
             errors.append(f"mobile and desktop timelines do not cover all achievements in {rel}")
         if home.count('class="achievements-mobile"') != 1 or home.count('class="achievements-desktop"') != 1:

@@ -249,7 +249,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
-.project-card, .skill-groups article {
+.project-card, .skill-groups article, .experience-item {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, .94);
@@ -350,6 +350,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .timeline-item strong { font-size: 16px; }
 .timeline-item span { color: var(--muted); text-align: right; }
 
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.experience-item { padding: 24px; }
+.experience-item h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.3; }
+.experience-item p { margin: 0; color: var(--muted); }
+.experience-item .experience-role { margin-bottom: 10px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+.experience-item .experience-unit { margin-bottom: 12px; color: var(--faint); font-size: 13px; }
+
 .skill-groups {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -422,7 +433,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .section { padding-block: 76px; }
   .section-heading { grid-template-columns: 1fr; gap: 10px; }
   .section-heading .section-index { margin-bottom: 8px; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid, .experience-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: auto; }
   .skill-groups { grid-template-columns: 1fr; }
   .contact { align-items: flex-start; flex-direction: column; }
@@ -439,7 +450,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .profile-card { width: min(100%, 300px); }
   .section { padding-block: 62px; }
   .section-heading { margin-bottom: 28px; }
-  .project-card { padding: 18px; }
+  .project-card, .experience-item { padding: 18px; }
   .timeline-item { grid-template-columns: 1fr; gap: 10px; }
   .timeline-item div { display: block; }
   .timeline-item span { display: block; margin-top: 5px; text-align: left; }
@@ -1041,7 +1052,7 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .achievements-mobile { display: none; }
 
 @media (max-width: 900px) {
-  #highlights, #projects, #skills, #contact { scroll-margin-top: 88px; }
+  #highlights, #experience, #projects, #skills, #contact { scroll-margin-top: 88px; }
   .achievements-desktop { display: none; }
   .achievements-mobile { display: block; }
   .achievements-more { margin-top: 14px; }

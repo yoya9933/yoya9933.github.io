@@ -135,7 +135,7 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
     cards = "".join(render_selected_card(project, locale) for project in selected)
     return (
         '<section class="section shell" id="projects">'
-        '<div class="section-heading"><p class="section-index">02 / SELECTED WORK</p><div>'
+        '<div class="section-heading"><p class="section-index">03 / SELECTED WORK</p><div>'
         f'<h2>{escape(data["selected_title"][locale])}</h2>'
         f'<p>{escape(data["selected_heading"][locale])}</p>'
         '</div></div>'
