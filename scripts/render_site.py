@@ -70,6 +70,9 @@ def load_data() -> dict:
             raise RuntimeError(f"missing bilingual homepage copy: {key}")
 
     for project in projects:
+        if project.get("demo_hint") and (not project.get("live") or
+            not all(project["demo_hint"].get(locale) for locale in ("zh", "en"))):
+            raise RuntimeError(f"demo hint needs a live URL and bilingual copy: {project['slug']}")
         for locale in ("zh", "en"):
             case_file = case_output(project, locale)
             if not case_file.exists():
@@ -118,6 +121,8 @@ def render_selected_card(project: dict, locale: str) -> str:
     badge = project.get("badge")
     badge_html = f'<span class="project-badge">{escape(badge)}</span>' if badge else ""
     tags = "".join(f"<li>{escape(tag)}</li>" for tag in project["tags"][locale])
+    hint = project.get("demo_hint", {}).get(locale)
+    hint_html = f'<p class="project-demo-hint">{escape(hint)}</p>' if hint else ""
     return (
         f'<article class="{classes}" data-project="{escape(project["slug"], quote=True)}">'
         f'<div class="project-media"><img src="{prefix}assets/projects/{escape(project_image(project), quote=True)}" '
@@ -125,6 +130,7 @@ def render_selected_card(project: dict, locale: str) -> str:
         f'<div class="project-topline"><span class="project-number">{project["order"]:02d}</span>{badge_html}</div>'
         f'<h3>{escape(project["title"][locale])}</h3>'
         f'<p>{escape(project["card_description"][locale])}</p>'
+        f'{hint_html}'
         f'<ul class="tags">{tags}</ul>'
         f'<div class="project-links">{render_links(project, locale)}</div>'
         "</article>"

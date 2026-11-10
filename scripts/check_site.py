@@ -358,6 +358,12 @@ def main() -> int:
                 errors.append(f"repo link for {project['slug']} missing from {rel}")
             if project["title"][locale] not in home:
                 errors.append(f"manifest title for {project['slug']} missing from {rel}")
+            hint = project.get("demo_hint", {}).get(locale)
+            if hint and f'<p class="project-demo-hint">{hint}</p>' not in home:
+                errors.append(f"missing interaction hint for {project['slug']} in {rel}")
+        expected_hints = sum(bool(p.get("demo_hint")) for p in selected)
+        if home.count('class="project-demo-hint"') != expected_hints:
+            errors.append(f"unexpected demo hints in {rel}")
         if DATA["selected_heading"][locale] not in home:
             errors.append(f"manifest-selected heading copy missing from {rel}")
 

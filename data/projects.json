@@ -110,8 +110,8 @@
       "repo": "https://github.com/yoya9933/chess-online",
       "live": "https://chuhe-xiangqi-online.sean8411.workers.dev",
       "live_label": {
-        "zh": "Live Demo ↗",
-        "en": "Live Demo ↗"
+        "zh": "可直接體驗 ↗",
+        "en": "Try It Now ↗"
       },
       "case_facts": {
         "role": {
@@ -141,6 +141,10 @@
           "og_title": "Chuhe Xiangqi | Online Chinese Chess",
           "og_description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends."
         }
+      },
+      "demo_hint": {
+        "zh": "先玩單機模式，或建立房間邀朋友連線對局。",
+        "en": "Start a solo game, or create a room and invite a friend."
       }
     },
     {
@@ -183,8 +187,8 @@
       "repo": null,
       "live": "https://yoya9933.page/demos/event-checkin/",
       "live_label": {
-        "zh": "Public Demo ↗",
-        "en": "Public Demo ↗"
+        "zh": "可直接體驗 ↗",
+        "en": "Try It Now ↗"
       },
       "case_facts": {
         "role": {
@@ -214,6 +218,10 @@
           "og_title": "Event Check-in & Operations System | Yu",
           "og_description": "An event check-in backend used at the 2026 TCUS New Faculty Camp hosted by National Cheng Kung University."
         }
+      },
+      "demo_hint": {
+        "zh": "使用虛構資料：選一組 QR token，按「模擬掃描」即可查看報到統計。",
+        "en": "Uses fictional records: choose a QR token, click Simulate Scan, and see the counts update."
       }
     },
     {
@@ -266,8 +274,8 @@
       "repo": "https://github.com/yoya9933/-------_202601221138_XY_Propose_Minutes",
       "live": "https://sharegift.tw/",
       "live_label": {
-        "zh": "Live Site ↗",
-        "en": "Live Site ↗"
+        "zh": "查看正式網站 ↗",
+        "en": "Visit Live Site ↗"
       },
       "case_facts": {
         "role": {
@@ -297,6 +305,10 @@
           "og_title": "Shareholder Gift Service & CMS Platform | Yu",
           "og_description": "A maintainable business-service website connecting public pages, a content admin panel, Supabase Auth, PostgreSQL and Storage."
         }
+      },
+      "demo_hint": {
+        "zh": "可瀏覽正式網站的商品與公告；管理後台不開放公開試用。",
+        "en": "Browse live products and announcements; the admin CMS is not open for public testing."
       }
     },
     {
@@ -349,8 +361,8 @@
       "repo": null,
       "live": "https://neon-arena-holdem.sean8411.workers.dev/",
       "live_label": {
-        "zh": "Live Demo ↗",
-        "en": "Live Demo ↗"
+        "zh": "可直接體驗 ↗",
+        "en": "Try It Now ↗"
       },
       "case_facts": {
         "role": {
@@ -380,6 +392,10 @@
           "og_title": "Neon Arena | Real-time Multiplayer Hold'em",
           "og_description": "A server-authoritative 2–6 player game built on Durable Objects and WebSocket."
         }
+      },
+      "demo_hint": {
+        "zh": "建立房間並分享六位數房號，邀朋友一起測試；不涉及現金。",
+        "en": "Create a room and share its six-digit code with friends. No real-money play."
       }
     },
     {
