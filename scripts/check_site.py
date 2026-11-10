@@ -303,7 +303,7 @@ def main() -> int:
                 errors.append(f"public changelog does not compare v{previous} to v{VERSION}")
 
     cv_source = (ROOT / "assets/Yu_CV_source.html").read_text(encoding="utf-8")
-    for token in ("National Taiwan University", "國立臺灣大學", "Yin-Ying Fang", "方銀營"):
+    for token in ("National Taiwan University", "國立臺灣大學", "marine maps", "海洋地圖"):
         if token not in cv_source:
             errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
 
@@ -325,7 +325,8 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
             errors.append(f"research experience section incomplete in {rel}")
-        if ("方銀營" if locale == "zh" else "Yin-Ying Fang") not in home:
+        expected = "船舶及海洋技術相關研究" if locale == "zh" else "Marine engineering and ocean technology research"
+        if expected not in home:
             errors.append(f"NTU research assistant details missing in {rel}")
         if home.count('class="timeline-item"') != timeline_count * 2:
             errors.append(f"mobile and desktop timelines do not cover all achievements in {rel}")
