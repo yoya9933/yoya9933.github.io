@@ -303,6 +303,9 @@ def main() -> int:
                 errors.append(f"public changelog does not compare v{previous} to v{VERSION}")
 
     cv_source = (ROOT / "assets/Yu_CV_source.html").read_text(encoding="utf-8")
+    for token in ("Research Assistant / PM · R.O.C. Naval Academy", "海軍軍官學校｜研究助理兼 PM"):
+        if token not in cv_source:
+            errors.append(f"Naval Academy RA/PM role missing from bilingual CV: {token}")
     for token in ("National Taiwan University", "國立臺灣大學", "marine maps", "海洋地圖"):
         if token not in cv_source:
             errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
@@ -325,6 +328,9 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
             errors.append(f"research experience section incomplete in {rel}")
+        naval_pm = "研究助理兼專案管理（PM）" if locale == "zh" else "Research Assistant &amp; Project Manager (PM)"
+        if naval_pm not in home:
+            errors.append(f"Naval Academy RA/PM title missing in {rel}")
         expected = "船舶及海洋技術相關研究" if locale == "zh" else "Marine engineering and ocean technology research"
         if expected not in home:
             errors.append(f"NTU research assistant details missing in {rel}")
