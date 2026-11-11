@@ -306,6 +306,9 @@ def main() -> int:
     for token in ("Research Assistant / PM · R.O.C. Naval Academy", "海軍軍官學校｜研究助理兼 PM"):
         if token not in cv_source:
             errors.append(f"Naval Academy RA/PM role missing from bilingual CV: {token}")
+    for token in ("水庫自動化報表", "automated reservoir reports", "影片剪輯及配音", "voice-overs"):
+        if token not in cv_source:
+            errors.append(f"NCKU research assistant duties missing from bilingual CV: {token}")
     for token in ("National Taiwan University", "國立臺灣大學", "marine maps", "海洋地圖"):
         if token not in cv_source:
             errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
@@ -338,6 +341,10 @@ def main() -> int:
         naval_pm = "研究助理兼專案管理（PM）" if locale == "zh" else "Research Assistant &amp; Project Manager (PM)"
         if naval_pm not in home:
             errors.append(f"Naval Academy RA/PM title missing in {rel}")
+        duties = ("水庫自動化報表", "台綜大教師研習營活動報到系統", "影片剪輯與配音") if locale == "zh" else ("automated reservoir reports", "faculty-camp check-in system", "video editing and voice-over")
+        for token in duties:
+            if token not in home:
+                errors.append(f"NCKU research assistant duties missing in {rel}: {token}")
         expected = "船舶及海洋技術相關研究" if locale == "zh" else "Marine engineering and ocean technology research"
         if expected not in home:
             errors.append(f"NTU research assistant details missing in {rel}")
