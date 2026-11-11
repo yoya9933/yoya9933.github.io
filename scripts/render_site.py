@@ -139,6 +139,11 @@ def render_selected_card(project: dict, locale: str) -> str:
 
 def render_selected_section(data: dict, locale: str, selected: list[dict]) -> str:
     cards = "".join(render_selected_card(project, locale) for project in selected)
+    title, detail, action = (
+        ("想聊聊合作？", "研究合作、實習或系統開發，都歡迎聯絡我。", "聯絡我")
+        if locale == "zh" else
+        ("Interested in working together?", "Open to research, internships, and development projects.", "Get in touch")
+    )
     return (
         '<section class="section shell" id="projects">'
         '<div class="section-heading"><p class="section-index">03 / SELECTED WORK</p><div>'
@@ -146,6 +151,10 @@ def render_selected_section(data: dict, locale: str, selected: list[dict]) -> st
         f'<p>{escape(data["selected_heading"][locale])}</p>'
         '</div></div>'
         f'<div class="projects-grid">{cards}</div>'
+        '<div class="project-cta"><div>'
+        f'<h3>{escape(title)}</h3><p>{escape(detail)}</p>'
+        '</div><a class="button primary" href="#contact">'
+        f'{escape(action)}</a></div>'
         '</section>'
     )
 

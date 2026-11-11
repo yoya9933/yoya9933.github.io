@@ -328,6 +328,13 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
             errors.append(f"research experience section incomplete in {rel}")
+        for token in ('class="scroll-progress-fill"', 'class="back-to-top"', 'href="#top"', 'class="project-cta"'):
+            if token not in home:
+                errors.append(f"missing scroll navigation or project CTA in {rel}: {token}")
+        if home.count('class="project-cta"') != 1 or home.index('class="project-cta"') < home.index('class="projects-grid"'):
+            errors.append(f"project CTA should appear once after project cards in {rel}")
+        if 'href="#contact"' not in home.split('class="project-cta"', 1)[-1]:
+            errors.append(f"project CTA must link to existing contact section in {rel}")
         naval_pm = "研究助理兼專案管理（PM）" if locale == "zh" else "Research Assistant &amp; Project Manager (PM)"
         if naval_pm not in home:
             errors.append(f"Naval Academy RA/PM title missing in {rel}")
@@ -463,6 +470,9 @@ def main() -> int:
             errors.append("runtime missing menu-toggle behavior")
         if "window.innerWidth > 900" not in runtime_js:
             errors.append("menu reset breakpoint differs from the 900px CSS mobile nav")
+        for token in ("aria-current", "requestAnimationFrame", "scroll-progress-fill", "back-to-top"):
+            if token not in runtime_js:
+                errors.append(f"scroll-navigation script is missing {token}")
     if (SITE / "sitemap.xml").exists():
         sitemap = (SITE / "sitemap.xml").read_text(encoding="utf-8")
         for project in PROJECTS:

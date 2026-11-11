@@ -25,6 +25,42 @@
     window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
   }
 
+  // Update the active navigation link, scroll progress and back-to-top control.
+  const progressFill = document.querySelector('.scroll-progress-fill');
+  const backToTop = document.querySelector('.back-to-top');
+  if (nav && progressFill && backToTop) {
+    const sections = [...nav.querySelectorAll('a[href^="#"]')]
+      .map((link) => ({ link, section: document.getElementById(link.hash.slice(1)) }))
+      .filter(({ section }) => section);
+    let scheduled = false;
+    const updateReadingPosition = () => {
+      const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom + 20;
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const scrolled = Math.max(0, Math.min(window.scrollY, maxScroll));
+      let current = null;
+      for (const { link, section } of sections) {
+        if (section.getBoundingClientRect().top <= headerBottom) current = link;
+      }
+      if (maxScroll > 0 && scrolled >= maxScroll - 4) current = sections[sections.length - 1]?.link || null;
+      sections.forEach(({ link }) => {
+        if (link === current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      progressFill.style.transform = `scaleX(${maxScroll ? scrolled / maxScroll : 0})`;
+      backToTop.classList.toggle('is-visible', scrolled > 500);
+      scheduled = false;
+    };
+    const scheduleReadingPosition = () => {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(updateReadingPosition);
+    };
+    window.addEventListener('scroll', scheduleReadingPosition, { passive: true });
+    window.addEventListener('resize', scheduleReadingPosition);
+    window.addEventListener('hashchange', scheduleReadingPosition);
+    scheduleReadingPosition();
+  }
+
   // A subtle glow follows the mouse within project cards, never on touch or reduced motion.
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   if (finePointer.matches) {
