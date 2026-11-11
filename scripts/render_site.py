@@ -343,6 +343,35 @@ def render_case_actions_text(text: str, project: dict, locale: str, data: dict) 
     return render_case_facts(text, project, locale, data["project_year"])
 
 
+def render_case_pagination(project: dict, locale: str, projects: list[dict]) -> str:
+    index = next(i for i, item in enumerate(projects) if item["slug"] == project["slug"])
+    previous = projects[index - 1] if index > 0 else None
+    following = projects[index + 1] if index + 1 < len(projects) else None
+    labels = {
+        "zh": ("← 上一篇作品", "下一篇作品 →", "作品上下篇導覽"),
+        "en": ("← Previous project", "Next project →", "Project navigation"),
+    }[locale]
+    links = []
+    for adjacent, direction, label in (
+        (previous, "prev", labels[0]),
+        (following, "next", labels[1]),
+    ):
+        if adjacent is None:
+            continue
+        links.append(
+            f'<a class="case-pagination-link case-pagination-link--{direction}" '
+            f'href="{escape(case_url(adjacent, locale), quote=True)}">'
+            f'<span class="case-pagination-caption">{escape(label)}</span>'
+            f'<strong>{escape(adjacent["title"][locale])}</strong></a>'
+        )
+    if not links:
+        return ""
+    return (
+        f'<nav class="case-pagination shell" aria-label="{escape(labels[2], quote=True)}">'
+        + "".join(links) + "</nav>"
+    )
+
+
 def render_case_page(project: dict, locale: str, data: dict) -> str:
     page = project["case_page"][locale]
     route = case_url(project, locale)
@@ -358,6 +387,7 @@ def render_case_page(project: dict, locale: str, data: dict) -> str:
     if not fragment.is_file():
         raise RuntimeError(f"case-study content missing: {fragment}")
     content = fragment.read_text(encoding="utf-8").strip()
+    pagination = render_case_pagination(project, locale, selected_projects(data))
     return (
         '<!DOCTYPE html><html lang="' + escape(lang, quote=True) + '" data-theme="light"><head>'
         '<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -375,7 +405,7 @@ def render_case_page(project: dict, locale: str, data: dict) -> str:
         f'<a class="skip-link" href="#main">{"Skip to main content" if locale == "en" else "跳到主要內容"}</a>'
         f'<nav class="case-nav shell"><a href="{home_url}">{back_label}</a>'
         f'<span class="toolbar"><a href="{locale_url}">{locale_label}</a></span></nav>'
-        f'{content}<script src="{asset_prefix}assets/main.js" defer></script></body></html>'
+        f'{content}{pagination}<script src="{asset_prefix}assets/main.js" defer></script></body></html>'
     )
 
 
