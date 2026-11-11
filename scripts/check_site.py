@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
@@ -314,6 +315,7 @@ def main() -> int:
             errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
 
     selected = selected_projects(DATA)
+    selected_index = {project["slug"]: index for index, project in enumerate(selected)}
     timeline_groups = json.loads((ROOT / "data/timeline.json").read_text(encoding="utf-8"))["groups"]
     timeline_count = sum(len(group["items"]) for group in timeline_groups)
     mobile_featured = sum(
@@ -407,6 +409,25 @@ def main() -> int:
                 errors.append(f"repo URL from manifest missing: {case_path.relative_to(SITE)}")
             if '"@type":"CreativeWork"' not in case or '"@type":"BreadcrumbList"' not in case:
                 errors.append(f"project structured data missing from {case_path.relative_to(SITE)}")
+            navigation = re.search(r'<nav class="case-pagination shell"[^>]*>(.*?)</nav>', case, re.S)
+            if navigation is None:
+                errors.append(f"case study pagination missing from {case_path.relative_to(SITE)}")
+            else:
+                nav_html = navigation.group(1)
+                if case.index('class="case-pagination shell"') < case.index("</main>"):
+                    errors.append(f"pagination must follow case content in {case_path.relative_to(SITE)}")
+                position = selected_index[project["slug"]]
+                for direction, adjacent_index in (("prev", position - 1), ("next", position + 1)):
+                    links = re.findall(
+                        rf'<a class="case-pagination-link case-pagination-link--{direction}" href="([^"]+)">(.*?)</a>',
+                        nav_html, re.S,
+                    )
+                    adjacent = selected[adjacent_index] if 0 <= adjacent_index < len(selected) else None
+                    if adjacent is None:
+                        if links:
+                            errors.append(f"unexpected {direction} link on {project['slug']} ({locale})")
+                    elif len(links) != 1 or links[0][0] != case_url(adjacent, locale) or escape(adjacent["title"][locale]) not in links[0][1]:
+                        errors.append(f"incorrect {direction} link on {project['slug']} ({locale})")
 
     localized_pairs = [("index.html", "en/index.html", "/", "/en/") , ("contact/index.html", "en/contact/index.html", "/contact/", "/en/contact/")]
     for project in PROJECTS:
