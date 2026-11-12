@@ -10,224 +10,9 @@
   },
   "projects": [
     {
-      "slug": "buoy",
+      "slug": "shareholder-cms",
       "order": 1,
       "featured": true,
-      "badge": "FEATURED",
-      "title": {
-        "zh": "浮標資料分析與航道風險評估平台",
-        "en": "Buoy Analytics & Navigation Risk Platform"
-      },
-      "card_description": {
-        "zh": "延續 2025 NODASS 海洋大數據競賽的得獎經驗，這個工具能整理浮標觀測資料、跑 LSTM 預測，並依波高和風速顯示風險提醒。",
-        "en": "Inspired by my award-winning experience at the 2025 NODASS Ocean Big Data Competition, this Streamlit app analyzes buoy observations, runs LSTM forecasts, and flags wave and wind risks."
-      },
-      "tags": {
-        "zh": [
-          "5 種時間尺度",
-          "4 種缺值策略",
-          "4 種輸出"
-        ],
-        "en": [
-          "5 time scales",
-          "4 missing-data strategies",
-          "4 export formats"
-        ]
-      },
-      "image_alt": {
-        "zh": "浮標資料分析平台功能預覽",
-        "en": "Buoy analytics feature preview"
-      },
-      "media": {
-        "type": "tracked_snapshot",
-        "source": "assets/projects/snapshots/buoy.webp"
-      },
-      "repo": "https://github.com/yoya9933/Buoy-data-analysis-V2",
-      "live": null,
-      "case_facts": {
-        "role": {
-          "zh": "資料與 ML 流程開發",
-          "en": "Data & ML pipeline development"
-        },
-        "scope": {
-          "zh": "Data QA · LSTM · 風險規則 · Streamlit",
-          "en": "Data QA · LSTM · risk rules · Streamlit"
-        },
-        "status": {
-          "zh": "公開 Repository / Case Study",
-          "en": "Public repository / case study"
-        },
-        "stack": "Python · Streamlit · Keras / LSTM"
-      },
-      "case_page": {
-        "zh": {
-          "title": "浮標資料分析平台｜Yu Case Study",
-          "description": "延續 2025 NODASS 海洋大數據競賽經驗的浮標資料分析專案，提供 Streamlit 資料整理、LSTM 預測和風險提醒。",
-          "og_title": "浮標資料分析與航道風險評估平台｜Yu",
-          "og_description": "2025 NODASS 海洋大數據競賽相關的後續實作：浮標資料處理、LSTM 預測與波高、風速風險提醒。"
-        },
-        "en": {
-          "title": "Buoy Analytics Platform | Yu Case Study",
-          "description": "Buoy analysis project following the 2025 NODASS Ocean Big Data Competition: Streamlit data preparation, LSTM forecasts and risk alerts.",
-          "og_title": "Buoy Analytics & Navigation Risk Platform",
-          "og_description": "A follow-up buoy analysis project informed by the 2025 NODASS Ocean Big Data Competition, with data cleaning, LSTM forecasts and risk alerts."
-        }
-      }
-    },
-    {
-      "slug": "chess",
-      "order": 2,
-      "featured": false,
-      "badge": null,
-      "title": {
-        "zh": "楚河棋局｜線上中國象棋",
-        "en": "Chuhe Xiangqi | Online Chinese Chess"
-      },
-      "card_description": {
-        "zh": "已上線的多人中國象棋，支援標準象棋與揭棋；伺服器判定棋步、WebSocket 同步，並有單元與多人端對端測試。",
-        "en": "A live multiplayer Xiangqi site with server-validated moves, WebSocket updates, and unit/multiplayer end-to-end tests."
-      },
-      "tags": {
-        "zh": [
-          "6 碼房間",
-          "2 種棋類模式",
-          "2 種資料庫後端"
-        ],
-        "en": [
-          "6-digit rooms",
-          "2 rule modes",
-          "2 DB backends"
-        ]
-      },
-      "image_alt": {
-        "zh": "楚河棋局產品預覽",
-        "en": "Chuhe Xiangqi product preview"
-      },
-      "media": {
-        "type": "tracked_snapshot",
-        "source": "assets/projects/snapshots/chess.webp"
-      },
-      "repo": "https://github.com/yoya9933/chess-online",
-      "live": "https://chuhe-xiangqi-online.sean8411.workers.dev",
-      "live_label": {
-        "zh": "可直接體驗 ↗",
-        "en": "Try It Now ↗"
-      },
-      "case_facts": {
-        "role": {
-          "zh": "全端 Web 產品開發",
-          "en": "Full-stack web product development"
-        },
-        "scope": {
-          "zh": "伺服器棋規 · 多人房間 · WebSocket · D1",
-          "en": "Server rules · multiplayer rooms · WebSocket · D1"
-        },
-        "status": {
-          "zh": "Live",
-          "en": "Live"
-        },
-        "stack": "JavaScript · Cloudflare Workers · Durable Objects · D1"
-      },
-      "case_page": {
-        "zh": {
-          "title": "楚河棋局｜Yu Case Study",
-          "description": "免註冊跨裝置中國象棋 Web 產品：6 碼房間、兩種棋類模式、雙資料庫後端、revision 同步。",
-          "og_title": "楚河棋局｜線上中國象棋｜Yu",
-          "og_description": "跨裝置房間、revision 同步、API 與資料庫整合的 Web 產品。"
-        },
-        "en": {
-          "title": "Chuhe Xiangqi | Yu Case Study",
-          "description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends.",
-          "og_title": "Chuhe Xiangqi | Online Chinese Chess",
-          "og_description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends."
-        }
-      },
-      "demo_hint": {
-        "zh": "先玩單機模式，或建立房間邀朋友連線對局。",
-        "en": "Start a solo game, or create a room and invite a friend."
-      }
-    },
-    {
-      "slug": "event-checkin",
-      "order": 3,
-      "featured": false,
-      "badge": "PRIVACY-SAFE DEMO",
-      "title": {
-        "zh": "活動報到與現場營運系統",
-        "en": "Event Check-in & Operations System"
-      },
-      "card_description": {
-        "zh": "為成功大學主辦的 2026 台綜大新進教師專業知能研習營開發報到系統後端，活動當天實際使用，支援 QR 報到、名單查詢、即時統計與座位管理。",
-        "en": "Built the check-in backend used at the 2026 TCUS New Faculty Professional Development Camp, hosted by National Cheng Kung University, covering QR check-in, attendee lookup, live counts and seating."
-      },
-      "tags": {
-        "zh": [
-          "30 秒更新",
-          "5 維篩選",
-          "D1 / Drizzle"
-        ],
-        "en": [
-          "30-second refresh",
-          "5 filter dimensions",
-          "D1 / Drizzle"
-        ]
-      },
-      "image_alt": {
-        "zh": "活動報到與現場營運系統公開 Demo",
-        "en": "Event check-in and operations public demo"
-      },
-      "media": {
-        "type": "local_capture",
-        "source": "demos/event-checkin/index.html",
-        "width": 1440,
-        "height": 810,
-        "virtual_time_budget": 3500,
-        "quality": 84
-      },
-      "repo": null,
-      "live": "https://yoya9933.page/demos/event-checkin/",
-      "live_label": {
-        "zh": "可直接體驗 ↗",
-        "en": "Try It Now ↗"
-      },
-      "case_facts": {
-        "role": {
-          "zh": "活動報到系統後端開發",
-          "en": "Event check-in backend development"
-        },
-        "scope": {
-          "zh": "QR 報到 · 即時統計 · 篩選 · 座位",
-          "en": "QR check-in · live metrics · filters · seating"
-        },
-        "status": {
-          "zh": "正式系統 + 隱私安全公開 Demo",
-          "en": "Production system + privacy-safe public demo"
-        },
-        "stack": "Next.js · Cloudflare D1 · Drizzle"
-      },
-      "case_page": {
-        "zh": {
-          "title": "活動報到與現場營運系統｜Yu Case Study",
-          "description": "為成功大學主辦的臺灣綜合大學系統 2026 新進教師專業知能研習營開發的報到系統後端：QR 報到、即時統計、座位與現場營運。",
-          "og_title": "活動報到與現場營運系統｜Yu",
-          "og_description": "成功大學主辦的 2026 台綜大新進教師研習營實際使用的報到後端：QR 報到、即時統計與座位管理。"
-        },
-        "en": {
-          "title": "Event Check-in & Operations System | Yu Case Study",
-          "description": "Backend for the 2026 Taiwan Comprehensive University System New Faculty Professional Development Camp, hosted by National Cheng Kung University: QR check-in, live counts and seating workflows.",
-          "og_title": "Event Check-in & Operations System | Yu",
-          "og_description": "An event check-in backend used at the 2026 TCUS New Faculty Camp hosted by National Cheng Kung University."
-        }
-      },
-      "demo_hint": {
-        "zh": "使用虛構資料：選一組 QR token，按「模擬掃描」即可查看報到統計。",
-        "en": "Uses fictional records: choose a QR token, click Simulate Scan, and see the counts update."
-      }
-    },
-    {
-      "slug": "shareholder-cms",
-      "order": 4,
-      "featured": false,
       "badge": "IN PRODUCTION",
       "title": {
         "zh": "股東紀念品服務與 CMS 平台",
@@ -312,8 +97,359 @@
       }
     },
     {
-      "slug": "neon-arena",
+      "slug": "event-checkin",
+      "order": 2,
+      "featured": false,
+      "badge": "PRIVACY-SAFE DEMO",
+      "title": {
+        "zh": "活動報到與現場營運系統",
+        "en": "Event Check-in & Operations System"
+      },
+      "card_description": {
+        "zh": "為成功大學主辦的 2026 台綜大新進教師專業知能研習營開發報到系統後端，活動當天實際使用，支援 QR 報到、名單查詢、即時統計與座位管理。",
+        "en": "Built the check-in backend used at the 2026 TCUS New Faculty Professional Development Camp, hosted by National Cheng Kung University, covering QR check-in, attendee lookup, live counts and seating."
+      },
+      "tags": {
+        "zh": [
+          "30 秒更新",
+          "5 維篩選",
+          "D1 / Drizzle"
+        ],
+        "en": [
+          "30-second refresh",
+          "5 filter dimensions",
+          "D1 / Drizzle"
+        ]
+      },
+      "image_alt": {
+        "zh": "活動報到與現場營運系統公開 Demo",
+        "en": "Event check-in and operations public demo"
+      },
+      "media": {
+        "type": "local_capture",
+        "source": "demos/event-checkin/index.html",
+        "width": 1440,
+        "height": 810,
+        "virtual_time_budget": 3500,
+        "quality": 84
+      },
+      "repo": null,
+      "live": "https://yoya9933.page/demos/event-checkin/",
+      "live_label": {
+        "zh": "可直接體驗 ↗",
+        "en": "Try It Now ↗"
+      },
+      "case_facts": {
+        "role": {
+          "zh": "活動報到系統後端開發",
+          "en": "Event check-in backend development"
+        },
+        "scope": {
+          "zh": "QR 報到 · 即時統計 · 篩選 · 座位",
+          "en": "QR check-in · live metrics · filters · seating"
+        },
+        "status": {
+          "zh": "正式系統 + 隱私安全公開 Demo",
+          "en": "Production system + privacy-safe public demo"
+        },
+        "stack": "Next.js · Cloudflare D1 · Drizzle"
+      },
+      "case_page": {
+        "zh": {
+          "title": "活動報到與現場營運系統｜Yu Case Study",
+          "description": "為成功大學主辦的臺灣綜合大學系統 2026 新進教師專業知能研習營開發的報到系統後端：QR 報到、即時統計、座位與現場營運。",
+          "og_title": "活動報到與現場營運系統｜Yu",
+          "og_description": "成功大學主辦的 2026 台綜大新進教師研習營實際使用的報到後端：QR 報到、即時統計與座位管理。"
+        },
+        "en": {
+          "title": "Event Check-in & Operations System | Yu Case Study",
+          "description": "Backend for the 2026 Taiwan Comprehensive University System New Faculty Professional Development Camp, hosted by National Cheng Kung University: QR check-in, live counts and seating workflows.",
+          "og_title": "Event Check-in & Operations System | Yu",
+          "og_description": "An event check-in backend used at the 2026 TCUS New Faculty Camp hosted by National Cheng Kung University."
+        }
+      },
+      "demo_hint": {
+        "zh": "使用虛構資料：選一組 QR token，按「模擬掃描」即可查看報到統計。",
+        "en": "Uses fictional records: choose a QR token, click Simulate Scan, and see the counts update."
+      }
+    },
+    {
+      "slug": "overtime-management",
+      "order": 3,
+      "featured": false,
+      "badge": "IN USE · NCKU CTLD",
+      "title": {
+        "zh": "加班管理與行政彙整系統",
+        "en": "Overtime Operations System"
+      },
+      "card_description": {
+        "zh": "將加班申請、主管審核、角色權限與行政彙整整合成可操作流程，目前由國立成功大學教務處教學發展中心實際使用。",
+        "en": "An overtime submission, manager review, role-based access and administrative consolidation workflow currently used by NCKU’s Center for Teaching and Learning Development."
+      },
+      "tags": {
+        "zh": [
+          "成大教發中心使用",
+          "React + Worker",
+          "D1 + RBAC"
+        ],
+        "en": [
+          "Used by NCKU CTLD",
+          "React + Worker",
+          "D1 + RBAC"
+        ]
+      },
+      "image_alt": {
+        "zh": "加班管理與行政彙整系統架構預覽",
+        "en": "Overtime operations system architecture preview"
+      },
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/overtime-management.svg",
+        "width": 1440,
+        "height": 900,
+        "quality": 86
+      },
+      "repo": "https://github.com/yoya9933/yoya9933.github.io/tree/overtime-management-system",
+      "live": null,
+      "case_facts": {
+        "role": {
+          "zh": "行政流程系統開發",
+          "en": "Administrative workflow system development"
+        },
+        "scope": {
+          "zh": "加班申請 · 主管審核 · 權限 · 行政彙整",
+          "en": "Overtime requests · manager review · RBAC · reporting"
+        },
+        "status": {
+          "zh": "國立成功大學教務處教學發展中心實際使用",
+          "en": "In use at NCKU Center for Teaching and Learning Development"
+        },
+        "stack": "React · Vite · Cloudflare Workers · D1"
+      },
+      "case_page": {
+        "zh": {
+          "title": "加班管理與行政彙整系統｜Yu Case Study",
+          "description": "目前由國立成功大學教務處教學發展中心實際使用的加班管理與行政彙整系統：申請、主管審核、角色權限與資料整理。",
+          "og_title": "加班管理與行政彙整系統｜Yu",
+          "og_description": "實際投入成大教發中心內部行政使用的加班申請、主管審核與彙整工具。"
+        },
+        "en": {
+          "title": "Overtime Operations System | Yu Case Study",
+          "description": "An overtime request, manager review, role control and administrative consolidation system currently used by NCKU's Center for Teaching and Learning Development.",
+          "og_title": "Overtime Operations System | Yu",
+          "og_description": "An internal administrative workflow system in real use at NCKU CTLD."
+        }
+      }
+    },
+    {
+      "slug": "chess",
+      "order": 4,
+      "featured": false,
+      "badge": null,
+      "title": {
+        "zh": "楚河棋局｜線上中國象棋",
+        "en": "Chuhe Xiangqi | Online Chinese Chess"
+      },
+      "card_description": {
+        "zh": "已上線的多人中國象棋，支援標準象棋與揭棋；伺服器判定棋步、WebSocket 同步，並有單元與多人端對端測試。",
+        "en": "A live multiplayer Xiangqi site with server-validated moves, WebSocket updates, and unit/multiplayer end-to-end tests."
+      },
+      "tags": {
+        "zh": [
+          "6 碼房間",
+          "2 種棋類模式",
+          "2 種資料庫後端"
+        ],
+        "en": [
+          "6-digit rooms",
+          "2 rule modes",
+          "2 DB backends"
+        ]
+      },
+      "image_alt": {
+        "zh": "楚河棋局產品預覽",
+        "en": "Chuhe Xiangqi product preview"
+      },
+      "media": {
+        "type": "tracked_snapshot",
+        "source": "assets/projects/snapshots/chess.webp"
+      },
+      "repo": "https://github.com/yoya9933/chess-online",
+      "live": "https://chuhe-xiangqi-online.sean8411.workers.dev",
+      "live_label": {
+        "zh": "可直接體驗 ↗",
+        "en": "Try It Now ↗"
+      },
+      "case_facts": {
+        "role": {
+          "zh": "全端 Web 產品開發",
+          "en": "Full-stack web product development"
+        },
+        "scope": {
+          "zh": "伺服器棋規 · 多人房間 · WebSocket · D1",
+          "en": "Server rules · multiplayer rooms · WebSocket · D1"
+        },
+        "status": {
+          "zh": "Live",
+          "en": "Live"
+        },
+        "stack": "JavaScript · Cloudflare Workers · Durable Objects · D1"
+      },
+      "case_page": {
+        "zh": {
+          "title": "楚河棋局｜Yu Case Study",
+          "description": "免註冊跨裝置中國象棋 Web 產品：6 碼房間、兩種棋類模式、雙資料庫後端、revision 同步。",
+          "og_title": "楚河棋局｜線上中國象棋｜Yu",
+          "og_description": "跨裝置房間、revision 同步、API 與資料庫整合的 Web 產品。"
+        },
+        "en": {
+          "title": "Chuhe Xiangqi | Yu Case Study",
+          "description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends.",
+          "og_title": "Chuhe Xiangqi | Online Chinese Chess",
+          "og_description": "Cross-device Chinese chess with 6-digit rooms, two rule modes, revision synchronization and two database backends."
+        }
+      },
+      "demo_hint": {
+        "zh": "先玩單機模式，或建立房間邀朋友連線對局。",
+        "en": "Start a solo game, or create a room and invite a friend."
+      }
+    },
+    {
+      "slug": "ai-media-pipeline",
       "order": 5,
+      "featured": false,
+      "badge": "AI AUTOMATION",
+      "title": {
+        "zh": "Reliable AI Media Automation Pipeline",
+        "en": "Reliable AI Media Automation Pipeline"
+      },
+      "card_description": {
+        "zh": "設計並實作 AI 內容自動化流程，整合選題、內容生成、發布與任務追蹤，降低重複性人工操作，提升多主題、多平台內容產製與管理效率。",
+        "en": "Designed and built an AI content automation workflow that connects topic selection, content generation, publishing and task tracking to reduce repetitive manual work and improve multi-topic, multi-platform content operations."
+      },
+      "tags": {
+        "zh": [
+          "4 條內容線",
+          "3 個發布介面",
+          "Retry + Audit Trail"
+        ],
+        "en": [
+          "4 content profiles",
+          "3 publishing adapters",
+          "Retry + audit trail"
+        ]
+      },
+      "image_alt": {
+        "zh": "Reliable AI Media Automation Pipeline 架構圖",
+        "en": "Reliable AI Media Automation Pipeline architecture"
+      },
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/ai-media-pipeline.svg",
+        "width": 1200,
+        "height": 675,
+        "quality": 86
+      },
+      "repo": "https://github.com/yoya9933/autovideos",
+      "live": null,
+      "case_facts": {
+        "role": {
+          "zh": "自動化與可靠性 orchestration",
+          "en": "Automation & reliability orchestration"
+        },
+        "scope": {
+          "zh": "RSS · 去重 · fallback · 發布恢復 · 通知",
+          "en": "RSS · dedupe · fallback · publish recovery · alerts"
+        },
+        "status": {
+          "zh": "公開 Repository / Case Study",
+          "en": "Public repository / case study"
+        },
+        "stack": "Python · MoneyPrinterTurbo · publishing adapters"
+      },
+      "case_page": {
+        "zh": {
+          "title": "Reliable AI Media Automation Pipeline｜Yu Case Study",
+          "description": "以去重、可追溯紀錄、失敗恢復、多平台發布介面與人工審核模式為核心的 AI 媒體自動化工作流。",
+          "og_title": "Reliable AI Media Automation Pipeline｜Yu",
+          "og_description": "4 條內容線、3 個發布介面、去重、失敗恢復、稽核紀錄與通知。"
+        },
+        "en": {
+          "title": "Reliable AI Media Automation Pipeline | Yu Case Study",
+          "description": "An AI media workflow designed around deduplication, traceable records, upload recovery, multi-platform adapters and human review modes.",
+          "og_title": "Reliable AI Media Automation Pipeline | Yu",
+          "og_description": "Four content profiles, three publishing adapters, deduplication, recovery, audit records and notifications."
+        }
+      }
+    },
+    {
+      "slug": "buoy",
+      "order": 6,
+      "featured": false,
+      "badge": null,
+      "title": {
+        "zh": "浮標資料分析與航道風險評估平台",
+        "en": "Buoy Analytics & Navigation Risk Platform"
+      },
+      "card_description": {
+        "zh": "延續 2025 NODASS 海洋大數據競賽的實作，整理浮標觀測、繪製預測圖表，並依波高與風速提醒風險；模型仍待獨立測試驗證。",
+        "en": "Building on the 2025 NODASS Ocean Big Data Competition, this app cleans buoy observations, charts forecasts and flags wave/wind risks; independent model testing is still pending."
+      },
+      "tags": {
+        "zh": [
+          "5 種時間尺度",
+          "4 種缺值策略",
+          "4 種輸出"
+        ],
+        "en": [
+          "5 time scales",
+          "4 missing-data strategies",
+          "4 export formats"
+        ]
+      },
+      "image_alt": {
+        "zh": "浮標資料分析平台功能預覽",
+        "en": "Buoy analytics feature preview"
+      },
+      "media": {
+        "type": "tracked_snapshot",
+        "source": "assets/projects/snapshots/buoy.webp"
+      },
+      "repo": "https://github.com/yoya9933/Buoy-data-analysis-V2",
+      "live": null,
+      "case_facts": {
+        "role": {
+          "zh": "資料與 ML 流程開發",
+          "en": "Data & ML pipeline development"
+        },
+        "scope": {
+          "zh": "Data QA · LSTM · 風險規則 · Streamlit",
+          "en": "Data QA · LSTM · risk rules · Streamlit"
+        },
+        "status": {
+          "zh": "公開 Repository / Case Study",
+          "en": "Public repository / case study"
+        },
+        "stack": "Python · Streamlit · Keras / LSTM"
+      },
+      "case_page": {
+        "zh": {
+          "title": "浮標資料分析平台｜Yu Case Study",
+          "description": "延續 2025 NODASS 海洋大數據競賽經驗的浮標資料分析專案，提供 Streamlit 資料整理、LSTM 預測和風險提醒。",
+          "og_title": "浮標資料分析與航道風險評估平台｜Yu",
+          "og_description": "2025 NODASS 海洋大數據競賽相關的後續實作：浮標資料處理、LSTM 預測與波高、風速風險提醒。"
+        },
+        "en": {
+          "title": "Buoy Analytics Platform | Yu Case Study",
+          "description": "Buoy analysis project following the 2025 NODASS Ocean Big Data Competition: Streamlit data preparation, LSTM forecasts and risk alerts.",
+          "og_title": "Buoy Analytics & Navigation Risk Platform",
+          "og_description": "A follow-up buoy analysis project informed by the 2025 NODASS Ocean Big Data Competition, with data cleaning, LSTM forecasts and risk alerts."
+        }
+      }
+    },
+    {
+      "slug": "neon-arena",
+      "order": 7,
       "featured": false,
       "badge": "REAL-TIME MULTIPLAYER",
       "title": {
@@ -396,142 +532,6 @@
       "demo_hint": {
         "zh": "建立房間並分享六位數房號，邀朋友一起測試；不涉及現金。",
         "en": "Create a room and share its six-digit code with friends. No real-money play."
-      }
-    },
-    {
-      "slug": "overtime-management",
-      "order": 6,
-      "featured": false,
-      "badge": "IN USE · NCKU CTLD",
-      "title": {
-        "zh": "加班管理與行政彙整系統",
-        "en": "Overtime Operations System"
-      },
-      "card_description": {
-        "zh": "將加班申請、主管審核、角色權限與行政彙整整合成可操作流程，目前由國立成功大學教務處教學發展中心實際使用。",
-        "en": "An overtime submission, manager review, role-based access and administrative consolidation workflow currently used by NCKU’s Center for Teaching and Learning Development."
-      },
-      "tags": {
-        "zh": [
-          "成大教發中心使用",
-          "React + Worker",
-          "D1 + RBAC"
-        ],
-        "en": [
-          "Used by NCKU CTLD",
-          "React + Worker",
-          "D1 + RBAC"
-        ]
-      },
-      "image_alt": {
-        "zh": "加班管理與行政彙整系統架構預覽",
-        "en": "Overtime operations system architecture preview"
-      },
-      "media": {
-        "type": "svg_render",
-        "source": "assets/projects/overtime-management.svg",
-        "width": 1440,
-        "height": 900,
-        "quality": 86
-      },
-      "repo": "https://github.com/yoya9933/yoya9933.github.io/tree/overtime-management-system",
-      "live": null,
-      "case_facts": {
-        "role": {
-          "zh": "行政流程系統開發",
-          "en": "Administrative workflow system development"
-        },
-        "scope": {
-          "zh": "加班申請 · 主管審核 · 權限 · 行政彙整",
-          "en": "Overtime requests · manager review · RBAC · reporting"
-        },
-        "status": {
-          "zh": "國立成功大學教務處教學發展中心實際使用",
-          "en": "In use at NCKU Center for Teaching and Learning Development"
-        },
-        "stack": "React · Vite · Cloudflare Workers · D1"
-      },
-      "case_page": {
-        "zh": {
-          "title": "加班管理與行政彙整系統｜Yu Case Study",
-          "description": "目前由國立成功大學教務處教學發展中心實際使用的加班管理與行政彙整系統：申請、主管審核、角色權限與資料整理。",
-          "og_title": "加班管理與行政彙整系統｜Yu",
-          "og_description": "實際投入成大教發中心內部行政使用的加班申請、主管審核與彙整工具。"
-        },
-        "en": {
-          "title": "Overtime Operations System | Yu Case Study",
-          "description": "An overtime request, manager review, role control and administrative consolidation system currently used by NCKU's Center for Teaching and Learning Development.",
-          "og_title": "Overtime Operations System | Yu",
-          "og_description": "An internal administrative workflow system in real use at NCKU CTLD."
-        }
-      }
-    },
-    {
-      "slug": "ai-media-pipeline",
-      "order": 7,
-      "featured": false,
-      "badge": "AI AUTOMATION",
-      "title": {
-        "zh": "Reliable AI Media Automation Pipeline",
-        "en": "Reliable AI Media Automation Pipeline"
-      },
-      "card_description": {
-        "zh": "設計並實作 AI 內容自動化流程，整合選題、內容生成、發布與任務追蹤，降低重複性人工操作，提升多主題、多平台內容產製與管理效率。",
-        "en": "Designed and built an AI content automation workflow that connects topic selection, content generation, publishing and task tracking to reduce repetitive manual work and improve multi-topic, multi-platform content operations."
-      },
-      "tags": {
-        "zh": [
-          "4 條內容線",
-          "3 個發布介面",
-          "Retry + Audit Trail"
-        ],
-        "en": [
-          "4 content profiles",
-          "3 publishing adapters",
-          "Retry + audit trail"
-        ]
-      },
-      "image_alt": {
-        "zh": "Reliable AI Media Automation Pipeline 架構圖",
-        "en": "Reliable AI Media Automation Pipeline architecture"
-      },
-      "media": {
-        "type": "svg_render",
-        "source": "assets/projects/ai-media-pipeline.svg",
-        "width": 1200,
-        "height": 675,
-        "quality": 86
-      },
-      "repo": "https://github.com/yoya9933/autovideos",
-      "live": null,
-      "case_facts": {
-        "role": {
-          "zh": "自動化與可靠性 orchestration",
-          "en": "Automation & reliability orchestration"
-        },
-        "scope": {
-          "zh": "RSS · 去重 · fallback · 發布恢復 · 通知",
-          "en": "RSS · dedupe · fallback · publish recovery · alerts"
-        },
-        "status": {
-          "zh": "公開 Repository / Case Study",
-          "en": "Public repository / case study"
-        },
-        "stack": "Python · MoneyPrinterTurbo · publishing adapters"
-      },
-      "case_page": {
-        "zh": {
-          "title": "Reliable AI Media Automation Pipeline｜Yu Case Study",
-          "description": "以去重、可追溯紀錄、失敗恢復、多平台發布介面與人工審核模式為核心的 AI 媒體自動化工作流。",
-          "og_title": "Reliable AI Media Automation Pipeline｜Yu",
-          "og_description": "4 條內容線、3 個發布介面、去重、失敗恢復、稽核紀錄與通知。"
-        },
-        "en": {
-          "title": "Reliable AI Media Automation Pipeline | Yu Case Study",
-          "description": "An AI media workflow designed around deduplication, traceable records, upload recovery, multi-platform adapters and human review modes.",
-          "og_title": "Reliable AI Media Automation Pipeline | Yu",
-          "og_description": "Four content profiles, three publishing adapters, deduplication, recovery, audit records and notifications."
-        }
       }
     }
   ],
