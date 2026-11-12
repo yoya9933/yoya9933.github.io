@@ -317,6 +317,25 @@ def main() -> int:
         if token not in cv_source:
             errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
 
+    cv_sections = re.findall(r'<div class="research-list">([\\s\\S]*?)</div>', cv_source)
+    if len(cv_sections) != 2:
+        errors.append("expected bilingual CV experience sections")
+    else:
+        expected_names = (
+            ("NCKU Department of Hydraulic and Ocean Engineering", "NCKU Center for Teaching and Learning Development", "National Taiwan University", "R.O.C. Naval Academy"),
+            ("國立成功大學水利及海洋工程學系", "國立成功大學教學發展中心", "國立臺灣大學", "海軍軍官學校"),
+        )
+        expected_dates = (("2026.08", "Present"), ("2026.06", "Present"), ("2026.01", "Present"), ("2024.03", "2026.02"))
+        for section, names in zip(cv_sections, expected_names):
+            cards = re.findall(r'<article class="research-item">([\\s\\S]*?)</article>', section)
+            if len(cards) != 4:
+                errors.append("CV experience list must contain four entries")
+                continue
+            for card, name, (start, end) in zip(cards, names, expected_dates):
+                local_end = "現任" if end == "Present" and "國立" in name else end
+                if name not in card or start not in card or local_end not in card:
+                    errors.append(f"CV experience chronological order/date incorrect: {name}")
+
     selected = selected_projects(DATA)
     selected_index = {project["slug"]: index for index, project in enumerate(selected)}
     timeline_groups = json.loads((ROOT / "data/timeline.json").read_text(encoding="utf-8"))["groups"]
