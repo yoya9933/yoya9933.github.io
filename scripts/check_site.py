@@ -336,6 +336,28 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
             errors.append(f"research experience section incomplete in {rel}")
+        experience_cards = re.findall(r'<article class="experience-item">([\\s\\S]*?)</article>', home)
+        expected_experience = (
+            ("國立成功大學水利及海洋工程學系", "2026-08", None),
+            ("國立成功大學教學發展中心", "2026-06", None),
+            ("國立臺灣大學", "2026-01", None),
+            ("海軍軍官學校", "2024-03", "2026-02"),
+        ) if locale == "zh" else (
+            ("NCKU Department of Hydraulic and Ocean Engineering", "2026-08", None),
+            ("NCKU Center for Teaching and Learning Development", "2026-06", None),
+            ("National Taiwan University", "2026-01", None),
+            ("R.O.C. Naval Academy", "2024-03", "2026-02"),
+        )
+        if len(experience_cards) != 4:
+            errors.append(f"expected four research experience cards in {rel}")
+        else:
+            for card, (institution, start, end) in zip(experience_cards, expected_experience):
+                if f"<h3>{institution}</h3>" not in card or f'datetime="{start}"' not in card:
+                    errors.append(f"research experience order/date incorrect in {rel}: {institution}")
+                if end and f'datetime="{end}"' not in card:
+                    errors.append(f"research experience end date missing in {rel}: {institution}")
+                if not end and ("現任" if locale == "zh" else "Present") not in card:
+                    errors.append(f"research experience current-role label missing in {rel}: {institution}")
         for token in ('class="scroll-progress-fill"', 'class="back-to-top"', 'href="#top"', 'class="project-cta"', 'class="mobile-section-label"'):
             if token not in home:
                 errors.append(f"missing scroll navigation or project CTA in {rel}: {token}")
