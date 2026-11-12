@@ -472,7 +472,7 @@ def main() -> int:
     for rel in ("index.html", "en/index.html"):
         home = (SITE / rel).read_text(encoding="utf-8")
         for section_id, variant in (("highlights", "achievements"), ("projects", "projects"), ("skills", "skills")):
-            pattern = rf'<div class="section-band section-band--{variant}">\\s*<section class="section shell" id="{section_id}"'
+            pattern = rf'<div class="section-band section-band--{variant}">\s*<section class="section shell" id="{section_id}"'
             if not re.search(pattern, home):
                 errors.append(f"{rel}: missing color-band wrapper for #{section_id}")
         for token in (
