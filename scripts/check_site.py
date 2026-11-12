@@ -134,6 +134,9 @@ def performance_errors() -> list[str]:
             errors.append("global focus-visible styling missing from deployed CSS")
         if "prefers-reduced-motion: reduce" not in text:
             errors.append("reduced-motion rules missing from deployed CSS")
+        for variant in ("achievements", "projects", "skills"):
+            if f".section-band--{variant}" not in text:
+                errors.append(f"missing {variant} section color band in CSS")
     return errors
 
 
@@ -468,6 +471,10 @@ def main() -> int:
 
     for rel in ("index.html", "en/index.html"):
         home = (SITE / rel).read_text(encoding="utf-8")
+        for section_id, variant in (("highlights", "achievements"), ("projects", "projects"), ("skills", "skills")):
+            pattern = rf'<div class="section-band section-band--{variant}">\\s*<section class="section shell" id="{section_id}"'
+            if not re.search(pattern, home):
+                errors.append(f"{rel}: missing color-band wrapper for #{section_id}")
         for token in (
             'name="author" content="Yu"', 'name="robots" content="index,follow"',
             'property="og:image:type" content="image/png"', 'property="og:image:width" content="1200"',

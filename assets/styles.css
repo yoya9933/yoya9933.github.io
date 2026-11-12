@@ -271,6 +271,54 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .section { padding-block: 92px; }
 .section + .section { border-top: 0; }
+/* Section bands keep the existing content width and mobile layout intact. */
+.section-band {
+  border-block: 1px solid rgba(71, 84, 112, .06);
+}
+.section-band--achievements {
+  background: linear-gradient(115deg, #fff7e9, #fffaf2 58%, #fff7e9);
+}
+.section-band--projects {
+  background: linear-gradient(115deg, #edf7f7, #f5fbfa 62%, #edf7f7);
+}
+.section-band--skills {
+  background: linear-gradient(115deg, #f1f2fc, #f8f8ff 62%, #f1f2fc);
+}
+#highlights .section-heading .section-index {
+  color: #956321;
+  background: #fff0d8;
+}
+#highlights .achievement-group > h3 {
+  padding-left: 12px;
+  border-left: 3px solid #d69b3f;
+}
+#highlights .timeline-item {
+  border-color: rgba(149, 99, 33, .17);
+  background: #fff;
+}
+#highlights .timeline-item time {
+  color: #815119;
+  background: #fff2d9;
+}
+#highlights .timeline-item:hover {
+  border-color: rgba(149, 99, 33, .35);
+}
+#projects .section-heading .section-index {
+  color: #0b776f;
+  background: #dff3ee;
+}
+#projects .project-card {
+  background: #fff;
+}
+#projects .project-cta {
+  border-color: rgba(11, 119, 111, .16);
+  background: linear-gradient(115deg, #fff, #edf9f6);
+}
+#skills .section-heading .section-index {
+  color: #4f46e5;
+  background: #e4e6fa;
+}
+
 .section-heading {
   display: grid;
   grid-template-columns: 170px minmax(0, 1fr);
@@ -466,16 +514,17 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border: 0;
   border-radius: 32px;
   color: #fff;
-  background: linear-gradient(130deg, #4f46e5 0%, #4038b7 58%, #0f766e 115%);
-  box-shadow: 0 24px 58px rgba(60, 52, 180, .20);
+  background: radial-gradient(circle at 100% 0%, rgba(22, 139, 145, .24), transparent 44%),
+    linear-gradient(130deg, #18243c, #223650);
+  box-shadow: 0 24px 58px rgba(24, 36, 60, .20);
 }
-.contact .section-index { margin-bottom: 12px; color: #dcdcff; }
+.contact .section-index { margin-bottom: 12px; color: #8cdad0; }
 .contact h2 { color: #fff; }
 .contact p { color: rgba(255, 255, 255, .78); }
 .contact-note { color: rgba(255, 255, 255, .66) !important; }
 .contact .button { flex: 0 0 auto; }
 .contact .button.primary {
-  color: #292561;
+  color: #18243c;
   background: #fff;
   box-shadow: none;
 }
