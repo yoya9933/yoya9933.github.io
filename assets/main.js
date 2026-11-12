@@ -26,6 +26,7 @@
   }
 
   // Update the active navigation link, scroll progress and back-to-top control.
+  const mobileSectionLabel = document.querySelector('.mobile-section-label');
   const progressFill = document.querySelector('.scroll-progress-fill');
   const backToTop = document.querySelector('.back-to-top');
   if (nav && progressFill && backToTop) {
@@ -46,6 +47,11 @@
         if (link === current) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       });
+      if (mobileSectionLabel) {
+        const heading = current ? current.textContent.trim() : (root.lang.startsWith('en') ? 'Home' : '首頁');
+        const label = (root.lang.startsWith('en') ? 'Now: ' : '目前：') + heading;
+        if (mobileSectionLabel.textContent !== label) mobileSectionLabel.textContent = label;
+      }
       progressFill.style.transform = `scaleX(${maxScroll ? scrolled / maxScroll : 0})`;
       backToTop.classList.toggle('is-visible', scrolled > 500);
       scheduled = false;
@@ -60,6 +66,32 @@
     window.addEventListener('hashchange', scheduleReadingPosition);
     scheduleReadingPosition();
   }
+
+  // Copy the same canonical project URLs used for the Case Study links.
+  document.querySelectorAll('.copy-project-link').forEach((button) => {
+    const originalText = button.textContent;
+    const originalLabel = button.getAttribute('aria-label');
+    let restoreTimer;
+    button.addEventListener('click', async () => {
+      const url = button.dataset.copyUrl;
+      if (!url) return;
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(url);
+        const message = root.lang.startsWith('en') ? 'Link copied' : '已複製連結';
+        button.textContent = message;
+        button.setAttribute('aria-label', message);
+        clearTimeout(restoreTimer);
+        restoreTimer = setTimeout(() => {
+          button.textContent = originalText;
+          if (originalLabel) button.setAttribute('aria-label', originalLabel);
+          else button.removeAttribute('aria-label');
+        }, 2200);
+      } catch {
+        window.prompt(root.lang.startsWith('en') ? 'Copy this project link:' : '請手動複製作品連結：', url);
+      }
+    });
+  });
 
   // A subtle glow follows the mouse within project cards, never on touch or reduced motion.
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');

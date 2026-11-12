@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.22 — 2026-11-11
+
+作品導覽、手機所在區塊提示及複製作品連結。
+
+- 在既有中英文 Case Study 上下篇導覽增加「返回作品列表」，沿用原先以 data/projects.json 排序的前後連結。
+- 手機導覽列顯示目前所在區塊，重用既有 aria-current 與 scroll position 判斷，不增加第二套捲動監聽。
+- 中英文首頁作品卡與各 Case Study 加入正式作品網址的一鍵複製，成功後提供提示；瀏覽器未允許 Clipboard API 時可手動複製。
+- 擴充網站品質檢查，確認中英文的按鈕數量、正確網址、返回連結與執行程式；不新增相依套件。
+
 ## v1.8.21 — 2026-11-11
 
 Case Study 加入依首頁作品排序自動產生的上下篇導覽。

@@ -102,6 +102,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .nav a:hover { color: var(--accent-strong); background: var(--bg-soft); }
 .nav a:active { transform: translateY(1px); }
+.mobile-section-label { display: none; }
 .nav > a[aria-current="location"] {
   color: var(--accent-strong);
   background: #eef0ff;
@@ -570,6 +571,22 @@ button, a { -webkit-tap-highlight-color: transparent; }
   transition: transform .35s ease;
 }
 .project-card:hover .project-media img { transform: scale(1.012); }
+.copy-project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--accent-strong);
+  font: 750 13px/1.4 var(--sans);
+  cursor: pointer;
+}
+.copy-project-link:hover { border-color: rgba(79,70,229,.35); background: #eef0ff; }
+.case-actions .copy-project-link { min-height: 50px; }
+
 .project-primary {
   padding: 9px 13px;
   border-radius: 11px;
@@ -626,6 +643,18 @@ button, a { -webkit-tap-highlight-color: transparent; }
   gap: 16px;
   padding-bottom: 76px;
 }
+.case-pagination-back {
+  grid-column: 1 / -1;
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+.case-pagination-back:hover { text-decoration: underline; text-underline-offset: 4px; }
 .case-pagination-link {
   display: flex;
   flex-direction: column;
@@ -776,7 +805,20 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .case-meta-note { margin-top: 14px; color: var(--faint); font-size: 12px; }
 
 @media(max-width:900px) {
-  .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .nav-wrap { gap: 10px; }
+  .mobile-section-label {
+    display: block;
+    min-width: 0;
+    max-width: 38vw;
+    margin-left: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--accent-strong);
+    font-size: 13px;
+    font-weight: 750;
+  }
+  .menu-toggle { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; }
   .nav {
     display: none;
     position: absolute;
@@ -800,6 +842,7 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
   .architecture .node::after { display: none; }
 }
 @media(max-width:620px) {
+  .mobile-section-label { font-size: 12px; }
   .project-media { margin-bottom: 20px; }
   .case-nav { padding-top: 16px; }
   .case-hero { margin-top: 8px; padding: 34px 22px; border-radius: 24px; }

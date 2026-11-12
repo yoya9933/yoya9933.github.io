@@ -115,7 +115,18 @@ def render_links(project: dict, locale: str, *, on_case_page: bool = False) -> s
     return "".join(links)
 
 
-def render_selected_card(project: dict, locale: str) -> str:
+def render_copy_button(project: dict, locale: str, site_url: str) -> str:
+    label = "複製作品連結" if locale == "zh" else "Copy project link"
+    url = absolute_case(site_url, project, locale)
+    return (
+        f'<button type="button" class="copy-project-link" '
+        f'data-copy-url="{escape(url, quote=True)}" '
+        f'aria-label="{escape(label + "：" + project["title"][locale], quote=True)}" aria-live="polite">'
+        f'{escape(label)}</button>'
+    )
+
+
+def render_selected_card(project: dict, locale: str, site_url: str) -> str:
     prefix = "../" if locale == "en" else ""
     classes = "project-card featured" if project.get("featured") else "project-card"
     badge = project.get("badge")
@@ -132,13 +143,13 @@ def render_selected_card(project: dict, locale: str) -> str:
         f'<p>{escape(project["card_description"][locale])}</p>'
         f'{hint_html}'
         f'<ul class="tags">{tags}</ul>'
-        f'<div class="project-links">{render_links(project, locale)}</div>'
+        f'<div class="project-links">{render_links(project, locale)}{render_copy_button(project, locale, site_url)}</div>'
         "</article>"
     )
 
 
 def render_selected_section(data: dict, locale: str, selected: list[dict]) -> str:
-    cards = "".join(render_selected_card(project, locale) for project in selected)
+    cards = "".join(render_selected_card(project, locale, data["site_url"]) for project in selected)
     title, detail, action = (
         ("想聊聊合作？", "研究合作、實習或系統開發，都歡迎聯絡我。", "聯絡我")
         if locale == "zh" else
@@ -332,7 +343,8 @@ def update_case_visual(text: str, project: dict, locale: str, site_url: str) -> 
 def render_case_actions_text(text: str, project: dict, locale: str, data: dict) -> str:
     actions = (
         f'<div class="case-actions" data-project-actions="{escape(project["slug"], quote=True)}">'
-        f'{render_links(project, locale, on_case_page=True)}</div>'
+        f'{render_links(project, locale, on_case_page=True)}'
+        f'{render_copy_button(project, locale, data["site_url"])}</div>'
     )
     pattern = r'<div class="case-actions"[^>]*>.*?</div>'
     if re.search(pattern, text, flags=re.S):
@@ -368,7 +380,10 @@ def render_case_pagination(project: dict, locale: str, projects: list[dict]) -> 
         return ""
     return (
         f'<nav class="case-pagination shell" aria-label="{escape(labels[2], quote=True)}">'
-        + "".join(links) + "</nav>"
+        + "".join(links)
+        + f'<a class="case-pagination-back" href="{"/en/#projects" if locale == "en" else "/#projects"}">'
+        + ("Back to all projects" if locale == "en" else "返回作品列表")
+        + "</a></nav>"
     )
 
 

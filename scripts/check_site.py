@@ -333,9 +333,12 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
             errors.append(f"research experience section incomplete in {rel}")
-        for token in ('class="scroll-progress-fill"', 'class="back-to-top"', 'href="#top"', 'class="project-cta"'):
+        for token in ('class="scroll-progress-fill"', 'class="back-to-top"', 'href="#top"', 'class="project-cta"', 'class="mobile-section-label"'):
             if token not in home:
                 errors.append(f"missing scroll navigation or project CTA in {rel}: {token}")
+        initial_label = "首頁" if locale == "zh" else "Home"
+        if f'aria-atomic="true">{initial_label}</span>' not in home:
+            errors.append(f"mobile section indicator not localized in {rel}")
         if home.count('class="project-cta"') != 1 or home.index('class="project-cta"') < home.index('class="projects-grid"'):
             errors.append(f"project CTA should appear once after project cards in {rel}")
         if 'href="#contact"' not in home.split('class="project-cta"', 1)[-1]:
@@ -369,7 +372,13 @@ def main() -> int:
             errors.append(f"visible website version missing from footer in {rel}")
         if 'href="/changelog/"' not in home:
             errors.append(f"footer version does not link to /changelog/ in {rel}")
+        if home.count('class="copy-project-link"') != len(selected):
+            errors.append(f"expected one copy-link button per project in {rel}")
         for project in selected:
+            expected_url = DATA["site_url"].rstrip("/") + case_url(project, locale)
+            card = home.split(f'data-project="{project["slug"]}"', 1)[-1].split("</article>", 1)[0]
+            if f'data-copy-url="{expected_url}"' not in card or 'type="button" class="copy-project-link"' not in card:
+                errors.append(f"copy-project-link missing or incorrect in {rel}: {project['slug']}")
             if f'data-project="{project["slug"]}"' not in home:
                 errors.append(f"manifest-selected project {project['slug']} missing from {rel}")
             if case_url(project, locale) not in home:
@@ -397,6 +406,9 @@ def main() -> int:
             case = case_path.read_text(encoding="utf-8")
             if f'data-project-actions="{project["slug"]}"' not in case:
                 errors.append(f"manifest-driven project actions missing from {case_path.relative_to(SITE)}")
+            expected_url = DATA["site_url"].rstrip("/") + case_url(project, locale)
+            if case.count('class="copy-project-link"') != 1 or f'data-copy-url="{expected_url}"' not in case:
+                errors.append(f"case study copy-link missing or incorrect: {case_path.relative_to(SITE)}")
             if f'data-case-facts="{project["slug"]}"' not in case:
                 errors.append(f"case study missing project facts: {case_path.relative_to(SITE)}")
             if 'data-case-framing="' in case or "00 / Project framing" in case:
@@ -414,6 +426,9 @@ def main() -> int:
                 errors.append(f"case study pagination missing from {case_path.relative_to(SITE)}")
             else:
                 nav_html = navigation.group(1)
+                back_url = "/en/#projects" if locale == "en" else "/#projects"
+                if f'class="case-pagination-back" href="{back_url}"' not in nav_html:
+                    errors.append(f"case pagination missing return to project list: {case_path.relative_to(SITE)}")
                 if case.index('class="case-pagination shell"') < case.index("</main>"):
                     errors.append(f"pagination must follow case content in {case_path.relative_to(SITE)}")
                 position = selected_index[project["slug"]]
@@ -498,6 +513,9 @@ def main() -> int:
             errors.append("runtime missing menu-toggle behavior")
         if "window.innerWidth > 900" not in runtime_js:
             errors.append("menu reset breakpoint differs from the 900px CSS mobile nav")
+        for token in ("mobile-section-label", "navigator.clipboard", "copy-project-link", "window.prompt"):
+            if token not in runtime_js:
+                errors.append(f"missing mobile indicator or copy-link behavior: {token}")
         for token in ("aria-current", "requestAnimationFrame", "scroll-progress-fill", "back-to-top"):
             if token not in runtime_js:
                 errors.append(f"scroll-navigation script is missing {token}")
