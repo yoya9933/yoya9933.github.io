@@ -317,7 +317,7 @@ def main() -> int:
         if token not in cv_source:
             errors.append(f"NTU research assistant details missing from bilingual CV: {token}")
 
-    cv_sections = re.findall(r'<div class="research-list">([\\s\\S]*?)</div>', cv_source)
+    cv_sections = re.findall(r'<div class="research-list">(.*?)</div>', cv_source, flags=re.S)
     if len(cv_sections) != 2:
         errors.append("expected bilingual CV experience sections")
     else:
@@ -327,7 +327,7 @@ def main() -> int:
         )
         expected_dates = (("2026.08", "Present"), ("2026.06", "Present"), ("2026.01", "Present"), ("2024.03", "2026.02"))
         for section, names in zip(cv_sections, expected_names):
-            cards = re.findall(r'<article class="research-item">([\\s\\S]*?)</article>', section)
+            cards = re.findall(r'<article class="research-item">(.*?)</article>', section, flags=re.S)
             if len(cards) != 4:
                 errors.append("CV experience list must contain four entries")
                 continue
@@ -355,7 +355,7 @@ def main() -> int:
                 errors.append(f"portfolio block {token!r} missing from {rel}")
         if home.count('class="experience-item"') != 4 or 'href="#experience"' not in home:
             errors.append(f"research experience section incomplete in {rel}")
-        experience_cards = re.findall(r'<article class="experience-item">([\\s\\S]*?)</article>', home)
+        experience_cards = re.findall(r'<article class="experience-item">(.*?)</article>', home, flags=re.S)
         expected_experience = (
             ("國立成功大學水利及海洋工程學系", "2026-08", None),
             ("國立成功大學教學發展中心", "2026-06", None),
