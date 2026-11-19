@@ -336,6 +336,16 @@ def main() -> int:
                 if name not in card or start not in card or local_end not in card:
                     errors.append(f"CV experience chronological order/date incorrect: {name}")
 
+    faq = next((project for project in PROJECTS if project["slug"] == "academic-faq-chatbot"), None)
+    if len(PROJECTS) != 8 or faq is None or faq["order"] != 4:
+        errors.append("Academic FAQ assistant must be fourth among eight portfolio projects")
+    for locale in ("zh", "en"):
+        source = ROOT / "data" / "case-studies" / f"academic-faq-chatbot.{locale}.html"
+        content = source.read_text(encoding="utf-8") if source.is_file() else ""
+        for token in ("137", "BM25", "BGE-M3", "Ollama"):
+            if token not in content:
+                errors.append(f"Academic FAQ case study missing {token} ({locale})")
+
     selected = selected_projects(DATA)
     selected_index = {project["slug"]: index for index, project in enumerate(selected)}
     timeline_groups = json.loads((ROOT / "data/timeline.json").read_text(encoding="utf-8"))["groups"]

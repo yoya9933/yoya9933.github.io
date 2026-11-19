@@ -5,8 +5,8 @@
     "en": "Start with the work, then the stack."
   },
   "selected_heading": {
-    "zh": "七個代表專案涵蓋工程資料與 AI、多人 Web、活動現場營運、商業 CMS、即時多人遊戲、校內行政系統，以及 AI 自動化。",
-    "en": "Seven selected projects spanning engineering data and AI, multiplayer web, field operations, a maintainable business CMS, real-time multiplayer, university administration, and AI automation."
+    "zh": "八個代表專案，涵蓋商業 CMS、校內系統、AI 問答、資料分析、自動化與多人 Web 產品。",
+    "en": "Eight projects spanning business CMS, university systems, AI FAQ, data analysis, automation, and multiplayer web products."
   },
   "projects": [
     {
@@ -242,8 +242,82 @@
       }
     },
     {
-      "slug": "chess",
+      "slug": "academic-faq-chatbot",
       "order": 4,
+      "featured": false,
+      "badge": "AI / RAG",
+      "title": {
+        "zh": "成大教務 FAQ 智慧問答系統",
+        "en": "NCKU Academic FAQ Assistant"
+      },
+      "card_description": {
+        "zh": "整合成大五個教務相關單位的 137 筆 FAQ，透過 BM25 與 BGE-M3 混合檢索查找依據，並使用本地 Ollama 模型生成附參考條目的回答。",
+        "en": "A 137-entry academic FAQ assistant for five NCKU offices, combining BM25 and BGE-M3 retrieval, local Ollama answer generation, and FAQ source references."
+      },
+      "tags": {
+        "zh": [
+          "137 筆 FAQ",
+          "BM25 + BGE-M3",
+          "Spring Boot + Ollama"
+        ],
+        "en": [
+          "137 FAQ entries",
+          "BM25 + BGE-M3",
+          "Spring Boot + Ollama"
+        ]
+      },
+      "image_alt": {
+        "zh": "成大教務問答系統的檢索及回答架構示意圖",
+        "en": "Academic FAQ retrieval and answer architecture illustration"
+      },
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/academic-faq-chatbot.svg",
+        "width": 1440,
+        "height": 900,
+        "quality": 85
+      },
+      "case_visual": {
+        "caption": {
+          "zh": "技術架構示意，非實際系統截圖。",
+          "en": "Architecture illustration, not a screenshot of the live application."
+        }
+      },
+      "repo": null,
+      "live": null,
+      "case_facts": {
+        "role": {
+          "zh": "AI 應用與後端開發",
+          "en": "AI application and backend development"
+        },
+        "scope": {
+          "zh": "FAQ · 混合檢索 · 依據引用 · 拒答",
+          "en": "FAQ · hybrid retrieval · evidence · abstention"
+        },
+        "status": {
+          "zh": "獨立開發的教務問答工具",
+          "en": "Independent academic FAQ assistant"
+        },
+        "stack": "Java 21 · Spring Boot 3 · LangChain4j · Ollama"
+      },
+      "case_page": {
+        "zh": {
+          "title": "成大教務 FAQ 智慧問答系統｜Yu Case Study",
+          "description": "以 Java、Spring Boot、BM25、BGE-M3 及 Ollama 建構成大教務 FAQ 問答系統。",
+          "og_title": "成大教務 FAQ 智慧問答系統｜Yu",
+          "og_description": "137 筆 FAQ、Hybrid RAG、本地模型生成與依據引用。"
+        },
+        "en": {
+          "title": "NCKU Academic FAQ Assistant | Yu Case Study",
+          "description": "Academic FAQ assistant using Java, Spring Boot, BM25, BGE-M3 and Ollama.",
+          "og_title": "NCKU Academic FAQ Assistant | Yu",
+          "og_description": "137 FAQs, hybrid retrieval, local generation and evidence references."
+        }
+      }
+    },
+    {
+      "slug": "chess",
+      "order": 5,
       "featured": false,
       "badge": null,
       "title": {
@@ -316,7 +390,7 @@
     },
     {
       "slug": "ai-media-pipeline",
-      "order": 5,
+      "order": 6,
       "featured": false,
       "badge": "AI AUTOMATION",
       "title": {
@@ -384,7 +458,7 @@
     },
     {
       "slug": "buoy",
-      "order": 6,
+      "order": 7,
       "featured": false,
       "badge": null,
       "title": {
@@ -449,7 +523,7 @@
     },
     {
       "slug": "neon-arena",
-      "order": 7,
+      "order": 8,
       "featured": false,
       "badge": "REAL-TIME MULTIPLAYER",
       "title": {
