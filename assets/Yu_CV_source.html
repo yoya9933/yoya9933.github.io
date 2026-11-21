@@ -18,7 +18,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
 .role { margin-top:4mm; font-size:10.5pt; font-weight:600; line-height:1.5; color:#c9d7e6; }
 .rail-title { margin:0 0 3mm; font-size:7.5pt; letter-spacing:1.2px; text-transform:uppercase; color:#5eead4; font-weight:800; }
 .contact { display:grid; grid-template-columns:1fr 20mm; gap:4mm; align-items:start; }
-.contact-lines { font-size:8.2pt; line-height:1.7; color:#d7e2ec; word-break:break-all; }
+.contact-lines { font-size:8.2pt; line-height:1.7; color:#d7e2ec; overflow-wrap:anywhere; }
 .contact-lines a { color:#fff; text-decoration:none; }
 .qr { width:20mm; height:20mm; border-radius:2mm; padding:1.2mm; background:#fff; }
 .stack { display:flex; flex-wrap:wrap; gap:1.8mm; }
@@ -28,39 +28,39 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
 .rail-item strong { display:block; font-size:8pt; color:#fff; line-height:1.35; }
 .rail-item span { display:block; margin-top:.8mm; font-size:7.2pt; color:#aebfd0; line-height:1.45; }
 .rail-bottom { margin-top:1mm; font-size:6.6pt; line-height:1.55; color:#9fb0c7; }
-.main { position:absolute; left:64mm; top:0; width:146mm; height:297mm; padding:13mm 12mm 10mm 11mm; overflow:hidden; }
+.main { position:absolute; left:64mm; top:0; width:146mm; height:297mm; padding:10mm 12mm 8mm 11mm; overflow:hidden; }
 .kicker { color:#0f8c82; font-size:7.2pt; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; margin-bottom:2mm; }
-.summary { font-size:9.2pt; line-height:1.65; color:#334155; margin:0 0 5mm; }
-.section { margin-top:4.5mm; }
-.section-head { display:flex; align-items:center; gap:3mm; margin-bottom:3.2mm; }
+.summary { font-size:8.8pt; line-height:1.48; color:#334155; margin:0 0 3mm; }
+.section { margin-top:3mm; }
+.section-head { display:flex; align-items:center; gap:3mm; margin-bottom:2.3mm; }
 .section-head h2 { margin:0; font-size:9pt; letter-spacing:.9px; text-transform:uppercase; color:#07111f; font-weight:900; white-space:nowrap; }
 .section-head .line { height:1px; flex:1; background:linear-gradient(90deg,#2dd4bf,#cbd5e1); }
 .edu { display:grid; grid-template-columns:1fr auto; gap:5mm; align-items:start; }
 .edu strong { font-size:10.5pt; color:#0f172a; }
 .edu p { margin:1mm 0 0; font-size:8pt; color:#64748b; line-height:1.45; }
 .edu .loc { text-align:right; font-size:7.5pt; color:#64748b; line-height:1.45; }
-.project { border:0; border-bottom:1px solid #dbe5ee; border-radius:0; padding:1.8mm 0 2.5mm; margin-bottom:2.5mm; background:transparent; box-shadow:none; }
+.project { border:0; border-bottom:1px solid #dbe5ee; border-radius:0; padding:1mm 0 1.6mm; margin-bottom:1.3mm; background:transparent; box-shadow:none; }
 .project-top { display:flex; align-items:flex-start; justify-content:space-between; gap:3mm; }
 .project h3 { margin:0; font-size:9.4pt; line-height:1.35; color:#0f172a; }
 .project h3 a { color:inherit; text-decoration:none; }
 .badge { flex:none; font-size:6.6pt; color:#0f766e; background:none; border:0; border-radius:0; padding:0; font-weight:800; white-space:nowrap; }
-.project ul { margin:1.5mm 0 1.5mm 4mm; padding:0; }
-.project li { margin:.5mm 0; font-size:7.5pt; line-height:1.42; color:#475569; }
+.project ul { margin:1mm 0 1mm 3.5mm; padding:0; }
+.project li { margin:.2mm 0; font-size:7.5pt; line-height:1.33; color:#475569; }
 .tech { display:flex; flex-wrap:wrap; gap:1.5mm; }
-.tech span { font-size:6.4pt; padding:.9mm 1.6mm; border-radius:99px; background:#f1f5f9; color:#475569; font-weight:700; }
-.research-list { display:flex; flex-direction:column; gap:1.8mm; }
-.research-item { border-bottom:1px solid #dbe5ee; padding:0 0 1.4mm; }
-.research-item h3 { margin:0; color:#0f172a; font-size:8.8pt; line-height:1.38; }
-.research-item p { margin:.65mm 0 0; color:#475569; font-size:7.6pt; line-height:1.4; }
-.research-item .research-date { color:#64748b; font-size:7pt; font-weight:700; margin-top:.15mm; }
-.other-work { font-size:7.5pt; line-height:1.5; color:#475569; margin:2mm 0 0; }
+.tech span { font-size:6.4pt; padding:.7mm 1.5mm; border-radius:99px; background:#f1f5f9; color:#475569; font-weight:700; }
+.research-list { display:flex; flex-direction:column; gap:1mm; }
+.research-item { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:2.5mm; border-bottom:1px solid #dbe5ee; padding:0 0 .8mm; }
+.research-item h3 { grid-column:1; grid-row:1; margin:0; color:#0f172a; font-size:8.2pt; line-height:1.24; }
+.research-item p { grid-column:1 / -1; grid-row:2; margin:.4mm 0 0; color:#475569; font-size:7.35pt; line-height:1.31; }
+.research-item .research-date { grid-column:2; grid-row:1; color:#64748b; font-size:6.6pt; font-weight:700; margin:0; line-height:1.4; white-space:nowrap; }
+.other-work { font-size:7.5pt; line-height:1.45; color:#475569; margin:1.4mm 0 0; }
 .other-work strong { color:#122033; }
 .other-work a, .small-note a { color:#0f766e; text-decoration:none; font-weight:700; }
-.small-note { font-size:6.5pt; color:#94a3b8; line-height:1.45; margin-top:2.5mm; }
+.small-note { font-size:6.5pt; color:#94a3b8; line-height:1.4; margin-top:1.5mm; }
 .zh .name { font-size:24pt; }
 .zh .role { font-size:10pt; }
-.zh .summary { font-size:8.9pt; line-height:1.7; }
-.zh .project li { font-size:7.4pt; line-height:1.43; }
+.zh .summary { font-size:8.8pt; line-height:1.52; }
+.zh .project li { font-size:7.4pt; line-height:1.33; }
 .zh .project h3 { font-size:9.3pt; }
 .en .rail-item strong { font-size:7.2pt; }
 .en .rail-item span { font-size:6.7pt; }
@@ -81,7 +81,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       <div class="contact">
         <div class="contact-lines">
           <a href="https://yoya9933.page/">yoya9933.page</a><br>
-          <a href="https://github.com/yoya9933">github.com/yoya9933</a><br>
+          <a href="https://github.com/yoya9933">GitHub: yoya9933</a><br>
           Tainan, Taiwan
         </div>
         <img class="qr" alt="Portfolio QR code" src="portfolio-qr.png">
@@ -156,24 +156,24 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/event-checkin/">TCUS Faculty Camp · Event Check-in</a></h3><span class="badge">USED IN 2026</span></div>
         <ul>
-          <li>Built the backend for check-in at the 2026 TCUS New Faculty Camp, hosted by NCKU on August 28.</li>
-          <li>Handled QR check-in, attendee search, live attendance/seating counts, walk-ins and CSV exports; the public demo uses fictional data.</li>
+          <li>Built the check-in backend for NCKU’s 2026 TCUS New Faculty Camp (August 28).</li>
+          <li>Supported QR check-in, attendee lookup, live counts, seating, walk-ins and CSV export; the demo uses fictional data.</li>
         </ul>
         <div class="tech"><span>Next.js</span><span>TypeScript</span><span>Cloudflare D1</span><span>Drizzle</span></div>
       </article>
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/overtime-management/">NCKU CTLD · Overtime Management</a></h3><span class="badge">IN INTERNAL USE</span></div>
         <ul>
-          <li>Built a tool now used by NCKU's Center for Teaching and Learning Development for overtime requests, manager reviews and admin summaries.</li>
-          <li>Added role-based access, time-overlap checks and session security with React, Cloudflare Workers and D1.</li>
+          <li>Built NCKU CTLD’s internal overtime request, manager review and reporting system.</li>
+          <li>Implemented role-based access, overlap checks and session security using React, Cloudflare Workers and D1.</li>
         </ul>
         <div class="tech"><span>React</span><span>Cloudflare Workers</span><span>D1</span><span>Auth</span></div>
       </article>
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/shareholder-cms/">Sharegift.tw · Business Website & CMS</a></h3><span class="badge">LIVE WEBSITE</span></div>
         <ul>
-          <li>Built the service website and content management tools for 大倉代領, a shareholder-gift business operating at sharegift.tw.</li>
-          <li>Admins can update products, announcements and images using Vue 3, Supabase Auth, PostgreSQL and Storage.</li>
+          <li>Built the live website and CMS for 大倉代領’s shareholder-gift service at sharegift.tw.</li>
+          <li>Admins manage products, announcements and images with Vue 3, Supabase Auth and PostgreSQL.</li>
         </ul>
         <div class="tech"><span>Vue 3</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span></div>
       </article>
@@ -183,8 +183,8 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/buoy/">Buoy Data Analysis & Risk Alerts</a></h3><span class="badge">DATA / ML</span></div>
         <ul>
-          <li>Built a Streamlit app for buoy data cleaning, visualization, LSTM forecasts and wave/wind alerts, following my 2025 NODASS competition experience.</li>
-          <li>Added time-based validation, missing-data handling, model caching and downloadable results.</li>
+          <li>Built a Streamlit app for buoy cleaning, visualization, LSTM forecasting and wave/wind alerts after the 2025 NODASS competition.</li>
+          <li>Added time-based validation, missing-data handling, caching and result exports.</li>
         </ul>
         <div class="tech"><span>Python</span><span>Pandas</span><span>Streamlit</span><span>LSTM</span></div>
       </article>
@@ -206,7 +206,7 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       <div class="contact">
         <div class="contact-lines">
           <a href="https://yoya9933.page/">yoya9933.page</a><br>
-          <a href="https://github.com/yoya9933">github.com/yoya9933</a><br>
+          <a href="https://github.com/yoya9933">GitHub: yoya9933</a><br>
           台灣 · 台南
         </div>
         <img class="qr" alt="作品集 QR Code" src="portfolio-qr.png">
@@ -282,8 +282,8 @@ body { font-family: "Noto Sans CJK TC", "Noto Sans", Arial, sans-serif; color:#1
       <article class="project">
         <div class="project-top"><h3><a href="https://yoya9933.page/projects/event-checkin/">台綜大教師研習營 · 活動報到後端</a></h3><span class="badge">2026 實際使用</span></div>
         <ul>
-          <li>負責成大主辦的 2026 台綜大新進教師專業知能研習營報到系統後端，活動於 8 月 28 日舉行。</li>
-          <li>處理 QR 報到、名單查詢、即時人數、座位狀態、現場報名及 CSV 匯出；公開展示使用虛構資料。</li>
+          <li>開發成大 2026 台綜大教師研習營活動報到後端，8 月 28 日實際使用。</li>
+          <li>支援 QR 報到、名單查詢、即時人數與座位、現場報名及 CSV 匯出；展示使用虛構資料。</li>
         </ul>
         <div class="tech"><span>Next.js</span><span>TypeScript</span><span>Cloudflare D1</span><span>Drizzle</span></div>
       </article>
