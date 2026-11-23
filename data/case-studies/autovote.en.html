@@ -1,55 +1,65 @@
 <header class="case-hero shell">
-  <p class="eyebrow">Shareholder services · workflow automation</p>
-  <h1>AutoVote<br>Shareholder E-voting Assistant</h1>
-  <p>I built a client portal and local backend connecting Google authentication, certificate management, official voting-record lookup and receipt export. The goal is to reduce repetitive sign-in and document handling while retaining explicit client authorization and data isolation.</p>
-  <p class="case-meta-note">As of 2026-11-23, the public HTTPS portal and real Google sign-in have been verified. New-ballot submission remains disabled and has not been validated with a live eligible ballot. The full public certificate-upload-to-receipt workflow also awaits end-to-end validation.</p>
+  <p class="eyebrow">Shareholder services · less repetitive work</p>
+  <h1>AutoVote<br>Shareholder Voting Record Assistant</h1>
+  <p>Some tasks aren't difficult, but repeating them takes time. Looking up shareholder voting records is one of them: sign in, find the right meeting, save a receipt, then organize everything for review or printing. I built AutoVote to cut down on those repetitive steps so people can focus on the parts that actually need their attention.</p>
+  <p class="case-meta-note">This is an ongoing project focused on retrieving and organizing existing voting receipts. The feature for submitting new votes is not enabled on the public portal.</p>
 </header>
 <main id="main" class="case-content shell">
   <section class="case-section">
-    <h2>Workflow</h2>
+    <h2>Why I built it</h2>
     <div>
-      <h3>From client authorization to retrieving and organizing existing official voting receipts.</h3>
-      <div class="architecture">
-        <div class="node"><strong>Google login</strong><small>authenticate identity and access</small></div>
-        <div class="node"><strong>Certificate consent</strong><small>upload, revoke, delete and encrypt</small></div>
-        <div class="node"><strong>TDCC lookup</strong><small>local Edge / Playwright handles the official flow</small></div>
-        <div class="node"><strong>Receipt export</strong><small>images, ZIP and A4 batch printing</small></div>
+      <h3>I wanted to make a small but repetitive part of the work easier.</h3>
+      <p>When handling shareholder-gift paperwork, there are situations where electronic voting records need to be checked or prepared for printing. Doing this manually means signing into the official site, finding each company and meeting, saving the receipt, and arranging the files. With multiple records, even these simple steps add up, and it's easy to miss entries on another page.</p>
+      <p>That's why I started building AutoVote. The goal isn't to decide how anyone should vote. It's to handle the repetitive looking-up, organizing and exporting that software can do more consistently.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>How it helps</h2>
+    <div>
+      <h3>Turn scattered steps into a more manageable workflow.</h3>
+      <div class="case-grid">
+        <article class="case-card"><strong>Less manual searching</strong>With the account holder's authorization, the tool looks up meetings that already have voting records instead of requiring repeated manual navigation.</article>
+        <article class="case-card"><strong>Receipts in one place</strong>It organizes existing receipts by company and meeting and checks record counts across pages to avoid missing or duplicated entries.</article>
+        <article class="case-card"><strong>Files ready to use</strong>Receipts can be saved individually, bundled in a ZIP or prepared as an A4 PDF for batch printing.</article>
+        <article class="case-card"><strong>Personal records stay protected</strong>Users sign in and give permission first. Certificates and stored receipts are encrypted, and access is restricted to the relevant account.</article>
       </div>
     </div>
   </section>
   <section class="case-section">
-    <h2>Engineering</h2>
+    <h2>What using it should feel like</h2>
+    <div>
+      <h3>From giving permission to getting organized files.</h3>
+      <div class="architecture">
+        <div class="node"><strong>Sign in and authorize</strong><small>Google sign-in and the user's certificate</small></div>
+        <div class="node"><strong>Find existing records</strong><small>look up official results with authorization</small></div>
+        <div class="node"><strong>Organize and check</strong><small>confirm counts and group the receipts</small></div>
+        <div class="node"><strong>Download or print</strong><small>individual images, ZIP or A4 PDF</small></div>
+      </div>
+      <p>This is the complete experience I'm building toward. Public Google sign-in and local receipt retrieval have been verified separately, but the full certificate-upload-to-receipt journey on the public site has not yet passed an end-to-end test.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>Where it stands today</h2>
+    <div>
+      <h3>22 existing receipts retrieved locally. Unverified features are still labeled as such.</h3>
+      <p>On 2026-11-22, I used an authorized account locally to retrieve 22 existing official voting receipts from two pages, checked the record counts and prepared images and print files. Real Google sign-in has also been tested on the public portal. The full public upload, lookup and download flow still needs live validation.</p>
+      <p><strong>New-ballot submission remains disabled.</strong>Automated abstention voting has been implemented and tested with simulated scenarios, but it has not been validated with an eligible live ballot. I can't claim the system has successfully submitted a new real-world vote.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>What mattered to me while building it</h2>
     <div class="case-grid">
-      <article class="case-card"><strong>Authentication and isolation</strong>Google ID tokens are validated server-side, with ownership checks on client records. A user-supplied email address is not accepted as proof of identity.</article>
-      <article class="case-card"><strong>Protecting sensitive data</strong>Windows DPAPI encrypts stored certificates, passwords and receipts. The service binds to a loopback address, with Cloudflare Tunnel providing a public HTTPS endpoint.</article>
-      <article class="case-card"><strong>Official-site automation</strong>Playwright controls an isolated local Microsoft Edge session. Unknown page structures, pagination errors or uncertain outcomes stop processing instead of relying on guesses.</article>
-      <article class="case-card"><strong>Export and printing</strong>Existing voting receipts are organized as compact images, ZIP archives and PDFs while retaining full original records.</article>
+      <article class="case-card"><strong>Permission comes first</strong>Voting records and digital certificates aren't things to handle casually. Users must authenticate and authorize access. Google login and Windows DPAPI encryption protect account and locally stored sensitive data.</article>
+      <article class="case-card"><strong>Stop when something is unclear</strong>If an official page changes, records don't match, or a voting result is uncertain, the program should stop rather than guess or resubmit.</article>
     </div>
+    <p class="case-meta-note">The public portal connects to a local computer and is unavailable when that machine is off or sleeping. This case study contains no customer certificates, personal records, real receipts or private source code. Voting and shareholder-gift collection remain subject to applicable rules.</p>
   </section>
   <section class="case-section">
-    <h2>Verified outcomes</h2>
-    <div>
-      <h3>22 existing official voting receipts exported from a two-page list.</h3>
-      <p>On 2026-11-22, the local workflow queried an authorized account, exported 22 existing receipts across two TDCC list pages, and checked record counts and duplicate meetings. The public portal separately passed real Google sign-in and form-availability checks; that does not constitute completed end-to-end receipt validation from the public portal.</p>
-    </div>
-  </section>
-  <section class="case-section">
-    <h2>Validation boundaries and safeguards</h2>
-    <div>
-      <ul>
-        <li><strong>New voting is disabled:</strong>Automated abstention submission has implementation and synthetic tests, but it has not been validated on an eligible live ballot. No successful real new-ballot submission is claimed.</li>
-        <li><strong>Duplicate-submission prevention:</strong>Submission intent is persisted before an attempt; uncertain outcomes remain pending review and must not be resubmitted automatically.</li>
-        <li><strong>Availability:</strong>The public domain tunnels to a local computer; the service is unavailable when that machine is shut down or sleeping, not a 24/7 cloud service.</li>
-        <li><strong>Privacy and consent:</strong>This case study contains no client certificates, identity records, voting receipts or private source code. Actual voting and gift-collection services remain subject to applicable rules.</li>
-      </ul>
-    </div>
-  </section>
-  <section class="case-section">
-    <h2>Architecture illustration</h2>
+    <h2>Workflow illustration</h2>
     <div>
       <figure class="case-shot">
-        <img src="../../../assets/projects/autovote.webp" alt="AutoVote client portal, TDCC lookup and receipt export architecture" loading="lazy">
-        <figcaption>Architecture illustration, not a live screenshot. No client certificates, identities or official receipts are shown.</figcaption>
+        <img src="../../../assets/projects/autovote.webp" alt="AutoVote reduces repetitive lookup, receipt collection and printing steps" loading="lazy">
+        <figcaption>Conceptual workflow illustration, not a live screenshot. No customer certificates or real voting receipts are shown.</figcaption>
       </figure>
     </div>
   </section>

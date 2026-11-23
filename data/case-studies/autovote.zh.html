@@ -1,55 +1,65 @@
 <header class="case-hero shell">
-  <p class="eyebrow">股東服務 · 流程自動化</p>
-  <h1>AutoVote<br>股東電子投票輔助平台</h1>
-  <p>我將 Google 登入、憑證管理、集保查詢與電投圖匯出整合成網站及本機處理流程。目標是減少逐戶登入、查詢與整理既有電子投票證明的人工操作，同時保留客戶授權和資料隔離。</p>
-  <p class="case-meta-note">截至 2026-11-23，公開網站已完成 HTTPS 與真實 Google 登入驗證；新票送出維持關閉，尚未正式實投驗收。公開入口的真實憑證上傳至取圖全流程亦尚未完成端到端驗證。</p>
+  <p class="eyebrow">股東服務 · 讓重複的工作少一點</p>
+  <h1>AutoVote<br>股東投票紀錄整理小幫手</h1>
+  <p>有些事情不難，但做很多次就很花時間。查詢股東電子投票紀錄就是這樣：登入、找紀錄、存圖片，再整理成方便查看或列印的檔案。我做 AutoVote，是想讓這些重複步驟可以少一點，把時間留給真正需要人確認的事情。</p>
+  <p class="case-meta-note">這是持續開發中的輔助工具，目前主要展示既有投票紀錄的查詢與電投圖整理；自動送出新票的功能尚未對外啟用。</p>
 </header>
 <main id="main" class="case-content shell">
   <section class="case-section">
-    <h2>設計的流程</h2>
+    <h2>為什麼做這個工具？</h2>
     <div>
-      <h3>從客戶授權，到查詢官方既有紀錄並整理電投圖。</h3>
-      <div class="architecture">
-        <div class="node"><strong>Google 登入</strong><small>驗證登入身分與操作權限</small></div>
-        <div class="node"><strong>憑證與授權</strong><small>上傳、停用、刪除與加密保管</small></div>
-        <div class="node"><strong>集保查詢</strong><small>本機 Edge / Playwright 處理官方流程</small></div>
-        <div class="node"><strong>電投圖匯出</strong><small>圖片、ZIP 與 A4 批量列印</small></div>
+      <h3>我想解決的，是一件很瑣碎、卻很常重複的事。</h3>
+      <p>在股東紀念品相關作業中，有時需要查閱電子投票紀錄，或把電投圖整理成方便核對與列印的形式。原本得一筆筆登入官方網站，找到對應的公司和會議、儲存圖片，再自己整理順序。如果同時有多筆紀錄，光是反覆找圖與排版就會花掉不少時間，也容易漏看不同頁面的資料。</p>
+      <p>所以我想試著把這段流程做成工具。不是替股東決定投什麼票，而是把查詢、整理和輸出資料這些可以自動化的雜事交給程式處理。</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>它能幫上什麼忙？</h2>
+    <div>
+      <h3>讓原本分散的操作，變成一套比較順手的整理流程。</h3>
+      <div class="case-grid">
+        <article class="case-card"><strong>不用一直重複找紀錄</strong>在取得本人授權後，協助查詢集保系統中已完成投票的會議紀錄，減少逐筆點選的工作。</article>
+        <article class="case-card"><strong>把電投圖整理在一起</strong>將查到的既有電投圖依公司與會議整理，遇到多頁紀錄也會核對筆數，避免遺漏或重複。</article>
+        <article class="case-card"><strong>方便下載與列印</strong>可以把電投圖存成單張圖片、打包成 ZIP，或產出適合 A4 批量列印的 PDF，不必再逐張排版。</article>
+        <article class="case-card"><strong>讓資料受到保護</strong>使用者須先登入並授權，憑證和電投圖會加密保存；不同使用者只能存取屬於自己的資料。</article>
       </div>
     </div>
   </section>
   <section class="case-section">
-    <h2>工程實作</h2>
+    <h2>實際使用會是什麼樣子？</h2>
+    <div>
+      <h3>從提供授權，到拿到整理好的檔案。</h3>
+      <div class="architecture">
+        <div class="node"><strong>登入與授權</strong><small>使用者以 Google 登入並提供自己的憑證</small></div>
+        <div class="node"><strong>協助查詢</strong><small>依授權查找官方既有投票紀錄</small></div>
+        <div class="node"><strong>整理與核對</strong><small>確認筆數，整理查到的電投圖</small></div>
+        <div class="node"><strong>下載或列印</strong><small>單張圖片、ZIP 或 A4 列印檔</small></div>
+      </div>
+      <p>這是我希望使用者能完成的完整流程。目前已分別驗證公開登入入口與本機取圖功能，但公開網站的真實憑證上傳到取圖，還沒有完成端到端實測。</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>目前做到哪裡？</h2>
+    <div>
+      <h3>已經能把 22 筆既有電投圖整理出來，但我不想把還沒驗證的功能寫成已完成。</h3>
+      <p>2026-11-22，我在本機使用已授權帳戶，從集保兩頁清單取得 22 筆既有官方電投圖，並完成筆數核對、圖片匯出與批量列印檔整理。公開網站也已完成真實 Google 登入測試；但公開入口的「上傳真實憑證 → 查詢 → 取圖」完整流程，仍有待驗證。</p>
+      <p><strong>新票送出維持關閉。</strong>原本規劃的自動棄權投票已有程式與模擬測試，但尚未正式實投驗收，不能說它已經替使用者成功送出新的投票。</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>做這個工具時，我特別在意的事</h2>
     <div class="case-grid">
-      <article class="case-card"><strong>身分驗證與隔離</strong>使用 Google ID token 驗證與伺服器端客戶所有權檢查，不以使用者自行輸入的電子郵件作為授權依據。</article>
-      <article class="case-card"><strong>敏感資料保護</strong>以 Windows DPAPI 加密保存憑證、密碼與電投圖；網站服務只綁定本機位址，由 Cloudflare Tunnel 提供公開 HTTPS 入口。</article>
-      <article class="case-card"><strong>官方網站操作</strong>使用 Playwright 控制獨立的本機 Edge 工作階段；對未知頁面格式、分頁異常或不確定結果停止處理，避免猜測。</article>
-      <article class="case-card"><strong>輸出與批量列印</strong>既有電投圖可整理為精簡圖片、ZIP 和 PDF，並保留原始圖，方便後續查詢與列印。</article>
+      <article class="case-card"><strong>先有授權，才幫忙處理</strong>投票和憑證都不是可以隨便替別人操作的東西，所以登入、授權和使用者資料隔離是必要的。技術上以 Google 驗證登入，並用 Windows DPAPI 保護本機儲存的敏感資料。</article>
+      <article class="case-card"><strong>不確定，就停下來</strong>如果官方頁面有變動、資料對不起來，或送票結果不明，程式不應硬猜、也不能自動重送。真正涉及新票時尤其如此。</article>
     </div>
+    <p class="case-meta-note">目前服務透過本機電腦提供，主機關閉或休眠時無法使用。此作品僅展示開發成果，不公開客戶憑證、個人資料、官方電投圖或私人程式碼；實際投票與代領的適用規定仍須另行確認。</p>
   </section>
   <section class="case-section">
-    <h2>已驗證的成果</h2>
-    <div>
-      <h3>22 筆既有官方電投圖，從兩頁清單完整匯出。</h3>
-      <p>2026-11-22 使用已授權的本機帳戶，實際查詢集保兩頁既有投票清單，匯出 22 筆電投圖，並比對清單筆數與重複會議。公開網站另已確認真實 Google 登入與憑證上傳欄位可用；不能因此推定整個公開取圖流程已正式驗收。</p>
-    </div>
-  </section>
-  <section class="case-section">
-    <h2>驗證界線與風險控管</h2>
-    <div>
-      <ul>
-        <li><strong>新票送出維持關閉：</strong>自動全棄權投票流程已有程式與合成測試，但仍缺少可投帳戶的正式新票實投驗收，不能宣稱已成功送出真實新票。</li>
-        <li><strong>防重複提交：</strong>送票前持久記錄意圖；送出結果不明時停止重送，保留待人工核對狀態。</li>
-        <li><strong>服務可用性：</strong>網站經 Cloudflare Tunnel 連到本機電腦，主機關閉或休眠時無法使用，不宣稱為全天候雲端服務。</li>
-        <li><strong>資料與授權：</strong>作品頁只展示架構與開發成果，不公開客戶憑證、身分資料、電投圖或私人原始碼；正式投票與代領仍須遵守相關規定。</li>
-      </ul>
-    </div>
-  </section>
-  <section class="case-section">
-    <h2>流程架構示意</h2>
+    <h2>流程示意</h2>
     <div>
       <figure class="case-shot">
-        <img src="../../assets/projects/autovote.webp" alt="AutoVote 客戶入口、集保查詢及電投圖輸出架構示意" loading="lazy">
-        <figcaption>流程架構示意，非真實操作畫面；沒有使用客戶憑證、身分資料或官方電投圖。</figcaption>
+        <img src="../../assets/projects/autovote.webp" alt="AutoVote 減少重複查詢、找圖、整理與列印的流程示意" loading="lazy">
+        <figcaption>使用流程概念示意，非實際操作截圖；未展示任何客戶憑證或真實電投圖。</figcaption>
       </figure>
     </div>
   </section>

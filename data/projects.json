@@ -321,28 +321,28 @@
       "featured": false,
       "badge": "PILOT · VOTING OFF",
       "title": {
-        "zh": "AutoVote｜股東電子投票輔助平台",
-        "en": "AutoVote | Shareholder E-voting Assistant"
+        "zh": "AutoVote｜股東投票紀錄整理小幫手",
+        "en": "AutoVote | Shareholder Voting Record Assistant"
       },
       "card_description": {
-        "zh": "整合 Google 登入、憑證保護與集保既有投票查詢，自動匯出官方電投圖；已在本機取回 22 筆既有紀錄。新票自動送出尚未正式驗收，公開網站維持關閉。",
-        "en": "A Google-authenticated portal for protected certificates and automated retrieval of official voting receipts; 22 existing records were exported locally. New-ballot submission remains disabled pending live validation."
+        "zh": "處理股東紀念品相關資料時，電投圖常得逐筆查詢、存檔和排版。我做了 AutoVote 來減少這些重複工作，目前已在本機整理出 22 筆既有電投圖；新票自動送出仍待驗收。",
+        "en": "Looking up voting records, saving receipts and preparing them for printing can be repetitive. I built AutoVote to make that easier. It has exported 22 existing receipts locally; submitting new ballots is not yet enabled."
       },
       "tags": {
         "zh": [
+          "減少重複查詢與整理",
           "22 筆既有電投圖",
-          "FastAPI + Playwright",
-          "Google Login · DPAPI"
+          "下載、打包與列印"
         ],
         "en": [
+          "Less manual lookup",
           "22 existing receipts",
-          "FastAPI + Playwright",
-          "Google Login · DPAPI"
+          "Download, bundle & print"
         ]
       },
       "image_alt": {
-        "zh": "AutoVote 客戶入口、本機處理與電投圖匯出的流程示意圖，不含真實憑證或投票資料",
-        "en": "AutoVote architecture illustration for the client portal, local processing and receipt export; no real certificates or voting data"
+        "zh": "AutoVote 說明人工逐筆找電投圖的麻煩，以及登入授權後由工具查詢、整理及列印的流程，非真實畫面",
+        "en": "Illustration of the manual work AutoVote aims to simplify: finding, organizing and printing existing voting receipts; not a live screenshot"
       },
       "media": {
         "type": "svg_render",
@@ -353,8 +353,8 @@
       },
       "case_visual": {
         "caption": {
-          "zh": "流程架構示意，非真實操作畫面；沒有使用客戶憑證、身分資料或官方電投圖。",
-          "en": "Architecture illustration, not a live screenshot. No client certificates, identities or official receipts are shown."
+          "zh": "使用流程概念示意，非實際操作截圖；未展示任何客戶憑證或真實電投圖。",
+          "en": "Conceptual workflow illustration, not a live screenshot. No customer certificates or real voting receipts are shown."
         }
       },
       "repo": null,
@@ -369,8 +369,8 @@
           "en": "System design and full-stack development"
         },
         "scope": {
-          "zh": "Google 登入 · 憑證保護 · 集保查詢 · 取圖",
-          "en": "Google login · certificate protection · TDCC lookup · receipts"
+          "zh": "既有投票查詢 · 電投圖整理 · 批次列印",
+          "en": "Existing-record lookup · receipt organization · batch printing"
         },
         "status": {
           "zh": "公開入口已上線 · 新票送出關閉，待正式驗收",
@@ -380,16 +380,16 @@
       },
       "case_page": {
         "zh": {
-          "title": "AutoVote｜股東電子投票輔助平台｜Yu Case Study",
-          "description": "以 FastAPI、Playwright、Google 登入與 Windows DPAPI 建立股東電投圖查詢及匯出流程；正式新票送出仍待驗收。",
-          "og_title": "AutoVote｜股東電子投票輔助平台｜Yu",
-          "og_description": "已實測匯出 22 筆官方既有電投圖，公開入口可 Google 登入；新票自動送出未啟用。"
+          "title": "AutoVote｜股東投票紀錄整理小幫手｜Yu Case Study",
+          "description": "為了減少股東電子投票紀錄逐筆查詢、存圖、列印的麻煩，我開發了 AutoVote；已在本機整理 22 筆既有電投圖，新票自動送出待驗收。",
+          "og_title": "AutoVote｜把股東電投圖整理變簡單｜Yu",
+          "og_description": "從重複登入、找圖到批次整理列印：我為什麼做 AutoVote，以及它目前做到哪裡。"
         },
         "en": {
-          "title": "AutoVote | Shareholder E-voting Assistant | Yu Case Study",
-          "description": "A shareholder voting-receipt workflow built with FastAPI, Playwright, Google login and Windows DPAPI. New ballot submission has not been validated.",
-          "og_title": "AutoVote | Shareholder E-voting Assistant | Yu",
-          "og_description": "22 official existing voting receipts retrieved locally; Google sign-in is available. New-ballot submission remains disabled."
+          "title": "AutoVote | Shareholder Voting Record Assistant | Yu Case Study",
+          "description": "Why I built AutoVote to simplify repetitive shareholder voting-record lookups, receipt collection and printing. 22 existing receipts exported locally; new voting is not yet validated.",
+          "og_title": "AutoVote | Make Voting Receipts Easier to Organize | Yu",
+          "og_description": "Why I built AutoVote, what it helps with, and the current limits of its voting-receipt workflow."
         }
       }
     },

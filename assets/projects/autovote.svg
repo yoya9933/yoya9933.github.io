@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
-  <title id="title">AutoVote 股東電子投票輔助平台架構示意</title>
-  <desc id="desc">展示 Google 客戶登入與授權、本機 Edge 與 Playwright 查詢集保既有投票、匯出 22 筆官方電投圖。新票送出功能尚未啟用。純架構示意，無真實客戶資料。</desc>
+  <title id="title">AutoVote 股東投票紀錄整理流程示意</title>
+  <desc id="desc">展示從人工反覆登入找圖，到授權後協助查詢既有投票、整理及列印 22 筆官方電投圖的流程。新票送出尚未啟用，無真實客戶資料。</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop stop-color="#f5f5ff"/><stop offset=".56" stop-color="#edf7ff"/><stop offset="1" stop-color="#eafbf7"/>
@@ -17,10 +17,10 @@
     <circle cx="1354" cy="0" r="230" fill="#dce9ff" opacity=".55"/>
     <circle cx="46" cy="840" r="225" fill="#daf7f0" opacity=".55"/>
     <rect x="80" y="66" width="11" height="25" rx="5" fill="#5667d8"/>
-    <text x="106" y="87" font-size="20" letter-spacing="2.2" font-weight="700" fill="#5967a9">SHAREHOLDER OPERATIONS / AUTOMATION</text>
+    <text x="106" y="87" font-size="20" letter-spacing="2.2" font-weight="700" fill="#5967a9">LESS REPETITIVE WORK / AUTOVOTE</text>
     <text x="80" y="159" font-size="63" font-weight="800" fill="#183151">AutoVote</text>
-    <text x="392" y="156" font-size="36" font-weight="700" fill="#30476c">股東電子投票輔助平台</text>
-    <text x="83" y="207" font-size="23" fill="#5c6e89">Google Login  ·  FastAPI  ·  Playwright  ·  Windows DPAPI</text>
+    <text x="392" y="156" font-size="36" font-weight="700" fill="#30476c">股東投票紀錄整理小幫手</text>
+    <text x="83" y="207" font-size="23" fill="#5c6e89">少一點重複登入、找圖、存檔與排版</text>
     <rect x="1089" y="111" width="267" height="45" rx="22" fill="#fff5e4" stroke="#eed2a6" stroke-width="2"/>
     <circle cx="1115" cy="134" r="7" fill="#e2a34e"/>
     <text x="1132" y="141" font-size="18" font-weight="700" fill="#966020">NEW VOTES DISABLED</text>
@@ -28,18 +28,18 @@
     <rect x="80" y="247" width="390" height="407" rx="27" fill="#fff" stroke="#dce5f4" stroke-width="2" filter="url(#shadow)"/>
     <rect x="80" y="247" width="390" height="89" rx="27" fill="url(#nav)"/>
     <rect x="80" y="300" width="390" height="36" fill="url(#nav)"/>
-    <text x="108" y="283" font-size="18" font-weight="700" letter-spacing="1.8" fill="#a9c7ff">01 / CLIENT PORTAL</text>
-    <text x="108" y="319" font-size="27" font-weight="700" fill="#fff">客戶入口與授權</text>
+    <text x="108" y="283" font-size="18" font-weight="700" letter-spacing="1.8" fill="#a9c7ff">01 / BEFORE</text>
+    <text x="108" y="319" font-size="27" font-weight="700" fill="#fff">原本要一筆筆做</text>
     <rect x="108" y="359" width="333" height="63" rx="16" fill="#f2f5ff"/>
     <circle cx="138" cy="390" r="12" fill="#6173d8"/>
-    <text x="164" y="398" font-size="23" font-weight="700" fill="#243d63">Google 登入</text>
+    <text x="164" y="398" font-size="23" font-weight="700" fill="#243d63">登入官方網站</text>
     <rect x="108" y="438" width="333" height="63" rx="16" fill="#f2f5ff"/>
     <circle cx="138" cy="469" r="12" fill="#6173d8"/>
-    <text x="164" y="477" font-size="22" font-weight="700" fill="#243d63">憑證上傳與授權</text>
+    <text x="164" y="477" font-size="22" font-weight="700" fill="#243d63">逐筆找投票紀錄</text>
     <rect x="108" y="517" width="333" height="63" rx="16" fill="#f2f5ff"/>
     <circle cx="138" cy="548" r="12" fill="#6173d8"/>
-    <text x="164" y="556" font-size="22" font-weight="700" fill="#243d63">帳戶隔離與狀態查詢</text>
-    <text x="108" y="621" font-size="18" fill="#687993">HTTPS via Cloudflare Tunnel</text>
+    <text x="164" y="556" font-size="22" font-weight="700" fill="#243d63">存圖、排版、列印</text>
+    <text x="108" y="621" font-size="18" fill="#687993">每一筆都要重新整理</text>
 
     <path d="M 483 447 H 520" stroke="#6b82b4" stroke-width="5" stroke-linecap="round"/>
     <path d="M 508 435 L 521 447 L 508 459" stroke="#6b82b4" fill="none" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
@@ -47,18 +47,18 @@
     <rect x="535" y="247" width="370" height="407" rx="27" fill="#fff" stroke="#dce5f4" stroke-width="2" filter="url(#shadow)"/>
     <rect x="535" y="247" width="370" height="89" rx="27" fill="#285771"/>
     <rect x="535" y="300" width="370" height="36" fill="#285771"/>
-    <text x="563" y="283" font-size="18" font-weight="700" letter-spacing="1.8" fill="#b3e5e9">02 / LOCAL BACKEND</text>
-    <text x="563" y="319" font-size="27" font-weight="700" fill="#fff">本機查詢與保護</text>
+    <text x="563" y="283" font-size="18" font-weight="700" letter-spacing="1.8" fill="#b3e5e9">02 / AUTOVOTE</text>
+    <text x="563" y="319" font-size="27" font-weight="700" fill="#fff">AutoVote 協助整理</text>
     <rect x="562" y="359" width="317" height="63" rx="16" fill="#e9f8f8"/>
     <circle cx="590" cy="390" r="12" fill="#1eafa6"/>
-    <text x="615" y="398" font-size="22" font-weight="700" fill="#21465a">FastAPI + SQLite</text>
+    <text x="615" y="398" font-size="22" font-weight="700" fill="#21465a">登入與取得授權</text>
     <rect x="562" y="438" width="317" height="63" rx="16" fill="#e9f8f8"/>
     <circle cx="590" cy="469" r="12" fill="#1eafa6"/>
-    <text x="615" y="477" font-size="21" font-weight="700" fill="#21465a">Edge / Playwright</text>
+    <text x="615" y="477" font-size="21" font-weight="700" fill="#21465a">查詢已投票紀錄</text>
     <rect x="562" y="517" width="317" height="63" rx="16" fill="#e9f8f8"/>
     <circle cx="590" cy="548" r="12" fill="#1eafa6"/>
-    <text x="615" y="556" font-size="22" font-weight="700" fill="#21465a">Windows DPAPI</text>
-    <text x="562" y="621" font-size="18" fill="#687993">集保官方網站 · 已有投票查詢</text>
+    <text x="615" y="556" font-size="22" font-weight="700" fill="#21465a">核對筆數、整理圖片</text>
+    <text x="562" y="621" font-size="18" fill="#687993">依授權查詢既有官方紀錄</text>
 
     <path d="M 918 447 H 955" stroke="#6b82b4" stroke-width="5" stroke-linecap="round"/>
     <path d="M 943 435 L 956 447 L 943 459" stroke="#6b82b4" fill="none" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
@@ -66,21 +66,21 @@
     <rect x="970" y="247" width="390" height="407" rx="27" fill="#fff" stroke="#dce5f4" stroke-width="2" filter="url(#shadow)"/>
     <rect x="970" y="247" width="390" height="89" rx="27" fill="#316c67"/>
     <rect x="970" y="300" width="390" height="36" fill="#316c67"/>
-    <text x="997" y="283" font-size="18" font-weight="700" letter-spacing="1.8" fill="#c1f4df">03 / OUTPUT</text>
-    <text x="997" y="319" font-size="27" font-weight="700" fill="#fff">既有電投圖匯出</text>
+    <text x="997" y="283" font-size="18" font-weight="700" letter-spacing="1.8" fill="#c1f4df">03 / RESULT</text>
+    <text x="997" y="319" font-size="27" font-weight="700" fill="#fff">拿到整理好的檔案</text>
     <rect x="997" y="359" width="333" height="141" rx="17" fill="#eaf9f2"/>
     <text x="1021" y="426" font-size="68" font-weight="800" fill="#16786c">22</text>
     <text x="1120" y="415" font-size="21" font-weight="700" fill="#315b60">筆官方紀錄</text>
-    <text x="1120" y="445" font-size="17" fill="#537b7b">本機實際查詢匯出</text>
+    <text x="1120" y="445" font-size="17" fill="#537b7b">本機已成功匯出</text>
     <rect x="997" y="517" width="333" height="63" rx="16" fill="#eef7f6"/>
     <text x="1021" y="558" font-size="22" font-weight="700" fill="#285652">PNG · ZIP · A4 PDF</text>
-    <text x="997" y="621" font-size="18" fill="#687993">分頁核對 · 省紙批量列印</text>
+    <text x="997" y="621" font-size="18" fill="#687993">方便保存與列印</text>
 
     <rect x="80" y="696" width="1280" height="132" rx="24" fill="#fff7ea" stroke="#efdbb9" stroke-width="2"/>
     <rect x="108" y="721" width="190" height="42" rx="21" fill="#f7e2be"/>
     <text x="129" y="750" font-size="20" font-weight="800" fill="#96591d">VOTING OFF</text>
-    <text x="320" y="752" font-size="27" font-weight="800" fill="#6f512c">新票自動送出尚未正式實投驗收</text>
-    <text x="109" y="799" font-size="20" fill="#896d4b">公開入口目前只啟用憑證上傳及既有電投圖查詢；不宣稱已完成新票送出。</text>
-    <text x="80" y="869" font-size="17" fill="#74839a">CONCEPT DIAGRAM  /  NO CLIENT CREDENTIALS OR REAL RECEIPTS SHOWN</text>
+    <text x="320" y="752" font-size="27" font-weight="800" fill="#6f512c">新票自動送出尚未完成實際驗證</text>
+    <text x="109" y="799" font-size="20" fill="#896d4b">目前以既有紀錄取圖為主；新票自動送出仍待驗收。</text>
+    <text x="80" y="869" font-size="17" fill="#74839a">WORKFLOW ILLUSTRATION  /  NO REAL CUSTOMER DATA</text>
   </g>
 </svg>

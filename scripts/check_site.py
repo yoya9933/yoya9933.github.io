@@ -343,8 +343,8 @@ def main() -> int:
     if autovote is not None and (autovote.get("repo") is not None or autovote.get("live") != "https://vote.sharegift.tw/"):
         errors.append("AutoVote must not link its private repository")
     for locale, required in (
-        ("zh", ("22", "Google", "DPAPI", "新票送出維持關閉", "尚未正式實投驗收")),
-        ("en", ("22", "Google", "DPAPI", "New-ballot submission remains disabled", "has not been validated")),
+        ("zh", ("22", "Google", "DPAPI", "新票送出維持關閉", "尚未正式實投驗收", "為什麼做這個工具？", "它能幫上什麼忙？")),
+        ("en", ("22", "Google", "DPAPI", "New-ballot submission remains disabled", "has not been validated", "Why I built it", "How it helps")),
     ):
         source = ROOT / "data" / "case-studies" / f"autovote.{locale}.html"
         content = source.read_text(encoding="utf-8") if source.is_file() else ""
