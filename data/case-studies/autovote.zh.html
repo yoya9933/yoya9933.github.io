@@ -1,10 +1,10 @@
-<header class="case-hero shell">
+<header class="case-hero shell autovote-hero">
   <p class="eyebrow">股東服務 · 讓重複的工作少一點</p>
-  <h1>AutoVote<br>股東投票紀錄整理小幫手</h1>
+  <h1>AutoVote<span>股東投票紀錄整理小幫手</span></h1>
   <p>有些事情不難，但做很多次就很花時間。查詢股東電子投票紀錄就是這樣：登入、找紀錄、存圖片，再整理成方便查看或列印的檔案。我做 AutoVote，是想讓這些重複步驟可以少一點，把時間留給真正需要人確認的事情。</p>
   <p class="case-meta-note">這是持續開發中的輔助工具，目前主要展示既有投票紀錄的查詢與電投圖整理；自動送出新票的功能尚未對外啟用。</p>
 </header>
-<main id="main" class="case-content shell">
+<main id="main" class="case-content shell autovote-story">
   <section class="case-section">
     <h2>為什麼做這個工具？</h2>
     <div>
@@ -18,10 +18,10 @@
     <div>
       <h3>讓原本分散的操作，變成一套比較順手的整理流程。</h3>
       <div class="case-grid">
-        <article class="case-card"><strong>不用一直重複找紀錄</strong>在取得本人授權後，協助查詢集保系統中已完成投票的會議紀錄，減少逐筆點選的工作。</article>
-        <article class="case-card"><strong>把電投圖整理在一起</strong>將查到的既有電投圖依公司與會議整理，遇到多頁紀錄也會核對筆數，避免遺漏或重複。</article>
-        <article class="case-card"><strong>方便下載與列印</strong>可以把電投圖存成單張圖片、打包成 ZIP，或產出適合 A4 批量列印的 PDF，不必再逐張排版。</article>
-        <article class="case-card"><strong>讓資料受到保護</strong>使用者須先登入並授權，憑證和電投圖會加密保存；不同使用者只能存取屬於自己的資料。</article>
+        <article class="case-card"><strong>不用一直重複找紀錄</strong><p>在取得本人授權後，協助查詢集保系統中已完成投票的會議紀錄，減少逐筆點選的工作。</p></article>
+        <article class="case-card"><strong>把電投圖整理在一起</strong><p>將查到的既有電投圖依公司與會議整理，遇到多頁紀錄也會核對筆數，避免遺漏或重複。</p></article>
+        <article class="case-card"><strong>方便下載與列印</strong><p>可以把電投圖存成單張圖片、打包成 ZIP，或產出適合 A4 批量列印的 PDF，不必再逐張排版。</p></article>
+        <article class="case-card"><strong>讓資料受到保護</strong><p>使用者須先登入並授權，憑證和電投圖會加密保存；不同使用者只能存取屬於自己的資料。</p></article>
       </div>
     </div>
   </section>
@@ -43,14 +43,14 @@
     <div>
       <h3>已經能把 22 筆既有電投圖整理出來，但我不想把還沒驗證的功能寫成已完成。</h3>
       <p>2026-11-22，我在本機使用已授權帳戶，從集保兩頁清單取得 22 筆既有官方電投圖，並完成筆數核對、圖片匯出與批量列印檔整理。公開網站也已完成真實 Google 登入測試；但公開入口的「上傳真實憑證 → 查詢 → 取圖」完整流程，仍有待驗證。</p>
-      <p><strong>新票送出維持關閉。</strong>原本規劃的自動棄權投票已有程式與模擬測試，但尚未正式實投驗收，不能說它已經替使用者成功送出新的投票。</p>
+      <p><strong>新票送出維持關閉。</strong> 原本規劃的自動棄權投票已有程式與模擬測試，但尚未正式實投驗收，不能說它已經替使用者成功送出新的投票。</p>
     </div>
   </section>
   <section class="case-section">
     <h2>做這個工具時，我特別在意的事</h2>
     <div class="case-grid">
-      <article class="case-card"><strong>先有授權，才幫忙處理</strong>投票和憑證都不是可以隨便替別人操作的東西，所以登入、授權和使用者資料隔離是必要的。技術上以 Google 驗證登入，並用 Windows DPAPI 保護本機儲存的敏感資料。</article>
-      <article class="case-card"><strong>不確定，就停下來</strong>如果官方頁面有變動、資料對不起來，或送票結果不明，程式不應硬猜、也不能自動重送。真正涉及新票時尤其如此。</article>
+      <article class="case-card"><strong>先有授權，才幫忙處理</strong><p>投票和憑證都不是可以隨便替別人操作的東西，所以登入、授權和使用者資料隔離是必要的。技術上以 Google 驗證登入，並用 Windows DPAPI 保護本機儲存的敏感資料。</p></article>
+      <article class="case-card"><strong>不確定，就停下來</strong><p>如果官方頁面有變動、資料對不起來，或送票結果不明，程式不應硬猜、也不能自動重送。真正涉及新票時尤其如此。</p></article>
     </div>
     <p class="case-meta-note">目前服務透過本機電腦提供，主機關閉或休眠時無法使用。此作品僅展示開發成果，不公開客戶憑證、個人資料、官方電投圖或私人程式碼；實際投票與代領的適用規定仍須另行確認。</p>
   </section>

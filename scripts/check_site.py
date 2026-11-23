@@ -351,6 +351,12 @@ def main() -> int:
         for token in required:
             if token not in content:
                 errors.append(f"AutoVote case study missing {token} ({locale})")
+        if 'class="case-hero shell autovote-hero"' not in content or 'class="case-content shell autovote-story"' not in content:
+            errors.append(f"AutoVote story layout hooks missing ({locale})")
+        if content.count('<article class="case-card">') != 6 or content.count('<article class="case-card"><strong>') != content.count('</strong><p>'):
+            errors.append(f"AutoVote content cards must have separate headings and paragraphs ({locale})")
+    if ".autovote-story .case-section { display: block;" not in (ROOT / "assets/styles.css").read_text(encoding="utf-8"):
+        errors.append("AutoVote story sections must not use the narrow side-label grid")
     for locale in ("zh", "en"):
         source = ROOT / "data" / "case-studies" / f"academic-faq-chatbot.{locale}.html"
         content = source.read_text(encoding="utf-8") if source.is_file() else ""

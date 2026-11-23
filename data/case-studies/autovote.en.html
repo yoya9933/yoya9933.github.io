@@ -1,10 +1,10 @@
-<header class="case-hero shell">
+<header class="case-hero shell autovote-hero">
   <p class="eyebrow">Shareholder services · less repetitive work</p>
-  <h1>AutoVote<br>Shareholder Voting Record Assistant</h1>
+  <h1>AutoVote<span>Shareholder Voting Record Assistant</span></h1>
   <p>Some tasks aren't difficult, but repeating them takes time. Looking up shareholder voting records is one of them: sign in, find the right meeting, save a receipt, then organize everything for review or printing. I built AutoVote to cut down on those repetitive steps so people can focus on the parts that actually need their attention.</p>
   <p class="case-meta-note">This is an ongoing project focused on retrieving and organizing existing voting receipts. The feature for submitting new votes is not enabled on the public portal.</p>
 </header>
-<main id="main" class="case-content shell">
+<main id="main" class="case-content shell autovote-story">
   <section class="case-section">
     <h2>Why I built it</h2>
     <div>
@@ -18,10 +18,10 @@
     <div>
       <h3>Turn scattered steps into a more manageable workflow.</h3>
       <div class="case-grid">
-        <article class="case-card"><strong>Less manual searching</strong>With the account holder's authorization, the tool looks up meetings that already have voting records instead of requiring repeated manual navigation.</article>
-        <article class="case-card"><strong>Receipts in one place</strong>It organizes existing receipts by company and meeting and checks record counts across pages to avoid missing or duplicated entries.</article>
-        <article class="case-card"><strong>Files ready to use</strong>Receipts can be saved individually, bundled in a ZIP or prepared as an A4 PDF for batch printing.</article>
-        <article class="case-card"><strong>Personal records stay protected</strong>Users sign in and give permission first. Certificates and stored receipts are encrypted, and access is restricted to the relevant account.</article>
+        <article class="case-card"><strong>Less manual searching</strong><p>With the account holder's authorization, the tool looks up meetings that already have voting records instead of requiring repeated manual navigation.</p></article>
+        <article class="case-card"><strong>Receipts in one place</strong><p>It organizes existing receipts by company and meeting and checks record counts across pages to avoid missing or duplicated entries.</p></article>
+        <article class="case-card"><strong>Files ready to use</strong><p>Receipts can be saved individually, bundled in a ZIP or prepared as an A4 PDF for batch printing.</p></article>
+        <article class="case-card"><strong>Personal records stay protected</strong><p>Users sign in and give permission first. Certificates and stored receipts are encrypted, and access is restricted to the relevant account.</p></article>
       </div>
     </div>
   </section>
@@ -43,14 +43,14 @@
     <div>
       <h3>22 existing receipts retrieved locally. Unverified features are still labeled as such.</h3>
       <p>On 2026-11-22, I used an authorized account locally to retrieve 22 existing official voting receipts from two pages, checked the record counts and prepared images and print files. Real Google sign-in has also been tested on the public portal. The full public upload, lookup and download flow still needs live validation.</p>
-      <p><strong>New-ballot submission remains disabled.</strong>Automated abstention voting has been implemented and tested with simulated scenarios, but it has not been validated with an eligible live ballot. I can't claim the system has successfully submitted a new real-world vote.</p>
+      <p><strong>New-ballot submission remains disabled.</strong> Automated abstention voting has been implemented and tested with simulated scenarios, but it has not been validated with an eligible live ballot. I can't claim the system has successfully submitted a new real-world vote.</p>
     </div>
   </section>
   <section class="case-section">
     <h2>What mattered to me while building it</h2>
     <div class="case-grid">
-      <article class="case-card"><strong>Permission comes first</strong>Voting records and digital certificates aren't things to handle casually. Users must authenticate and authorize access. Google login and Windows DPAPI encryption protect account and locally stored sensitive data.</article>
-      <article class="case-card"><strong>Stop when something is unclear</strong>If an official page changes, records don't match, or a voting result is uncertain, the program should stop rather than guess or resubmit.</article>
+      <article class="case-card"><strong>Permission comes first</strong><p>Voting records and digital certificates aren't things to handle casually. Users must authenticate and authorize access. Google login and Windows DPAPI encryption protect account and locally stored sensitive data.</p></article>
+      <article class="case-card"><strong>Stop when something is unclear</strong><p>If an official page changes, records don't match, or a voting result is uncertain, the program should stop rather than guess or resubmit.</p></article>
     </div>
     <p class="case-meta-note">The public portal connects to a local computer and is unavailable when that machine is off or sleeping. This case study contains no customer certificates, personal records, real receipts or private source code. Voting and shareholder-gift collection remain subject to applicable rules.</p>
   </section>
