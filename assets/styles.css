@@ -1505,14 +1505,29 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .site-version{display:inline-flex;align-items:center;gap:7px;color:var(--faint);font:700 11px/1.4 var(--mono);white-space:nowrap}.site-version a{color:inherit;text-decoration:none}.site-version a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.changelog-release{grid-column:1/-1}.changelog-release-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:18px}.changelog-release-head h2{margin:4px 0 0;font-size:clamp(30px,4vw,44px)}.changelog-release-head time{color:var(--faint);font:700 12px/1.4 var(--mono);white-space:nowrap}.changelog-release p{color:var(--muted)}.changelog-release ul{margin:18px 0 22px;padding-left:22px;color:var(--muted)}.changelog-release li+li{margin-top:10px}.changelog-release code{font-family:var(--mono);color:var(--text)}.changelog-release a{color:var(--accent);font-weight:700;text-decoration:none}.changelog-release a:hover{text-decoration:underline;text-underline-offset:3px}@media(max-width:620px){.site-version{width:100%;justify-content:center;margin-top:6px}.changelog-release-head{display:block}.changelog-release-head time{display:block;margin-top:8px}}
 
 
+/* AutoVote: use a consistent native Traditional Chinese sans-serif instead of
+   letting Latin UI fonts fall back to an unpredictable CJK face on Windows. */
+.autovote-hero,
+.autovote-story {
+  --sans: "Microsoft JhengHei", "Microsoft JhengHei UI", "PingFang TC",
+    "Noto Sans TC", "Noto Sans CJK TC", "Source Han Sans TC", sans-serif;
+  font-family: var(--sans);
+}
+.autovote-hero .case-facts dt {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 /* AutoVote case study: readable story layout without changing other projects. */
-.autovote-hero h1 { font-size: clamp(42px, 6vw, 66px); line-height: 1.08; }
+.autovote-hero h1 { font-size: clamp(42px, 6vw, 66px); line-height: 1.12; letter-spacing: -.02em; font-weight: 700; }
 .autovote-hero h1 span {
   display: block;
   margin-top: 8px;
   font-size: clamp(28px, 4vw, 47px);
   line-height: 1.3;
-  letter-spacing: -.035em;
+  letter-spacing: -.012em;
+  font-weight: 700;
   overflow-wrap: anywhere;
 }
 .autovote-hero p.case-meta-note { font-size: 14px; line-height: 1.75; }
@@ -1524,24 +1539,26 @@ body.reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
 .autovote-story .case-section { display: block; padding: clamp(24px, 4vw, 40px); }
 .autovote-story .case-section > h2 {
   margin: 0 0 14px;
-  font: 800 14px/1.5 var(--sans);
-  letter-spacing: .025em;
+  font: 700 15px/1.5 var(--sans);
+  letter-spacing: .015em;
   text-transform: none;
 }
 .autovote-story .case-section h3 {
   max-width: 800px;
   margin-bottom: 17px;
   font-size: clamp(22px, 2.7vw, 30px);
-  line-height: 1.42;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.48;
 }
 .autovote-story .case-section p { max-width: 78ch; margin: 0 0 16px; line-height: 1.85; }
 .autovote-story .case-section p:last-child { margin-bottom: 0; }
 .autovote-story .case-grid { margin: 18px 0; }
 .autovote-story .case-card { min-width: 0; line-height: 1.75; }
-.autovote-story .case-card strong { font-size: 16px; line-height: 1.45; margin-bottom: 10px; }
-.autovote-story .case-card p { max-width: none; margin: 0; font-size: 15px; line-height: 1.78; }
+.autovote-story .case-card strong { color: #2f3f69; font-size: 17px; font-weight: 700; line-height: 1.5; margin-bottom: 10px; }
+.autovote-story .case-card p { max-width: none; margin: 0; font-size: 16px; line-height: 1.8; }
 .autovote-story .architecture { margin: 18px 0; }
-.autovote-story .architecture .node strong { font-size: 15px; line-height: 1.5; }
+.autovote-story .architecture .node strong { font-size: 15px; font-weight: 700; line-height: 1.5; }
 .autovote-story .architecture .node small { font-size: 13px; line-height: 1.65; }
 .autovote-story .case-section p.case-meta-note {
   max-width: none;

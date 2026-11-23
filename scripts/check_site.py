@@ -355,8 +355,12 @@ def main() -> int:
             errors.append(f"AutoVote story layout hooks missing ({locale})")
         if content.count('<article class="case-card">') != 6 or content.count('<article class="case-card"><strong>') != content.count('</strong><p>'):
             errors.append(f"AutoVote content cards must have separate headings and paragraphs ({locale})")
-    if ".autovote-story .case-section { display: block;" not in (ROOT / "assets/styles.css").read_text(encoding="utf-8"):
+    autovote_css = (ROOT / "assets/styles.css").read_text(encoding="utf-8")
+    if ".autovote-story .case-section { display: block;" not in autovote_css:
         errors.append("AutoVote story sections must not use the narrow side-label grid")
+    for token in ('.autovote-hero,', '.autovote-story {', '"Microsoft JhengHei"', '.autovote-hero .case-facts dt {', '.autovote-story .case-card p { max-width: none; margin: 0; font-size: 16px;'):
+        if token not in autovote_css:
+            errors.append(f"AutoVote CJK typography missing: {token}")
     for locale in ("zh", "en"):
         source = ROOT / "data" / "case-studies" / f"academic-faq-chatbot.{locale}.html"
         content = source.read_text(encoding="utf-8") if source.is_file() else ""

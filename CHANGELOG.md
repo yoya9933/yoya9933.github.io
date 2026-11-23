@@ -2,6 +2,14 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.34 — 2026-11-24
+
+修正 AutoVote 作品頁的繁體中文字體及字重顯示。
+
+- 中英文 AutoVote 案例頁優先採用系統內建的繁體中文無襯線字型（Windows 微軟正黑體、macOS 蘋方及 Noto Sans），避免 Latin 字型回退到明體造成文字風格不一致。
+- 調整段落字級、卡片標題字重與顏色、主副標字距、章節標題和資訊欄位字型，提升閱讀一致性。
+- 限定在 AutoVote 作品頁，不更動其他作品、首頁及外部資源載入；保留原有功能與內容敘述。
+
 ## v1.8.33 — 2026-11-24
 
 修正 AutoVote Case Study 的閱讀排版與卡片文字結構。
