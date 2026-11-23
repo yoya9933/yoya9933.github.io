@@ -337,8 +337,20 @@ def main() -> int:
                     errors.append(f"CV experience chronological order/date incorrect: {name}")
 
     faq = next((project for project in PROJECTS if project["slug"] == "academic-faq-chatbot"), None)
-    if len(PROJECTS) != 8 or faq is None or faq["order"] != 4:
-        errors.append("Academic FAQ assistant must be fourth among eight portfolio projects")
+    autovote = next((project for project in PROJECTS if project["slug"] == "autovote"), None)
+    if len(PROJECTS) != 9 or faq is None or faq["order"] != 4 or autovote is None or autovote["order"] != 5:
+        errors.append("Portfolio must include nine projects, with FAQ fourth and AutoVote fifth")
+    if autovote is not None and (autovote.get("repo") is not None or autovote.get("live") != "https://vote.sharegift.tw/"):
+        errors.append("AutoVote must not link its private repository")
+    for locale, required in (
+        ("zh", ("22", "Google", "DPAPI", "新票送出維持關閉", "尚未正式實投驗收")),
+        ("en", ("22", "Google", "DPAPI", "New-ballot submission remains disabled", "has not been validated")),
+    ):
+        source = ROOT / "data" / "case-studies" / f"autovote.{locale}.html"
+        content = source.read_text(encoding="utf-8") if source.is_file() else ""
+        for token in required:
+            if token not in content:
+                errors.append(f"AutoVote case study missing {token} ({locale})")
     for locale in ("zh", "en"):
         source = ROOT / "data" / "case-studies" / f"academic-faq-chatbot.{locale}.html"
         content = source.read_text(encoding="utf-8") if source.is_file() else ""

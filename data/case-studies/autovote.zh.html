@@ -1,0 +1,56 @@
+<header class="case-hero shell">
+  <p class="eyebrow">股東服務 · 流程自動化</p>
+  <h1>AutoVote<br>股東電子投票輔助平台</h1>
+  <p>我將 Google 登入、憑證管理、集保查詢與電投圖匯出整合成網站及本機處理流程。目標是減少逐戶登入、查詢與整理既有電子投票證明的人工操作，同時保留客戶授權和資料隔離。</p>
+  <p class="case-meta-note">截至 2026-11-23，公開網站已完成 HTTPS 與真實 Google 登入驗證；新票送出維持關閉，尚未正式實投驗收。公開入口的真實憑證上傳至取圖全流程亦尚未完成端到端驗證。</p>
+</header>
+<main id="main" class="case-content shell">
+  <section class="case-section">
+    <h2>設計的流程</h2>
+    <div>
+      <h3>從客戶授權，到查詢官方既有紀錄並整理電投圖。</h3>
+      <div class="architecture">
+        <div class="node"><strong>Google 登入</strong><small>驗證登入身分與操作權限</small></div>
+        <div class="node"><strong>憑證與授權</strong><small>上傳、停用、刪除與加密保管</small></div>
+        <div class="node"><strong>集保查詢</strong><small>本機 Edge / Playwright 處理官方流程</small></div>
+        <div class="node"><strong>電投圖匯出</strong><small>圖片、ZIP 與 A4 批量列印</small></div>
+      </div>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>工程實作</h2>
+    <div class="case-grid">
+      <article class="case-card"><strong>身分驗證與隔離</strong>使用 Google ID token 驗證與伺服器端客戶所有權檢查，不以使用者自行輸入的電子郵件作為授權依據。</article>
+      <article class="case-card"><strong>敏感資料保護</strong>以 Windows DPAPI 加密保存憑證、密碼與電投圖；網站服務只綁定本機位址，由 Cloudflare Tunnel 提供公開 HTTPS 入口。</article>
+      <article class="case-card"><strong>官方網站操作</strong>使用 Playwright 控制獨立的本機 Edge 工作階段；對未知頁面格式、分頁異常或不確定結果停止處理，避免猜測。</article>
+      <article class="case-card"><strong>輸出與批量列印</strong>既有電投圖可整理為精簡圖片、ZIP 和 PDF，並保留原始圖，方便後續查詢與列印。</article>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>已驗證的成果</h2>
+    <div>
+      <h3>22 筆既有官方電投圖，從兩頁清單完整匯出。</h3>
+      <p>2026-11-22 使用已授權的本機帳戶，實際查詢集保兩頁既有投票清單，匯出 22 筆電投圖，並比對清單筆數與重複會議。公開網站另已確認真實 Google 登入與憑證上傳欄位可用；不能因此推定整個公開取圖流程已正式驗收。</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>驗證界線與風險控管</h2>
+    <div>
+      <ul>
+        <li><strong>新票送出維持關閉：</strong>自動全棄權投票流程已有程式與合成測試，但仍缺少可投帳戶的正式新票實投驗收，不能宣稱已成功送出真實新票。</li>
+        <li><strong>防重複提交：</strong>送票前持久記錄意圖；送出結果不明時停止重送，保留待人工核對狀態。</li>
+        <li><strong>服務可用性：</strong>網站經 Cloudflare Tunnel 連到本機電腦，主機關閉或休眠時無法使用，不宣稱為全天候雲端服務。</li>
+        <li><strong>資料與授權：</strong>作品頁只展示架構與開發成果，不公開客戶憑證、身分資料、電投圖或私人原始碼；正式投票與代領仍須遵守相關規定。</li>
+      </ul>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>流程架構示意</h2>
+    <div>
+      <figure class="case-shot">
+        <img src="../../assets/projects/autovote.webp" alt="AutoVote 客戶入口、集保查詢及電投圖輸出架構示意" loading="lazy">
+        <figcaption>流程架構示意，非真實操作畫面；沒有使用客戶憑證、身分資料或官方電投圖。</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>

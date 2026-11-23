@@ -23,6 +23,7 @@ Selected Work：
 - 活動報到與現場營運系統
 - 加班管理與行政彙整系統
 - 成大教務 FAQ 智慧問答系統（BM25 + BGE-M3 / Ollama）
+- AutoVote 股東電子投票輔助平台（Google 登入、集保既有投票查詢與電投圖匯出；新票送出待驗收）
 - 楚河棋局｜線上中國象棋
 - Reliable AI Media Automation Pipeline
 - 浮標資料分析與航道風險評估平台（海洋 LSTM 研究的後續實作；模型仍待獨立驗證）

@@ -1,0 +1,56 @@
+<header class="case-hero shell">
+  <p class="eyebrow">Shareholder services · workflow automation</p>
+  <h1>AutoVote<br>Shareholder E-voting Assistant</h1>
+  <p>I built a client portal and local backend connecting Google authentication, certificate management, official voting-record lookup and receipt export. The goal is to reduce repetitive sign-in and document handling while retaining explicit client authorization and data isolation.</p>
+  <p class="case-meta-note">As of 2026-11-23, the public HTTPS portal and real Google sign-in have been verified. New-ballot submission remains disabled and has not been validated with a live eligible ballot. The full public certificate-upload-to-receipt workflow also awaits end-to-end validation.</p>
+</header>
+<main id="main" class="case-content shell">
+  <section class="case-section">
+    <h2>Workflow</h2>
+    <div>
+      <h3>From client authorization to retrieving and organizing existing official voting receipts.</h3>
+      <div class="architecture">
+        <div class="node"><strong>Google login</strong><small>authenticate identity and access</small></div>
+        <div class="node"><strong>Certificate consent</strong><small>upload, revoke, delete and encrypt</small></div>
+        <div class="node"><strong>TDCC lookup</strong><small>local Edge / Playwright handles the official flow</small></div>
+        <div class="node"><strong>Receipt export</strong><small>images, ZIP and A4 batch printing</small></div>
+      </div>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>Engineering</h2>
+    <div class="case-grid">
+      <article class="case-card"><strong>Authentication and isolation</strong>Google ID tokens are validated server-side, with ownership checks on client records. A user-supplied email address is not accepted as proof of identity.</article>
+      <article class="case-card"><strong>Protecting sensitive data</strong>Windows DPAPI encrypts stored certificates, passwords and receipts. The service binds to a loopback address, with Cloudflare Tunnel providing a public HTTPS endpoint.</article>
+      <article class="case-card"><strong>Official-site automation</strong>Playwright controls an isolated local Microsoft Edge session. Unknown page structures, pagination errors or uncertain outcomes stop processing instead of relying on guesses.</article>
+      <article class="case-card"><strong>Export and printing</strong>Existing voting receipts are organized as compact images, ZIP archives and PDFs while retaining full original records.</article>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>Verified outcomes</h2>
+    <div>
+      <h3>22 existing official voting receipts exported from a two-page list.</h3>
+      <p>On 2026-11-22, the local workflow queried an authorized account, exported 22 existing receipts across two TDCC list pages, and checked record counts and duplicate meetings. The public portal separately passed real Google sign-in and form-availability checks; that does not constitute completed end-to-end receipt validation from the public portal.</p>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>Validation boundaries and safeguards</h2>
+    <div>
+      <ul>
+        <li><strong>New voting is disabled:</strong>Automated abstention submission has implementation and synthetic tests, but it has not been validated on an eligible live ballot. No successful real new-ballot submission is claimed.</li>
+        <li><strong>Duplicate-submission prevention:</strong>Submission intent is persisted before an attempt; uncertain outcomes remain pending review and must not be resubmitted automatically.</li>
+        <li><strong>Availability:</strong>The public domain tunnels to a local computer; the service is unavailable when that machine is shut down or sleeping, not a 24/7 cloud service.</li>
+        <li><strong>Privacy and consent:</strong>This case study contains no client certificates, identity records, voting receipts or private source code. Actual voting and gift-collection services remain subject to applicable rules.</li>
+      </ul>
+    </div>
+  </section>
+  <section class="case-section">
+    <h2>Architecture illustration</h2>
+    <div>
+      <figure class="case-shot">
+        <img src="../../../assets/projects/autovote.webp" alt="AutoVote client portal, TDCC lookup and receipt export architecture" loading="lazy">
+        <figcaption>Architecture illustration, not a live screenshot. No client certificates, identities or official receipts are shown.</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>

@@ -2,6 +2,15 @@
 
 網站版本遵循 Semantic Versioning（SemVer）：`MAJOR.MINOR.PATCH`。
 
+## v1.8.31 — 2026-11-24
+
+在中英文 Portfolio 加入 AutoVote 股東電子投票輔助平台。
+
+- 新增第五筆 AutoVote 代表作品與雙語 Case Study，既有其餘作品依序後移；同步更新首頁九筆作品文案。
+- 介紹 Google 登入、FastAPI、Playwright、Windows DPAPI、集保既有投票查詢與 22 筆官方電投圖本機匯出。
+- 加入不含客戶資料的 SVG 架構圖；不公開 private Repository，也不將公開入口描述為已完成新票投票驗收。
+- 明確揭露新票送出維持關閉、公開憑證至取圖流程尚未端到端驗收；沿用原有建置與品質檢查流程。
+
 ## v1.8.30 — 2026-11-22
 
 修正中英文履歷固定 A4 頁面內文字過度擁擠及裁切風險。

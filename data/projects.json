@@ -5,8 +5,8 @@
     "en": "Start with the work, then the stack."
   },
   "selected_heading": {
-    "zh": "八個代表專案，涵蓋商業 CMS、校內系統、AI 問答、資料分析、自動化與多人 Web 產品。",
-    "en": "Eight projects spanning business CMS, university systems, AI FAQ, data analysis, automation, and multiplayer web products."
+    "zh": "九個代表專案，涵蓋商業 CMS、校內系統、AI 問答、股東服務自動化、資料分析與多人 Web 產品。",
+    "en": "Nine projects spanning business CMS, university systems, AI FAQ, shareholder-service automation, data analysis, and multiplayer web products."
   },
   "projects": [
     {
@@ -316,8 +316,86 @@
       }
     },
     {
-      "slug": "chess",
+      "slug": "autovote",
       "order": 5,
+      "featured": false,
+      "badge": "PILOT · VOTING OFF",
+      "title": {
+        "zh": "AutoVote｜股東電子投票輔助平台",
+        "en": "AutoVote | Shareholder E-voting Assistant"
+      },
+      "card_description": {
+        "zh": "整合 Google 登入、憑證保護與集保既有投票查詢，自動匯出官方電投圖；已在本機取回 22 筆既有紀錄。新票自動送出尚未正式驗收，公開網站維持關閉。",
+        "en": "A Google-authenticated portal for protected certificates and automated retrieval of official voting receipts; 22 existing records were exported locally. New-ballot submission remains disabled pending live validation."
+      },
+      "tags": {
+        "zh": [
+          "22 筆既有電投圖",
+          "FastAPI + Playwright",
+          "Google Login · DPAPI"
+        ],
+        "en": [
+          "22 existing receipts",
+          "FastAPI + Playwright",
+          "Google Login · DPAPI"
+        ]
+      },
+      "image_alt": {
+        "zh": "AutoVote 客戶入口、本機處理與電投圖匯出的流程示意圖，不含真實憑證或投票資料",
+        "en": "AutoVote architecture illustration for the client portal, local processing and receipt export; no real certificates or voting data"
+      },
+      "media": {
+        "type": "svg_render",
+        "source": "assets/projects/autovote.svg",
+        "width": 1440,
+        "height": 900,
+        "quality": 85
+      },
+      "case_visual": {
+        "caption": {
+          "zh": "流程架構示意，非真實操作畫面；沒有使用客戶憑證、身分資料或官方電投圖。",
+          "en": "Architecture illustration, not a live screenshot. No client certificates, identities or official receipts are shown."
+        }
+      },
+      "repo": null,
+      "live": "https://vote.sharegift.tw/",
+      "live_label": {
+        "zh": "查看公開入口 ↗",
+        "en": "View Public Portal ↗"
+      },
+      "case_facts": {
+        "role": {
+          "zh": "系統設計與全端開發",
+          "en": "System design and full-stack development"
+        },
+        "scope": {
+          "zh": "Google 登入 · 憑證保護 · 集保查詢 · 取圖",
+          "en": "Google login · certificate protection · TDCC lookup · receipts"
+        },
+        "status": {
+          "zh": "公開入口已上線 · 新票送出關閉，待正式驗收",
+          "en": "Public portal online · new-ballot submission disabled pending validation"
+        },
+        "stack": "Python · FastAPI · Playwright · SQLite · Windows DPAPI"
+      },
+      "case_page": {
+        "zh": {
+          "title": "AutoVote｜股東電子投票輔助平台｜Yu Case Study",
+          "description": "以 FastAPI、Playwright、Google 登入與 Windows DPAPI 建立股東電投圖查詢及匯出流程；正式新票送出仍待驗收。",
+          "og_title": "AutoVote｜股東電子投票輔助平台｜Yu",
+          "og_description": "已實測匯出 22 筆官方既有電投圖，公開入口可 Google 登入；新票自動送出未啟用。"
+        },
+        "en": {
+          "title": "AutoVote | Shareholder E-voting Assistant | Yu Case Study",
+          "description": "A shareholder voting-receipt workflow built with FastAPI, Playwright, Google login and Windows DPAPI. New ballot submission has not been validated.",
+          "og_title": "AutoVote | Shareholder E-voting Assistant | Yu",
+          "og_description": "22 official existing voting receipts retrieved locally; Google sign-in is available. New-ballot submission remains disabled."
+        }
+      }
+    },
+    {
+      "slug": "chess",
+      "order": 6,
       "featured": false,
       "badge": null,
       "title": {
@@ -390,7 +468,7 @@
     },
     {
       "slug": "ai-media-pipeline",
-      "order": 6,
+      "order": 7,
       "featured": false,
       "badge": "AI AUTOMATION",
       "title": {
@@ -458,7 +536,7 @@
     },
     {
       "slug": "buoy",
-      "order": 7,
+      "order": 8,
       "featured": false,
       "badge": null,
       "title": {
@@ -523,7 +601,7 @@
     },
     {
       "slug": "neon-arena",
-      "order": 8,
+      "order": 9,
       "featured": false,
       "badge": "REAL-TIME MULTIPLAYER",
       "title": {
