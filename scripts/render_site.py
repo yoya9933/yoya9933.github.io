@@ -416,7 +416,7 @@ def render_case_page(project: dict, locale: str, data: dict) -> str:
         f'<meta property="og:description" content="{escape(page["og_description"], quote=True)}">'
         f'<meta property="og:image" content="{escape(og_image, quote=True)}">'
         f'<link rel="stylesheet" href="{asset_prefix}assets/styles.css">'
-        '</head><body class="case-page">'
+        f'</head><body class="case-page{" autovote-page" if project["slug"] == "autovote" else ""}">'
         f'<a class="skip-link" href="#main">{"Skip to main content" if locale == "en" else "跳到主要內容"}</a>'
         f'<nav class="case-nav shell"><a href="{home_url}">{back_label}</a>'
         f'<span class="toolbar"><a href="{locale_url}">{locale_label}</a></span></nav>'

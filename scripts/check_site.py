@@ -358,9 +358,11 @@ def main() -> int:
     autovote_css = (ROOT / "assets/styles.css").read_text(encoding="utf-8")
     if ".autovote-story .case-section { display: block;" not in autovote_css:
         errors.append("AutoVote story sections must not use the narrow side-label grid")
-    for token in ('.autovote-hero,', '.autovote-story {', '"Microsoft JhengHei"', '.autovote-hero .case-facts dt {', '.autovote-story .case-card p { max-width: none; margin: 0; font-size: 16px;'):
+    for token in ('body.autovote-page {', '"Noto Sans CJK TC"', '"Microsoft JhengHei"', '.autovote-hero .case-facts dt {', '.autovote-story .case-card p {'):
         if token not in autovote_css:
             errors.append(f"AutoVote CJK typography missing: {token}")
+    if "font-family: var(--sans);" not in autovote_css.split("body.autovote-page {", 1)[-1].split("}", 1)[0]:
+        errors.append("AutoVote font family must be set on the whole page")
     for locale in ("zh", "en"):
         source = ROOT / "data" / "case-studies" / f"academic-faq-chatbot.{locale}.html"
         content = source.read_text(encoding="utf-8") if source.is_file() else ""
@@ -480,6 +482,8 @@ def main() -> int:
             if not case_path.exists():
                 continue
             case = case_path.read_text(encoding="utf-8")
+            if project["slug"] == "autovote" and 'class="case-page autovote-page"' not in case:
+                errors.append(f"AutoVote page-level font class missing: {case_path.relative_to(SITE)}")
             if f'data-project-actions="{project["slug"]}"' not in case:
                 errors.append(f"manifest-driven project actions missing from {case_path.relative_to(SITE)}")
             expected_url = DATA["site_url"].rstrip("/") + case_url(project, locale)
